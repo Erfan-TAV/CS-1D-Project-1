@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <cmath>
 #include <limits>
 
 using namespace std;
@@ -20,20 +21,35 @@ vector<string> campuses = {
     "Chandler Innovation Center"
 };
 
-// distance matrix (miles)
-double distances[11][11] = {
-    {0,8,20,15,195,10,370,18,5,6,12},
-    {8,0,14,18,200,12,365,16,7,10,14},
-    {20,14,0,25,210,18,380,22,19,21,23},
-    {15,18,25,0,205,16,375,10,12,14,9},
-    {195,200,210,205,0,198,550,210,190,192,200},
-    {10,12,18,16,198,0,360,15,8,9,13},
-    {370,365,380,375,550,360,0,365,368,372,374},
-    {18,16,22,10,210,15,365,0,13,15,7},
-    {5,7,19,12,190,8,368,13,0,4,11},
-    {6,10,21,14,192,9,372,15,4,0,10},
-    {12,14,23,9,200,13,374,7,11,10,0}
+// coordinates (latitude, longitude)
+double coordinates[11][2] = {
+    {33.4242, -111.9281},  // Tempe
+    {33.4534, -112.0738},  // Downtown Phoenix
+    {33.6073, -112.1590},  // West
+    {33.3078, -111.6824},  // Polytechnic
+    {34.4839, -114.3225},  // Lake Havasu
+    {33.4942, -112.0566},  // Thunderbird
+    {34.0689, -118.4452},  // California Center
+    {33.4152, -111.8315},  // Mesa City Center
+    {33.4326, -111.8906},  // SkySong
+    {33.2867, -111.7340},  // Research Park
+    {33.3062, -111.8413}   // Chandler Innovation Center
 };
+
+// function to calculate distance between two campuses
+double calculate_distance(int a, int b) {
+
+    double lat1 = coordinates[a][0];
+    double lon1 = coordinates[a][1];
+    double lat2 = coordinates[b][0];
+    double lon2 = coordinates[b][1];
+
+    double distance = sqrt(pow(lat2 - lat1, 2) +
+                           pow(lon2 - lon1, 2));
+
+    // convert degrees difference roughly to miles
+    return distance * 69.0;
+}
 
 // function to find closest campus
 int find_closest(int current, vector<int> remaining) {
@@ -41,9 +57,9 @@ int find_closest(int current, vector<int> remaining) {
     double min_distance = numeric_limits<double>::max();
     int closest = -1;
 
-    for (int i = 0; i < remaining.size(); i++) {
+    for (int i = 0; i < remaining.size(); i++){
 
-        double d = distances[current][remaining[i]];
+        double d = calculate_distance(current, remaining[i]);
 
         if (d < min_distance){
             min_distance = d;
@@ -65,10 +81,9 @@ void plan_trip(int current,
         return;
     }
 
-    // find closest campus
     int next = find_closest(current, remaining);
 
-    total_distance += distances[current][next];
+    total_distance += calculate_distance(current, next);
     order.push_back(next);
 
     // remove visited campus
@@ -91,7 +106,6 @@ int main() {
 
     cout << "ASU Recursive Campus Trip Planner" << endl << endl;
 
-    // display campuses
     for (int i = 0; i < campuses.size(); i++){
         cout << i << ": " << campuses[i] << endl;
     }
@@ -104,14 +118,22 @@ int main() {
     cin >> count;
 
     vector<int> selected;
-
     selected.push_back(start);
 
     cout << "Enter the campus numbers you want to include:" << endl;
 
     for (int i = 1; i < count; i++){
+
         int choice;
         cin >> choice;
+
+        // prevent starting campus from being selected again
+        while (choice == start){
+            cout << "Error: Starting campus already selected." << endl;
+            cout << "Please enter a different campus: ";
+            cin >> choice;
+        }
+
         selected.push_back(choice);
     }
 
