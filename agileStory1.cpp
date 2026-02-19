@@ -12,39 +12,30 @@ struct College {
     double latitude;
     double longitude;
     double distance;
+    double x; // x-coordinate (east-west)
+    double y; // y-coordinate (north-south)
 };
 
-// function to calculate distance using Haversine formula
-double calculate_distance(double lat1, double lon1, double lat2, double lon2) {
-    const double EARTH_RADIUS = 3958.8; // miles
-
-    double dLat = (lat2 - lat1) * M_PI / 180.0;
-    double dLon = (lon2 - lon1) * M_PI / 180.0;
-
-    lat1 = lat1 * M_PI / 180.0;
-    lat2 = lat2 * M_PI / 180.0;
-
-    double a = pow(sin(dLat / 2), 2) +
-               pow(sin(dLon / 2), 2) * cos(lat1) * cos(lat2);
-
-    double c = 2 * asin(sqrt(a));
-
-    return EARTH_RADIUS * c;
-}
-
-// function to compute distances from Saddleback College
+// function to compute distances and coordinates relative to Saddleback College
 void compute_distances(vector<College>& colleges) {
 
     double saddleback_lat = 33.5514;
     double saddleback_lon = -117.6626;
 
     for (int i = 0; i < colleges.size(); i++) {
-        colleges[i].distance = calculate_distance(
-            saddleback_lat,
-            saddleback_lon,
-            colleges[i].latitude,
-            colleges[i].longitude
-        );
+
+        double delta_lat = colleges[i].latitude - saddleback_lat;
+        double delta_lon = colleges[i].longitude - saddleback_lon;
+
+        // convert degrees to miles approximately
+        double miles_per_deg_lat = 69.0;
+        double miles_per_deg_lon = cos(saddleback_lat * M_PI / 180.0) * 69.0;
+
+        colleges[i].x = delta_lon * miles_per_deg_lon;
+        colleges[i].y = delta_lat * miles_per_deg_lat;
+
+        colleges[i].distance = sqrt(colleges[i].x * colleges[i].x +
+                                    colleges[i].y * colleges[i].y);
     }
 }
 
@@ -73,7 +64,9 @@ void display_colleges(vector<College>& colleges) {
                  << colleges[i].name << " - "
                  << fixed << setprecision(2)
                  << colleges[i].distance
-                 << " miles" << endl;
+                 << " miles "
+                 << "(x: " << fixed << setprecision(2) << colleges[i].x
+                 << ", y: " << colleges[i].y << ")" << endl;
         }
 
         cout << "\nn - next page | p - previous page | s - select | q - quit\n";
@@ -97,7 +90,9 @@ void display_colleges(vector<College>& colleges) {
                 cout << "Distance: "
                      << fixed << setprecision(2)
                      << colleges[num - 1].distance
-                     << " miles\n";
+                     << " miles "
+                     << "(x: " << colleges[num - 1].x
+                     << ", y: " << colleges[num - 1].y << ")" << endl;
             }
             else {
                 cout << "Invalid selection.\n";
@@ -124,7 +119,9 @@ void search_college(vector<College>& colleges) {
             cout << colleges[i].name << " - "
                  << fixed << setprecision(2)
                  << colleges[i].distance
-                 << " miles" << endl;
+                 << " miles "
+                 << "(x: " << colleges[i].x
+                 << ", y: " << colleges[i].y << ")" << endl;
             found = true;
         }
     }
@@ -139,14 +136,14 @@ int main() {
     vector<College> colleges;
 
     // sample database of colleges
-    colleges.push_back({"UCLA", 34.0689, -118.4452, 0});
-    colleges.push_back({"UC Irvine", 33.6405, -117.8443, 0});
-    colleges.push_back({"Cal State Fullerton", 33.8823, -117.8851, 0});
-    colleges.push_back({"USC", 34.0224, -118.2851, 0});
-    colleges.push_back({"San Diego State", 32.7757, -117.0719, 0});
-    colleges.push_back({"Stanford University", 37.4275, -122.1697, 0});
-    colleges.push_back({"UC Berkeley", 37.8715, -122.2730, 0});
-    colleges.push_back({"Cal Poly Pomona", 34.0572, -117.8216, 0});
+    colleges.push_back({"UCLA", 34.0689, -118.4452, 0, 0, 0});
+    colleges.push_back({"UC Irvine", 33.6405, -117.8443, 0, 0, 0});
+    colleges.push_back({"Cal State Fullerton", 33.8823, -117.8851, 0, 0, 0});
+    colleges.push_back({"USC", 34.0224, -118.2851, 0, 0, 0});
+    colleges.push_back({"San Diego State", 32.7757, -117.0719, 0, 0, 0});
+    colleges.push_back({"Stanford University", 37.4275, -122.1697, 0, 0, 0});
+    colleges.push_back({"UC Berkeley", 37.8715, -122.2730, 0, 0, 0});
+    colleges.push_back({"Cal Poly Pomona", 34.0572, -117.8216, 0, 0, 0});
 
     compute_distances(colleges);
 
