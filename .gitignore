@@ -1,0 +1,12 @@
+# Ignore Qt Creator build directories
+/build/
+
+# Ignore specific build artifacts
+*.o
+*.obj
+*.user
+*.a
+*.lib
+*.so
+*.dll
+*.exe
