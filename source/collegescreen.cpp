@@ -1,6 +1,6 @@
-#include "collegescreen.h"
+#include "../headers/collegescreen.h"
 #include "./ui_collegescreen.h"
-#include "itemlistwidget.h"
+#include "../headers/itemlistwidget.h"
 #include <QListWidgetItem>
 
 collegeScreen::collegeScreen(QWidget *parent)

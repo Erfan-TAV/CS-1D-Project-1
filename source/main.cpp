@@ -1,6 +1,6 @@
-#include "collegescreen.h"
+#include "../headers/collegescreen.h"
 #include <QApplication>
-#include "tempInfo.h"
+#include "../headers/tempInfo.h"
 
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);

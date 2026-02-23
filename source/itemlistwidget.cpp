@@ -1,4 +1,4 @@
-#include "itemlistwidget.h"
+#include "../headers/itemlistwidget.h"
 #include "ui_itemlistwidget.h"
 
 ItemListWidget::ItemListWidget(QWidget *parent) :
