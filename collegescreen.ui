@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>923</width>
+    <width>800</width>
     <height>600</height>
    </rect>
   </property>
@@ -17,35 +17,23 @@
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
-      <property name="leftMargin">
-       <number>10</number>
-      </property>
-      <property name="topMargin">
-       <number>10</number>
-      </property>
-      <property name="rightMargin">
-       <number>10</number>
-      </property>
-      <property name="bottomMargin">
-       <number>10</number>
-      </property>
       <item>
        <widget class="QLabel" name="campusName">
+        <property name="font">
+         <font>
+          <pointsize>22</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
         <property name="text">
-         <string>Testing college name</string>
+         <string>TextLabel</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QListWidget" name="listWidget">
-        <property name="verticalScrollBarPolicy">
-         <enum>Qt::ScrollBarPolicy::ScrollBarAsNeeded</enum>
-        </property>
-        <property name="sizeAdjustPolicy">
-         <enum>QAbstractScrollArea::SizeAdjustPolicy::AdjustToContents</enum>
-        </property>
-        <property name="dragEnabled">
-         <bool>false</bool>
+        <property name="frameShadow">
+         <enum>QFrame::Shadow::Sunken</enum>
         </property>
        </widget>
       </item>
@@ -68,7 +56,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>923</width>
+     <width>800</width>
      <height>25</height>
     </rect>
    </property>

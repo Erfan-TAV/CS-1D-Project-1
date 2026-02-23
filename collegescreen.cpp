@@ -1,7 +1,7 @@
 #include "collegescreen.h"
 #include "./ui_collegescreen.h"
-#include <QStringListModel>
 #include "itemlistwidget.h"
+#include <QListWidgetItem>
 
 collegeScreen::collegeScreen(QWidget *parent)
     : QMainWindow(parent)
@@ -9,6 +9,7 @@ collegeScreen::collegeScreen(QWidget *parent)
 {
     ui->setupUi(this);
 
+    // Connect the Cancel button to close the window
     connect(ui->purchaseConfirm, &QDialogButtonBox::rejected, this, &QWidget::close);
 }
 
@@ -21,14 +22,15 @@ void collegeScreen::setCampusName(const QString &Name) {
     ui->campusName->setText(Name);
 }
 
-// todo: make compatible with database
 void collegeScreen::populateList(const QList<Souvenir>& items) {
     ui->listWidget->clear();
 
     for (const Souvenir& item : items) {
-        itemListWidget *rowWidget = new itemListWidget(this);
-        rowWidget->setData(item); // Pass the whole struct
+        // Create the custom row widget
+        ItemListWidget *rowWidget = new ItemListWidget(this);
+        rowWidget->setData(item);
 
+        // Create the container for the ListWidget
         QListWidgetItem *itemContainer = new QListWidgetItem(ui->listWidget);
         itemContainer->setSizeHint(QSize(0, 60));
 

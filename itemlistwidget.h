@@ -5,25 +5,22 @@
 #include "tempInfo.h"
 
 namespace Ui {
-class itemListWidget;
+class ItemListWidget;
 }
 
-class itemListWidget : public QWidget
+class ItemListWidget : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit itemListWidget(QWidget *parent = nullptr);
-    ~itemListWidget();
+    explicit ItemListWidget(QWidget *parent = nullptr);
+    ~ItemListWidget();
+
+    // The core function to fill the labels with data
     void setData(const Souvenir &item);
-    // void setItemName(const QString &name);
-
-
-private slots:
-
 
 private:
-    Ui::itemListWidget *ui;
+    Ui::ItemListWidget *ui;
 };
 
 #endif // ITEMLISTWIDGET_H
