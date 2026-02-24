@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.19)
 project(CollegeTour LANGUAGES CXX)
 
 # --- 1. Qt Initialization ---
-find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets)
+find_package(Qt6 6.10.2 REQUIRED COMPONENTS Core Widgets)
 
 # Enable automatic handling of Qt Meta-Object System and UI files
 set(CMAKE_AUTOUIC ON)
