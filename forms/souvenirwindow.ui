@@ -13,25 +13,6 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">QDialog {
-    background-color: #f5f7fa;
-}
-
-QPushButton {
-    background-color: #27ae60;
-    color: white;
-    padding: 6px;
-    border-radius: 6px;
-    text-align: left;
-    padding-left: 15px;
-}
-
-QPushButton:hover {
-    background-color: #219150;
-}
-</string>
-  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QLabel" name="lblCollege">
