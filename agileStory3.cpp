@@ -134,7 +134,7 @@ int main() {
         if (option == 1) {
             db.display_trip();
         }
-        else if (option == 32) {
+        else if (option == 2) {
             break;
         }
         else {
