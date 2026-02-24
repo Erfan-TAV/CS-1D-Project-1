@@ -1,4 +1,4 @@
-#include "collegemanager.h"
+#include "../headers/collegemanager.h"
 #include <limits>
 
 CollegeManager::CollegeManager()

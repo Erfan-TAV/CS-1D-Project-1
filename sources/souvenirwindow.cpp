@@ -1,6 +1,6 @@
-#include "souvenirwindow.h"
+#include "../headers/souvenirwindow.h"
 #include "ui_souvenirwindow.h"
-#include "collegemanager.h"
+#include "../headers/collegemanager.h"
 
 #include <QString>
 

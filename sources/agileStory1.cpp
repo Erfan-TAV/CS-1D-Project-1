@@ -147,31 +147,31 @@ public:
     }
 };
 
-int main() {
-    CollegeDatabase db;
-    int option;
-
-    while (true) {
-        cout << "\n===== College Distance Viewer =====\n";
-        cout << "1. View Colleges\n";
-        cout << "2. Search College\n";
-        cout << "3. Exit\n";
-        cout << "Enter option: ";
-        cin >> option;
-
-        if (option == 1) {
-            db.display_colleges();
-        }
-        else if (option == 2) {
-            db.search_college();
-        }
-        else if (option == 3) {
-            break;
-        }
-        else {
-            cout << "Invalid option.\n";
-        }
-    }
-
-    return 0;
-}
+// int main() {
+//     CollegeDatabase db;
+//     int option;
+//
+//     while (true) {
+//         cout << "\n===== College Distance Viewer =====\n";
+//         cout << "1. View Colleges\n";
+//         cout << "2. Search College\n";
+//         cout << "3. Exit\n";
+//         cout << "Enter option: ";
+//         cin >> option;
+//
+//         if (option == 1) {
+//             db.display_colleges();
+//         }
+//         else if (option == 2) {
+//             db.search_college();
+//         }
+//         else if (option == 3) {
+//             break;
+//         }
+//         else {
+//             cout << "Invalid option.\n";
+//         }
+//     }
+//
+//     return 0;
+// }

@@ -1,6 +1,6 @@
-#include "mainwindow.h"
+#include "../headers/mainwindow.h"
 #include "ui_mainwindow.h"
-#include "souvenirwindow.h"
+#include "../headers/souvenirwindow.h"
 
 #include <QString>
 #include <QMessageBox>

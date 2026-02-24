@@ -99,69 +99,69 @@ void plan_trip(int current,
     plan_trip(next, new_remaining, order, total_distance);
 }
 
-int main() {
-
-    int start;
-    int count;
-
-    cout << "ASU Recursive Campus Trip Planner" << endl << endl;
-
-    for (int i = 0; i < campuses.size(); i++){
-        cout << i << ": " << campuses[i] << endl;
-    }
-
-    cout << endl;
-    cout << "Enter starting campus number: ";
-    cin >> start;
-
-    cout << "How many campuses do you want to visit (including start)? ";
-    cin >> count;
-
-    vector<int> selected;
-    selected.push_back(start);
-
-    cout << "Enter the campus numbers you want to include:" << endl;
-
-    for (int i = 1; i < count; i++){
-
-        int choice;
-        cin >> choice;
-
-        // prevent starting campus from being selected again
-        while (choice == start){
-            cout << "Error: Starting campus already selected." << endl;
-            cout << "Please enter a different campus: ";
-            cin >> choice;
-        }
-
-        selected.push_back(choice);
-    }
-
-    vector<int> remaining;
-
-    for (int i = 1; i < selected.size(); i++){
-        remaining.push_back(selected[i]);
-    }
-
-    vector<int> trip_order;
-    trip_order.push_back(start);
-
-    double total_distance = 0;
-
-    // recursive call
-    plan_trip(start, remaining, trip_order, total_distance);
-
-    cout << endl;
-    cout << "Trip Order:" << endl;
-
-    for (int i = 0; i < trip_order.size(); i++){
-        cout << trip_order[i] << ": "
-             << campuses[trip_order[i]] << endl;
-    }
-
-    cout << endl;
-    cout << "Total Distance: "
-         << total_distance << " miles" << endl;
-
-    return 0;
-}
+// int main() {
+//
+//     int start;
+//     int count;
+//
+//     cout << "ASU Recursive Campus Trip Planner" << endl << endl;
+//
+//     for (int i = 0; i < campuses.size(); i++){
+//         cout << i << ": " << campuses[i] << endl;
+//     }
+//
+//     cout << endl;
+//     cout << "Enter starting campus number: ";
+//     cin >> start;
+//
+//     cout << "How many campuses do you want to visit (including start)? ";
+//     cin >> count;
+//
+//     vector<int> selected;
+//     selected.push_back(start);
+//
+//     cout << "Enter the campus numbers you want to include:" << endl;
+//
+//     for (int i = 1; i < count; i++){
+//
+//         int choice;
+//         cin >> choice;
+//
+//         // prevent starting campus from being selected again
+//         while (choice == start){
+//             cout << "Error: Starting campus already selected." << endl;
+//             cout << "Please enter a different campus: ";
+//             cin >> choice;
+//         }
+//
+//         selected.push_back(choice);
+//     }
+//
+//     vector<int> remaining;
+//
+//     for (int i = 1; i < selected.size(); i++){
+//         remaining.push_back(selected[i]);
+//     }
+//
+//     vector<int> trip_order;
+//     trip_order.push_back(start);
+//
+//     double total_distance = 0;
+//
+//     // recursive call
+//     plan_trip(start, remaining, trip_order, total_distance);
+//
+//     cout << endl;
+//     cout << "Trip Order:" << endl;
+//
+//     for (int i = 0; i < trip_order.size(); i++){
+//         cout << trip_order[i] << ": "
+//              << campuses[trip_order[i]] << endl;
+//     }
+//
+//     cout << endl;
+//     cout << "Total Distance: "
+//          << total_distance << " miles" << endl;
+//
+//     return 0;
+// }
