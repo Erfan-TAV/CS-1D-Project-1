@@ -9,6 +9,8 @@
 #include <QString>
 #include <QDebug>
 
+#include "campusStructs.h"
+
 class DbManager {
 public:
     // Constructor: takes bath to .db file
@@ -23,6 +25,8 @@ public:
     // --- Helper Functions
     bool addCampus(const QString& campus);
     bool removeCampus(int campusID);
+    QString getCampusName(int campusID);
+    Campus getFullCampus(int campusID);
 
     bool addSouvenir(int campusID, const QString& name, double price);
     bool updateSouvenirPrice(int campusID, const QString& name, double newPrice);

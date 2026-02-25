@@ -114,3 +114,79 @@ bool DbManager::addDistance(int id1, int id2, int distance) {
     query.bindValue(":dist", distance);
     return query.exec();
 }
+
+// bool getCampus(const QString& campus)
+// {
+//     QSqlQuery query;
+//
+//     query.
+// }
+
+QString DbManager::getCampusName(int campusID) {
+    QSqlQuery query;
+
+    // SQL Query
+    query.prepare("SELECT campusName FROM campusList WHERE campusID = :id");
+    query.bindValue(":id", campusID);
+
+    // check if sql query ran and output correlating messages
+    if (query.exec()) {
+        if (query.next()) {
+            return query.value(0).toString();
+        } else {
+            qDebug() << "No campus found with ID:" << campusID;
+        }
+    } else {
+        qDebug() << "Database Query Error:" << query.lastError().text();
+    }
+
+    return {};
+}
+
+Campus DbManager::getFullCampus(int campusID) {
+    Campus campus;
+    campus.campusID = -1; // default case if not found
+
+    QSqlQuery query;
+
+    // 1. fill in campus name and id into campus struct
+    query.prepare("SELECT campusName FROM campusList WHERE campusID = :id");
+    query.bindValue(":id", campusID);
+
+
+    if (query.exec() && query.next()) {
+        campus.campusID = campusID;
+        campus.campusName = query.value(0).toString();
+    } else {
+        qDebug() << "Campus ID" << campusID << "not found.";
+        return campus;
+    }
+
+    // 2. fill in souvenir information into campus struct
+    query.prepare("SELECT itemName, price FROM souvenirs WHERE campusID = :id");
+    query.bindValue(":id", campusID);
+
+    if (query.exec()) {
+        while (query.next()) {
+            campusSouvenir item;
+            item.name = query.value("itemName").toString();
+            item.price = query.value("price").toDouble();
+            campus.souvenirs.append(item);
+        }
+    }
+
+    // 3. fill in distance information
+    query.prepare("SELECT otherCampusID, distance FROM campusDistances WHERE campusID = :id");
+    query.bindValue(":id", campusID);
+
+    if (query.exec()) {
+        while (query.next()) {
+            CampusDistances dist;
+            dist.otherCampusID = query.value("otherCampusID").toInt();
+            dist.distance = query.value("distance").toDouble();
+            campus.distances.append(dist);
+        }
+    }
+
+    return campus;
+}

@@ -30,6 +30,7 @@ qt_add_executable(CollegeTour
         # Add SQLite C files explicitly if they aren't caught by the glob
         "SQLite stuff/sqlite3.c"
         "SQLite stuff/shell.c"
+        headers/campusStructs.h
 )
 
 # --- 4. Include Directories ---
