@@ -2,6 +2,7 @@
 #include <QApplication>
 #include <QStyleFactory>
 
+#include "databaseHelper.h"
 #include "dbManager.h"
 #include "ui_mainwindow.h"
 
@@ -13,13 +14,13 @@ int main(int argc, char *argv[])
     // Initialize DbManager
     DbManager db("project1.db");
 
-    if (db.addCampus("UC Irv0000ine")) {
+    if (addCampus("UC Irv0000ine")) {
         qDebug() << "Success: Added UC Irvine";
     }
-
-    if (db.addSouvenir(15, "Blue & Gold Hoodie", 45.99)) {
-        qDebug() << "Success: Added Hoodie to UC Irvine";
-    }
+    //
+    // if (db.addSouvenir(15, "Blue & Gold Hoodie", 45.99)) {
+    //     qDebug() << "Success: Added Hoodie to UC Irvine";
+    // }
     // -------------------------------------
     w.setStyle(QStyleFactory::create("Fusion"));
 
