@@ -5,6 +5,8 @@
 #include <QString>
 #include <QMessageBox>
 
+#include "dbManager.h"
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)

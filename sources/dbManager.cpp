@@ -1,15 +1,13 @@
 //Database Management stuff (needs add/edit/delete stuff still)
 
 #include "dbManager.h"
-// #include "../dbManager.h"
 
-DbManager::DbManager(const QString& path)
-    : m_db(QSqlDatabase::addDatabase("SQLITE")) {
-    //initializes he SQlite driver 
-    // m_db = QSqlDatabase::addDatabase("QSQLITE");
+DbManager::DbManager(const QString& path) {
+    //initializes he SQlite driver
+    m_db = QSqlDatabase::addDatabase("QSQLITE");
     m_db.setDatabaseName(path);
 
-    // opens the database 
+    // opens the database
     if (!m_db.open()) {
         qDebug() << "Error: connection with database failed" << m_db.lastError().text();
     } else {
@@ -50,4 +48,69 @@ DbManager::~DbManager() {
 
 bool DbManager::isOpen() const {
     return m_db.isOpen();
+}
+
+// --- Campus Helpers ---
+
+bool DbManager::addCampus(const QString& name) {
+    QSqlQuery query;
+    query.prepare("INSERT INTO campusList (campusName) VALUES (:name)");
+    query.bindValue(":name", name);
+
+    if(!query.exec()) {
+        qDebug() << "addCampus error:" << query.lastError().text();
+        return false;
+    }
+    return true;
+}
+
+bool DbManager::removeCampus(int campusID) {
+    QSqlQuery query;
+    // Note: You should ideally enable Foreign Key constraints so deleting
+    // a campus also removes its souvenirs/distances.
+    query.prepare("DELETE FROM campusList WHERE campusID = :id");
+    query.bindValue(":id", campusID);
+    return query.exec();
+}
+
+// --- Souvenir Helpers ---
+
+bool DbManager::addSouvenir(int campusID, const QString& name, double price) {
+    QSqlQuery query;
+    query.prepare("INSERT INTO souvenirs (campusID, souvenirName, price) "
+                  "VALUES (:id, :name, :price)");
+    query.bindValue(":id", campusID);
+    query.bindValue(":name", name);
+    query.bindValue(":price", price);
+    return query.exec();
+}
+
+bool DbManager::updateSouvenirPrice(int campusID, const QString& name, double newPrice) {
+    QSqlQuery query;
+    query.prepare("UPDATE souvenirs SET price = :price "
+                  "WHERE campusID = :id AND souvenirName = :name");
+    query.bindValue(":price", newPrice);
+    query.bindValue(":id", campusID);
+    query.bindValue(":name", name);
+    return query.exec();
+}
+
+bool DbManager::removeSouvenir(int campusID, const QString& name) {
+    QSqlQuery query;
+    query.prepare("DELETE FROM souvenirs WHERE campusID = :id AND souvenirName = :name");
+    query.bindValue(":id", campusID);
+    query.bindValue(":name", name);
+    return query.exec();
+}
+
+// --- Distance Helpers ---
+
+bool DbManager::addDistance(int id1, int id2, int distance) {
+    QSqlQuery query;
+    query.prepare("INSERT INTO campusDistances (campusID1, campusID2, distance) "
+                  "VALUES (:id1, :id2, :dist)");
+    query.bindValue(":id1", id1);
+    query.bindValue(":id2", id2);
+    query.bindValue(":dist", distance);
+    return query.exec();
 }
