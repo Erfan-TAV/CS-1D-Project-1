@@ -33,6 +33,8 @@ qt_add_executable(CollegeTour
 
 )
 
+qt_add_resources(collegetour resources.qrc)
+
 # --- 4. Include Directories ---
 # Ensures the compiler can find your headers and SQLite files
 target_include_directories(CollegeTour PRIVATE
