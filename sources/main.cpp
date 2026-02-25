@@ -2,13 +2,28 @@
 #include <QApplication>
 #include <QStyleFactory>
 
+#include "dbManager.h"
 #include "ui_mainwindow.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
+
+    // Initialize DbManager
+    DbManager db("project1.db");
+
+    if (db.addCampus("UC Irv0000ine")) {
+        qDebug() << "Success: Added UC Irvine";
+    }
+
+    if (db.addSouvenir(15, "Blue & Gold Hoodie", 45.99)) {
+        qDebug() << "Success: Added Hoodie to UC Irvine";
+    }
+    // -------------------------------------
     w.setStyle(QStyleFactory::create("Fusion"));
+
     w.show();
-    return a.exec();
+
+    return QApplication::exec();
 }
