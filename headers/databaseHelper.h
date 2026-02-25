@@ -16,8 +16,8 @@ bool updateSouvenirPrice(int campusID, const QString& name, double newPrice);
 bool removeSouvenir(int campusID, const QString& name);
 
 // --- Distance Helpers ---
-
 bool addDistance(int id1, int id2, int distance);
+int closestCampus(int campusID);
 
 QString getCampusName(int campusID);
 Campus getFullCampus(int campusID);

@@ -141,3 +141,40 @@ Campus getFullCampus(const int campusID) {
 
     return campus;
 }
+
+int closestCampus(const int ID1) {
+    QSqlQuery query;
+    int minDistance = INT_MAX;
+    int nearestID = -1;
+
+    // Hard-coded for debugging
+    if (!query.exec("SELECT campusID2, distance FROM campusDistances WHERE campusID1 = 1")) {
+        qDebug() << "SQL ERROR:" << query.lastError().text();
+        return -1;
+    }
+
+    // Check if any rows were actually returned
+    if (!query.isActive()) {
+        qDebug() << "Query is not active.";
+    }
+
+    int rowCount = 0;
+    while (query.next()) {
+        rowCount++;
+        int currentID2 = query.value(0).toInt();
+        int currentDist = query.value(1).toInt();
+
+        qDebug() << "Found Row:" << currentID2 << "Dist:" << currentDist;
+
+        if (currentDist < minDistance) {
+            minDistance = currentDist;
+            nearestID = currentID2;
+        }
+    }
+
+    if (rowCount == 0) {
+        qDebug() << "Zero rows found for ID1 = 1. Is the table 'campusDistances' empty in this connection?";
+    }
+
+    return nearestID;
+}

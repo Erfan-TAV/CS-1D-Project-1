@@ -1,6 +1,9 @@
+#include <iostream>
+
 #include "../headers/mainwindow.h"
 #include <QApplication>
 #include <QStyleFactory>
+#include <QFileInfo>
 
 #include "databaseHelper.h"
 #include "dbManager.h"
@@ -12,11 +15,16 @@ int main(int argc, char *argv[])
     MainWindow w;
 
     // Initialize DbManager
-    DbManager db("project1.db");
+    // const QString serverPath = QCoreApplication::applicationDirPath() + "/project1.db";
+    DbManager db("C:/Users/erfan/Documents/CS1D project 1/cmake-build-debug/project1.db");
 
-    if (addCampus("UC Irv0000ine")) {
-        qDebug() << "Success: Added UC Irvine";
-    }
+
+
+    qDebug() << closestCampus(1);
+
+    // if (addCampus("UC Irv0000ine")) {
+    //     qDebug() << "Success: Added UC Irvine";
+    // }
     //
     // if (db.addSouvenir(15, "Blue & Gold Hoodie", 45.99)) {
     //     qDebug() << "Success: Added Hoodie to UC Irvine";
