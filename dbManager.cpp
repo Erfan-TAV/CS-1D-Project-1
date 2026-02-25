@@ -1,6 +1,6 @@
 //Database Management stuff (needs add/edit/delete stuff still)
 
-#include "DbManager.h"
+#include "dbManager.h"
 
 DbManager::DbManager(const QString& path) {
     //initializes he SQlite driver 
