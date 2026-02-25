@@ -1,10 +1,12 @@
 //Database Management stuff (needs add/edit/delete stuff still)
 
 #include "dbManager.h"
+// #include "../dbManager.h"
 
-DbManager::DbManager(const QString& path) {
+DbManager::DbManager(const QString& path)
+    : m_db(QSqlDatabase::addDatabase("SQLITE")) {
     //initializes he SQlite driver 
-    m_db = QSqlDatabase::addDatabase("QSQLITE");
+    // m_db = QSqlDatabase::addDatabase("QSQLITE");
     m_db.setDatabaseName(path);
 
     // opens the database 

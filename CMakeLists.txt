@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.19)
 project(CollegeTour LANGUAGES CXX)
 
 # --- 1. Qt Initialization ---
-find_package(Qt6 6.10.2 REQUIRED COMPONENTS Core Widgets)
+find_package(Qt6 6.10.2 REQUIRED COMPONENTS Core Widgets Sql)
 
 # Enable automatic handling of Qt Meta-Object System and UI files
 set(CMAKE_AUTOUIC ON)
@@ -44,6 +44,7 @@ target_link_libraries(CollegeTour
         PRIVATE
         Qt::Core
         Qt::Widgets
+        Qt::Sql
 )
 
 include(GNUInstallDirs)
