@@ -67,17 +67,22 @@ install(SCRIPT ${deploy_script})
 set(APPDATA_DIR $ENV{APPDATA})
 if(CMAKE_SYSTEM_NAME MATCHES "Windows")
     set(APPDATA_DIR "$ENV{LOCALAPPDATA}")
-elseif(CMAKE_SYSTEM_NAME MATCHES "Darwin")
-    set(APPDATA_DIR "$HOME/Library/Application Support")
 elseif(CMAKE_SYSTEM_NAME MATCHES "Linux")
     set(APPDATA_DIR "$HOME/.local/share")
+elseif(CMAKE_SYSTEM_NAME MATCHES "Darwin")
+    set(APPDATA_DIR "$ENV{HOME}/Library/Application Support/CollegeTour")
 endif()
 
-add_custom_command(
-        TARGET CollegeTour POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        $<TARGET_FILE:CollegeTour>
-        "${APPDATA_DIR}/CollegTour"
-)
+# --- Copy ONLY project1.db on macOS ---
+if(CMAKE_SYSTEM_NAME MATCHES "Darwin")
+    add_custom_command(
+            TARGET CollegeTour POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E make_directory
+            "${APPDATA_DIR}"
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "${CMAKE_SOURCE_DIR}/res/project1.db"
+            "${APPDATA_DIR}/project1.db"
+    )
+endif()
 
 add_custom_target(CopyDatabase ALL DEPENDS CollegeTour)
