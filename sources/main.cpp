@@ -8,6 +8,7 @@
 #include <QStandardPaths>
 #include <QDebug>
 
+#include "databaseHelper.h"
 #include "dbManager.h"
 
 int main(int argc, char *argv[])
@@ -18,13 +19,8 @@ int main(int argc, char *argv[])
     a.setOrganizationName("MyProjectGroup");
     a.setApplicationName("CampusProject");
 
-    // 1. Get the target path
     QString appDataPath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     QString dbPath = appDataPath + "/project1.db";
-    //
-    // qDebug() << "--- Database Debug Info ---";
-    // qDebug() << "Expected Folder:" << appDataPath;
-    // qDebug() << "Full DB Path:   " << dbPath;
 
     // Initialize DbManager
     DbManager db(dbPath);
@@ -33,6 +29,9 @@ int main(int argc, char *argv[])
         qDebug() << "Failed to initialize database.";
         return -1;
     }
+
+    addCampus("test campus");
+    qDebug() << closestCampus(1);
 
     // 4. Initialize your DbManager with the dynamic path
     w.setStyle(QStyleFactory::create("Fusion"));

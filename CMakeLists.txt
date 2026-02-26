@@ -85,4 +85,16 @@ if(CMAKE_SYSTEM_NAME MATCHES "Darwin")
     )
 endif()
 
+# --- 6. Force Database Reset on Rebuild ---
+# This finds the path to AppData/Roaming on Windows
+set(DEST_DB_DIR "$ENV{APPDATA}/MyProjectGroup/CampusProject")
+set(SOURCE_DB "${CMAKE_CURRENT_SOURCE_DIR}/res/project1.db")
+
+add_custom_command(
+        TARGET CollegeTour POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${DEST_DB_DIR}"
+        COMMAND ${CMAKE_COMMAND} -E copy "${SOURCE_DB}" "${DEST_DB_DIR}/project1.db"
+        COMMENT "Re-syncing default database to AppData because of project rebuild..."
+)
+
 add_custom_target(CopyDatabase ALL DEPENDS CollegeTour)

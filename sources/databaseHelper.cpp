@@ -164,7 +164,7 @@ int closestCampus(const int ID1) {
         int currentID2 = query.value(0).toInt();
         int currentDist = query.value(1).toInt();
 
-        qDebug() << "Found Row:" << currentID2 << "Dist:" << currentDist;
+        // qDebug() << "Found Row:" << currentID2 << "Dist:" << currentDist;
 
         if (currentDist < minDistance) {
             minDistance = currentDist;
