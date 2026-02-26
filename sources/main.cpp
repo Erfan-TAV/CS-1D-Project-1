@@ -1,26 +1,39 @@
+#include <iostream>
+
 #include "../headers/mainwindow.h"
 #include <QApplication>
 #include <QStyleFactory>
+#include <QFileInfo>
+#include <QDir>
+#include <QStandardPaths>
+#include <QDebug>
 
+#include "databaseHelper.h"
 #include "dbManager.h"
-#include "ui_mainwindow.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
 
+    a.setOrganizationName("MyProjectGroup");
+    a.setApplicationName("CampusProject");
+
+    QString appDataPath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    QString dbPath = appDataPath + "/project1.db";
+
     // Initialize DbManager
-    DbManager db("project1.db");
+    DbManager db(dbPath);
 
-    if (db.addCampus("UC Irv0000ine")) {
-        qDebug() << "Success: Added UC Irvine";
+    if (!db.isOpen()) {
+        qDebug() << "Failed to initialize database.";
+        return -1;
     }
 
-    if (db.addSouvenir(15, "Blue & Gold Hoodie", 45.99)) {
-        qDebug() << "Success: Added Hoodie to UC Irvine";
-    }
-    // -------------------------------------
+    addCampus("test campus");
+    qDebug() << closestCampus(1);
+
+    // 4. Initialize your DbManager with the dynamic path
     w.setStyle(QStyleFactory::create("Fusion"));
 
     w.show();
