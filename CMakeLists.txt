@@ -27,13 +27,12 @@ qt_add_executable(CollegeTour
         ${SOURCES}
         ${HEADERS}
         ${FORMS}
-        # Add SQLite C files explicitly if they aren't caught by the glob
         "SQLite stuff/sqlite3.c"
         "SQLite stuff/shell.c"
-
+        resources.qrc  # Add this here so AUTORCC picks it up directly
 )
 
-qt_add_resources(collegetour resources.qrc)
+#qt_add_resources(collegetour resources.qrc)
 
 # --- 4. Include Directories ---
 # Ensures the compiler can find your headers and SQLite files
@@ -52,7 +51,7 @@ target_link_libraries(CollegeTour
 
 include(GNUInstallDirs)
 install(TARGETS CollegeTour
-        BUNDLE  DESTINATION .
+        BUNDLE DESTINATION .
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
@@ -63,3 +62,22 @@ qt_generate_deploy_app_script(
         NO_UNSUPPORTED_PLATFORM_ERROR
 )
 install(SCRIPT ${deploy_script})
+
+# --- 6. Custom Rule to Copy project1.db ---
+set(APPDATA_DIR $ENV{APPDATA})
+if(CMAKE_SYSTEM_NAME MATCHES "Windows")
+    set(APPDATA_DIR "$ENV{LOCALAPPDATA}")
+elseif(CMAKE_SYSTEM_NAME MATCHES "Darwin")
+    set(APPDATA_DIR "$HOME/Library/Application Support")
+elseif(CMAKE_SYSTEM_NAME MATCHES "Linux")
+    set(APPDATA_DIR "$HOME/.local/share")
+endif()
+
+add_custom_command(
+        TARGET CollegeTour POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        $<TARGET_FILE:CollegeTour>
+        "${APPDATA_DIR}/CollegTour"
+)
+
+add_custom_target(CopyDatabase ALL DEPENDS CollegeTour)

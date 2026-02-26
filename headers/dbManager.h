@@ -1,5 +1,3 @@
-// SQLite Database Manager Class
-// need to add actual adding/changing/deletioin
 #ifndef DBMANAGER_H
 #define DBMANAGER_H
 
@@ -9,11 +7,9 @@
 #include <QString>
 #include <QDebug>
 
-#include "campusStructs.h"
-
 class DbManager {
 public:
-    // Constructor: takes bath to .db file
+    // Constructor: takes path to .db file and initializes the database
     DbManager(const QString& path);
 
     // Destructor: closes the file connection
