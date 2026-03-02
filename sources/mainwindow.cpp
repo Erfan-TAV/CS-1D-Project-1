@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+// #include "dbManager.h"
 
 /*
  * trip planner page indexes
@@ -141,3 +142,28 @@ void MainWindow::on_tripPlanStopNextButton_clicked()
     ui->tripPlannerStack->setCurrentIndex(3);
 }
 
+#include <QSqlTableModel>
+
+// Run this in your constructor or a setup function
+void MainWindow::initializeList() {
+    // 1. Create the Model
+    // 'dbManager' is your instance of DbManager.
+    // 'this' ensures the model is deleted when the window closes.
+    QSqlTableModel *model = new QSqlTableModel(this, dbHandler->getDatabase());
+
+    // 2. Specify your table name exactly as it appears in the .db file
+    model->setTable("your_table_name");
+
+    // 3. (Optional) If you want to sort by a specific column (e.g., Column 0)
+    model->setSort(0, Qt::AscendingOrder);
+
+    // 4. Fetch the data from the database into the model
+    model->select();
+
+    // 5. Tell the ListView to use this model
+    ui->campusList->setModel(model);
+
+    // 6. Tell the ListView which column to display (0, 1, 2, etc.)
+    // For example, if Column 1 is "Campus Name", set it to 1.
+    ui->campusList->setModelColumn(1);
+}

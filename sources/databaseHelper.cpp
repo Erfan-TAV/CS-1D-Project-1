@@ -147,15 +147,16 @@ int closestCampus(const int ID1) {
     int minDistance = INT_MAX;
     int nearestID = -1;
 
-    // Hard-coded for debugging
-    if (!query.exec("SELECT campusID2, distance FROM campusDistances WHERE campusID1 = :id")) {
+    // 1. Prepare the string first
+    query.prepare("SELECT campusID2, distance FROM campusDistances WHERE campusID1 = :id");
+
+    // 2. Bind the actual value to the placeholder
+    query.bindValue(":id", ID1);
+
+    // 3. Call exec() with NO arguments
+    if (!query.exec()) {
         qDebug() << "SQL ERROR:" << query.lastError().text();
         return -1;
-    }
-
-    // Check if any rows were actually returned
-    if (!query.isActive()) {
-        qDebug() << "Query is not active.";
     }
 
     int rowCount = 0;
@@ -164,8 +165,6 @@ int closestCampus(const int ID1) {
         int currentID2 = query.value(0).toInt();
         int currentDist = query.value(1).toInt();
 
-        // qDebug() << "Found Row:" << currentID2 << "Dist:" << currentDist;
-
         if (currentDist < minDistance) {
             minDistance = currentDist;
             nearestID = currentID2;
@@ -173,7 +172,7 @@ int closestCampus(const int ID1) {
     }
 
     if (rowCount == 0) {
-        qDebug() << "Zero rows found for ID1 = 1. Is the table 'campusDistances' empty in this connection?";
+        qDebug() << "Zero rows found for ID1 =" << ID1;
     }
 
     return nearestID;

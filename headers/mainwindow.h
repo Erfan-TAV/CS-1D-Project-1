@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include "dbManager.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -18,8 +20,6 @@ public:
     ~MainWindow();
 
 private slots:
-    void handleLogin();
-
     void on_startTripButton_clicked();
 
     void on_planAnotherButton_clicked();
@@ -28,8 +28,15 @@ private slots:
 
     void on_tripPlanStopNextButton_clicked();
 
+    // Admin Page
+    void handleLogin();
+
+    void initializeList();
+
+
 private:
     Ui::MainWindow *ui;
+    DbManager *dbHandler;
 
 };
 #endif // MAINWINDOW_H

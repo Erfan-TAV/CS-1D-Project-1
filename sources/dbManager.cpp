@@ -60,3 +60,4 @@ DbManager::~DbManager() {
 bool DbManager::isOpen() const {
     return m_db.isOpen();
 }
+
