@@ -148,7 +148,7 @@ int closestCampus(const int ID1) {
     int nearestID = -1;
 
     // Hard-coded for debugging
-    if (!query.exec("SELECT campusID2, distance FROM campusDistances WHERE campusID1 = 1")) {
+    if (!query.exec("SELECT campusID2, distance FROM campusDistances WHERE campusID1 = :id")) {
         qDebug() << "SQL ERROR:" << query.lastError().text();
         return -1;
     }
