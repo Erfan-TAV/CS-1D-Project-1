@@ -6,18 +6,13 @@
 #include <QStandardPaths>
 #include <QDebug>
 
-#include "databaseHelper.h"
 #include "dbManager.h"
-#include "testmainwindow.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     a.setOrganizationName("MyProjectGroup");
     a.setApplicationName("CampusProject");
-
-TestMainWindow admin;
-
 
     QString appDataPath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     QString dbPath = appDataPath + "/project1.db";

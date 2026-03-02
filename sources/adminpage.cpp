@@ -254,6 +254,8 @@ void AdminPage::setupDatabaseTable() {
                 ui->collegeNameLineEdit->selectAll();
             }
         }
+        // TODO: add logic to add distances from the newly added campus to all the current campus
+        qDebug() << "failed to add updated distances.";
     });
 
 }

@@ -26,7 +26,6 @@ MainWindow::MainWindow(QWidget *parent)
     // ui->adminPageStack->setCurrentIndex(0);
     // set planTab to the home page
     // TODO: ensure its set to 0 if !=0 for testing purposes
-    ui->tripPlannerStack->setCurrentIndex(0);
     // ------------------------------------------------------------------------------------
 
 
@@ -47,14 +46,7 @@ MainWindow::MainWindow(QWidget *parent)
     // Setup the login page
 
 
-    // ------------------------------------------------------------------------------------
-    // setup the table in tripPlan
-    // Set the first column (Campus Name) to stretch and fill the table
-    ui->campusTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
-    // Hide row headers
-    // ui->tableWidget->verticalHeader()->setVisible(false);
-    // ------------------------------------------------------------------------------------
-    // setup the table in tripPlan
+
 }
 
 MainWindow::~MainWindow()
@@ -62,37 +54,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_startTripButton_clicked()
-{
-    // ui->tabWidget->setCurrentIndex(0);
 
-    if (ui->planOnlyCheckBox->isChecked()) {
-        ui->tripPlannerStack->setCurrentIndex(1);
-    } else {
-        ui->tripPlannerStack->setCurrentIndex(2);
-    }
-}
-
-
-void MainWindow::on_planAnotherButton_clicked()
-{
-    ui->tripPlannerStack->setCurrentIndex(0);
-
-    // TODO: setup logic to prepare program for another trip plan.
-}
-
-
-void MainWindow::on_planAnotherButton_1_clicked()
-{
-    ui->tripPlannerStack->setCurrentIndex(0);
-}
-
-
-void MainWindow::on_tripPlanStopNextButton_clicked()
-{
-    // TODO: setup logic so that
-    ui->tripPlannerStack->setCurrentIndex(3);
-}
 
 #include <QSqlTableModel>
 
