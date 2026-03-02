@@ -15,13 +15,15 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    linkAdminPage();
+
     // ------------------------------------------------------------------------------------
     // set starting tab to planning tab
     // TODO: change to 0 which is planner page, currently set to 1 for testing info page
     ui->tabWidget->setCurrentIndex(0);
     // set adminTab to the admin login page
     // TODO: change to 0 which is login page. currently set to 1 for testing the actual admin page
-    ui->adminPageStack->setCurrentIndex(0);
+    // ui->adminPageStack->setCurrentIndex(0);
     // set planTab to the home page
     // TODO: ensure its set to 0 if !=0 for testing purposes
     ui->tripPlannerStack->setCurrentIndex(0);
@@ -31,16 +33,16 @@ MainWindow::MainWindow(QWidget *parent)
     // ------------------------------------------------------------------------------------
     // Setup the login page
     // Make pressing enter submit the user info
-    connect(ui->usernameField, &QLineEdit::returnPressed, this, &MainWindow::handleLogin);
-    connect(ui->passwordField, &QLineEdit::returnPressed, this, &MainWindow::handleLogin);
+    // connect(ui->usernameField, &QLineEdit::returnPressed, this, &MainWindow::handleLogin);
+    // connect(ui->passwordField, &QLineEdit::returnPressed, this, &MainWindow::handleLogin);
 
     // link the login button
-    connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &MainWindow::handleLogin);
+    // connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &MainWindow::handleLogin);
     // link the cancel button
-    connect(ui->buttonBox, &QDialogButtonBox::rejected, [this](){
-        ui->usernameField->clear();
-        ui->passwordField->clear();
-    });
+    // connect(ui->buttonBox, &QDialogButtonBox::rejected, [this](){
+        // ui->usernameField->clear();
+        // ui->passwordField->clear();
+    // });
     // ------------------------------------------------------------------------------------
     // Setup the login page
 
@@ -84,30 +86,6 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-void MainWindow::handleLogin()
-{
-    // Access the fields directly from the ui pointer
-    QString user = ui->usernameField->text();
-    QString pass = ui->passwordField->text();
-
-    // Simple credential check
-    // TODO: add proper account checkign logic
-    if (user == "admin" && pass == "admin") {
-        qDebug() << "Login Successful";
-        ui->statusBar->showMessage("Login Successful", 2500);
-
-        // Clear fields for security
-        ui->usernameField->clear();
-        ui->passwordField->clear();
-
-        // Switch the stack to the Admin Dashboard (Index 0)
-        ui->adminPageStack->setCurrentIndex(1);
-    } else {
-        qDebug() << "Login Failed";
-        ui->statusBar->showMessage("Login Failed", 2500);
-    }
 }
 
 void MainWindow::on_startTripButton_clicked()
@@ -161,9 +139,17 @@ void MainWindow::initializeList() {
     model->select();
 
     // 5. Tell the ListView to use this model
-    ui->campusList->setModel(model);
+    // ui->campusList->setModel(model);
 
     // 6. Tell the ListView which column to display (0, 1, 2, etc.)
     // For example, if Column 1 is "Campus Name", set it to 1.
-    ui->campusList->setModelColumn(1);
+    // ui->campusList->setModelColumn(1);
+}
+
+void MainWindow::linkAdminPage() {
+    // We connect the CUSTOM signal from AdminPage to the BUILT-IN slot of MainWindow
+    connect(ui->adminPageWidget, &AdminPage::notifyStatus, this, [this](const QString &msg) {
+        // This lambda function runs whenever notifyStatus is emitted
+        ui->statusBar->showMessage(msg, 3000); // Show for 3 seconds
+    });
 }

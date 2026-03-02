@@ -28,10 +28,9 @@ private slots:
 
     void on_tripPlanStopNextButton_clicked();
 
-    // Admin Page
-    void handleLogin();
-
     void initializeList();
+
+    void linkAdminPage();
 
 
 private:

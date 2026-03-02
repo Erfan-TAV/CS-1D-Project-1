@@ -16,7 +16,6 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
     TestMainWindow admin;
-    AdminPage adminPage;
 
     a.setOrganizationName("MyProjectGroup");
     a.setApplicationName("CampusProject");
@@ -38,9 +37,8 @@ int main(int argc, char *argv[])
     // 4. Initialize your DbManager with the dynamic path
     w.setStyle(QStyleFactory::create("Fusion"));
 
-    // w.show();
-    // adminPage.show();
-    admin.show();
+    w.show();
+    // admin.show();
 
 
 
