@@ -72,7 +72,7 @@ void AdminPage::setupDatabaseTable() {
     if (!campusModel->select()) {
         qDebug() << "SQL Error:" << campusModel->lastError().text();
     } else {
-        qDebug() << "Successfully loaded rows:" << campusModel->rowCount();
+        qDebug() << "AdminPage: Successfully loaded" << campusModel->rowCount() << "campus rows";
     }
 
     // 6. Set the model to your ListView from the UI screenshot
