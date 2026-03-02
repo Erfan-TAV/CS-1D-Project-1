@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "../headers/mainwindow.h"
 #include <QApplication>
 #include <QStyleFactory>
@@ -8,14 +6,11 @@
 #include <QStandardPaths>
 #include <QDebug>
 
-#include "databaseHelper.h"
 #include "dbManager.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
-
     a.setOrganizationName("MyProjectGroup");
     a.setApplicationName("CampusProject");
 
@@ -30,13 +25,18 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    addCampus("test campus");
-    qDebug() << closestCampus(1);
+    // addCampus("test campus");
+    // qDebug() << closestCampus(1);
+
+    MainWindow w;
 
     // 4. Initialize your DbManager with the dynamic path
-    w.setStyle(QStyleFactory::create("Fusion"));
+    // w.setStyle(QStyleFactory::create("Fusion"));
 
     w.show();
+    // admin.show();
+
+
 
     return QApplication::exec();
 }

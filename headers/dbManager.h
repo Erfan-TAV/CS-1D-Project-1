@@ -18,6 +18,9 @@ public:
     // Check if the database is actually open
     bool isOpen() const;
 
+    // In dbManager.h
+    QSqlDatabase getDatabase() const { return m_db; }
+
 private:
     QSqlDatabase m_db;
 };
