@@ -1,7 +1,3 @@
-//
-// Created by erfan on 3/2/2026.
-//
-
 #ifndef COLLEGETOUR_ADMINPAGE_H
 #define COLLEGETOUR_ADMINPAGE_H
 
