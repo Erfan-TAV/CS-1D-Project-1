@@ -1,6 +1,7 @@
 #ifndef COLLEGETOUR_ADMINPAGE_H
 #define COLLEGETOUR_ADMINPAGE_H
 
+#include <QSqlTableModel>
 #include <QWidget>
 
 
@@ -26,6 +27,9 @@ private slots:
 
 private:
     Ui::AdminPage* ui;
+    QSqlTableModel* campusModel;
+    QSqlTableModel* souvenirModel;
+    void setupDatabaseTable();
 
 signals:
     void notifyStatus(const QString &message, int timeout = 2500);

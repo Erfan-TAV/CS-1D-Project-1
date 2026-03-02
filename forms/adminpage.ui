@@ -26,7 +26,7 @@
       <number>0</number>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="loginScreen">
       <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -239,7 +239,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton">
+              <widget class="QPushButton" name="addCampusButton">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -274,7 +274,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_2">
+              <widget class="QPushButton" name="removeCampusButton">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -311,7 +311,11 @@
             </layout>
            </item>
            <item>
-            <widget class="QListView" name="campusList"/>
+            <widget class="QListView" name="campusList">
+             <property name="editTriggers">
+              <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+             </property>
+            </widget>
            </item>
           </layout>
          </item>
@@ -428,13 +432,19 @@
               </layout>
              </item>
              <item>
-              <widget class="QTableView" name="tableView"/>
-             </item>
-             <item alignment="Qt::AlignmentFlag::AlignRight">
-              <widget class="QPushButton" name="pushButton_3">
-               <property name="text">
-                <string>Save Changes</string>
+              <widget class="QTableView" name="tableView">
+               <property name="styleSheet">
+                <string notr="true">QTableView::item {
+    padding-left: 5px;
+
+}</string>
                </property>
+               <property name="editTriggers">
+                <set>QAbstractItemView::EditTrigger::DoubleClicked</set>
+               </property>
+               <attribute name="verticalHeaderVisible">
+                <bool>false</bool>
+               </attribute>
               </widget>
              </item>
             </layout>

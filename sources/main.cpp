@@ -9,16 +9,15 @@
 #include "databaseHelper.h"
 #include "dbManager.h"
 #include "testmainwindow.h"
-#include "adminpage.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
-    TestMainWindow admin;
-
     a.setOrganizationName("MyProjectGroup");
     a.setApplicationName("CampusProject");
+
+TestMainWindow admin;
+
 
     QString appDataPath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     QString dbPath = appDataPath + "/project1.db";
@@ -31,11 +30,13 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    addCampus("test campus");
-    qDebug() << closestCampus(1);
+    // addCampus("test campus");
+    // qDebug() << closestCampus(1);
+
+    MainWindow w;
 
     // 4. Initialize your DbManager with the dynamic path
-    w.setStyle(QStyleFactory::create("Fusion"));
+    // w.setStyle(QStyleFactory::create("Fusion"));
 
     w.show();
     // admin.show();
