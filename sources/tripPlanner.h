@@ -12,14 +12,18 @@ struct TripResult {
 
 class TripPlanner {
 public:
-    // Recursive checker for closest campus
+    /**
+     * @brief Agile Requirement: Recursive checker for most efficient order
+     * Starting from Saddleback, it finds the next closest campus among the 11.
+     */
     void planRecursiveTrip(int currentId, QVector<int>& remainingIds, TripResult& result) {
         if (remainingIds.isEmpty()) return;
 
-        double minDistance = 1e9;
+        double minDistance = 1e9; // Start with infinity
         int closestId = -1;
         int closestIndex = -1;
 
+        // Requirement: Distance calculator from each campus
         for (int i = 0; i < remainingIds.size(); ++i) {
             double d = getDistance(currentId, remainingIds[i]);
             if (d < minDistance) {
@@ -33,7 +37,9 @@ public:
             result.totalDistance += minDistance;
             result.campusOrder.append(closestId);
             remainingIds.removeAt(closestIndex);
-            planRecursiveTrip(closestId, remainingIds, result); // Recursion
+            
+            // Recurse to find the next stop in the efficient order
+            planRecursiveTrip(closestId, remainingIds, result);
         }
     }
 
