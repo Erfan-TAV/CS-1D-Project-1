@@ -22,6 +22,8 @@ MainWindow::MainWindow(QWidget *parent)
     // link menubar item
     connect(ui->actionreset_all_information, &QAction::triggered, this, &MainWindow::menuBarReset);
 
+    uploadFileOverride(":/res/TestFile.xlsx");
+
     // ------------------------------------------------------------------------------------
     // set starting tab to planning tab
     // TODO: change to 0 which is planner page, currently set to 1 for testing info page
@@ -96,6 +98,8 @@ void MainWindow::linkAdminPage() {
 }
 
 void MainWindow::menuBarReset() {
+  qDebug() << "menu bar item pressed";
+
   // Assuming actionUpload is the object name in your .ui or created in code
   connect(ui->actionreset_all_information, &QAction::triggered, this, [this]() {
     QString resPath = ":/res/TestFile.xlsx";

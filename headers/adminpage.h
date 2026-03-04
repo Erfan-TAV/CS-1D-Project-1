@@ -3,6 +3,7 @@
 
 #include <QSqlTableModel>
 #include <QWidget>
+#include "ui_AdminPage.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -23,10 +24,11 @@ public:
     ~AdminPage() override;
 
 private slots:
-    void handleLogin();
-    void handleFilUpload();
+    void handleLogin();    
+    void on_uploadFile_clicked();
+    void refreshUI();
 
-private:
+  private:
     Ui::AdminPage* ui;
     QSqlTableModel* campusModel;
     QSqlTableModel* souvenirModel;

@@ -181,70 +181,109 @@ int closestCampus(const int ID1) {
     return nearestID;
 }
 
-// Upload information from a file
-// non destructive, adds new rows if not a duplicate
+// --- File Upload Helpers ---
+
 void uploadFileAppend(const QString &filePath) {
   QXlsx::Document xlsx(filePath);
-  QSqlDatabase db = QSqlDatabase::database();
+  if (!xlsx.load()) {
+    qDebug() << "[ERROR] Could not load Excel file at:" << filePath;
+    return;
+  }
 
-  // Only start a transaction if one isn't already running
+  QSqlDatabase db = QSqlDatabase::database();
   bool internalTransaction = false;
-  if (!db.isOpenError() && !db.transaction()) {
-    // Transaction already active from Override, or failed to start
+
+  if (db.driver()->hasFeature(QSqlDriver::Transactions) && !db.transaction()) {
+    qDebug() << "[INFO] Using existing transaction.";
   } else {
     internalTransaction = true;
+    db.transaction();
   }
 
   for (const QString &sheetName : xlsx.sheetNames()) {
     xlsx.selectSheet(sheetName);
-    int columnCount = 0;
-    while (!xlsx.read(1, columnCount + 1).isNull()) columnCount++;
 
-    if (columnCount == 0) continue;
+           // 1. Get Column Names and wrap them in quotes for SQL safety
+    QStringList columnNames;
+    QStringList quotedColumns;
+    int col = 1;
+    while (true) {
+      QVariant headerCell = xlsx.read(1, col);
+      if (!headerCell.isValid() || headerCell.isNull()) break;
 
+      QString colName = headerCell.toString();
+      columnNames << colName;
+      quotedColumns << QString("\"%1\"").arg(colName); // FIX: Handles spaces like "campus name"
+      col++;
+    }
+
+    if (columnNames.isEmpty()) continue;
+
+           // 2. Build Query using quoted columns
     QStringList placeholders;
-    for (int i = 0; i < columnCount; ++i) placeholders << "?";
-    QString sql = QString("INSERT INTO %1 VALUES (%2)").arg(sheetName).arg(placeholders.join(", "));
+    for (int i = 0; i < columnNames.size(); ++i) placeholders << "?";
+
+    QString sql = QString("INSERT INTO %1 (%2) VALUES (%3)")
+                      .arg(sheetName)
+                      .arg(quotedColumns.join(", ")) // Use quoted names here
+                      .arg(placeholders.join(", "));
 
     QSqlQuery query;
-    query.prepare(sql);
+    if (!query.prepare(sql)) {
+      qDebug() << "[SQL ERROR] Prepare failed for" << sheetName << ":" << query.lastError().text();
+      continue;
+    }
 
+           // 3. Process Data Rows
     int row = 2;
-    while (!xlsx.read(row, 1).isNull()) {
-      for (int col = 1; col <= columnCount; ++col) {
-        query.addBindValue(xlsx.read(row, col));
+    while (true) {
+      QVariant firstCell = xlsx.read(row, 1);
+      if (!firstCell.isValid() || firstCell.isNull()) break;
+
+      for (int c = 1; c <= columnNames.size(); ++c) {
+        query.addBindValue(xlsx.read(row, c));
       }
-      query.exec();
+
+      if (!query.exec()) {
+        qDebug() << "[SQL ERROR] Row" << row << ":" << query.lastError().text();
+      }
       row++;
     }
   }
 
-         // Only commit if this function was the one that started the transaction
   if (internalTransaction) db.commit();
 }
 
-// Upload information from a file
-// destructive, removes current info and writes the file's info
 void uploadFileOverride(const QString &filePath) {
   QXlsx::Document xlsx(filePath);
   QSqlDatabase db = QSqlDatabase::database();
 
-  if (!db.transaction()) return;
-
-         // 1. Wipe all relevant tables first
-  for (const QString &sheetName : xlsx.sheetNames()) {
-    QSqlQuery query;
-    query.exec(QString("DELETE FROM %1").arg(sheetName));
+  if (!db.transaction()) {
+    qDebug() << "Transaction failed to start:" << db.lastError().text();
+    return;
   }
 
-         // 2. Call the Append function to fill them back up
+  for (const QString &sheetName : xlsx.sheetNames()) {
+    QSqlQuery query;
+    // Verify if the table exists before trying to wipe it
+    if (!db.tables().contains(sheetName, Qt::CaseInsensitive)) {
+      qDebug() << "WARNING: Excel sheet" << sheetName << "does not match any database table.";
+      continue;
+    }
+
+    if (!query.exec(QString("DELETE FROM %1").arg(sheetName))) {
+      qDebug() << "DELETE failed for" << sheetName << ":" << query.lastError().text();
+    } else {
+      qDebug() << "Successfully wiped table:" << sheetName;
+    }
+  }
+
   uploadFileAppend(filePath);
 
-         // 3. Finalize everything
   if (db.commit()) {
-    qDebug() << "Override complete!";
+    qDebug() << "Override committed successfully!";
   } else {
+    qDebug() << "Commit FAILED. Rolling back:" << db.lastError().text();
     db.rollback();
-    qDebug() << "Override failed, original data restored.";
   }
 }
