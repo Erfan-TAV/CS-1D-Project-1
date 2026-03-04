@@ -4,6 +4,7 @@
 #include <QVector>
 #include <QSqlQuery>
 #include <QString>
+#include <QDebug>
 
 struct TripResult {
     QVector<int> campusOrder;
@@ -12,9 +13,11 @@ struct TripResult {
 
 class TripPlanner {
 public:
+    TripPlanner() {}
+
     /**
-     * @brief Agile Requirement: Recursive checker for most efficient order
-     * Starting from Saddleback, it finds the next closest campus among the 11.
+     * @brief Core Recursive Algorithm
+     * Finds the next closest campus among the targets to ensure efficiency.
      */
     void planRecursiveTrip(int currentId, QVector<int>& remainingIds, TripResult& result) {
         if (remainingIds.isEmpty()) return;
@@ -23,7 +26,6 @@ public:
         int closestId = -1;
         int closestIndex = -1;
 
-        // Requirement: Distance calculator from each campus
         for (int i = 0; i < remainingIds.size(); ++i) {
             double d = getDistance(currentId, remainingIds[i]);
             if (d < minDistance) {
@@ -38,13 +40,14 @@ public:
             result.campusOrder.append(closestId);
             remainingIds.removeAt(closestIndex);
             
-            // Recurse to find the next stop in the efficient order
+            // Recurse to the next stop
             planRecursiveTrip(closestId, remainingIds, result);
         }
     }
 
 private:
     double getDistance(int startID, int endID) {
+        if (startID == endID) return 0.0;
         QSqlQuery query;
         query.prepare("SELECT distance FROM distances WHERE "
                       "(startID = :s AND endID = :e) OR (startID = :e AND endID = :s)");
