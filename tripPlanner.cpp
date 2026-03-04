@@ -6,36 +6,27 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QDebug>
-#include <cmath>
 
-// Data structure to store trip results
 struct TripResult {
     QVector<int> campusOrder;
-    double totalDistance;
+    double totalDistance = 0.0;
 };
 
 class TripPlanner {
 public:
     TripPlanner() {}
 
-    /**
-     * @brief The core recursive function to find the shortest trip.
-     * Uses a "Nearest Neighbor" approach to ensure a shorter path.
-     */
-    void planShortestTrip(int currentId, 
-                          QVector<int>& remainingIds, 
-                          TripResult& result) {
-        
-        // Base Case: No more campuses to visit
+    // Agile Requirement: Recursive checker for closest campus
+    void planRecursiveTrip(int currentId, QVector<int>& remainingIds, TripResult& result) {
         if (remainingIds.isEmpty()) return;
 
-        double minDistance = 1e9; // Start with a very high number
+        double minDistance = 1e9; // Infinity
         int closestId = -1;
         int closestIndex = -1;
 
-        // Loop through remaining campuses to find the closest one
+        // Find the next closest campus among those selected
         for (int i = 0; i < remainingIds.size(); ++i) {
-            double d = fetchDistance(currentId, remainingIds[i]);
+            double d = getDistance(currentId, remainingIds[i]);
             if (d < minDistance) {
                 minDistance = d;
                 closestId = remainingIds[i];
@@ -44,39 +35,32 @@ public:
         }
 
         if (closestId != -1) {
-            // Update the running totals
             result.totalDistance += minDistance;
             result.campusOrder.append(closestId);
-            
-            // Remove the visited campus from the list
             remainingIds.removeAt(closestIndex);
             
-            // Recurse to find the next closest campus
-            planShortestTrip(closestId, remainingIds, result);
+            // Recursive call for the next step of the trip
+            planRecursiveTrip(closestId, remainingIds, result);
         }
     }
 
-    /**
-     * @brief Fetches distance from the 'distances' table in project1.db
-     */
-    double fetchDistance(int startID, int endID) {
+private:
+    // Agile Requirement: Distance tracker / Shortest distance calculator
+    double getDistance(int startID, int endID) {
         if (startID == endID) return 0.0;
         
         QSqlQuery query;
-        // Search both ways in case the database only stores (A to B) and not (B to A)
+        // Queries the 'distances' table mentioned in your databaseHelper
         query.prepare("SELECT distance FROM distances WHERE "
-                      "(startID = :start AND endID = :end) OR "
-                      "(startID = :end AND endID = :start)");
-        query.bindValue(":start", startID);
-        query.bindValue(":end", endID);
+                      "(startID = :s AND endID = :e) OR (startID = :e AND endID = :s)");
+        query.bindValue(":s", startID);
+        query.bindValue(":e", endID);
 
         if (query.exec() && query.next()) {
             return query.value(0).toDouble();
         }
-        
-        qDebug() << "Distance not found for IDs:" << startID << endID;
-        return 999.9; // Penalty distance if missing
+        return 9999.0; // Return penalty if data is missing
     }
 };
 
-#endif // TRIPPLANNER_H
+#endif
