@@ -1,6 +1,7 @@
 #ifndef PLANPAGE_H
 #define PLANPAGE_H
 
+#include <QSqlTableModel>
 #include <QWidget>
 #include "tripPlanner.h"
 
@@ -18,6 +19,8 @@ public:
 
 private:
     Ui::PlanPage *ui;
+    void setupDatabaseTable();
+    QSqlTableModel* campusModel;
 
 private slots:
     void on_startTripButton_clicked();

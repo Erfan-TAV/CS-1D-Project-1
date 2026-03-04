@@ -1,7 +1,20 @@
 #include "planpage.h"
+
+#include <QSqlError>
+
 #include "ui_planpage.h"
 #include "../headers/tripPlanner.h"
 #include <QSqlQuery>
+#include <QSqlTableModel>
+#include "adminpage.h"
+#include "ui_adminpage.h"
+#include <qsqlerror.h>
+#include <QSqlRecord>
+#include <QSqlQuery>
+#include <QTimer>
+#include "databaseHelper.h"
+#include <QFileDialog>
+#include <QStandardPaths>
 
 PlanPage::PlanPage(QWidget *parent)
     : QWidget(parent)
@@ -9,7 +22,9 @@ PlanPage::PlanPage(QWidget *parent)
 {
     ui->setupUi(this);
     ui->tripPlannerStack->setCurrentIndex(0);
-    ui->tableViewSettings->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
+
+    setupDatabaseTable();
+    // ui->tableViewSettings->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
 }
 
 PlanPage::~PlanPage() { delete ui; }
@@ -77,3 +92,31 @@ void PlanPage::on_startTripButton_clicked()
 void PlanPage::on_planAnotherButton_clicked() { ui->tripPlannerStack->setCurrentIndex(0); }
 void PlanPage::on_planAnotherButton_1_clicked() { ui->tripPlannerStack->setCurrentIndex(0); }
 void PlanPage::on_tripPlanStopNextButton_clicked() { ui->tripPlannerStack->setCurrentIndex(3); }
+
+void PlanPage::setupDatabaseTable() {
+    QSqlDatabase db = QSqlDatabase::database();
+
+    if (!db.isOpen()) {
+        qDebug() << "PlanPage: Database is NOT open at" << db.databaseName();
+        return;
+    }
+
+    campusModel = new QSqlTableModel(this, db);
+
+    // Link the table's model to the proper table in the database
+    campusModel->setTable("campusList");
+
+    // TODO: change to no editing
+    campusModel->setEditStrategy(QSqlTableModel::OnFieldChange);
+
+    // Fetch the data
+    if (!campusModel->select()) {
+        qDebug() << "SQL Error:" << campusModel->lastError().text();
+    } else {
+        qDebug() << "PlanPage: Successfully loaded" << campusModel->rowCount() << "campus rows";
+    }
+
+    // link the model to the ui
+    ui->tableViewSettings->setModel(campusModel);
+    ui->tableViewSettings->setModelColumn(1);
+}

@@ -183,8 +183,8 @@
            </property>
           </widget>
          </item>
-         <item row="4" column="2" rowspan="3" colspan="2">
-          <widget class="QTableView" name="tableViewSettings"/>
+         <item row="3" column="2" rowspan="4" colspan="2">
+          <widget class="QListView" name="tableViewSettings"/>
          </item>
         </layout>
        </item>
