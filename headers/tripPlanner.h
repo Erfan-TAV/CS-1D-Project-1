@@ -11,9 +11,9 @@ struct TripResult {
     double totalDistance = 0.0;
 };
 
-class TripPlanner {
+class tripPlanner {
 public:
-    TripPlanner() {}
+    tripPlanner() {}
 
     /**
      * @brief Core Recursive Algorithm

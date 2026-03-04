@@ -1,6 +1,6 @@
 #include "planpage.h"
 #include "ui_planpage.h"
-#include "TripPlanner.h"
+#include "../headers/tripPlanner.h"
 #include <QSqlQuery>
 
 PlanPage::PlanPage(QWidget *parent)
@@ -18,7 +18,7 @@ void PlanPage::on_startTripButton_clicked()
 {
     int startId;
     QVector<int> targets;
-    TripPlanner planner;
+    tripPlanner planner;
     TripResult result;
 
     // CHECK FOR STORY 2: "Initial 11 from Saddleback"
