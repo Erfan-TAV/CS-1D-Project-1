@@ -1,58 +1,36 @@
 #include "planpage.h"
 #include "ui_planpage.h"
-
-PlanPage::PlanPage(QWidget *parent)
-    : QWidget(parent)
-    , ui(new Ui::PlanPage)
-{
-    ui->setupUi(this);
-
-    // set the starting page to the plan setting page
-    ui->tripPlannerStack->setCurrentIndex(0);
-
-    // ------------------------------------------------------------------------------------
-    // setup the table in tripPlan
-    // Set the first column (Campus Name) to stretch and fill the table
-    ui->campusTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
-    // Hide row headers
-    // ui->tableWidget->verticalHeader()->setVisible(false);
-    // ------------------------------------------------------------------------------------
-    // setup the table in tripPlan
-}
-
-PlanPage::~PlanPage()
-{
-    delete ui;
-}
+#include "TripPlanner.h"
 
 void PlanPage::on_startTripButton_clicked()
 {
-    // ui->tabWidget->setCurrentIndex(0);
+    // Agile Requirement: Start at Saddleback (Assuming ID 1 is Saddleback)
+    int saddlebackId = 1; 
 
+    // Agile Requirement: Initial 11 campuses
+    // We fetch the first 11 IDs from the database
+    QVector<int> initial11Ids;
+    QSqlQuery query("SELECT campusID FROM campusList LIMIT 11");
+    while(query.next()) {
+        int id = query.value(0).toInt();
+        if (id != saddlebackId) initial11Ids.append(id);
+    }
+
+    // Initialize Trip
+    TripPlanner planner;
+    TripResult result;
+    result.campusOrder.append(saddlebackId);
+
+    // Agile Requirement: Recursive checker for closest campus
+    planner.planRecursiveTrip(saddlebackId, initial11Ids, result);
+
+    // Emit result so InfoPage can display it
+    emit tripCalculationFinished(result);
+
+    // Original UI switching logic
     if (ui->planOnlyCheckBox->isChecked()) {
         ui->tripPlannerStack->setCurrentIndex(1);
     } else {
         ui->tripPlannerStack->setCurrentIndex(2);
     }
-}
-
-
-void PlanPage::on_planAnotherButton_clicked()
-{
-    ui->tripPlannerStack->setCurrentIndex(0);
-
-    // TODO: setup logic to prepare program for another trip plan.
-}
-
-
-void PlanPage::on_planAnotherButton_1_clicked()
-{
-    ui->tripPlannerStack->setCurrentIndex(0);
-}
-
-
-void PlanPage::on_tripPlanStopNextButton_clicked()
-{
-    // TODO: setup logic so that
-    ui->tripPlannerStack->setCurrentIndex(3);
 }
