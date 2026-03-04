@@ -21,8 +21,13 @@ public:
     // In dbManager.h
     QSqlDatabase getDatabase() const { return m_db; }
 
+    void notifyDataChange() { emit dataChanged(); }
+
 private:
     QSqlDatabase m_db;
+
+signals:
+    void dataChanged();
 };
 
 #endif // DBMANAGER_H

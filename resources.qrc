@@ -3,5 +3,6 @@
         <file>res/project1.db</file>
         <file>res/schema.sql</file>
         <file>res/testFile.xlsx</file>
+        <file>res/starterInformation.xlsx</file>
     </qresource>
 </RCC>

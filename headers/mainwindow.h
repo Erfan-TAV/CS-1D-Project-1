@@ -24,6 +24,9 @@ private slots:
     void linkAdminPage();
     void menuBarReset();
 
+signals:
+    void databaseChanged();
+
 
 private:
     Ui::MainWindow *ui;

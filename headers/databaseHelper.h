@@ -24,6 +24,6 @@ Campus getFullCampus(int campusID);
 
 // File Upload
 void uploadFileAppend(const QString &filePath);
-void uploadFileOverride(const QString &filePath);
+void resetAndReloadData(const QString &filePath);
 
 #endif //COLLEGETOUR_DBMANAGERHELPER_H

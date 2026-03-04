@@ -8,7 +8,7 @@
 
 
 AdminPage::AdminPage(QWidget* parent) :
-    QWidget(parent), ui(new Ui::AdminPage)
+    DatabasePage(parent), ui(new Ui::AdminPage)
 {
     ui->setupUi(this);
 
@@ -28,6 +28,9 @@ AdminPage::AdminPage(QWidget* parent) :
     });
 
     setupDatabaseTable();
+
+    // You likely have access to your dbManager instance here
+    // connect(dbHandler, &DbManager::dataChanged, this, &AdminPage::refreshUI);
 }
 
 AdminPage::~AdminPage()
@@ -208,53 +211,53 @@ void AdminPage::setupDatabaseTable() {
 
     // enable +/- for campusList
     connect(ui->removeCampusButton, &QPushButton::clicked, this, [this]() {
-      QModelIndex currentIndex = ui->campusList->currentIndex();
-      if (!currentIndex.isValid()) return;
+        QModelIndex currentIndex = ui->campusList->currentIndex();
+        if (!currentIndex.isValid()) return;
 
-      int idToDelete = campusModel->data(campusModel->index(currentIndex.row(), 0)).toInt();
-      QSqlDatabase db = QSqlDatabase::database();
+        int idToDelete = campusModel->data(campusModel->index(currentIndex.row(), 0)).toInt();
+        QSqlDatabase db = QSqlDatabase::database();
 
-      // Start a transaction to ensure all deletes happen together or none at all
-      db.transaction();
+        // Start a transaction to ensure all deletes happen together or none at all
+        db.transaction();
 
-      QSqlQuery query;
+        QSqlQuery query;
 
              // 1. Delete associated souvenirs
-      query.prepare("DELETE FROM souvenirs WHERE campusID = :id");
-      query.bindValue(":id", idToDelete);
-      if (!query.exec()) {
-        qDebug() << "Souvenir delete failed:" << query.lastError().text();
-        db.rollback();
-        return;
-      }
+        query.prepare("DELETE FROM souvenirs WHERE campusID = :id");
+        query.bindValue(":id", idToDelete);
+        if (!query.exec()) {
+            qDebug() << "Souvenir delete failed:" << query.lastError().text();
+            db.rollback();
+            return;
+        }
 
-             // 2. Delete associated distances (where  is campusID1)
-             // This will remove all rows where this campus is the 'source' of a distance
-      query.prepare("DELETE FROM campusDistances WHERE campusID1 = :id");
-      query.bindValue(":id", idToDelete);
-      if (!query.exec()) {
-        qDebug() << "Distance delete failed:" << query.lastError().text();
-        db.rollback();
-        return;
-      }
+        // 2. Delete associated distances (where  is campusID1)
+        // This will remove all rows where this campus is the 'source' of a distance
+        query.prepare("DELETE FROM campusDistances WHERE campusID1 = :id OR campusID2 = :id");
+        query.bindValue(":id", idToDelete);
+        if (!query.exec()) {
+            qDebug() << "Distance delete failed:" << query.lastError().text();
+            db.rollback();
+            return;
+        }
 
-             // 3. Delete the actual campus
-      query.prepare("DELETE FROM campusList WHERE campusID = :id");
-      query.bindValue(":id", idToDelete);
-      if (!query.exec()) {
-        qDebug() << "Campus delete failed:" << query.lastError().text();
-        db.rollback();
-        return;
-      }
+        // 3. Delete the actual campus
+        query.prepare("DELETE FROM campusList WHERE campusID = :id");
+        query.bindValue(":id", idToDelete);
+        if (!query.exec()) {
+            qDebug() << "Campus delete failed:" << query.lastError().text();
+            db.rollback();
+            return;
+        }
 
-             // Commit the changes to disk
-      if (db.commit()) {
-        campusModel->select(); // Refresh UI list
-        ui->collegeNameLineEdit->clear();
-        souvenirModel->setFilter("campusID = -1");
-        souvenirModel->select();
-        qDebug() << "Campus and all related data successfully deleted.";
-      }
+        // Commit the changes to disk
+        if (db.commit()) {
+            campusModel->select(); // Refresh UI list
+            ui->collegeNameLineEdit->clear();
+            souvenirModel->setFilter("campusID = -1");
+            souvenirModel->select();
+            qDebug() << "Campus and all related data successfully deleted.";
+        }
     });
     connect(ui->addCampusButton, &QPushButton::clicked, this, [this]() {
         // 1. Insert a new row at the bottom
@@ -287,7 +290,7 @@ void AdminPage::on_uploadFile_clicked() {
 
   // Perform the upload
   // TODO: change to a file upload window
-  uploadFileAppend("/Users/erfantavassoli/Downloads/testFile.xlsx");
+  uploadFileAppend(R"(C:\Users\erfan\Documents\CS1D project 1\res\testFile.xlsx)");
 
   // TODO: notify if the campus already exists
 
@@ -298,20 +301,19 @@ void AdminPage::on_uploadFile_clicked() {
 }
 
 void AdminPage::refreshUI() {
-  // 1. Reload the main campus list
-  campusModel->select();
+    qDebug() << "AdminPage: Database data re-synced to UI.";
+    // 1. Reload the main campus list
+    campusModel->select();
 
-         // 2. Figure out which campus was selected before the refresh
-  QModelIndex currentIndex = ui->campusList->currentIndex();
-  if (currentIndex.isValid()) {
-    QSqlRecord record = campusModel->record(currentIndex.row());
-    int campusId = record.value("campusId").toInt();
+    // 2. Figure out which campus was selected before the refresh
+    QModelIndex currentIndex = ui->campusList->currentIndex();
+    if (currentIndex.isValid()) {
+        QSqlRecord record = campusModel->record(currentIndex.row());
+        int campusId = record.value("campusId").toInt();
 
-    // 3. Re-apply the filter to the souvenirs so they stay visible
-    souvenirModel->setFilter(QString("campusId = %1").arg(campusId));
-    souvenirModel->select();
-  }
-
-  qDebug() << "AdminPage: Database data re-synced to UI.";
+        // 3. Re-apply the filter to the souvenirs so they stay visible
+        souvenirModel->setFilter(QString("campusId = %1").arg(campusId));
+        souvenirModel->select();
+    }
 }
 

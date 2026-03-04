@@ -22,8 +22,6 @@ MainWindow::MainWindow(QWidget *parent)
     // link menubar item
     connect(ui->actionreset_all_information, &QAction::triggered, this, &MainWindow::menuBarReset);
 
-    uploadFileOverride(":/res/TestFile.xlsx");
-
     // ------------------------------------------------------------------------------------
     // set starting tab to planning tab
     // TODO: change to 0 which is planner page, currently set to 1 for testing info page
@@ -98,19 +96,22 @@ void MainWindow::linkAdminPage() {
 }
 
 void MainWindow::menuBarReset() {
-  qDebug() << "menu bar item pressed";
+    QString resPath = R"(C:\Users\erfan\Documents\CS1D project 1\res\starterInformation.xlsx)";
 
-  // Assuming actionUpload is the object name in your .ui or created in code
-  connect(ui->actionreset_all_information, &QAction::triggered, this, [this]() {
-    QString resPath = ":/res/TestFile.xlsx";
+    if (QFile::exists(resPath)) {
+        resetAndReloadData(resPath);
 
-    // Safety check to ensure the resource exists
-    if (!QFile::exists(resPath)) {
-      qDebug() << "Resource not found at:" << resPath;
-      return;
+        // refresh all pages that connect to database
+        QList<DatabasePage*> allPages = this->findChildren<DatabasePage*>();
+        for (DatabasePage* page : std::as_const(allPages)) {
+            if (page) {
+                page->refreshUI();
+            }
+        }
+
+        ui->statusBar->showMessage("Database Reset and UI Notified", 3000);
+    } else {
+        qDebug() << "Resource not found";
+        ui->statusBar->showMessage("reset failed", 3000);
     }
-
-           // Call your logic
-    uploadFileOverride(resPath);
-  });
 }
