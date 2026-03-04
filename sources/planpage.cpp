@@ -22,30 +22,31 @@ void PlanPage::on_startTripButton_clicked()
     TripResult result;
 
     // CHECK FOR STORY 2: "Initial 11 from Saddleback"
-    // If no custom selections are made in tableView_2, default to the Initial 11 logic
-    if (ui->tableView_2->model()->rowCount() == 0) {
-        startId = 1; // Assuming 1 is Saddleback ID
-        QSqlQuery query("SELECT campusID FROM campusList LIMIT 11");
-        while(query.next()) {
-            int id = query.value(0).toInt();
-            if (id != startId) targets.append(id);
-        }
-    } 
-    // CHECK FOR STORY 1: "Student Custom Trip"
-    else {
-        startId = ui->campusComboBox->currentData().toInt();
-        QAbstractItemModel* model = ui->tableView_2->model();
-        for(int i = 0; i < model->rowCount(); ++i) {
-            targets.append(model->index(i, 0).data(Qt::UserRole).toInt());
-        }
-    }
+    // TODO: fix the logic below, give error 139
+    // If no custom selections are made in tableView, default to the Initial 11 logic
+    // if (ui->tableView->model()->rowCount() == 0) {
+    //     startId = 1; // Assuming 1 is Saddleback ID
+    //     QSqlQuery query("SELECT campusID FROM campusList LIMIT 11");
+    //     while(query.next()) {
+    //         int id = query.value(0).toInt();
+    //         if (id != startId) targets.append(id);
+    //     }
+    // }
+    // // CHECK FOR STORY 1: "Student Custom Trip"
+    // else {
+    //     startId = ui->comboBox->currentData().toInt();
+    //     QAbstractItemModel* model = ui->tableView->model();
+    //     for(int i = 0; i < model->rowCount(); ++i) {
+    //         targets.append(model->index(i, 0).data(Qt::UserRole).toInt());
+    //     }
+    // }
 
     // RUN THE SHARED RECURSIVE LOGIC
     result.campusOrder.append(startId);
     planner.planRecursiveTrip(startId, targets, result);
 
     // Pass data to InfoPage (Assuming a signal is connected in MainWindow)
-    emit tripCalculationFinished(result);
+    // emit tripCalculationFinished(result);
 
     // Original Page Switching Logic
     if (ui->planOnlyCheckBox->isChecked()) {

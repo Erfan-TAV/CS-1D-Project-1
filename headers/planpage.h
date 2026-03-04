@@ -25,8 +25,8 @@ private slots:
     void on_planAnotherButton_1_clicked();
     void on_tripPlanStopNextButton_clicked();
 
-    signals:
-    void tripCalculationFinished(const TripResult &result);
+signals:
+    // void tripCalculationFinished(const TripResult &result);
 
 };
 
