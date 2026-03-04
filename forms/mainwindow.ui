@@ -60,7 +60,7 @@
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_8">
         <item>
-         <widget class="PlanPage" name="widget_2" native="true"/>
+         <widget class="PlanPage" name="tripPlanPageWidget" native="true"/>
         </item>
        </layout>
       </widget>
@@ -73,7 +73,7 @@
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_7">
         <item>
-         <widget class="InfoPage" name="widget" native="true"/>
+         <widget class="InfoPage" name="tripInfoPageWidget" native="true"/>
         </item>
        </layout>
       </widget>
@@ -115,12 +115,39 @@
      <height>39</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu_data">
+    <property name="title">
+     <string>&amp;data</string>
+    </property>
+    <addaction name="actionreset_all_information"/>
+   </widget>
+   <addaction name="menu_data"/>
   </widget>
   <widget class="QStatusBar" name="statusBar">
    <property name="enabled">
     <bool>true</bool>
    </property>
   </widget>
+  <action name="actiontesting">
+   <property name="text">
+    <string>testing</string>
+   </property>
+  </action>
+  <action name="actiontesting_2">
+   <property name="text">
+    <string>testing</string>
+   </property>
+  </action>
+  <action name="actiontesting_3">
+   <property name="text">
+    <string>testing</string>
+   </property>
+  </action>
+  <action name="actionreset_all_information">
+   <property name="text">
+    <string>reset all information</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>

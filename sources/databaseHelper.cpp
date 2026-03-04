@@ -1,6 +1,9 @@
 #include <QSqlQuery>
 #include <QDebug>
 #include <QSqlError>
+#include <QtSql>
+#include "xlsxdocument.h"
+
 
 #include "databaseHelper.h"
 #include "campusStructs.h"
@@ -176,4 +179,72 @@ int closestCampus(const int ID1) {
     }
 
     return nearestID;
+}
+
+// Upload information from a file
+// non destructive, adds new rows if not a duplicate
+void uploadFileAppend(const QString &filePath) {
+  QXlsx::Document xlsx(filePath);
+  QSqlDatabase db = QSqlDatabase::database();
+
+  // Only start a transaction if one isn't already running
+  bool internalTransaction = false;
+  if (!db.isOpenError() && !db.transaction()) {
+    // Transaction already active from Override, or failed to start
+  } else {
+    internalTransaction = true;
+  }
+
+  for (const QString &sheetName : xlsx.sheetNames()) {
+    xlsx.selectSheet(sheetName);
+    int columnCount = 0;
+    while (!xlsx.read(1, columnCount + 1).isNull()) columnCount++;
+
+    if (columnCount == 0) continue;
+
+    QStringList placeholders;
+    for (int i = 0; i < columnCount; ++i) placeholders << "?";
+    QString sql = QString("INSERT INTO %1 VALUES (%2)").arg(sheetName).arg(placeholders.join(", "));
+
+    QSqlQuery query;
+    query.prepare(sql);
+
+    int row = 2;
+    while (!xlsx.read(row, 1).isNull()) {
+      for (int col = 1; col <= columnCount; ++col) {
+        query.addBindValue(xlsx.read(row, col));
+      }
+      query.exec();
+      row++;
+    }
+  }
+
+         // Only commit if this function was the one that started the transaction
+  if (internalTransaction) db.commit();
+}
+
+// Upload information from a file
+// destructive, removes current info and writes the file's info
+void uploadFileOverride(const QString &filePath) {
+  QXlsx::Document xlsx(filePath);
+  QSqlDatabase db = QSqlDatabase::database();
+
+  if (!db.transaction()) return;
+
+         // 1. Wipe all relevant tables first
+  for (const QString &sheetName : xlsx.sheetNames()) {
+    QSqlQuery query;
+    query.exec(QString("DELETE FROM %1").arg(sheetName));
+  }
+
+         // 2. Call the Append function to fill them back up
+  uploadFileAppend(filePath);
+
+         // 3. Finalize everything
+  if (db.commit()) {
+    qDebug() << "Override complete!";
+  } else {
+    db.rollback();
+    qDebug() << "Override failed, original data restored.";
+  }
 }

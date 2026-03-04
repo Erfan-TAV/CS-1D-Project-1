@@ -27,9 +27,11 @@ qt_add_executable(CollegeTour
         resources.qrc
 )
 
+add_subdirectory(res/QXlsx/QXlsx)
+
 # --- 4. Include & Linking ---
 target_include_directories(CollegeTour PRIVATE "headers" "SQLite stuff")
-target_link_libraries(CollegeTour PRIVATE Qt::Core Qt::Widgets Qt::Sql)
+target_link_libraries(CollegeTour PRIVATE Qt::Core Qt::Widgets Qt::Sql QXlsx::QXlsx)
 
 # --- 5. THE "FORCE COPY" FIX ---
 set(SOURCE_DB "${CMAKE_CURRENT_SOURCE_DIR}/res/project1.db")

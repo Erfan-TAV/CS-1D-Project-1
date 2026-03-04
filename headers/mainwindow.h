@@ -20,11 +20,9 @@ public:
     ~MainWindow();
 
 private slots:
-
-
     void initializeList();
-
     void linkAdminPage();
+    void menuBarReset();
 
 
 private:

@@ -24,6 +24,7 @@ public:
 
 private slots:
     void handleLogin();
+    void handleFilUpload();
 
 private:
     Ui::AdminPage* ui;

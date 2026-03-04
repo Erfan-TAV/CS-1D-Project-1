@@ -259,3 +259,7 @@ void AdminPage::setupDatabaseTable() {
     });
 
 }
+
+void AdminPage::handleFilUpload() {
+  qDebug() << "file upload pressed";
+}

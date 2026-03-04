@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QFile>
+#include "databaseHelper.h"
 // #include "dbManager.h"
 
 /*
@@ -16,6 +18,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     linkAdminPage();
+
+    // link menubar item
+    connect(ui->actionreset_all_information, &QAction::triggered, this, &MainWindow::menuBarReset);
 
     // ------------------------------------------------------------------------------------
     // set starting tab to planning tab
@@ -88,4 +93,20 @@ void MainWindow::linkAdminPage() {
         // This lambda function runs whenever notifyStatus is emitted
         ui->statusBar->showMessage(msg, 3000); // Show for 3 seconds
     });
+}
+
+void MainWindow::menuBarReset() {
+  // Assuming actionUpload is the object name in your .ui or created in code
+  connect(ui->actionreset_all_information, &QAction::triggered, this, [this]() {
+    QString resPath = ":/res/TestFile.xlsx";
+
+    // Safety check to ensure the resource exists
+    if (!QFile::exists(resPath)) {
+      qDebug() << "Resource not found at:" << resPath;
+      return;
+    }
+
+           // Call your logic
+    uploadFileOverride(resPath);
+  });
 }

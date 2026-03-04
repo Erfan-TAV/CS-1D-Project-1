@@ -22,4 +22,8 @@ int closestCampus(int campusID);
 QString getCampusName(int campusID);
 Campus getFullCampus(int campusID);
 
+// File Upload
+void uploadFileAppend(const QString &filePath);
+void uploadFileOverride(const QString &filePath);
+
 #endif //COLLEGETOUR_DBMANAGERHELPER_H
