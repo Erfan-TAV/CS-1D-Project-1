@@ -3,7 +3,7 @@
 
 #include <QSqlTableModel>
 #include <QWidget>
-#include "ui_AdminPage.h"
+#include "ui_adminpage.h"
 #include "databasePage.h"
 
 

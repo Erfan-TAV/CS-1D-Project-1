@@ -238,9 +238,9 @@ void uploadFileAppend(const QString &filePath) {
         for (int i = 0; i < columnNames.size(); ++i) placeholders << "?";
 
         QString sql = QString("INSERT INTO %1 (%2) VALUES (%3)")
-                          .arg(sheetName)
-                          .arg(quotedColumns.join(", "))
-                          .arg(placeholders.join(", "));
+                          .arg(sheetName,
+                               quotedColumns.join(", "),
+                               placeholders.join(", "));
 
         QSqlQuery query;
         query.prepare(sql);
@@ -337,9 +337,9 @@ void resetAndReloadData(const QString &filePath) {
 
         // Prepare the INSERT query
         QString sql = QString("INSERT INTO %1 (%2) VALUES (%3)")
-                          .arg(sheetName)
-                          .arg(quotedColumns.join(", "))
-                          .arg(placeholders.join(", "));
+                          .arg(sheetName,
+                               quotedColumns.join(", "),
+                               placeholders.join(", "));
 
         query.prepare(sql);
 

@@ -46,7 +46,7 @@
        <enum>QTabWidget::TabShape::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <property name="tabBarAutoHide">
        <bool>true</bool>
@@ -112,7 +112,7 @@
      <x>0</x>
      <y>0</y>
      <width>1139</width>
-     <height>39</height>
+     <height>33</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_data">
@@ -153,7 +153,7 @@
   <customwidget>
    <class>AdminPage</class>
    <extends>QWidget</extends>
-   <header location="global">adminpage.h</header>
+   <header location="global">adminpagebak.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

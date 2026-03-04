@@ -27,6 +27,8 @@ qt_add_executable(CollegeTour
         resources.qrc
 )
 
+message(STATUS "FORMS = ${FORMS}")
+
 add_subdirectory(res/QXlsx/QXlsx)
 
 # --- 4. Include & Linking ---
