@@ -2,6 +2,7 @@
 #define PLANPAGE_H
 
 #include <QWidget>
+#include "tripPlanner.h"
 
 namespace Ui {
 class PlanPage;
@@ -25,6 +26,7 @@ private slots:
     void on_tripPlanStopNextButton_clicked();
 
     signals:
+    void tripCalculationFinished(const TripResult &result);
 
 };
 
