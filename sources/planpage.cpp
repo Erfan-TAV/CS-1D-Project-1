@@ -9,52 +9,70 @@ PlanPage::PlanPage(QWidget *parent)
 {
     ui->setupUi(this);
     ui->tripPlannerStack->setCurrentIndex(0);
-    ui->campusTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
+    ui->tableViewSettings->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
 }
 
 PlanPage::~PlanPage() { delete ui; }
 
 void PlanPage::on_startTripButton_clicked()
 {
-    int startId;
+    int startId = 0;
     QVector<int> targets;
     tripPlanner planner;
     TripResult result;
 
-    // CHECK FOR STORY 2: "Initial 11 from Saddleback"
-    // TODO: fix the logic below, give error 139
-    // If no custom selections are made in tableView, default to the Initial 11 logic
-    // if (ui->tableView->model()->rowCount() == 0) {
-    //     startId = 1; // Assuming 1 is Saddleback ID
-    //     QSqlQuery query("SELECT campusID FROM campusList LIMIT 11");
-    //     while(query.next()) {
-    //         int id = query.value(0).toInt();
-    //         if (id != startId) targets.append(id);
-    //     }
-    // }
-    // // CHECK FOR STORY 1: "Student Custom Trip"
-    // else {
-    //     startId = ui->comboBox->currentData().toInt();
-    //     QAbstractItemModel* model = ui->tableView->model();
-    //     for(int i = 0; i < model->rowCount(); ++i) {
-    //         targets.append(model->index(i, 0).data(Qt::UserRole).toInt());
-    //     }
-    // }
+    // 1. SAFE CHECK: Ensure the table and its model exist
+    if (ui->tableViewSettings != nullptr && ui->tableViewSettings->model() != nullptr) {
 
-    // RUN THE SHARED RECURSIVE LOGIC
-    result.campusOrder.append(startId);
-    planner.planRecursiveTrip(startId, targets, result);
+        QAbstractItemModel* model = ui->tableViewSettings->model();
+        int rowCount = model->rowCount();
 
-    // Pass data to InfoPage (Assuming a signal is connected in MainWindow)
-    // emit tripCalculationFinished(result);
+        // 2. STORY LOGIC: If user selected campuses, use them.
+        // If the table is empty, we handle it gracefully.
+        if (rowCount > 0) {
+            // Get starting campus from combo box
+            startId = ui->campusComboBox->currentData().toInt();
 
-    // Original Page Switching Logic
-    if (ui->planOnlyCheckBox->isChecked()) {
-        ui->tripPlannerStack->setCurrentIndex(1); // Stop Page
+            // Loop through all selected campuses in the table
+            for(int i = 0; i < rowCount; ++i) {
+                int id = model->index(i, 0).data(Qt::UserRole).toInt();
+
+                // Don't add the starting campus to the "targets" list to avoid loops
+                if (id != startId) {
+                    targets.append(id);
+                }
+            }
+        } else {
+            qDebug() << "No campuses selected in tableViewSettings.";
+            return; // Exit early if there's nothing to plan
+        }
     } else {
-        ui->tripPlannerStack->setCurrentIndex(2); // Result Page
+        qDebug() << "Critical Error: tableViewSettings model is null (Code 139 prevention).";
+        return;
+    }
+
+    // 3. EXECUTE RECURSIVE LOGIC
+    // tripPlanner planner;
+    // TripResult result;
+    result.campusOrder.append(startId);
+
+    if (!targets.isEmpty()) {
+        planner.planRecursiveTrip(startId, targets, result);
+    }
+
+    // 4. UPDATE DISPLAY
+    // If you aren't using signals, you must call the display function directly
+    // Assuming 'infoPage' is accessible here:
+    // ui->infoPageWidget->displayTripResults(result);
+
+    // Original UI switching logic
+    if (ui->planOnlyCheckBox->isChecked()) {
+        ui->tripPlannerStack->setCurrentIndex(1);
+    } else {
+        ui->tripPlannerStack->setCurrentIndex(2);
     }
 }
+
 
 void PlanPage::on_planAnotherButton_clicked() { ui->tripPlannerStack->setCurrentIndex(0); }
 void PlanPage::on_planAnotherButton_1_clicked() { ui->tripPlannerStack->setCurrentIndex(0); }
