@@ -183,6 +183,8 @@ int closestCampus(const int ID1) {
 
 // --- File Upload Helpers ---
 
+// TODO: notify if the campus already exists
+// TODO: bring up a popup for adding distances to existing campuses
 void uploadFileAppend(const QString &filePath) {
     QXlsx::Document xlsx(filePath);
     if (!xlsx.load()) {

@@ -5,6 +5,8 @@
 #include <QSqlQuery>
 #include <QTimer>
 #include "databaseHelper.h"
+#include <QFileDialog>
+#include <QStandardPaths>
 
 
 AdminPage::AdminPage(QWidget* parent) :
@@ -281,23 +283,52 @@ void AdminPage::setupDatabaseTable() {
             }
         }
         // TODO: add logic to add distances from the newly added campus to all the current campus
-        qDebug() << "failed to add updated distances.";
+        qDebug() << "failed to add distances for new campus.";
     });
 }
 
+// void AdminPage::on_uploadFile_clicked() {
+//   qDebug() << "file upload pressed";
+
+//   // Perform the upload
+//   // TODO: change to a file upload window
+//   uploadFileAppend(R"(C:\Users\erfan\Documents\CS1D project 1\res\testFile.xlsx)");
+
+//   // TODO: notify if the campus already exists
+
+//   // Immediately refresh the UI
+//   refreshUI();
+
+//   emit notifyStatus("File uploaded and list updated!");
+// }
+
+
+
 void AdminPage::on_uploadFile_clicked() {
-  qDebug() << "file upload pressed";
+    qDebug() << "file upload pressed";
 
-  // Perform the upload
-  // TODO: change to a file upload window
-  uploadFileAppend(R"(C:\Users\erfan\Documents\CS1D project 1\res\testFile.xlsx)");
+    // 1. Open the File System Picker
+    // Arguments: Parent, Title, Starting Directory, File Filters
+    QString filePath = QFileDialog::getOpenFileName(
+        this,
+        tr("Select Excel File"),
+        QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation),
+        tr("Excel Files (*.xlsx *.xls)")
+        );
 
-  // TODO: notify if the campus already exists
+    // 2. Check if the user cancelled the dialog
+    if (filePath.isEmpty()) {
+        qDebug() << "File upload cancelled by user.";
+        return;
+    }
 
-  // Immediately refresh the UI
-  refreshUI();
+    // 3. Perform the upload with the dynamic path
+    uploadFileAppend(filePath);
 
-  emit notifyStatus("File uploaded and list updated!");
+    // 4. Immediately refresh the UI
+    refreshUI();
+
+    emit notifyStatus("File uploaded and list updated!");
 }
 
 void AdminPage::refreshUI() {
