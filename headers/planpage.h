@@ -29,6 +29,8 @@ private slots:
     void on_planAnotherButton_clicked();
     void on_planAnotherButton_1_clicked();
     void on_tripPlanStopNextButton_clicked();
+    // QString getCampusNameById(int id);
+    // void displayRoute(const TripResult &result);
 
     void refreshUI() override;
 

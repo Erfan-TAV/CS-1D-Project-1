@@ -44,18 +44,16 @@ public:
             planRecursiveTrip(closestId, remainingIds, result);
         }
     }
-
-private:
     double getDistance(int startID, int endID) {
-        if (startID == endID) return 0.0;
-        QSqlQuery query;
-        query.prepare("SELECT distance FROM distances WHERE "
-                      "(startID = :s AND endID = :e) OR (startID = :e AND endID = :s)");
-        query.bindValue(":s", startID);
-        query.bindValue(":e", endID);
-        if (query.exec() && query.next()) return query.value(0).toDouble();
-        return 999.0;
-    }
+            if (startID == endID) return 0.0;
+            QSqlQuery query;
+            query.prepare("SELECT distance FROM distances WHERE "
+                          "(startID = :s AND endID = :e) OR (startID = :e AND endID = :s)");
+            query.bindValue(":s", startID);
+            query.bindValue(":e", endID);
+            if (query.exec() && query.next()) return query.value(0).toDouble();
+            return 999.0;
+        }
 };
 
 #endif

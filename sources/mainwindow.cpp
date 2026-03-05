@@ -128,3 +128,21 @@ void MainWindow::menuBarReset() {
         ui->statusBar->showMessage("Reset failed: Template file not found", 3000);
     }
 }
+
+// mainwindow.cpp
+void MainWindow::on_tabWidget_currentChanged(int index)
+{
+    qDebug() << "Auto-connected Tab Change. Current Index:" << index;
+
+    // We look inside the container (databasePage) for any PlanPage instances
+    QList<DatabasePage*> allPages = this->findChildren<DatabasePage*>();
+
+    if (allPages.isEmpty()) {
+        qDebug() << "Warning: No PlanPage found inside databasePage!";
+    }
+
+    for (DatabasePage* page : allPages) {
+        // page->refreshUI();
+        qDebug() << "Successfully refreshed:" << page->objectName();
+    }
+}
