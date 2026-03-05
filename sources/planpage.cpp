@@ -17,7 +17,7 @@
 #include <QStandardPaths>
 
 PlanPage::PlanPage(QWidget *parent)
-    : QWidget(parent)
+    : DatabasePage(parent)
     , ui(new Ui::PlanPage)
 {
     ui->setupUi(this);
@@ -107,7 +107,7 @@ void PlanPage::setupDatabaseTable() {
     campusModel->setTable("campusList");
 
     // TODO: change to no editing
-    campusModel->setEditStrategy(QSqlTableModel::OnFieldChange);
+    ui->tableViewSettings->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     // Fetch the data
     if (!campusModel->select()) {
@@ -119,4 +119,21 @@ void PlanPage::setupDatabaseTable() {
     // link the model to the ui
     ui->tableViewSettings->setModel(campusModel);
     ui->tableViewSettings->setModelColumn(1);
+}
+
+void PlanPage::refreshUI() {
+    qDebug() << "PlanPage: Database data re-synced to UI.";
+    // 1. Reload the main campus list
+    campusModel->select();
+
+    // 2. Figure out which campus was selected before the refresh
+    // QModelIndex currentIndex = ui->tableViewSettings->currentIndex();
+    // if (currentIndex.isValid()) {
+    //     QSqlRecord record = campusModel->record(currentIndex.row());
+    //     int campusId = record.value("campusId").toInt();
+    //
+    //     // 3. Re-apply the filter to the souvenirs so they stay visible
+    //     souvenirModel->setFilter(QString("campusId = %1").arg(campusId));
+    //     souvenirModel->select();
+    // }
 }

@@ -3,19 +3,21 @@
 
 #include <QSqlTableModel>
 #include <QWidget>
+
+#include "databasePage.h"
 #include "tripPlanner.h"
 
 namespace Ui {
 class PlanPage;
 }
 
-class PlanPage : public QWidget
+class PlanPage : public DatabasePage
 {
     Q_OBJECT
 
 public:
     explicit PlanPage(QWidget *parent = nullptr);
-    ~PlanPage();
+    ~PlanPage() override;
 
 private:
     Ui::PlanPage *ui;
@@ -27,6 +29,8 @@ private slots:
     void on_planAnotherButton_clicked();
     void on_planAnotherButton_1_clicked();
     void on_tripPlanStopNextButton_clicked();
+
+    void refreshUI() override;
 
 signals:
     // void tripCalculationFinished(const TripResult &result);
