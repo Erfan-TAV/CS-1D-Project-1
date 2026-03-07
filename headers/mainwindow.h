@@ -23,6 +23,7 @@ private slots:
     void initializeList();
     void linkAdminPage();
     void menuBarReset();
+    void on_tabWidget_currentChanged(int index);
 
 signals:
     void databaseChanged();

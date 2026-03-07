@@ -145,6 +145,7 @@ Campus getFullCampus(const int campusID) {
     return campus;
 }
 
+// TODO: update logic to work with no repeated campusID in the first colum. needs the logic to find either id1 or id2 and then the other id is the other campus
 int closestCampus(const int ID1) {
     QSqlQuery query;
     int minDistance = INT_MAX;
