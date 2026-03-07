@@ -40,6 +40,7 @@ AdminPage::~AdminPage()
     delete ui;
 }
 
+// TODO: add proper login logic
 void AdminPage::handleLogin() {
     if (ui->usernameField->text() == "admin" && ui->passwordField->text() == "admin") {
         // 1. Switch the internal stack (Dashboard is index 1)
