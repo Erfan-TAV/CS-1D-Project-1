@@ -1,7 +1,6 @@
 #include "planpage.h"
 
 #include <QSqlError>
-
 #include "ui_planpage.h"
 #include "../headers/tripPlanner.h"
 #include <QSqlQuery>
@@ -16,10 +15,14 @@
 #include <QFileDialog>
 #include <QStandardPaths>
 
+
+
 PlanPage::PlanPage(QWidget *parent)
     : DatabasePage(parent)
     , ui(new Ui::PlanPage)
+
 {
+
     ui->setupUi(this);
     ui->tripPlannerStack->setCurrentIndex(0);
 
@@ -29,7 +32,10 @@ PlanPage::PlanPage(QWidget *parent)
 
 PlanPage::~PlanPage() { delete ui; }
 
+
+
 void PlanPage::on_startTripButton_clicked()
+
 {
     int startId = 0;
     QVector<int> targets;
@@ -97,6 +103,7 @@ void PlanPage::on_startTripButton_clicked()
     } else {
         ui->tripPlannerStack->setCurrentIndex(2); // Page with summary table
     }
+
 }
 // void PlanPage::on_startTripButton_clicked()
 // {

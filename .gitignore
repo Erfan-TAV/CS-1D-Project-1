@@ -83,3 +83,10 @@ CMakeLists.txt.user*
 .rcc/
 .uic/
 /build*/
+
+# Doxygen generated documentation
+html/
+latex/
+
+# Doxygen tag files
+*.tag
