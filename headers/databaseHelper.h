@@ -1,3 +1,6 @@
+/**
+* @file databaseHelper.h
+ */
 #ifndef COLLEGETOUR_DBMANAGERHELPER_H
 #define COLLEGETOUR_DBMANAGERHELPER_H
 
