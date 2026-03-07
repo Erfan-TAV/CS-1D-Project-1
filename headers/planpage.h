@@ -1,28 +1,40 @@
 #ifndef PLANPAGE_H
 #define PLANPAGE_H
 
+#include <QSqlTableModel>
 #include <QWidget>
+#include "databasePage.h"
 
 namespace Ui {
-class PlanPage;
+    class PlanPage;
 }
 
-class PlanPage : public QWidget
+class PlanPage : public DatabasePage
 {
     Q_OBJECT
 
 public:
     explicit PlanPage(QWidget *parent = nullptr);
-    ~PlanPage();
+    ~PlanPage() override;
 
 private:
     Ui::PlanPage *ui;
+    void setupDatabaseTable();
+    QSqlTableModel* campusModel;
+    QSqlTableModel* comboBoxModel;   /**< Model for the combobox on settings page. */
+    QSqlTableModel* tripModel;       /**< Model for the current trip table */
 
 private slots:
     void on_startTripButton_clicked();
     void on_planAnotherButton_clicked();
     void on_planAnotherButton_1_clicked();
     void on_tripPlanStopNextButton_clicked();
+    void updateFilteredTable(const QString &selectedCampus);
+
+    void refreshUI() override;
+
+signals:
+
 };
 
 #endif // PLANPAGE_H

@@ -89,4 +89,9 @@ Campus getFullCampus(int campusID);
 void uploadFileAppend(const QString &filePath);
 void resetAndReloadData(const QString &filePath);
 
+bool addTripCampus(const int campusID, const QString& campusName);
+bool removeTripCampus(const int campusID);
+bool removeTripCampusByName(const QString &campusName);
+bool clearTripTable();
+
 #endif //COLLEGETOUR_DBMANAGERHELPER_H

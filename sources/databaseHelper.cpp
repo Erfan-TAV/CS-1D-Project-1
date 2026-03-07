@@ -145,6 +145,7 @@ Campus getFullCampus(const int campusID) {
     return campus;
 }
 
+// TODO: update logic to work with no repeated campusID in the first colum. needs the logic to find either id1 or id2 and then the other id is the other campus
 int closestCampus(const int ID1) {
     QSqlQuery query;
     int minDistance = INT_MAX;
@@ -366,4 +367,58 @@ void resetAndReloadData(const QString &filePath) {
         qDebug() << "Commit failed during reset. Rolling back.";
         db.rollback();
     }
+}
+
+bool addTripCampus(const int campusID, const QString &campusName) {
+    QSqlQuery query;
+
+    // Use '?' instead of ':id' to bypass naming mismatches
+    query.prepare("INSERT INTO newCampusList (campusID, campusName) VALUES (?, ?)");
+
+    query.addBindValue(campusID);   // Maps to the first '?'
+    query.addBindValue(campusName); // Maps to the second '?'
+
+    if (!query.exec()) {
+        qDebug() << "DB Helper Error:" << query.lastError().text();
+        // If it still fails, this will tell us if the table actually exists
+        return false;
+    }
+
+    return true;
+}
+
+bool removeTripCampusByID(const int campusID) {
+    QSqlQuery query;
+    query.prepare("DELETE FROM newCampusList WHERE campusID = :id");
+    query.bindValue(":id", campusID);
+
+    if (!query.exec()) {
+        qDebug() << "DB Helper Error (Remove by ID):" << query.lastError().text();
+        return false;
+    }
+    return true;
+}
+
+bool removeTripCampusByName(const QString &campusName) {
+    QSqlQuery query;
+    query.prepare("DELETE FROM newCampusList WHERE campusName = :name");
+    query.bindValue(":name", campusName);
+
+    if (!query.exec()) {
+        qDebug() << "DB Helper Error (Remove by Name):" << query.lastError().text();
+        return false;
+    }
+    return true;
+}
+
+bool clearTripTable() {
+    QSqlQuery query;
+
+    // Deletes all rows from the table
+    if (!query.exec("DELETE FROM newCampusList")) {
+        qDebug() << "databaseHelper Error (Clear Table):" << query.lastError().text();
+        return false;
+    }
+
+    return true;
 }

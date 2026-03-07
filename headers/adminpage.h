@@ -13,8 +13,7 @@
 
 QT_BEGIN_NAMESPACE
 
-namespace Ui
-{
+namespace Ui {
     class AdminPage;
 }
 
@@ -27,8 +26,7 @@ QT_END_NAMESPACE
  * as well as CRUD (Create, Read, Update, Delete) operations on the database
  * using QSqlTableModel.
  */
-class AdminPage : public DatabasePage
-{
+class AdminPage : public DatabasePage{
     Q_OBJECT
 
 public:

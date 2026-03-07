@@ -8,7 +8,6 @@
 #include <QFileDialog>
 #include <QStandardPaths>
 
-
 AdminPage::AdminPage(QWidget* parent) :
     DatabasePage(parent), ui(new Ui::AdminPage)
 {
@@ -30,9 +29,6 @@ AdminPage::AdminPage(QWidget* parent) :
     });
 
     setupDatabaseTable();
-
-    // You likely have access to your dbManager instance here
-    // connect(dbHandler, &DbManager::dataChanged, this, &AdminPage::refreshUI);
 }
 
 AdminPage::~AdminPage()
@@ -287,23 +283,6 @@ void AdminPage::setupDatabaseTable() {
         qDebug() << "failed to add distances for new campus.";
     });
 }
-
-// void AdminPage::on_uploadFile_clicked() {
-//   qDebug() << "file upload pressed";
-
-//   // Perform the upload
-//   // TODO: change to a file upload window
-//   uploadFileAppend(R"(C:\Users\erfan\Documents\CS1D project 1\res\testFile.xlsx)");
-
-//   // TODO: notify if the campus already exists
-
-//   // Immediately refresh the UI
-//   refreshUI();
-
-//   emit notifyStatus("File uploaded and list updated!");
-// }
-
-
 
 void AdminPage::on_uploadFile_clicked() {
     qDebug() << "file upload pressed";

@@ -22,7 +22,8 @@ public:
 private slots:
     void initializeList();
     void linkAdminPage();
-    void menuBarReset();
+    void menuBarReset() const;
+    void on_tabWidget_currentChanged(int index) const;
 
 signals:
     void databaseChanged();

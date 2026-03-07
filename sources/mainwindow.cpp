@@ -3,6 +3,8 @@
 #include <QFile>
 #include "databaseHelper.h"
 #include <QStandardPaths>
+#include <QDir>
+#include <QSqlTableModel>
 
 /*
  * trip planner page indexes
@@ -17,52 +19,23 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    // reset the trip table when the application is launched
+    clearTripTable();
+
     linkAdminPage();
 
     // link menubar item
     connect(ui->actionreset_all_information, &QAction::triggered, this, &MainWindow::menuBarReset);
 
-    // ------------------------------------------------------------------------------------
     // set starting tab to planning tab
     // TODO: change to 0 which is planner page, currently set to 1 for testing info page
     ui->tabWidget->setCurrentIndex(0);
-    // set adminTab to the admin login page
-    // TODO: change to 0 which is login page. currently set to 1 for testing the actual admin page
-    // ui->adminPageStack->setCurrentIndex(0);
-    // set planTab to the home page
-    // TODO: ensure its set to 0 if !=0 for testing purposes
-    // ------------------------------------------------------------------------------------
-
-
-    // ------------------------------------------------------------------------------------
-    // Setup the login page
-    // Make pressing enter submit the user info
-    // connect(ui->usernameField, &QLineEdit::returnPressed, this, &MainWindow::handleLogin);
-    // connect(ui->passwordField, &QLineEdit::returnPressed, this, &MainWindow::handleLogin);
-
-    // link the login button
-    // connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &MainWindow::handleLogin);
-    // link the cancel button
-    // connect(ui->buttonBox, &QDialogButtonBox::rejected, [this](){
-        // ui->usernameField->clear();
-        // ui->passwordField->clear();
-    // });
-    // ------------------------------------------------------------------------------------
-    // Setup the login page
-
-
-
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
-
-
-
-#include <QDir>
-#include <QSqlTableModel>
 
 // Run this in your constructor or a setup function
 void MainWindow::initializeList() {
@@ -96,7 +69,7 @@ void MainWindow::linkAdminPage() {
     });
 }
 
-void MainWindow::menuBarReset() {
+void MainWindow::menuBarReset() const {
     // 1. Define a universal path in AppData
     QString appDataPath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     QString excelPath = appDataPath + "/starterInformation.xlsx";
@@ -126,5 +99,22 @@ void MainWindow::menuBarReset() {
         ui->statusBar->showMessage("Database Reset Successful", 3000);
     } else {
         ui->statusBar->showMessage("Reset failed: Template file not found", 3000);
+    }
+}
+
+// mainwindow.cpp
+void MainWindow::on_tabWidget_currentChanged(int index) const {
+    qDebug() << "Auto-connected Tab Change. Current Index:" << index;
+
+    // We look inside the container (databasePage) for any PlanPage instances
+    QList<DatabasePage*> allPages = this->findChildren<DatabasePage*>();
+
+    if (allPages.isEmpty()) {
+        qDebug() << "Warning: No PlanPage found inside databasePage!";
+    }
+
+    for (DatabasePage* page : allPages) {
+        page->refreshUI();
+        qDebug() << "Successfully refreshed:" << page->objectName();
     }
 }
