@@ -18,92 +18,44 @@
 
 
 PlanPage::PlanPage(QWidget *parent)
-    : DatabasePage(parent)
+    : QWidget(parent)
     , ui(new Ui::PlanPage)
-
 {
-
     ui->setupUi(this);
+
+    // set the starting page to the plan setting page
     ui->tripPlannerStack->setCurrentIndex(0);
 
-    setupDatabaseTable();
-    // ui->tableViewSettings->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
+    // ------------------------------------------------------------------------------------
+    // setup the table in tripPlan
+    // Set the first column (Campus Name) to stretch and fill the table
+    ui->campusTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
+    // Hide row headers
+    // ui->tableWidget->verticalHeader()->setVisible(false);
+    // ------------------------------------------------------------------------------------
+    // setup the table in tripPlan
 }
 
-PlanPage::~PlanPage() { delete ui; }
-
-
+PlanPage::~PlanPage()
+{
+    delete ui;
+}
 
 void PlanPage::on_startTripButton_clicked()
-
 {
-    int startId = 0;
-    QVector<int> targets;
-    tripPlanner planner;
-    TripResult result;
+    // ui->tabWidget->setCurrentIndex(0);
 
-    // 1. SAFE CHECK: Ensure the table and its model exist
-    if (ui->tableViewSettings != nullptr && ui->tableViewSettings->model() != nullptr) {
-        QAbstractItemModel* model = ui->tableViewSettings->model();
-        int rowCount = model->rowCount();
-
-        if (rowCount > 0) {
-            startId = ui->campusComboBox->currentData().toInt();
-            for(int i = 0; i < rowCount; ++i) {
-                int id = model->index(i, 0).data(Qt::UserRole).toInt();
-                if (id != startId) {
-                    targets.append(id);
-                }
-            }
-        } else {
-            return;
-        }
-    } else {
-        return;
-    }
-
-    // 2. EXECUTE RECURSIVE LOGIC
-    result.campusOrder.append(startId);
-    if (!targets.isEmpty()) {
-        planner.planRecursiveTrip(startId, targets, result);
-    }
-
-    // 3. DYNAMIC HTML GENERATION (The visual "Arrow" route)
-    QString html = "<html><body style='white-space: nowrap; font-family: Arial, sans-serif;'>";
-    html += "<div style='padding: 20px; display: inline-block;'>";
-
-    for (int i = 0; i < result.campusOrder.size(); ++i) {
-        // Fetch campus name (You'll need a helper function for this)
-        QString name = getCampusName(result.campusOrder[i]);
-
-        // Add Campus Name
-        html += "<span style='font-size: 16pt; font-weight: bold; color: black;'>" + name + "</span>";
-
-        // Add Arrow and Segment Distance if not the last stop
-        if (i < result.campusOrder.size() - 1) {
-            // double dist = planner.getDistance(result.campusOrder[i], result.campusOrder[i+1]);
-
-            html += "<span style='font-size: 20pt; color: #444;'> ➔ </span>";
-            html += "<span style='font-size: 10pt; color: #777; vertical-align: middle;'>";
-                 // + QString::number(dist, 'f', 1) + " mi</span> ";
-        }
-    }
-    html += "</div></body></html>";
-
-    // Update the QTextBrowser
-    // ui->routeDisplay->setHtml(html);
-
-    // Update Totals (Bottom Right)
-    // ui->totalDistanceLabel->setText("Total Distance: " + QString::number(result.totalDistance, 'f', 2) + " mi");
-    // ui->totalCampusesLabel->setText("Amount of Campuses: " + QString::number(result.campusOrder.size()));
-
-    // Original UI switching logic
     if (ui->planOnlyCheckBox->isChecked()) {
-        ui->tripPlannerStack->setCurrentIndex(1); // Page with routeDisplay
+        ui->tripPlannerStack->setCurrentIndex(1);
     } else {
-        ui->tripPlannerStack->setCurrentIndex(2); // Page with summary table
+        ui->tripPlannerStack->setCurrentIndex(2);
     }
+}
 
+void PlanPage::on_planAnotherButton_clicked()
+{
+    ui->tripPlannerStack->setCurrentIndex(0);
+    // TODO: setup logic to prepare program for another trip plan.
 }
 // void PlanPage::on_startTripButton_clicked()
 // {
@@ -177,42 +129,16 @@ void PlanPage::setupDatabaseTable() {
         return;
     }
 
-    campusModel = new QSqlTableModel(this, db);
-
-    // Link the table's model to the proper table in the database
-    campusModel->setTable("campusList");
-
-    // TODO: change to no editing
-    ui->tableViewSettings->setEditTriggers(QAbstractItemView::NoEditTriggers);
-
-    // Fetch the data
-    if (!campusModel->select()) {
-        qDebug() << "SQL Error:" << campusModel->lastError().text();
-    } else {
-        qDebug() << "PlanPage: Successfully loaded" << campusModel->rowCount() << "campus rows";
-    }
-
-    // link the model to the ui
-    ui->tableViewSettings->setModel(campusModel);
-    ui->tableViewSettings->setModelColumn(1);
+void PlanPage::on_planAnotherButton_1_clicked()
+{
+    ui->tripPlannerStack->setCurrentIndex(0);
 }
 
-void PlanPage::refreshUI() {
-    qDebug() << "PlanPage: Database data re-synced to UI.";
-    // 1. Reload the main campus list
-    campusModel->select();
+void PlanPage::on_tripPlanStopNextButton_clicked()
+{
+    // TODO: setup logic so that
 
-    // 2. Figure out which campus was selected before the refresh
-    QModelIndex currentIndex = ui->tableViewSettings->currentIndex();
-    if (currentIndex.isValid()) {
-        QSqlRecord record = campusModel->record(currentIndex.row());
-        int campusId = record.value("campusId").toInt();
-
-        // 3. Re-apply the filter to the souvenirs so they stay visible
-        // souvenirModel->setFilter(QString("campusId = %1").arg(campusId));
-        // souvenirModel->select();
-        // }
-    }
+    ui->tripPlannerStack->setCurrentIndex(3);
 }
 
 // void PlanPage::displayRoute(const TripResult &result) {
