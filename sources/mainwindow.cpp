@@ -3,6 +3,8 @@
 #include <QFile>
 #include "databaseHelper.h"
 #include <QStandardPaths>
+#include <QDir>
+#include <QSqlTableModel>
 
 /*
  * trip planner page indexes
@@ -22,47 +24,15 @@ MainWindow::MainWindow(QWidget *parent)
     // link menubar item
     connect(ui->actionreset_all_information, &QAction::triggered, this, &MainWindow::menuBarReset);
 
-    // ------------------------------------------------------------------------------------
     // set starting tab to planning tab
     // TODO: change to 0 which is planner page, currently set to 1 for testing info page
-    ui->tabWidget->setCurrentIndex(0);
-    // set adminTab to the admin login page
-    // TODO: change to 0 which is login page. currently set to 1 for testing the actual admin page
-    // ui->adminPageStack->setCurrentIndex(0);
-    // set planTab to the home page
-    // TODO: ensure its set to 0 if !=0 for testing purposes
-    // ------------------------------------------------------------------------------------
-
-
-    // ------------------------------------------------------------------------------------
-    // Setup the login page
-    // Make pressing enter submit the user info
-    // connect(ui->usernameField, &QLineEdit::returnPressed, this, &MainWindow::handleLogin);
-    // connect(ui->passwordField, &QLineEdit::returnPressed, this, &MainWindow::handleLogin);
-
-    // link the login button
-    // connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &MainWindow::handleLogin);
-    // link the cancel button
-    // connect(ui->buttonBox, &QDialogButtonBox::rejected, [this](){
-        // ui->usernameField->clear();
-        // ui->passwordField->clear();
-    // });
-    // ------------------------------------------------------------------------------------
-    // Setup the login page
-
-
-
+    ui->tabWidget->setCurrentIndex(1);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
-
-
-
-#include <QDir>
-#include <QSqlTableModel>
 
 // Run this in your constructor or a setup function
 void MainWindow::initializeList() {
@@ -96,7 +66,7 @@ void MainWindow::linkAdminPage() {
     });
 }
 
-void MainWindow::menuBarReset() {
+void MainWindow::menuBarReset() const {
     // 1. Define a universal path in AppData
     QString appDataPath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     QString excelPath = appDataPath + "/starterInformation.xlsx";
@@ -130,8 +100,7 @@ void MainWindow::menuBarReset() {
 }
 
 // mainwindow.cpp
-void MainWindow::on_tabWidget_currentChanged(int index)
-{
+void MainWindow::on_tabWidget_currentChanged(int index) const {
     qDebug() << "Auto-connected Tab Change. Current Index:" << index;
 
     // We look inside the container (databasePage) for any PlanPage instances

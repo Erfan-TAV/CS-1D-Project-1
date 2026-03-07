@@ -1,21 +1,13 @@
 #include "planpage.h"
-
-#include <QSqlError>
 #include "ui_planpage.h"
 #include "../headers/tripPlanner.h"
-#include <QSqlQuery>
 #include <QSqlTableModel>
 #include "adminpage.h"
 #include "ui_adminpage.h"
 #include <qsqlerror.h>
 #include <QSqlRecord>
-#include <QSqlQuery>
 #include <QTimer>
-#include "databaseHelper.h"
 #include <QFileDialog>
-#include <QStandardPaths>
-
-
 
 PlanPage::PlanPage(QWidget *parent)
     : DatabasePage(parent)
@@ -26,14 +18,7 @@ PlanPage::PlanPage(QWidget *parent)
     // set the starting page to the plan setting page
     ui->tripPlannerStack->setCurrentIndex(0);
 
-    // ------------------------------------------------------------------------------------
-    // setup the table in tripPlan
-    // Set the first column (Campus Name) to stretch and fill the table
-    // ui->campusTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
-    // Hide row headers
-    // ui->tableWidget->verticalHeader()->setVisible(false);
-    // ------------------------------------------------------------------------------------
-    // setup the table in tripPlan
+    setupDatabaseTable();
 }
 
 PlanPage::~PlanPage()
@@ -63,6 +48,26 @@ void PlanPage::setupDatabaseTable() {
         qDebug() << "PlanPage: Database is NOT open at" << db.databaseName();
         return;
     }
+
+    // 2. Pass the 'db' object to the model
+    campusModel = new QSqlTableModel(this, db);
+
+    // 3. Match the table name exactly
+    campusModel->setTable("campusList");
+
+    // 4. Important: Set the Edit Strategy before selecting
+    campusModel->setEditStrategy(QSqlTableModel::OnFieldChange);
+
+    // 5. Fetch the data
+    if (!campusModel->select()) {
+        qDebug() << "SQL Error:" << campusModel->lastError().text();
+    } else {
+        qDebug() << "AdminPage: Successfully loaded" << campusModel->rowCount() << "campus rows";
+    }
+
+    // 6. Set the model to your ListView from the UI screenshot
+    ui->tableViewSettings->setModel(campusModel);
+    ui->tableViewSettings->setModelColumn(1); // Column 0 is usually 'campusName'
 }
 
 void PlanPage::refreshUI() {
@@ -74,11 +79,5 @@ void PlanPage::refreshUI() {
     QModelIndex currentIndex = ui->tableViewSettings->currentIndex();
     if (currentIndex.isValid()) {
         QSqlRecord record = campusModel->record(currentIndex.row());
-        int campusId = record.value("campusId").toInt();
-
-        // 3. Re-apply the filter to the souvenirs so they stay visible
-        // souvenirModel->setFilter(QString("campusId = %1").arg(campusId));
-        // souvenirModel->select();
-        // }
     }
 }
