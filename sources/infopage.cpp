@@ -4,7 +4,7 @@
 #include <QSqlQuery>
 
 InfoPage::InfoPage(QWidget *parent)
-    : QWidget(parent)
+    : DatabasePage(parent)
     , ui(new Ui::InfoPage)
 {
     ui->setupUi(this);
@@ -12,12 +12,19 @@ InfoPage::InfoPage(QWidget *parent)
     // Your Original Header Setup
     QHeaderView *header = ui->tableWidget->horizontalHeader();
     header->setStretchLastSection(false);
+
     header->setSectionResizeMode(0, QHeaderView::Stretch);
+
     header->setSectionResizeMode(1, QHeaderView::Stretch);
+
     header->setSectionResizeMode(2, QHeaderView::Interactive);
-    ui->tableWidget->setColumnWidth(2, 80);
-    header->setDefaultAlignment(Qt::AlignCenter);
-    ui->tableWidget->verticalHeader()->setVisible(false);
+    ui->tableWidget->setColumnWidth(2, 60);
+
+    header->setSectionResizeMode(3, QHeaderView::Interactive);
+    ui->tableWidget->setColumnWidth(3, 100);
+
+    header->setSectionResizeMode(4, QHeaderView::Interactive);
+    ui->tableWidget->setColumnWidth(4, 70);
 }
 
 InfoPage::~InfoPage() { delete ui; }
@@ -47,4 +54,16 @@ void InfoPage::displayTripResults(const TripResult &result)
             ui->tableWidget->setItem(row, 2, new QTableWidgetItem(QString::number(campusId)));
         }
     }
+}
+
+void InfoPage::refreshUI() {
+    qDebug() << "PlanPage: Database data re-synced to UI.";
+    // // 1. Reload the main campus list
+    // campusModel->select();
+    //
+    // // 2. Figure out which campus was selected before the refresh
+    // QModelIndex currentIndex = ui->tableViewSettings->currentIndex();
+    // if (currentIndex.isValid()) {
+    //     QSqlRecord record = campusModel->record(currentIndex.row());
+    // }
 }

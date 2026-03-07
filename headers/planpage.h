@@ -8,7 +8,7 @@
 #include "tripPlanner.h"
 
 namespace Ui {
-class PlanPage;
+    class PlanPage;
 }
 
 class PlanPage : public DatabasePage

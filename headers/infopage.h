@@ -3,13 +3,14 @@
 
 #include <QWidget>
 
+#include "databasePage.h"
 #include "tripPlanner.h"
 
 namespace Ui {
     class InfoPage;
 }
 
-class InfoPage : public QWidget
+class InfoPage : public DatabasePage
 {
     Q_OBJECT
 
@@ -20,6 +21,9 @@ public:
 
 private:
     Ui::InfoPage *ui;
+
+private slots:
+    void refreshUI() override;
 };
 
 #endif // INFOPAGE_H
