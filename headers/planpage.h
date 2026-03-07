@@ -3,9 +3,7 @@
 
 #include <QSqlTableModel>
 #include <QWidget>
-
 #include "databasePage.h"
-#include "tripPlanner.h"
 
 namespace Ui {
     class PlanPage;
@@ -23,19 +21,19 @@ private:
     Ui::PlanPage *ui;
     void setupDatabaseTable();
     QSqlTableModel* campusModel;
+    QSqlTableModel* comboBoxModel;   /**< Model for the combobox on settings page. */
+    QSqlTableModel* tripModel;       /**< Model for the current trip table */
 
 private slots:
     void on_startTripButton_clicked();
     void on_planAnotherButton_clicked();
     void on_planAnotherButton_1_clicked();
     void on_tripPlanStopNextButton_clicked();
-    // QString getCampusNameById(int id);
-    // void displayRoute(const TripResult &result);
+    void updateFilteredTable(const QString &selectedCampus);
 
     void refreshUI() override;
 
 signals:
-    // void tripCalculationFinished(const TripResult &result);
 
 };
 

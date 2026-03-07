@@ -368,3 +368,57 @@ void resetAndReloadData(const QString &filePath) {
         db.rollback();
     }
 }
+
+bool addTripCampus(const int campusID, const QString &campusName) {
+    QSqlQuery query;
+
+    // Use '?' instead of ':id' to bypass naming mismatches
+    query.prepare("INSERT INTO newCampusList (campusID, campusName) VALUES (?, ?)");
+
+    query.addBindValue(campusID);   // Maps to the first '?'
+    query.addBindValue(campusName); // Maps to the second '?'
+
+    if (!query.exec()) {
+        qDebug() << "DB Helper Error:" << query.lastError().text();
+        // If it still fails, this will tell us if the table actually exists
+        return false;
+    }
+
+    return true;
+}
+
+bool removeTripCampusByID(const int campusID) {
+    QSqlQuery query;
+    query.prepare("DELETE FROM newCampusList WHERE campusID = :id");
+    query.bindValue(":id", campusID);
+
+    if (!query.exec()) {
+        qDebug() << "DB Helper Error (Remove by ID):" << query.lastError().text();
+        return false;
+    }
+    return true;
+}
+
+bool removeTripCampusByName(const QString &campusName) {
+    QSqlQuery query;
+    query.prepare("DELETE FROM newCampusList WHERE campusName = :name");
+    query.bindValue(":name", campusName);
+
+    if (!query.exec()) {
+        qDebug() << "DB Helper Error (Remove by Name):" << query.lastError().text();
+        return false;
+    }
+    return true;
+}
+
+bool clearTripTable() {
+    QSqlQuery query;
+
+    // Deletes all rows from the table
+    if (!query.exec("DELETE FROM newCampusList")) {
+        qDebug() << "databaseHelper Error (Clear Table):" << query.lastError().text();
+        return false;
+    }
+
+    return true;
+}

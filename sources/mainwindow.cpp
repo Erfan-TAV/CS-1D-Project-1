@@ -19,6 +19,9 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    // reset the trip table when the application is launched
+    clearTripTable();
+
     linkAdminPage();
 
     // link menubar item
