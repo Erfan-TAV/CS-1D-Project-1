@@ -142,7 +142,7 @@ void MainWindow::on_tabWidget_currentChanged(int index)
     }
 
     for (DatabasePage* page : allPages) {
-        // page->refreshUI();
+        page->refreshUI();
         qDebug() << "Successfully refreshed:" << page->objectName();
     }
 }
