@@ -23,7 +23,7 @@
       <layout class="QVBoxLayout" name="verticalLayout_9">
        <item>
         <layout class="QGridLayout" name="tripSetupGrid">
-         <item row="1" column="1">
+         <item row="2" column="1">
           <widget class="QCheckBox" name="planOnlyCheckBox">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
@@ -42,68 +42,20 @@
            </property>
           </widget>
          </item>
+         <item row="6" column="0" colspan="2">
+          <spacer name="verticalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Orientation::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>60</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
          <item row="2" column="0">
-          <widget class="QLabel" name="startingCampusLabel">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>200</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>Starting CampusID:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="3" alignment="Qt::AlignmentFlag::AlignRight">
-          <widget class="QLabel" name="numCampusRemaingLabel">
-           <property name="text">
-            <string># Remaing</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="numCampusLabel">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>200</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>Number of Campuses:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QSpinBox" name="startingCampusSpinBox">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>100</width>
-             <height>16777215</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
           <widget class="QLabel" name="planOnlyLabel">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
@@ -122,14 +74,7 @@
            </property>
           </widget>
          </item>
-         <item row="1" column="2" alignment="Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter">
-          <widget class="QLabel" name="campusTableLabel">
-           <property name="text">
-            <string>Select Campuses</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
+         <item row="5" column="1">
           <widget class="QSpinBox" name="numCampusSpinBox">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
@@ -142,6 +87,29 @@
              <width>100</width>
              <height>16777215</height>
             </size>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QSpinBox" name="startingCampusSpinBox">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>100</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="3" alignment="Qt::AlignmentFlag::AlignRight">
+          <widget class="QLabel" name="numCampusRemaingLabel">
+           <property name="text">
+            <string># Remaing</string>
            </property>
           </widget>
          </item>
@@ -170,88 +138,53 @@
            </property>
           </widget>
          </item>
-         <item row="2" column="2" rowspan="4" colspan="2">
-          <widget class="QTableWidget" name="campusTable">
+         <item row="5" column="0">
+          <widget class="QLabel" name="numCampusLabel">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
+            <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
-           <property name="minimumSize">
+           <property name="maximumSize">
             <size>
-             <width>0</width>
-             <height>100</height>
+             <width>200</width>
+             <height>16777215</height>
             </size>
            </property>
-           <property name="sortingEnabled">
-            <bool>false</bool>
+           <property name="text">
+            <string>Number of Campuses:</string>
            </property>
-           <row>
-            <property name="text">
-             <string>0</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>1</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>2</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>3</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>4</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>5</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>6</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>7</string>
-            </property>
-           </row>
-           <row/>
-           <column>
-            <property name="text">
-             <string>CampusID</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>Campus Name</string>
-            </property>
-           </column>
           </widget>
          </item>
-         <item row="4" column="0" colspan="2">
-          <spacer name="verticalSpacer_2">
-           <property name="orientation">
-            <enum>Qt::Orientation::Vertical</enum>
+         <item row="4" column="0">
+          <widget class="QLabel" name="startingCampusLabel">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
            </property>
-           <property name="sizeHint" stdset="0">
+           <property name="maximumSize">
             <size>
-             <width>20</width>
-             <height>60</height>
+             <width>200</width>
+             <height>16777215</height>
             </size>
            </property>
-          </spacer>
+           <property name="text">
+            <string>Starting CampusID:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2" alignment="Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter">
+          <widget class="QLabel" name="campusTableLabel">
+           <property name="text">
+            <string>Select Campuses</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="2" rowspan="4" colspan="2">
+          <widget class="QListView" name="tableViewSettings"/>
          </item>
         </layout>
        </item>
@@ -289,6 +222,26 @@
        </property>
        <property name="text">
         <string>Plan Another</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="campusComboBox">
+       <property name="geometry">
+        <rect>
+         <x>350</x>
+         <y>220</y>
+         <width>103</width>
+         <height>32</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QTableView" name="tableView">
+       <property name="geometry">
+        <rect>
+         <x>550</x>
+         <y>150</y>
+         <width>256</width>
+         <height>192</height>
+        </rect>
        </property>
       </widget>
      </widget>

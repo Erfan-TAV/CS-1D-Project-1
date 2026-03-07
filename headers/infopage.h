@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+#include "tripPlanner.h"
+
 namespace Ui {
     class InfoPage;
 }
@@ -14,6 +16,7 @@ class InfoPage : public QWidget
 public:
     explicit InfoPage(QWidget *parent = nullptr);
     ~InfoPage();
+    void displayTripResults(const TripResult &result);
 
 private:
     Ui::InfoPage *ui;
