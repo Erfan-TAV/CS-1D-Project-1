@@ -18,7 +18,7 @@
 
 
 PlanPage::PlanPage(QWidget *parent)
-    : QWidget(parent)
+    : DatabasePage(parent)
     , ui(new Ui::PlanPage)
 {
     ui->setupUi(this);
@@ -29,7 +29,7 @@ PlanPage::PlanPage(QWidget *parent)
     // ------------------------------------------------------------------------------------
     // setup the table in tripPlan
     // Set the first column (Campus Name) to stretch and fill the table
-    ui->campusTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
+    // ui->campusTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
     // Hide row headers
     // ui->tableWidget->verticalHeader()->setVisible(false);
     // ------------------------------------------------------------------------------------
@@ -52,11 +52,6 @@ void PlanPage::on_startTripButton_clicked()
     }
 }
 
-void PlanPage::on_planAnotherButton_clicked()
-{
-    ui->tripPlannerStack->setCurrentIndex(0);
-    // TODO: setup logic to prepare program for another trip plan.
-}
 // void PlanPage::on_startTripButton_clicked()
 // {
 //     int startId = 0;
@@ -116,7 +111,6 @@ void PlanPage::on_planAnotherButton_clicked()
 //     }
 // }
 
-
 void PlanPage::on_planAnotherButton_clicked() { ui->tripPlannerStack->setCurrentIndex(0); }
 void PlanPage::on_planAnotherButton_1_clicked() { ui->tripPlannerStack->setCurrentIndex(0); }
 void PlanPage::on_tripPlanStopNextButton_clicked() { ui->tripPlannerStack->setCurrentIndex(3); }
@@ -128,17 +122,6 @@ void PlanPage::setupDatabaseTable() {
         qDebug() << "PlanPage: Database is NOT open at" << db.databaseName();
         return;
     }
-
-void PlanPage::on_planAnotherButton_1_clicked()
-{
-    ui->tripPlannerStack->setCurrentIndex(0);
-}
-
-void PlanPage::on_tripPlanStopNextButton_clicked()
-{
-    // TODO: setup logic so that
-
-    ui->tripPlannerStack->setCurrentIndex(3);
 }
 
 // void PlanPage::displayRoute(const TripResult &result) {
