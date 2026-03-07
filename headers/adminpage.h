@@ -3,6 +3,8 @@
 
 #include <QSqlTableModel>
 #include <QWidget>
+#include "ui_adminpage.h"
+#include "databasePage.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -14,7 +16,7 @@ namespace Ui
 
 QT_END_NAMESPACE
 
-class AdminPage : public QWidget
+class AdminPage : public DatabasePage
 {
     Q_OBJECT
 
@@ -23,7 +25,9 @@ public:
     ~AdminPage() override;
 
 private slots:
-    void handleLogin();
+    void handleLogin();    
+    void on_uploadFile_clicked();
+    void refreshUI() override;
 
 private:
     Ui::AdminPage* ui;

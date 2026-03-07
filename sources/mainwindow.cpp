@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-// #include "dbManager.h"
+#include <QFile>
+#include "databaseHelper.h"
+#include <QStandardPaths>
 
 /*
  * trip planner page indexes
@@ -16,6 +18,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     linkAdminPage();
+
+    // link menubar item
+    connect(ui->actionreset_all_information, &QAction::triggered, this, &MainWindow::menuBarReset);
 
     // ------------------------------------------------------------------------------------
     // set starting tab to planning tab
@@ -56,6 +61,7 @@ MainWindow::~MainWindow()
 
 
 
+#include <QDir>
 #include <QSqlTableModel>
 
 // Run this in your constructor or a setup function
@@ -88,4 +94,37 @@ void MainWindow::linkAdminPage() {
         // This lambda function runs whenever notifyStatus is emitted
         ui->statusBar->showMessage(msg, 3000); // Show for 3 seconds
     });
+}
+
+void MainWindow::menuBarReset() {
+    // 1. Define a universal path in AppData
+    QString appDataPath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    QString excelPath = appDataPath + "/starterInformation.xlsx";
+
+    qDebug() << "--- Template Debug Info ---";
+    qDebug() << "Expected Folder:" << appDataPath;
+    qDebug() << "Full excel Path:" << excelPath;
+
+    // 2. If it's not in AppData yet, copy it from the internal resources
+    if (!QFile::exists(excelPath)) {
+        QDir().mkpath(appDataPath); // Ensure folder exists
+        QFile::copy(":/res/starterInformation.xlsx", excelPath);
+        // Remove read-only attribute so we can use it
+        QFile::setPermissions(excelPath, QFileDevice::WriteOwner | QFileDevice::ReadOwner);
+    }
+
+    // 3. Use the local AppData path instead of the C:/Users hardcoded path
+    if (QFile::exists(excelPath)) {
+        resetAndReloadData(excelPath);
+
+        // Refresh pages...
+        QList<DatabasePage*> allPages = this->findChildren<DatabasePage*>();
+        for (DatabasePage* page : std::as_const(allPages)) {
+            if (page) page->refreshUI();
+        }
+
+        ui->statusBar->showMessage("Database Reset Successful", 3000);
+    } else {
+        ui->statusBar->showMessage("Reset failed: Template file not found", 3000);
+    }
 }

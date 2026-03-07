@@ -20,11 +20,12 @@ public:
     ~MainWindow();
 
 private slots:
-
-
     void initializeList();
-
     void linkAdminPage();
+    void menuBarReset();
+
+signals:
+    void databaseChanged();
 
 
 private:
