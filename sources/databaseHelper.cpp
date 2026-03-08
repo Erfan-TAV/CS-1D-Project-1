@@ -186,108 +186,68 @@ int closestCampus(const int ID1) {
 
 // TODO: notify if the campus already exists
 // TODO: bring up a popup for adding distances to existing campuses
-void uploadFileAppend(const QString &filePath) {
+QStringList uploadFileAppend(const QString &filePath) {
     QXlsx::Document xlsx(filePath);
     if (!xlsx.load()) {
         qDebug() << "[ERROR] Could not load Excel file at:" << filePath;
-        return;
+        return {};
     }
 
     QSqlDatabase db = QSqlDatabase::database();
     db.transaction();
 
-    // 1. Find the next available campusID
-    int nextID = 1;
-    QSqlQuery idQuery("SELECT MAX(campusID) FROM campusList");
-    if (idQuery.next() && !idQuery.value(0).isNull()) {
-        nextID = idQuery.value(0).toInt() + 1;
-    }
-
-    // Map to keep track of multiple campuses within the same file if needed
-    // Key: Original ID from Excel, Value: New ID generated for Database
-    QMap<int, int> idMap;
-    int currentIDToUse = nextID;
+    QStringList newlyAdded;
 
     for (const QString &sheetName : xlsx.sheetNames()) {
         xlsx.selectSheet(sheetName);
 
-        // 2. Map Column Names
-        QStringList columnNames;
-        QStringList quotedColumns;
-        int idColIndex = -1; // Track which column is the ID column
-        int col = 1;
-
-        while (true) {
-            QVariant headerCell = xlsx.read(1, col);
-            if (!headerCell.isValid() || headerCell.isNull()) break;
-
-            QString colName = headerCell.toString();
-            // Check if this column is an ID field we want to override
-            if (colName.toLower() == "campusid" || colName.toLower() == "campusid1") {
-                idColIndex = col;
-            }
-
-            columnNames << colName;
-            quotedColumns << QString("\"%1\"").arg(colName);
-            col++;
+        // Map headers to column numbers
+        QMap<QString, int> headerMap;
+        for (int col = 1; col <= 20; ++col) {
+            QVariant header = xlsx.read(1, col);
+            if (!header.isValid()) break;
+            headerMap[header.toString().toLower().trimmed()] = col;
         }
 
-        if (columnNames.isEmpty()) continue;
-
-        // 3. Prepare Query
-        QStringList placeholders;
-        for (int i = 0; i < columnNames.size(); ++i) placeholders << "?";
-
-        QString sql = QString("INSERT INTO %1 (%2) VALUES (%3)")
-                          .arg(sheetName,
-                               quotedColumns.join(", "),
-                               placeholders.join(", "));
-
-        QSqlQuery query;
-        query.prepare(sql);
-
-        // 4. Process Rows
         int row = 2;
-        while (true) {
-            QVariant firstCell = xlsx.read(row, 1);
-            if (!firstCell.isValid() || firstCell.isNull()) break;
-
-            // Handle ID mapping for multiple campuses in one file
-            int excelID = xlsx.read(row, idColIndex).toInt();
-            if (excelID > 0) {
-                if (!idMap.contains(excelID)) {
-                    idMap[excelID] = nextID++;
+        // ONLY process the specific sheet for its specific table
+        if (sheetName.toLower() == "campuslist") {
+            while (xlsx.read(row, 1).isValid()) {
+                QString name = xlsx.read(row, headerMap["campusname"]).toString();
+                if (!name.isEmpty() && addCampus(name)) {
+                    newlyAdded << name;
                 }
-                currentIDToUse = idMap[excelID];
-            } else {
-                currentIDToUse = nextID; // Fallback for single campus
+                row++;
             }
-
-            for (int c = 1; c <= columnNames.size(); ++c) {
-                QString currentHeader = columnNames.at(c-1).toLower();
-
-                // INJECT our new ID instead of Excel's ID
-                if (currentHeader == "campusid" || currentHeader == "campusid1") {
-                    query.addBindValue(currentIDToUse);
-                }
-                // Special case for distances: update destination ID if it was mapped
-                else if (currentHeader == "campusid2") {
-                    int excelDestID = xlsx.read(row, c).toInt();
-                    query.addBindValue(idMap.contains(excelDestID) ? idMap[excelDestID] : excelDestID);
-                }
-                else {
-                    query.addBindValue(xlsx.read(row, c));
-                }
+        }
+        else if (sheetName.toLower() == "souvenirs") {
+            while (xlsx.read(row, 1).isValid()) {
+                int cID = xlsx.read(row, headerMap["campusid"]).toInt();
+                QString sName = xlsx.read(row, headerMap["itemname"]).toString();
+                double price = xlsx.read(row, headerMap["price"]).toDouble();
+                addSouvenir(cID, sName, price);
+                row++;
             }
-
-            if (!query.exec()) {
-                qDebug() << "[SQL ERROR]" << sheetName << "Row" << row << ":" << query.lastError().text();
+        }
+        else if (sheetName.toLower() == "campusdistances") {
+            while (xlsx.read(row, 1).isValid()) {
+                int id1 = xlsx.read(row, headerMap["campusid1"]).toInt();
+                int id2 = xlsx.read(row, headerMap["campusid2"]).toInt();
+                int dist = xlsx.read(row, headerMap["distance"]).toInt();
+                // Add bi-directionally
+                addDistance(id1, id2, dist);
+                addDistance(id2, id1, dist);
+                row++;
             }
-            row++;
         }
     }
 
-    db.commit();
+    if (db.commit()) {
+        return newlyAdded;
+    } else {
+        db.rollback();
+        return {};
+    }
 }
 
 void resetAndReloadData(const QString &filePath) {

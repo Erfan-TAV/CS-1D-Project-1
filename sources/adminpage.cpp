@@ -7,6 +7,7 @@
 #include "databaseHelper.h"
 #include <QFileDialog>
 #include <QStandardPaths>
+#include <QTableWidget>
 
 AdminPage::AdminPage(QWidget* parent) :
     DatabasePage(parent), ui(new Ui::AdminPage)
@@ -16,17 +17,7 @@ AdminPage::AdminPage(QWidget* parent) :
     // set the page to login screen by default
     ui->adminPageStack->setCurrentIndex(0);
 
-    // Make pressing enter submit the user info
-    connect(ui->usernameField, &QLineEdit::returnPressed, this, &AdminPage::handleLogin);
-    connect(ui->passwordField, &QLineEdit::returnPressed, this, &AdminPage::handleLogin);
-
-    // link the login button
-    connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &AdminPage::handleLogin);
-    // link the cancel button
-    connect(ui->buttonBox, &QDialogButtonBox::rejected, [this](){
-        ui->usernameField->clear();
-        ui->passwordField->clear();
-    });
+    setupLoginPage();
 
     setupDatabaseTable();
 }
@@ -259,56 +250,64 @@ void AdminPage::setupDatabaseTable() {
         }
     });
     connect(ui->addCampusButton, &QPushButton::clicked, this, [this]() {
-        // 1. Insert a new row at the bottom
+        // 1. Determine a unique placeholder name
+        int count = 1;
+        QSqlQuery countQuery;
+        // Count how many campuses currently start with "New College"
+        countQuery.prepare("SELECT COUNT(*) FROM campusList WHERE campusName LIKE 'New College%'");
+        if (countQuery.exec() && countQuery.next()) {
+            count = countQuery.value(0).toInt() + 1;
+        }
+
+        QString uniquePlaceholder = QString("New College %1").arg(count);
         int rowCount = campusModel->rowCount();
 
         if (campusModel->insertRow(rowCount)) {
-            // 2. Set a placeholder name so the row isn't invisible/empty
-            // SQLite will auto-generate the campusID if set to AUTOINCREMENT
-            campusModel->setData(campusModel->index(rowCount, 1), "New College");
+            // 2. Set the unique name
+            campusModel->setData(campusModel->index(rowCount, 1), uniquePlaceholder);
 
-            // 3. Submit to database to generate the ID
             if (campusModel->submitAll()) {
-                // 4. Select and focus the new item for immediate renaming
-                QModelIndex newIndex = campusModel->index(rowCount, 1);
-                ui->campusList->setCurrentIndex(newIndex);
-
-                // Focus the line edit so the user can start typing the real name
-                ui->collegeNameLineEdit->setText("New College");
+                ui->campusList->setCurrentIndex(campusModel->index(rowCount, 1));
+                ui->collegeNameLineEdit->setText(uniquePlaceholder);
                 ui->collegeNameLineEdit->setFocus();
                 ui->collegeNameLineEdit->selectAll();
+
+                // 3. Trigger the popup with the unique name
+                // The popup logic will now find the correct ID because the name is unique
+                if (promptForDistances({uniquePlaceholder}) == QDialog::Rejected) {
+                    qDebug() << "Distance entry cancelled. Deleting" << uniquePlaceholder;
+
+                    // Fetch the ID of the row we just added to ensure clean removal
+                    int idToDelete = campusModel->record(rowCount).value("campusId").toInt();
+                    removeCampus(idToDelete);
+                    refreshUI();
+                }
             }
         }
-        // TODO: add logic to add distances from the newly added campus to all the current campus
-        qDebug() << "failed to add distances for new campus.";
     });
 }
 
 void AdminPage::on_uploadFile_clicked() {
-    qDebug() << "file upload pressed";
-
-    // 1. Open the File System Picker
-    // Arguments: Parent, Title, Starting Directory, File Filters
     QString filePath = QFileDialog::getOpenFileName(
-        this,
-        tr("Select Excel File"),
+        this, tr("Select Excel File"),
         QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation),
         tr("Excel Files (*.xlsx *.xls)")
         );
 
-    // 2. Check if the user cancelled the dialog
-    if (filePath.isEmpty()) {
-        qDebug() << "File upload cancelled by user.";
-        return;
-    }
+    if (filePath.isEmpty()) return;
 
-    // 3. Perform the upload with the dynamic path
-    uploadFileAppend(filePath);
+    // 1. Perform upload and get the names of NEW campuses
+    QStringList added = uploadFileAppend(filePath);
 
-    // 4. Immediately refresh the UI
+    // 2. Refresh the UI so the models see the new data
     refreshUI();
 
-    emit notifyStatus("File uploaded and list updated!");
+    // 3. If there were new campuses, prompt for their distances to existing ones
+    if (!added.isEmpty()) {
+        promptForDistances(added);
+    }
+
+    emit notifyStatus("File uploaded and distances configured!");
 }
 
 void AdminPage::refreshUI() {
@@ -328,3 +327,104 @@ void AdminPage::refreshUI() {
     }
 }
 
+int AdminPage::promptForDistances(const QStringList &newCampusNames) {
+    if (newCampusNames.isEmpty()) return QDialog::Rejected;
+
+    QDialog detailDialog(this);
+    detailDialog.setWindowTitle("Configure Campus Distances");
+    detailDialog.setMinimumSize(650, 450);
+    detailDialog.setModal(true);
+
+    QVBoxLayout *layout = new QVBoxLayout(&detailDialog);
+
+    // Create the Table
+    QTableWidget *distanceTable = new QTableWidget(&detailDialog);
+    distanceTable->setColumnCount(3);
+    distanceTable->setHorizontalHeaderLabels({"New Campus", "To Existing Campus", "Distance (mi)"});
+    distanceTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    // 1. Fetch ALL existing campuses directly from the DB to ensure we have the latest data
+    struct CampusInfo { int id; QString name; };
+    QList<CampusInfo> existingCampuses;
+
+    QSqlQuery query("SELECT campusId, campusName FROM campusList");
+    while (query.next()) {
+        QString name = query.value(1).toString();
+        // We only want to pair the "New" campus with campuses that were ALREADY there
+        if (!newCampusNames.contains(name)) {
+            existingCampuses.append({query.value(0).toInt(), name});
+        }
+    }
+
+    // 2. Populate the Table Rows
+    // Logic: For every NEW campus, create a row for every EXISTING campus
+    int currentRow = 0;
+    for (const QString &newName : newCampusNames) {
+        for (const auto &ex : existingCampuses) {
+            distanceTable->insertRow(currentRow);
+
+            // Column 0: New Campus Name (Read Only)
+            QTableWidgetItem *newItem = new QTableWidgetItem(newName);
+            newItem->setFlags(newItem->flags() & ~Qt::ItemIsEditable);
+            distanceTable->setItem(currentRow, 0, newItem);
+
+            // Column 1: Existing Campus Name (Read Only)
+            QTableWidgetItem *exItem = new QTableWidgetItem(ex.name);
+            exItem->setData(Qt::UserRole, ex.id); // Store the ID for the database helper
+            exItem->setFlags(exItem->flags() & ~Qt::ItemIsEditable);
+            distanceTable->setItem(currentRow, 1, exItem);
+
+            // Column 2: Distance Input (Editable)
+            QTableWidgetItem *distItem = new QTableWidgetItem("0");
+            distItem->setTextAlignment(Qt::AlignCenter);
+            distanceTable->setItem(currentRow, 2, distItem);
+
+            currentRow++;
+        }
+    }
+
+    // 3. Add Buttons
+    QPushButton *saveBtn = new QPushButton("Save Distances", &detailDialog);
+    saveBtn->setStyleSheet("padding: 8px; font-weight: bold;");
+    layout->addWidget(distanceTable);
+    layout->addWidget(saveBtn);
+
+    // Connect Save Button to Database Logic
+    connect(saveBtn, &QPushButton::clicked, [&]() {
+        QSqlQuery idLookup;
+        for (int i = 0; i < distanceTable->rowCount(); ++i) {
+            QString newName = distanceTable->item(i, 0)->text();
+            int targetId = distanceTable->item(i, 1)->data(Qt::UserRole).toInt();
+            int dist = distanceTable->item(i, 2)->text().toInt();
+
+            // Find the ID of the New Campus
+            idLookup.prepare("SELECT campusId FROM campusList WHERE campusName = :name");
+            idLookup.bindValue(":name", newName);
+
+            if (idLookup.exec() && idLookup.next()) {
+                int newId = idLookup.value(0).toInt();
+
+                // Use your databaseHelper functions to add edges in both directions
+                addDistance(newId, targetId, dist);
+                addDistance(targetId, newId, dist);
+            }
+        }
+        detailDialog.accept(); // Closes with QDialog::Accepted
+    });
+
+    return detailDialog.exec();
+}
+
+void AdminPage::setupLoginPage() {
+    // Make pressing enter submit the user info
+    connect(ui->usernameField, &QLineEdit::returnPressed, this, &AdminPage::handleLogin);
+    connect(ui->passwordField, &QLineEdit::returnPressed, this, &AdminPage::handleLogin);
+
+    // link the login button
+    connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &AdminPage::handleLogin);
+    // link the cancel button
+    connect(ui->buttonBox, &QDialogButtonBox::rejected, [this](){
+        ui->usernameField->clear();
+        ui->passwordField->clear();
+    });
+}

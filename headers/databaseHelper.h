@@ -86,12 +86,18 @@ QString getCampusName(int campusID);
 Campus getFullCampus(int campusID);
 
 // File Upload
-void uploadFileAppend(const QString &filePath);
+// TODO: add doxy
+QStringList uploadFileAppend(const QString &filePath);
+// TODO: add doxy
 void resetAndReloadData(const QString &filePath);
 
+// TODO: add doxy
 bool addTripCampus(const int campusID, const QString& campusName);
+// TODO: add doxy
 bool removeTripCampus(const int campusID);
+// TODO: add doxy
 bool removeTripCampusByName(const QString &campusName);
+// TODO: add doxy
 bool clearTripTable();
 
 #endif //COLLEGETOUR_DBMANAGERHELPER_H

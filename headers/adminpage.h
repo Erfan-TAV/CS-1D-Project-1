@@ -58,10 +58,12 @@ private:
     Ui::AdminPage* ui;               /**< Pointer to the UI setup. */
     QSqlTableModel* campusModel;     /**< Model for the campus list table. */
     QSqlTableModel* souvenirModel;   /**< Model for the souvenirs table. */
+    int promptForDistances(const QStringList &newCampusNames);
     /**
      * @brief Initializes the SQL models and attaches them to the UI views along with the CRUD interactions
      */
     void setupDatabaseTable();
+    void setupLoginPage();
 
 signals:
     /**
