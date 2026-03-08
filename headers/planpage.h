@@ -8,7 +8,7 @@
 namespace Ui {
     class PlanPage;
 }
-
+// TODO: add doxy
 class PlanPage : public DatabasePage
 {
     Q_OBJECT
@@ -20,7 +20,7 @@ public:
 private:
     Ui::PlanPage *ui;
     void setupDatabaseTable();
-    QSqlTableModel* campusModel;
+    QSqlTableModel* campusModel;     /**< Model for the campus selection list on settings page. */
     QSqlTableModel* comboBoxModel;   /**< Model for the combobox on settings page. */
     QSqlTableModel* tripModel;       /**< Model for the current trip table */
 
