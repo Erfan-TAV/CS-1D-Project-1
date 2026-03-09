@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.19)
 project(CollegeTour LANGUAGES CXX)
 
 # --- 1. Qt Initialization ---
-find_package(Qt6 6.10.2 REQUIRED COMPONENTS Core Widgets Sql)
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets Sql)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
