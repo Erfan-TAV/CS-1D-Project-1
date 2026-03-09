@@ -1,7 +1,5 @@
 #include "adminpage.h"
-
 #include <QCryptographicHash>
-
 #include "ui_adminpage.h"
 #include <qsqlerror.h>
 #include <QSqlRecord>
