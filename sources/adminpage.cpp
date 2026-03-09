@@ -1,4 +1,7 @@
 #include "adminpage.h"
+
+#include <QCryptographicHash>
+
 #include "ui_adminpage.h"
 #include <qsqlerror.h>
 #include <QSqlRecord>
@@ -29,11 +32,11 @@ AdminPage::~AdminPage()
 
 // TODO: add proper login logic
 void AdminPage::handleLogin() {
-    if (ui->usernameField->text() == "admin" && ui->passwordField->text() == "admin") {
-        // 1. Switch the internal stack (Dashboard is index 1)
-        ui->adminPageStack->setCurrentIndex(1);
+    QString username = ui->usernameField->text();
+    QString password = ui->passwordField->text();
 
-        // 2. Tell the MainWindow to show the success message
+    if (verifyUserCredentials(username, password)) {
+        ui->adminPageStack->setCurrentIndex(1);
         emit notifyStatus("Login Successful");
 
         ui->usernameField->clear();
@@ -74,7 +77,7 @@ void AdminPage::setupDatabaseTable() {
     ui->campusList->setModelColumn(1); // Column 0 is usually 'campusName'
 
 
-    // setup the souvenir table
+    // set up the souvenir table
     // 1. Initialize the Souvenir Model (the right-hand table)
     souvenirModel = new QSqlTableModel(this, QSqlDatabase::database());
     souvenirModel->setTable("souvenirs"); // Replace with your actual table name
@@ -427,4 +430,32 @@ void AdminPage::setupLoginPage() {
         ui->usernameField->clear();
         ui->passwordField->clear();
     });
+}
+
+bool AdminPage::verifyUserCredentials(const QString &username, const QString &password) {
+    // 1. Hash the password using SHA-256
+    QByteArray hash = QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Sha256);
+    QString hashedPassword = hash.toHex();
+
+    qDebug() << hash;
+    qDebug() << hashedPassword;
+
+    // 2. Prepare a parameterized query to avoid SQL injection
+    QSqlQuery query;
+    query.prepare("SELECT id FROM users WHERE username = :username AND password_hash = :password");
+    query.bindValue(":username", username);
+    query.bindValue(":password", hashedPassword);
+
+    // 3. Execute and check for matches
+    if (!query.exec()) {
+        qDebug() << "Login query failed:" << query.lastError().text();
+        return false;
+    }
+
+    if (query.next()) {
+        // Found a matching user
+        return true;
+    }
+
+    return false; // No match
 }
