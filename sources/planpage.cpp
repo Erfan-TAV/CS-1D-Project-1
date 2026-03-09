@@ -18,7 +18,7 @@ PlanPage::PlanPage(QWidget *parent)
 {
     ui->setupUi(this);
 
-    // set the starting page to the plan setting page
+    // Set the starting page to the plan setting page
     ui->tripPlannerStack->setCurrentIndex(0);
 
     setupDatabaseTable();
@@ -33,29 +33,32 @@ void PlanPage::setupDatabaseTable() {
     QSqlDatabase db = QSqlDatabase::database();
     if (!db.isOpen()) return;
 
-    // 1. STUDENT STORY: Scrollable List with Distances from Saddleback
-    // Assuming Saddleback ID is 1. This meets the "Database of college info" requirement.
+    // 1. Data Source
     saddlebackModel = new QSqlQueryModel(this);
     saddlebackModel->setQuery("SELECT c.campusID, c.campusName, d.distance "
                               "FROM campusList c "
                               "JOIN distances d ON c.campusID = d.destinationID "
                               "WHERE d.startID = 1 ORDER BY d.distance ASC", db);
 
-    // 2. PERFORMANCE: Use a Proxy Model for the searchable list
+    // 2. Proxy Model for Sorting/Filtering
     proxyModel = new QSortFilterProxyModel(this);
     proxyModel->setSourceModel(saddlebackModel);
-    proxyModel->setFilterKeyColumn(1); // Filter by campusName
+    proxyModel->setFilterKeyColumn(1);
     proxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
+    proxyModel->setSortCaseSensitivity(Qt::CaseInsensitive);
 
     ui->tableViewSettings->setModel(proxyModel);
-    ui->tableViewSettings->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->tableViewSettings->setSelectionBehavior(QAbstractItemView::SelectRows);
 
-    // 3. TRIP PLANNER: Setup the Combo Box and Trip Model
+    // 3. Setup the Sort Menu (using the 'comboBox' found in your screenshot)
+    ui->comboBox->clear();
+    ui->comboBox->addItem("Distance (Ascending)", 2);
+    ui->comboBox->addItem("Campus Name (A-Z)", 1);
+
+    // 4. Trip Planner Setup
     comboBoxModel = new QSqlTableModel(this, db);
     comboBoxModel->setTable("campusList");
     comboBoxModel->select();
-    ui->campusComboBox->setModel(comboBoxModel);
+    ui->campusComboBox->setModel(comboBoxModel); // This is on the tripPlanOnly page
     ui->campusComboBox->setModelColumn(1);
 
     tripModel = new QSqlTableModel(this, db);
@@ -63,12 +66,31 @@ void PlanPage::setupDatabaseTable() {
     tripModel->select();
 }
 
-// Fulfills "Check if you can accurately search for a specific college"
+// Fulfills "Filter campuses and sort them"
 void PlanPage::on_searchLineEdit_textChanged(const QString &text) {
     proxyModel->setFilterFixedString(text);
-    if (proxyModel->rowCount() == 0 && !text.isEmpty()) {
+    updateSelectionCount();
+}
+
+// NEW: Slot to handle sorting preference changes
+void PlanPage::on_sortComboBox_currentIndexChanged(int index) {
+    int column = ui->comboBox->currentData().toInt();
+
+    // Distance (Column 2) or Name (Column 1)
+    if (column == 2) {
+        proxyModel->sort(column, Qt::AscendingOrder);
+    } else {
+        proxyModel->sort(column, Qt::AscendingOrder);
+    }
+}
+
+// Helper to update the UI count based on search results
+void PlanPage::updateSelectionCount() {
+    // If no campuses match the current filter/sort
+    if (proxyModel->rowCount() == 0) {
         ui->numCampusRemaingAmount->setText("Not Found");
     } else {
+        // Count currently selected rows in the ListView
         int count = ui->tableViewSettings->selectionModel()->selectedRows().count();
         ui->numCampusRemaingAmount->setText(QString::number(count));
     }
@@ -85,18 +107,19 @@ void PlanPage::on_startTripButton_clicked() {
     if (selectedRows.isEmpty()) return;
 
     for (const QModelIndex &proxyIndex : selectedRows) {
+        // Mapping back to source model ensures we get the correct ID regardless of current sort/filter
         QModelIndex sourceIndex = proxyModel->mapToSource(proxyIndex);
         int id = saddlebackModel->data(saddlebackModel->index(sourceIndex.row(), 0)).toInt();
         if (id != startId) targets.append(id);
     }
 
-    // 2. EXECUTE RECURSIVE LOGIC (Most efficient route)
+    // 2. EXECUTE RECURSIVE LOGIC
     result.campusOrder.append(startId);
     if (!targets.isEmpty()) {
         planner.planRecursiveTrip(startId, targets, result);
     }
 
-    // 3. DATABASE SYNC: Update table to be in the same order as the trip
+    // 3. DATABASE SYNC
     QSqlQuery clearQuery;
     clearQuery.exec("DELETE FROM newCampusList");
     for (int i = 0; i < result.campusOrder.size(); ++i) {
@@ -104,10 +127,9 @@ void PlanPage::on_startTripButton_clicked() {
     }
     tripModel->select();
 
-    // 4. DYNAMIC UI GENERATION (Horizontal Layout with Arrows)
+    // 4. DYNAMIC UI GENERATION
     clearHorizontalLayout();
     for (int i = 0; i < result.campusOrder.size(); ++i) {
-        // Campus Container
         QWidget* container = new QWidget();
         QVBoxLayout* vLayout = new QVBoxLayout(container);
 
@@ -118,7 +140,6 @@ void PlanPage::on_startTripButton_clicked() {
 
         if (i < result.campusOrder.size() - 1) {
             double dist = planner.getDistance(result.campusOrder[i], result.campusOrder[i+1]);
-
             QWidget* transContainer = new QWidget();
             QVBoxLayout* transLayout = new QVBoxLayout(transContainer);
 

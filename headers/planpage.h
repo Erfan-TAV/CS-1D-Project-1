@@ -27,6 +27,7 @@ private:
     QSqlTableModel* tripModel;       /**< Model for the current trip table */
     QSortFilterProxyModel* proxyModel; // For performant searching
     QSqlQueryModel* saddlebackModel;   // For the scrollable distance list
+    void updateSelectionCount();
 
 private slots:
     void on_startTripButton_clicked();
@@ -38,6 +39,7 @@ private slots:
     void addTripCampus(int id, QString campusName);
     void refreshUI() override;
     void on_searchLineEdit_textChanged(const QString &text);
+    void on_sortComboBox_currentIndexChanged(int index);
 
 
 signals:
