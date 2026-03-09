@@ -64,6 +64,7 @@ private:
      */
     void setupDatabaseTable();
     void setupLoginPage();
+    static bool verifyUserCredentials(const QString &username, const QString &password);
 
 signals:
     /**
