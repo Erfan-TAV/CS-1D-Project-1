@@ -86,18 +86,42 @@ QString getCampusName(int campusID);
 Campus getFullCampus(int campusID);
 
 // File Upload
-// TODO: add doxy
+/**
+ * @brief Parses a file and appends new campus or souvenir data to the existing database.
+ * @param filePath The path to the source file.
+ * @return A QStringList containing any error messages or a log of imported items.
+ */
 QStringList uploadFileAppend(const QString &filePath);
-// TODO: add doxy
+/**
+ * @brief Wipes the current database and re-initializes it using data from a specific file.
+ * @warning This will result in the loss of all current session data.
+ * @param filePath The path to the initialization file.
+ */
 void resetAndReloadData(const QString &filePath);
 
-// TODO: add doxy
+/**
+ * @brief Adds a specific campus to the current trip itinerary.
+ * @param campusID The unique ID of the campus to add.
+ * @param campusName The name of the campus to add.
+ * @return true if the campus was successfully added, false if it already exists in the trip.
+ */
 bool addTripCampus(const int campusID, const QString& campusName);
-// TODO: add doxy
+/**
+ * @brief Removes a campus from the current trip itinerary using its ID.
+ * @param campusID The unique ID of the campus to remove.
+ * @return true if the removal was successful, false if the ID was not found in the trip.
+ */
 bool removeTripCampus(const int campusID);
-// TODO: add doxy
+/**
+ * @brief Removes a campus from the current trip itinerary using its name.
+ * @param campusName The string name of the campus to remove.
+ * @return true if the removal was successful, false if the name was not found.
+ */
 bool removeTripCampusByName(const QString &campusName);
-// TODO: add doxy
+/**
+ * @brief Clears all campuses from the current trip itinerary table.
+ * @return true if the table was successfully cleared or was already empty.
+ */
 bool clearTripTable();
 
 #endif //COLLEGETOUR_DBMANAGERHELPER_H
