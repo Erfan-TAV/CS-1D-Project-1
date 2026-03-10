@@ -30,6 +30,7 @@ private slots:
     void on_planAnotherButton_1_clicked();
     void on_tripPlanStopNextButton_clicked();
     void updateFilteredTable(const QString &selectedCampus);
+    void on_pushButton_7_clicked();
 
     void refreshUI() override;
 

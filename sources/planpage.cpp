@@ -32,7 +32,7 @@ PlanPage::~PlanPage()
 void PlanPage::on_startTripButton_clicked() {
     QSqlQuery clearQuery;
     clearQuery.exec("DELETE FROM newCampusList");
-
+    clearTripInfoTable();
     // Start Campus
     if (ui->comboBox->currentIndex() != -1) {
         QSqlRecord rec = comboBoxModel->record(ui->comboBox->currentIndex());
@@ -61,10 +61,12 @@ void PlanPage::on_startTripButton_clicked() {
 
 void PlanPage::on_planAnotherButton_clicked() {
     clearTripTable();
+    clearTripInfoTable();
     ui->tripPlannerStack->setCurrentIndex(0);
 }
 void PlanPage::on_planAnotherButton_1_clicked() {
     clearTripTable();
+    clearTripInfoTable();
     ui->tripPlannerStack->setCurrentIndex(0);
 }
 void PlanPage::on_tripPlanStopNextButton_clicked() {
@@ -175,4 +177,16 @@ void PlanPage::updateFilteredTable(const QString &selectedCampus) {
 
     // If rowCount is 0, the filter is the problem.
     // If it's more than 0 but the table is empty, the View/UI is the problem.
+}
+
+void PlanPage::on_pushButton_7_clicked()
+{
+    QString campusName = "Current Campus";
+    QString itemName = "Sample Item";
+    int numItem = 1;
+    double itemPrice = 10.00;
+
+    addTripInfo(campusName, itemName, numItem, itemPrice);
+
+    qDebug() << "Purchase saved to tripInfo.";
 }

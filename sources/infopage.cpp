@@ -2,6 +2,10 @@
 #include "ui_infopage.h"
 #include <QHeaderView>
 #include <QSqlQuery>
+#include <QSqlError>
+#include "databaseHelper.h"
+#include <QTableWidgetItem>
+#include <QDebug>
 
 InfoPage::InfoPage(QWidget *parent)
     : DatabasePage(parent)
@@ -56,14 +60,28 @@ void InfoPage::displayTripResults(const TripResult &result)
     }
 }
 
-void InfoPage::refreshUI() {
-    qDebug() << "PlanPage: Database data re-synced to UI.";
-    // // 1. Reload the main campus list
-    // campusModel->select();
-    //
-    // // 2. Figure out which campus was selected before the refresh
-    // QModelIndex currentIndex = ui->tableViewSettings->currentIndex();
-    // if (currentIndex.isValid()) {
-    //     QSqlRecord record = campusModel->record(currentIndex.row());
-    // }
+void InfoPage::refreshUI()
+{
+    QSqlQuery query;
+
+    ui->tableWidget->setRowCount(0);
+
+    if (!query.exec("SELECT campusName, itemName, numItem, itemPrice, totalPrice FROM tripInfo")) {
+        qDebug() << "InfoPage refresh error:" << query.lastError().text();
+        return;
+    }
+
+    while (query.next()) {
+        int row = ui->tableWidget->rowCount();
+        ui->tableWidget->insertRow(row);
+
+        ui->tableWidget->setItem(row, 0, new QTableWidgetItem(query.value(0).toString()));
+        ui->tableWidget->setItem(row, 1, new QTableWidgetItem(query.value(1).toString()));
+        ui->tableWidget->setItem(row, 2, new QTableWidgetItem(QString::number(query.value(2).toInt())));
+        ui->tableWidget->setItem(row, 3, new QTableWidgetItem(QString::number(query.value(3).toDouble(), 'f', 2)));
+        ui->tableWidget->setItem(row, 4, new QTableWidgetItem(QString::number(query.value(4).toDouble(), 'f', 2)));
+    }
+
+    ui->totalSpentAmount->setText(QString::number(getTripInfoTotalSpent(), 'f', 2));
+    ui->totalItemAmount->setText(QString::number(getTripInfoTotalItems()));
 }

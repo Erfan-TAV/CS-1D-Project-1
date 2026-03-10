@@ -382,3 +382,91 @@ bool clearTripTable() {
 
     return true;
 }
+
+bool createTripInfoTable()
+{
+    QSqlQuery query;
+
+    QString sql =
+        "CREATE TABLE IF NOT EXISTS tripInfo ("
+        "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+        "campusName TEXT,"
+        "itemName TEXT,"
+        "numItem INTEGER,"
+        "itemPrice REAL,"
+        "totalPrice REAL"
+        ");";
+
+    if(!query.exec(sql))
+    {
+        qDebug() << "Error creating tripInfo table:" << query.lastError().text();
+        return false;
+    }
+
+    return true;
+}
+bool addTripInfo(const QString& campusName,
+                 const QString& itemName,
+                 int numItem,
+                 double itemPrice)
+{
+    QSqlQuery query;
+    double totalPrice = numItem * itemPrice;
+
+    query.prepare("INSERT INTO tripInfo "
+                  "(campusName, itemName, numItem, itemPrice, totalPrice) "
+                  "VALUES (:campusName, :itemName, :numItem, :itemPrice, :totalPrice)");
+
+    query.bindValue(":campusName", campusName);
+    query.bindValue(":itemName", itemName);
+    query.bindValue(":numItem", numItem);
+    query.bindValue(":itemPrice", itemPrice);
+    query.bindValue(":totalPrice", totalPrice);
+
+    if (!query.exec()) {
+        qDebug() << "addTripInfo error:" << query.lastError().text();
+        return false;
+    }
+
+    return true;
+}
+
+bool clearTripInfoTable()
+{
+    QSqlQuery query;
+    if (!query.exec("DELETE FROM tripInfo")) {
+        qDebug() << "clearTripInfoTable error:" << query.lastError().text();
+        return false;
+    }
+    return true;
+}
+
+double getTripInfoTotalSpent()
+{
+    QSqlQuery query;
+    if (!query.exec("SELECT IFNULL(SUM(totalPrice), 0) FROM tripInfo")) {
+        qDebug() << "getTripInfoTotalSpent error:" << query.lastError().text();
+        return 0.0;
+    }
+
+    if (query.next()) {
+        return query.value(0).toDouble();
+    }
+
+    return 0.0;
+}
+
+int getTripInfoTotalItems()
+{
+    QSqlQuery query;
+    if (!query.exec("SELECT IFNULL(SUM(numItem), 0) FROM tripInfo")) {
+        qDebug() << "getTripInfoTotalItems error:" << query.lastError().text();
+        return 0;
+    }
+
+    if (query.next()) {
+        return query.value(0).toInt();
+    }
+
+    return 0;
+}

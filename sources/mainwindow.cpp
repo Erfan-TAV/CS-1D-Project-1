@@ -30,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent)
     // set starting tab to planning tab
     // TODO: change to 0 which is planner page, currently set to 1 for testing info page
     ui->tabWidget->setCurrentIndex(0);
+    createTripInfoTable();
 }
 
 MainWindow::~MainWindow()

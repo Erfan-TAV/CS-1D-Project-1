@@ -100,4 +100,17 @@ bool removeTripCampusByName(const QString &campusName);
 // TODO: add doxy
 bool clearTripTable();
 
+bool createTripInfoTable();
+
+bool addTripInfo(const QString& campusName,
+                 const QString& itemName,
+                 int numItem,
+                 double itemPrice);
+
+bool clearTripInfoTable();
+
+double getTripInfoTotalSpent();
+
+int getTripInfoTotalItems();
+
 #endif //COLLEGETOUR_DBMANAGERHELPER_H
