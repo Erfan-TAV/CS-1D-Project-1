@@ -22,6 +22,7 @@ PlanPage::PlanPage(QWidget *parent)
     ui->tripPlannerStack->setCurrentIndex(0);
 
     setupDatabaseTable();
+    setupResultsConnection();
 }
 
 PlanPage::~PlanPage()
@@ -30,33 +31,48 @@ PlanPage::~PlanPage()
 }
 
 void PlanPage::on_startTripButton_clicked() {
-    QSqlQuery clearQuery;
-    clearQuery.exec("DELETE FROM newCampusList");
+  // 1. Clear the table before starting a new calculation
+  clearTripTable();
 
-    // Start Campus
-    if (ui->comboBox->currentIndex() != -1) {
-        QSqlRecord rec = comboBoxModel->record(ui->comboBox->currentIndex());
-        // Verify these aren't empty before sending
-        int id = rec.value(0).toInt();
-        QString name = rec.value(1).toString();
-        addTripCampus(id, name);
-    }
+  int currentOrder = 0;
 
-    // Selected Campuses
-    QModelIndexList selectedRows = ui->tableViewSettings->selectionModel()->selectedRows();
-    for (const QModelIndex &index : selectedRows) {
-        QSqlRecord record = campusModel->record(index.row());
-        addTripCampus(record.value(0).toInt(), record.value(1).toString());
-    }
+         // 2. Add the Start Campus (The "Origin")
+  if (ui->comboBox->currentIndex() != -1) {
+    // We use the comboBoxModel directly to get the record
+    QSqlRecord rec = comboBoxModel->record(ui->comboBox->currentIndex());
 
-    if (tripModel) tripModel->select();
+    int id = rec.value("campusID").toInt();
+    QString name = rec.value("campusName").toString();
 
-    // Switch to the next page
-    if (ui->planOnlyCheckBox->isChecked()) {
-        ui->tripPlannerStack->setCurrentIndex(1);
-    } else {
-        ui->tripPlannerStack->setCurrentIndex(2);
-    }
+    // Add as the first stop (Order 0)
+    addTripCampus(id, name, currentOrder++);
+  }
+
+         // 3. Add Selected Campuses (The "Destinations")
+  QModelIndexList selectedRows = ui->tableViewSettings->selectionModel()->selectedRows();
+
+  for (const QModelIndex &index : selectedRows) {
+    // Important: Get the record from the campusModel at the specific row
+    QSqlRecord record = campusModel->record(index.row());
+
+    int id = record.value("campusID").toInt();
+    QString name = record.value("campusName").toString();
+
+    // Add and increment the order
+    addTripCampus(id, name, currentOrder++);
+  }
+
+         // 4. Refresh the tripModel so the UI (like resultCampusCombo) updates immediately
+  if (tripModel) {
+    tripModel->select();
+  }
+
+         // 5. Navigation Logic
+  if (ui->planOnlyCheckBox->isChecked()) {
+    ui->tripPlannerStack->setCurrentIndex(1);
+  } else {
+    ui->tripPlannerStack->setCurrentIndex(2);
+  }
 }
 
 void PlanPage::on_resultPlanAnotherButton_clicked() {
@@ -127,7 +143,7 @@ void PlanPage::setupDatabaseTable() {
 
     // setup model for the current trip table
     tripModel = new QSqlTableModel(this, db);
-    tripModel->setTable("newCampusList");
+    tripModel->setTable("tripCampuses");
     tripModel->select();
 
 }
@@ -175,4 +191,43 @@ void PlanPage::updateFilteredTable(const QString &selectedCampus) {
 
     // If rowCount is 0, the filter is the problem.
     // If it's more than 0 but the table is empty, the View/UI is the problem.
+}
+
+void PlanPage::setupResultsConnection() {
+  QSqlDatabase db = QSqlDatabase::database();
+
+  ui->resultCampusSouvenirPurchases->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+         // 1. Initialize the Souvenir Model
+  tripSouvenirModel = new QSqlTableModel(this, db);
+  tripSouvenirModel->setTable("tripSouvenirPurchases");
+  tripSouvenirModel->select();
+
+         // 2. Set the model to your TableView
+  ui->resultCampusSouvenirPurchases->setModel(tripSouvenirModel);
+
+         // 3. Setup the Campus Combo Box
+  ui->resultCampusCombo->setModel(tripModel);
+  ui->resultCampusCombo->setModelColumn(3); // Set to campusName index
+
+         // 4. Connect the signal to filter the souvenirs when a campus is picked
+  connect(ui->resultCampusCombo, QOverload<int>::of(&QComboBox::currentIndexChanged),
+          this, &PlanPage::updateSouvenirFilter);
+}
+
+void PlanPage::updateSouvenirFilter(int index) {
+  if (index == -1 || !tripSouvenirModel || !tripModel) return;
+
+         // 1. Get the campusID from the tripModel record at the selected index
+  QSqlRecord record = tripModel->record(index);
+  int selectedID = record.value("campusID").toInt();
+
+         // 2. Apply the filter to the souvenir model
+         // This is the SQL WHERE clause: "campusID = 5"
+  tripSouvenirModel->setFilter(QString("campusID = %1").arg(selectedID));
+
+         // 3. Execute the filtered query
+  if (!tripSouvenirModel->select()) {
+    qDebug() << "Souvenir Filter Error:" << tripSouvenirModel->lastError().text();
+  }
 }

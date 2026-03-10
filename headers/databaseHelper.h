@@ -92,7 +92,7 @@ QStringList uploadFileAppend(const QString &filePath);
 void resetAndReloadData(const QString &filePath);
 
 // TODO: add doxy
-bool addTripCampus(const int campusID, const QString& campusName);
+bool addTripCampus(const int campusID, const QString &campusName, const int visitOrder);
 // TODO: add doxy
 bool removeTripCampus(const int campusID);
 // TODO: add doxy
