@@ -26,7 +26,7 @@ private:
 
 private slots:
     void on_startTripButton_clicked();
-    void on_planAnotherButton_clicked();
+    void on_resultPlanAnotherButton_clicked();
     void on_planAnotherButton_1_clicked();
     void on_tripPlanStopNextButton_clicked();
     void updateFilteredTable(const QString &selectedCampus);

@@ -59,7 +59,7 @@ void PlanPage::on_startTripButton_clicked() {
     }
 }
 
-void PlanPage::on_planAnotherButton_clicked() {
+void PlanPage::on_resultPlanAnotherButton_clicked() {
     clearTripTable();
     ui->tripPlannerStack->setCurrentIndex(0);
 }

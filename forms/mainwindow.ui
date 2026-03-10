@@ -59,6 +59,10 @@
         <string>Plan a trip and visit selected campuses</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_8">
+        <property name="leftMargin"> <number>0</number> </property>
+        <property name="topMargin"> <number>0</number> </property>
+        <property name="rightMargin"> <number>0</number> </property>
+        <property name="bottomMargin"> <number>0</number> </property>
         <item>
          <widget class="PlanPage" name="tripPlanPageWidget" native="true"/>
         </item>
@@ -82,9 +86,6 @@
         <string>Admin</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_2">
-        <property name="spacing">
-         <number>7</number>
-        </property>
         <property name="leftMargin">
          <number>0</number>
         </property>
