@@ -329,56 +329,61 @@ void resetAndReloadData(const QString &filePath) {
     }
 }
 
-bool addTripCampus(const int campusID, const QString &campusName) {
-    QSqlQuery query;
+bool addTripCampus(const int campusID, const QString &campusName, const int visitOrder) {
+  QSqlQuery query;
 
-    // Use '?' instead of ':id' to bypass naming mismatches
-    query.prepare("INSERT INTO newCampusList (campusID, campusName) VALUES (?, ?)");
+         // Updated to include visitOrder in the insert statement
+  query.prepare("INSERT INTO tripCampuses (campusID, campusName, visitOrder) "
+                "VALUES (?, ?, ?)");
 
-    query.addBindValue(campusID);   // Maps to the first '?'
-    query.addBindValue(campusName); // Maps to the second '?'
+  query.addBindValue(campusID);
+  query.addBindValue(campusName);
+  query.addBindValue(visitOrder);
 
-    if (!query.exec()) {
-        qDebug() << "DB Helper Error:" << query.lastError().text();
-        // If it still fails, this will tell us if the table actually exists
-        return false;
-    }
+  if (!query.exec()) {
+    qDebug() << "DB Helper Error (Add):" << query.lastError().text();
+    return false;
+  }
 
-    return true;
+  return true;
 }
 
 bool removeTripCampusByID(const int campusID) {
-    QSqlQuery query;
-    query.prepare("DELETE FROM newCampusList WHERE campusID = :id");
-    query.bindValue(":id", campusID);
+  QSqlQuery query;
+  // Note: Since tripStopID is the primary key, usually you'd delete by that,
+  // but deleting by campusID works if you want to remove all instances of that campus.
+  query.prepare("DELETE FROM tripCampuses WHERE campusID = :id");
+  query.bindValue(":id", campusID);
 
-    if (!query.exec()) {
-        qDebug() << "DB Helper Error (Remove by ID):" << query.lastError().text();
-        return false;
-    }
-    return true;
+  if (!query.exec()) {
+    qDebug() << "DB Helper Error (Remove by ID):" << query.lastError().text();
+    return false;
+  }
+  return true;
 }
 
 bool removeTripCampusByName(const QString &campusName) {
-    QSqlQuery query;
-    query.prepare("DELETE FROM newCampusList WHERE campusName = :name");
-    query.bindValue(":name", campusName);
+  QSqlQuery query;
+  query.prepare("DELETE FROM tripCampuses WHERE campusName = :name");
+  query.bindValue(":name", campusName);
 
-    if (!query.exec()) {
-        qDebug() << "DB Helper Error (Remove by Name):" << query.lastError().text();
-        return false;
-    }
-    return true;
+  if (!query.exec()) {
+    qDebug() << "DB Helper Error (Remove by Name):" << query.lastError().text();
+    return false;
+  }
+  return true;
 }
 
 bool clearTripTable() {
-    QSqlQuery query;
+  QSqlQuery query;
 
-    // Deletes all rows from the table
-    if (!query.exec("DELETE FROM newCampusList")) {
-        qDebug() << "databaseHelper Error (Clear Table):" << query.lastError().text();
-        return false;
-    }
+  if (!query.exec("DELETE FROM tripCampuses")) {
+    qDebug() << "DB Helper Error (Clear Table):" << query.lastError().text();
+    return false;
+  }
 
-    return true;
+  // Optional: Reset the autoincrement counter so the next trip starts stop at ID 1
+  query.exec("DELETE FROM sqlite_sequence WHERE name='tripCampuses'");
+
+  return true;
 }

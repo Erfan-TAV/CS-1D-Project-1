@@ -17,7 +17,6 @@ int main(int argc, char *argv[])
     QString appDataPath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     QString dbPath = appDataPath + "/project1.db";
 
-    // Initialize DbManager
     DbManager db(dbPath);
 
     if (!db.isOpen()) {
@@ -25,18 +24,9 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    // addCampus("test campus");
-    // qDebug() << closestCampus(1);
-
     MainWindow w;
 
-    // 4. Initialize your DbManager with the dynamic path
-    // w.setStyle(QStyleFactory::create("Fusion"));
-
     w.show();
-    // admin.show();
-
-
 
     return QApplication::exec();
 }
