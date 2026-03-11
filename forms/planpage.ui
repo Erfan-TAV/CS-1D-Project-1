@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>890</width>
-    <height>474</height>
+    <width>824</width>
+    <height>481</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,7 @@
       <enum>QFrame::Shape::NoFrame</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tripSetupPage">
       <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -256,8 +256,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>857</width>
-              <height>148</height>
+              <width>1092</width>
+              <height>157</height>
              </rect>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -273,224 +273,119 @@
       </layout>
      </widget>
      <widget class="QWidget" name="tripStop">
-      <widget class="QPushButton" name="tripPlanStopNextButton">
-       <property name="geometry">
-        <rect>
-         <x>939</x>
-         <y>430</y>
-         <width>131</width>
-         <height>29</height>
-        </rect>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <property name="leftMargin">
+        <number>0</number>
        </property>
-       <property name="text">
-        <string>Next Stop</string>
+       <property name="topMargin">
+        <number>0</number>
        </property>
-      </widget>
-      <widget class="QLabel" name="label_11">
-       <property name="geometry">
-        <rect>
-         <x>60</x>
-         <y>20</y>
-         <width>151</width>
-         <height>20</height>
-        </rect>
+       <property name="rightMargin">
+        <number>0</number>
        </property>
-       <property name="text">
-        <string>Current Campus</string>
+       <property name="bottomMargin">
+        <number>0</number>
        </property>
-      </widget>
-      <widget class="QLabel" name="label_12">
-       <property name="geometry">
-        <rect>
-         <x>310</x>
-         <y>20</y>
-         <width>151</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Next Campus</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_13">
-       <property name="geometry">
-        <rect>
-         <x>220</x>
-         <y>30</y>
-         <width>63</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>------&gt;</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_14">
-       <property name="geometry">
-        <rect>
-         <x>200</x>
-         <y>60</y>
-         <width>151</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>9999.9m</string>
-       </property>
-      </widget>
-      <widget class="QTableView" name="tableView_3">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>190</y>
-         <width>256</width>
-         <height>251</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_7">
-       <property name="geometry">
-        <rect>
-         <x>690</x>
-         <y>430</y>
-         <width>171</width>
-         <height>29</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Confirm Purchase</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_15">
-       <property name="geometry">
-        <rect>
-         <x>870</x>
-         <y>430</y>
-         <width>63</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>------&gt;</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_16">
-       <property name="geometry">
-        <rect>
-         <x>410</x>
-         <y>50</y>
-         <width>151</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>9999.9m</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_17">
-       <property name="geometry">
-        <rect>
-         <x>430</x>
-         <y>20</y>
-         <width>63</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>------&gt;</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_18">
-       <property name="geometry">
-        <rect>
-         <x>500</x>
-         <y>20</y>
-         <width>151</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Next Campus</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_19">
-       <property name="geometry">
-        <rect>
-         <x>590</x>
-         <y>50</y>
-         <width>151</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>9999.9m</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_20">
-       <property name="geometry">
-        <rect>
-         <x>680</x>
-         <y>20</y>
-         <width>151</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Next Campus</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_21">
-       <property name="geometry">
-        <rect>
-         <x>610</x>
-         <y>20</y>
-         <width>63</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>------&gt;</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_22">
-       <property name="geometry">
-        <rect>
-         <x>770</x>
-         <y>50</y>
-         <width>151</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>9999.9m</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_23">
-       <property name="geometry">
-        <rect>
-         <x>860</x>
-         <y>20</y>
-         <width>151</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Next Campus</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_24">
-       <property name="geometry">
-        <rect>
-         <x>790</x>
-         <y>20</y>
-         <width>63</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>------&gt;</string>
-       </property>
-      </widget>
+       <item>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="2" column="0" colspan="3">
+          <layout class="QHBoxLayout" name="horizontalLayout_4">
+           <item alignment="Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignBottom">
+            <widget class="QLabel" name="stopCurrentCampusLabel">
+             <property name="font">
+              <font>
+               <pointsize>20</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Current Campus</string>
+             </property>
+            </widget>
+           </item>
+           <item alignment="Qt::AlignmentFlag::AlignLeft">
+            <widget class="QLabel" name="stopTravelArrowLabel">
+             <property name="text">
+              <string>------&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item alignment="Qt::AlignmentFlag::AlignLeft">
+            <widget class="QLabel" name="stopNextCampusLabel">
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Next Campus</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="stopNextCampusDIstanceLabel">
+             <property name="font">
+              <font>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>9999.9m</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Orientation::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+         <item row="0" column="0" colspan="3" alignment="Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop">
+          <widget class="QLabel" name="stopPageLabel">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>171</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>28</pointsize>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Trip in Progress</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0" colspan="3" alignment="Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignBottom">
+          <widget class="QPushButton" name="tripPlanStopNextButton">
+           <property name="text">
+            <string>Next Stop</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0" colspan="3">
+          <widget class="QTableView" name="stopSouvenirTableView"/>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </widget>
      <widget class="QWidget" name="tripResults">
       <layout class="QVBoxLayout" name="verticalLayout_11">
