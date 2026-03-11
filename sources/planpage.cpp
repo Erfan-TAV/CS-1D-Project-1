@@ -1,14 +1,14 @@
 #include "planpage.h"
 #include "ui_planpage.h"
-#include "../headers/tripPlanner.h"
 #include <QSqlTableModel>
-#include "adminpage.h"
-#include "ui_adminpage.h"
+#include <QSqlQueryModel>
 #include <qsqlerror.h>
 #include <QSqlRecord>
 #include <QTimer>
 #include <QFileDialog>
-#include <qsortfilterproxymodel.h>
+#include <QSortFilterProxyModel>
+#include <QSqlQuery>
+#include <QDebug>
 
 #include "databaseHelper.h"
 
@@ -17,12 +17,17 @@ PlanPage::PlanPage(QWidget *parent)
     , ui(new Ui::PlanPage)
 {
     ui->setupUi(this);
+    qDebug() << "[PLANPAGE] Constructor started.";
 
-    // set the starting page to the plan setting page
+    // INITIALIZE THESE FIRST
+    campusModel = new QSqlQueryModel(this);
+    proxyModel = new QSortFilterProxyModel(this);
+
     ui->tripPlannerStack->setCurrentIndex(0);
 
     setupDatabaseTable();
     setupResultsConnection();
+    qDebug() << "[PLANPAGE] Constructor finished.";
 }
 
 PlanPage::~PlanPage()
@@ -31,203 +36,375 @@ PlanPage::~PlanPage()
 }
 
 void PlanPage::on_startTripButton_clicked() {
-  // 1. Clear the table before starting a new calculation
-  clearTripTable();
-
-  int currentOrder = 0;
-
-         // 2. Add the Start Campus (The "Origin")
-  if (ui->comboBox->currentIndex() != -1) {
-    // We use the comboBoxModel directly to get the record
-    QSqlRecord rec = comboBoxModel->record(ui->comboBox->currentIndex());
-
-    int id = rec.value("campusID").toInt();
-    QString name = rec.value("campusName").toString();
-
-    // Add as the first stop (Order 0)
-    addTripCampus(id, name, currentOrder++);
-  }
-
-         // 3. Add Selected Campuses (The "Destinations")
-  QModelIndexList selectedRows = ui->tableViewSettings->selectionModel()->selectedRows();
-
-  for (const QModelIndex &index : selectedRows) {
-    // Important: Get the record from the campusModel at the specific row
-    QSqlRecord record = campusModel->record(index.row());
-
-    int id = record.value("campusID").toInt();
-    QString name = record.value("campusName").toString();
-
-    // Add and increment the order
-    addTripCampus(id, name, currentOrder++);
-  }
-
-         // 4. Refresh the tripModel so the UI (like resultCampusCombo) updates immediately
-  if (tripModel) {
-    tripModel->select();
-  }
-
-         // 5. Navigation Logic
-  if (ui->planOnlyCheckBox->isChecked()) {
-    ui->tripPlannerStack->setCurrentIndex(1);
-  } else {
-    ui->tripPlannerStack->setCurrentIndex(2);
-  }
-}
-
-void PlanPage::on_resultPlanAnotherButton_clicked() {
+    // 1. Clear the table before starting a new calculation
+    qDebug() << "[UI] Start Trip Button clicked.";
     clearTripTable();
-    ui->tripPlannerStack->setCurrentIndex(0);
-}
-void PlanPage::on_planAnotherButton_1_clicked() {
-    clearTripTable();
-    ui->tripPlannerStack->setCurrentIndex(0);
-}
-void PlanPage::on_tripPlanStopNextButton_clicked() {
-    ui->tripPlannerStack->setCurrentIndex(3);
-}
 
-void PlanPage::setupDatabaseTable() {
-    QSqlDatabase db = QSqlDatabase::database();
+    int currentCampusID = -1;
+    QString currentCampusName = "";
 
-    if (!db.isOpen()) {
-        qDebug() << "PlanPage: Database is NOT open at" << db.databaseName();
+    // 2. Add the Start Campus (The "Origin")
+    // FIX: We must extract the data from the record before assigning it to the variables
+    if (ui->comboBox->currentIndex() != -1) {
+        // We use the comboBoxModel directly to get the record
+        QSqlRecord rec = comboBoxModel->record(ui->comboBox->currentIndex());
+
+        // Assigning the actual database values to our tracking variables
+        currentCampusID = rec.value("campusID").toInt();
+        currentCampusName = rec.value("campusName").toString();
+
+        qDebug() << "[UI] Starting Campus selected:" << currentCampusName << "(ID:" << currentCampusID << ")";
+
+        // Add the origin stop as visitOrder 0
+        addTripCampus(currentCampusID, currentCampusName, 0);
+    } else {
+        qDebug() << "[UI] WARNING: No starting campus selected.";
         return;
     }
 
-    // 2. Pass the 'db' object to the model
-    campusModel = new QSqlTableModel(this, db);
+    // 3. Retrieve Selected Campuses from the TableView
+    QModelIndexList selectedRows = ui->tableViewSettings->selectionModel()->selectedRows();
+    QList<int> unvisitedIDs;
 
-    // 3. Match the table name exactly
-    campusModel->setTable("campusList");
+    qDebug() << "[UI] Rows selected in list:" << selectedRows.size();
 
-    // 4. Important: Set the Edit Strategy before selecting
-    campusModel->setEditStrategy(QSqlTableModel::OnFieldChange);
+    for (const QModelIndex &proxyIndex : selectedRows) {
+        // Map the proxy (sorted/filtered) index back to the actual source model
+        QModelIndex sourceIndex = proxyModel->mapToSource(proxyIndex);
+        QSqlRecord record = campusModel->record(sourceIndex.row());
+        int id = record.value("campusID").toInt();
 
-    // 5. Fetch the data
-    if (!campusModel->select()) {
-        qDebug() << "SQL Error:" << campusModel->lastError().text();
-    } else {
-        qDebug() << "AdminPage: Successfully loaded" << campusModel->rowCount() << "campus rows";
+        // Only add to the unvisited list if it's not the starting campus
+        if (id != currentCampusID) {
+            unvisitedIDs.append(id);
+        }
     }
 
-    // 6. Set the model to your ListView from the UI screenshot
-    ui->tableViewSettings->setModel(campusModel);
-    ui->tableViewSettings->setModelColumn(1); // Column 0 is usually 'campusName'
+    // 4. Trigger the decoupled recursive algorithm
+    qDebug() << "[ALGO] --- Starting RECURSIVE Trip Calculation ---";
 
-    // give data to combo box
-    comboBoxModel = new QSqlTableModel(this, db);
+    // Start the recursion:
+    // currentCampusID: the origin
+    // unvisitedIDs: the list of schools to hit
+    // 0.0: initial total distance
+    // 1: the visit order for the first stop after the origin
+    calculateEfficientTrip(currentCampusID, unvisitedIDs, 0.0, 1);
+
+    // 5. Update UI state
+    if (tripModel) {
+        tripModel->select();
+    }
+
+    // 6. Navigation Logic
+    if (ui->planOnlyCheckBox->isChecked()) {
+        qDebug() << "[UI] Navigating to Plan-Only view.";
+        ui->tripPlannerStack->setCurrentIndex(1); // Index for the scrollable trip layout
+        renderTrip(); // Draw the widgets based on the newly calculated data
+    } else {
+        qDebug() << "[UI] Navigating to Full-Trip view.";
+        ui->tripPlannerStack->setCurrentIndex(2); // Index for the standard results page
+    }
+}
+
+// ==========================================
+// UI & DATABASE SETUP (Requirement 2 & 3)
+// ==========================================
+void PlanPage::setupDatabaseTable() {
+    qDebug() << "[DEBUG] Entering setupDatabaseTable";
+
+    QSqlDatabase db = QSqlDatabase::database();
+    if (!db.isOpen()) {
+        qDebug() << "[DEBUG] Database not open - exiting setup";
+        return;
+    }
+
+    if (!ui) return;
+
+    // 1. Initialize ALL models
+    if (!campusModel)   campusModel = new QSqlQueryModel(this);
+    if (!proxyModel)    proxyModel = new QSortFilterProxyModel(this);
+    if (!comboBoxModel) comboBoxModel = new QSqlTableModel(this, db);
+    if (!tripModel)     tripModel = new QSqlTableModel(this, db);
+
+    // 2. Setup Source Data
+    campusModel->setQuery("SELECT campusID, campusName FROM campusList", db);
+
+    // 3. Setup Proxy Model
+    proxyModel->setSourceModel(campusModel);
+    // Explicitly tell the proxy to filter based on Column 1 (Campus Name)
+    proxyModel->setFilterKeyColumn(1);
+    proxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
+
+    // 4. Attach to TableView
+    if (ui->tableViewSettings) {
+        ui->tableViewSettings->setModel(proxyModel);
+        ui->tableViewSettings->setModelColumn(1);
+
+        if (ui->tableViewSettings->selectionModel()) {
+            connect(ui->tableViewSettings->selectionModel(), &QItemSelectionModel::selectionChanged,
+                    this, &PlanPage::updateSelectionCount, Qt::UniqueConnection);
+        }
+    }
+
+    // 5. Setup ComboBox
     comboBoxModel->setTable("campusList");
     comboBoxModel->select();
-    ui->comboBox->setModel(comboBoxModel);
-    ui->comboBox->setModelColumn(1);
 
-    // set placeholder for first option
-    ui->comboBox->setPlaceholderText("--- Select a Campus ---");
-    ui->comboBox->setCurrentIndex(-1); // -1 means "nothing selected"
+    if (ui->comboBox) {
+        ui->comboBox->blockSignals(true);
 
-    // connect combobox changed to update the filter in the table
-    connect(ui->comboBox, &QComboBox::currentTextChanged, this, &PlanPage::updateFilteredTable);
+        ui->comboBox->setModel(comboBoxModel);
+        ui->comboBox->setModelColumn(1);
 
-    // update text based on the number of campuses selected
-    // Connect the selection model's signal to a lambda function
-    connect(ui->tableViewSettings->selectionModel(), &QItemSelectionModel::selectionChanged,
-            this, [this](const QItemSelection &selected, const QItemSelection &deselected) {
+        // We set index to -1 AFTER the model is attached and data is loaded
+        ui->comboBox->setCurrentIndex(-1);
+        ui->comboBox->setPlaceholderText("Select Starting Campus...");
 
-        // 1. Get the list of all currently selected rows
-        int count = ui->tableViewSettings->selectionModel()->selectedRows().count();
+        ui->comboBox->blockSignals(false);
 
-        // 2. Update the TextLabel with the count
-        ui->numCampusRemaingAmount->setText(QString::number(count));
-    });
+        // Disconnect old connections to prevent double-firing, then reconnect
+        disconnect(ui->comboBox, &QComboBox::currentTextChanged, this, &PlanPage::updateFilteredTable);
+        connect(ui->comboBox, &QComboBox::currentTextChanged,
+                this, &PlanPage::updateFilteredTable, Qt::UniqueConnection);
+    }
 
-    // setup model for the current trip table
-    tripModel = new QSqlTableModel(this, db);
     tripModel->setTable("tripCampuses");
     tripModel->select();
 
+    qDebug() << "[DEBUG] Exiting setupDatabaseTable normally.";
 }
 
 void PlanPage::refreshUI() {
-    qDebug() << "PlanPage: Database data re-synced to UI.";
+    qDebug() << "[UI] Refreshing UI...";
 
-    ui->comboBox->blockSignals(true);
+    if (ui && ui->comboBox) {
+        ui->comboBox->blockSignals(true);
 
-    // revert any table filters
-    campusModel->setFilter("");
-    comboBoxModel->setFilter("");
+        // 1. Clear the Proxy Filter first
+        if (proxyModel) {
+            proxyModel->setFilterFixedString("");
+        }
 
-    // 1. Reload the main campus list
-    campusModel->select();
-    comboBoxModel->select();
+        // 2. Refresh Database Queries
+        if (campusModel) {
+            campusModel->setQuery("SELECT campusID, campusName FROM campusList");
+        }
 
-    ui->comboBox->setCurrentIndex(-1);
+        if (comboBoxModel) {
+            comboBoxModel->select();
+        }
 
-    ui->comboBox->blockSignals(false);
+        if (tripModel) {
+            tripModel->select();
+        }
 
-    // 2. Figure out which campus was selected before the refresh
-    QModelIndex currentIndex = ui->tableViewSettings->currentIndex();
-    if (currentIndex.isValid()) {
-        QSqlRecord record = campusModel->record(currentIndex.row());
+        // 3. Reset UI state
+        ui->comboBox->setCurrentIndex(-1);
+        ui->comboBox->blockSignals(false);
+
+        qDebug() << "[UI] Refresh complete. ComboBox reset and filters cleared.";
     }
 }
 
 void PlanPage::updateFilteredTable(const QString &selectedCampus) {
-    if (!campusModel) return;
+    if (!proxyModel) return;
 
-    // 1. Apply the filter
-    QString filterStr = QString("campusName != '%1'").arg(selectedCampus);
-    campusModel->setFilter(filterStr);
-
-    // 2. Execute
-    if (!campusModel->select()) {
-        qDebug() << "SQL Error:" << campusModel->lastError().text();
+    if (selectedCampus.isEmpty()) {
+        qDebug() << "[UI] Filter cleared.";
+        proxyModel->setFilterFixedString("");
+        return;
     }
 
-    // 3. Print the "Truth" to the console
-    qDebug() << "--- Filter Debug ---";
-    qDebug() << "Applied Filter:" << campusModel->filter();
-    qDebug() << "Rows Found:" << campusModel->rowCount();
+    qDebug() << "[UI] Filtering out selected campus:" << selectedCampus;
 
-    // If rowCount is 0, the filter is the problem.
-    // If it's more than 0 but the table is empty, the View/UI is the problem.
+    // Ensure the proxy is looking at the correct column (Column 1 = Campus Name)
+    proxyModel->setFilterKeyColumn(1);
+
+    // Regex Explanation:
+    // ^ = Start of string
+    // (?! ... $) = Negative lookahead: "Do not match if the string following is exactly this"
+    // .* = Match everything else
+    // \\Q and \\E = Treat the campus name as literal text (escapes special chars)
+    QString pattern = QString("^(?!\\Q%1\\E$).*").arg(selectedCampus);
+
+    QRegularExpression re(pattern);
+    proxyModel->setFilterRegularExpression(re);
+
+    // Force the view to update immediately
+    if (ui->tableViewSettings) {
+        ui->tableViewSettings->viewport()->update();
+    }
 }
 
 void PlanPage::setupResultsConnection() {
-  QSqlDatabase db = QSqlDatabase::database();
+    QSqlDatabase db = QSqlDatabase::database();
+    qDebug() << "[UI] Setting up results page connections.";
 
-  ui->resultCampusSouvenirPurchases->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->resultCampusSouvenirPurchases->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-         // 1. Initialize the Souvenir Model
-  tripSouvenirModel = new QSqlTableModel(this, db);
-  tripSouvenirModel->setTable("tripSouvenirPurchases");
-  tripSouvenirModel->select();
+    tripSouvenirModel = new QSqlTableModel(this, db);
+    tripSouvenirModel->setTable("tripSouvenirPurchases");
+    tripSouvenirModel->select();
 
-         // 2. Set the model to your TableView
-  ui->resultCampusSouvenirPurchases->setModel(tripSouvenirModel);
+    ui->resultCampusSouvenirPurchases->setModel(tripSouvenirModel);
 
-         // 3. Setup the Campus Combo Box
-  ui->resultCampusCombo->setModel(tripModel);
-  ui->resultCampusCombo->setModelColumn(3); // Set to campusName index
+    ui->resultCampusCombo->setModel(tripModel);
+    ui->resultCampusCombo->setModelColumn(3);
 
-         // 4. Connect the signal to filter the souvenirs when a campus is picked
-  connect(ui->resultCampusCombo, QOverload<int>::of(&QComboBox::currentIndexChanged),
-          this, &PlanPage::updateSouvenirFilter);
+    connect(ui->resultCampusCombo, QOverload<int>::of(&QComboBox::currentIndexChanged),
+            this, &PlanPage::updateSouvenirFilter);
 }
 
 void PlanPage::updateSouvenirFilter(int index) {
-  if (index == -1 || !tripSouvenirModel || !tripModel) return;
+    if (index == -1 || !tripSouvenirModel || !tripModel) return;
 
-         // 1. Get the campusID from the tripModel record at the selected index
-  QSqlRecord record = tripModel->record(index);
-  int selectedID = record.value("campusID").toInt();
+    QSqlRecord record = tripModel->record(index);
+    int selectedID = record.value("campusID").toInt();
 
-         // 2. Apply the filter to the souvenir model
-         // This is the SQL WHERE clause: "campusID = 5"
-  tripSouvenirModel->setFilter(QString("campusID = %1").arg(selectedID));
+    qDebug() << "[UI] Viewing souvenirs for ID:" << selectedID;
+    tripSouvenirModel->setFilter(QString("campusID = %1").arg(selectedID));
+    tripSouvenirModel->select();
+}
 
-         // 3. Execute the filtered query
-  if (!tripSouvenirModel->select()) {
-    qDebug() << "Souvenir Filter Error:" << tripSouvenirModel->lastError().text();
-  }
+void PlanPage::on_resultPlanAnotherButton_clicked()
+{
+    qDebug() << "[UI] Plan Another clicked.";
+    clearTripTable();
+    ui->tripPlannerStack->setCurrentIndex(0);
+}
+void PlanPage::on_planOnlyPlanAnotherButton_clicked()
+{
+    qDebug() << "[UI] Plan Another clicked.";
+    clearTripTable();
+    ui->tripPlannerStack->setCurrentIndex(0);
+}
+void PlanPage::on_tripPlanStopNextButton_clicked()
+{
+    ui->tripPlannerStack->setCurrentIndex(3);
+}
+
+// This function creates one "Campus -> Distance" block
+QWidget* PlanPage::createStopWidget(QString name, int distance, bool showArrow) {
+    QWidget *stop = new QWidget();
+    QHBoxLayout *mainLayout = new QHBoxLayout(stop);
+    mainLayout->setContentsMargins(5, 5, 5, 5);
+    mainLayout->setSpacing(0);
+
+    // --- 1. The Campus Card ---
+    QFrame *card = new QFrame();
+    card->setStyleSheet(
+        "QFrame {"
+        "  background-color: palette(button);"
+        "  border: 1px solid palette(mid);"
+        "  border-radius: 8px;"
+        "  padding: 10px;"
+        "}"
+        );
+
+    QVBoxLayout *cardLayout = new QVBoxLayout(card);
+    QLabel *nameLabel = new QLabel(name);
+    nameLabel->setStyleSheet("font-weight: bold; color: palette(window-text); font-size: 18px; border: none;");
+    nameLabel->setAlignment(Qt::AlignCenter);
+    cardLayout->addWidget(nameLabel);
+
+    mainLayout->addWidget(card);
+
+    // --- 2. The Connector (Only if showArrow is true) ---
+    if (showArrow) {
+        QWidget *connector = new QWidget();
+        QVBoxLayout *vbox = new QVBoxLayout(connector);
+        vbox->setAlignment(Qt::AlignCenter);
+        vbox->setContentsMargins(0, 0, 0, 0);
+        vbox->setSpacing(2);
+
+        QLabel *arrow = new QLabel("──────▶");
+        arrow->setStyleSheet("color: palette(window-text); font-weight: bold; font-size: 16px;");
+        arrow->setAlignment(Qt::AlignCenter);
+        vbox->addWidget(arrow);
+
+        // Only show distance if it's a positive value (greater than 0)
+        if (distance > 0) {
+            QLabel *distLabel = new QLabel(QString::number(distance) + " miles");
+            distLabel->setStyleSheet("font-size: 12px; color: palette(placeholder-text);");
+            distLabel->setAlignment(Qt::AlignCenter);
+            vbox->addWidget(distLabel);
+        } else {
+            // Spacer to keep arrow vertically aligned with others
+            QLabel *spacer = new QLabel(" ");
+            spacer->setStyleSheet("font-size: 10px;");
+            vbox->addWidget(spacer);
+        }
+        mainLayout->addWidget(connector);
+    }
+
+    return stop;
+}
+
+void PlanPage::renderTrip() {
+    // 1. Get the layout from the scroll area
+    QHBoxLayout *layout = qobject_cast<QHBoxLayout*>(ui->scrollAreaWidgetContents->layout());
+    if (!layout) {
+        qDebug() << "[ERROR] Could not find layout for scrollAreaWidgetContents";
+        return;
+    }
+
+    // 2. Clear previous UI elements to prevent "ghosting" from old trips
+    QLayoutItem *item;
+    while ((item = layout->takeAt(0)) != nullptr) {
+        if (item->widget()) delete item->widget();
+        delete item;
+    }
+
+    // 3. Fetch the trip sequence from the temporary trip table
+    // We order by visitOrder to ensure the tour displays in the correct path sequence
+    QSqlQuery query("SELECT campusID, campusName, visitOrder FROM tripCampuses ORDER BY visitOrder ASC");
+
+    while (query.next()) {
+        int currentID = query.value("campusID").toInt();
+        QString name = query.value("campusName").toString();
+        int currentOrder = query.value("visitOrder").toInt();
+
+        int distanceToNext = 0;
+
+        // 4. Find the NEXT campus in the sequence to get the distance
+        QSqlQuery nextQuery;
+        nextQuery.prepare("SELECT campusID FROM tripCampuses WHERE visitOrder = :nextOrder");
+        nextQuery.bindValue(":nextOrder", currentOrder + 1);
+
+        if (nextQuery.exec() && nextQuery.next()) {
+            int nextID = nextQuery.value(0).toInt();
+
+            // REFACTORED: Use the helper function from databaseHelper.h
+            // This handles the bi-directional SQL check (ID1->ID2 or ID2->ID1)
+            double distResult = getDistanceBetween(currentID, nextID);
+
+            // Check for the "Not Found" sentinel value (999999.0)
+            if (distResult < 999998.0) {
+                distanceToNext = static_cast<int>(distResult);
+            } else {
+                qDebug() << "[WARNING] No distance found between ID" << currentID << "and" << nextID;
+            }
+        }
+
+        // 5. Add the campus stop widget
+        // The 'true' flag ensures an arrow and distance label are drawn after this stop
+        layout->addWidget(createStopWidget(name, distanceToNext, true));
+    }
+
+    // 6. Add the final "Goal" flag
+    // We pass 'false' for showArrow because no path follows the final destination
+    layout->addWidget(createStopWidget("🏁 Trip Finished", 0, false));
+
+    // 7. Add stretch at the end to keep the trip sequence left-aligned
+    layout->addStretch();
+
+    qDebug() << "[UI] Trip rendering complete.";
+}
+
+void PlanPage::updateSelectionCount() {
+    if (!ui->tableViewSettings->selectionModel()) return;
+
+    int count = ui->tableViewSettings->selectionModel()->selectedRows().count();
+    ui->numCampusRemaingAmount->setText(QString::number(count));
+    qDebug() << "[UI] Selection changed. Current count:" << count;
 }

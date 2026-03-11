@@ -77,6 +77,69 @@ bool addDistance(const int id1, const int id2, const int distance) {
     return query.exec();
 }
 
+
+// --- Helper for Route Calculation ---
+// Calculates the direct distance between two specific campuses
+double getDistanceBetween(int id1, int id2) {
+    QSqlQuery query;
+    query.prepare("SELECT distance FROM campusDistances WHERE "
+                  "(campusID1 = :id1 AND campusID2 = :id2) OR "
+                  "(campusID1 = :id2 AND campusID2 = :id1)");
+    query.bindValue(":id1", id1);
+    query.bindValue(":id2", id2);
+
+    if (query.exec() && query.next()) {
+        return query.value(0).toDouble();
+    }
+    return 999999.0; // Return an artificially high number if no direct connection exists
+}
+// ------------------------------------
+
+// ==========================================
+// REFACTORED: ALGORITHM LOGIC (Requirement 1 & 4)
+// ==========================================
+// 2. The Recursive Function
+void calculateEfficientTrip(int currentID, QList<int> unvisitedIDs, double totalDistance, int order) {
+    // BASE CASE: If there are no more campuses to visit, stop the recursion.
+    if (unvisitedIDs.isEmpty()) {
+        qDebug() << "[ALGO] --- Recursion Complete ---";
+        qDebug() << "[ALGO] Final Total Distance:" << totalDistance << "miles.";
+        return;
+    }
+
+    int nextID = -1;
+    double minFound = std::numeric_limits<double>::max();
+
+    // Find the single closest school from the current location
+    for (int targetID : unvisitedIDs) {
+        double dist = getDistanceBetween(currentID, targetID);
+        if (dist < minFound) {
+            minFound = dist;
+            nextID = targetID;
+        }
+    }
+
+    if (nextID != -1) {
+        // Prepare data for the next stop
+        double newTotalDistance = totalDistance + minFound;
+        QString name = getCampusName(nextID);
+
+        qDebug() << "[ALGO] Recursive Level" << order << ": Visiting" << name
+                 << " (ID:" << nextID << ") +" << minFound << "mi.";
+
+        // Record the visit in the database
+        addTripCampus(nextID, name, order);
+
+        // Remove the campus we just visited
+        unvisitedIDs.removeAll(nextID);
+
+        // RECURSIVE CALL: The function calls ITSELF with the new location and updated totals
+        calculateEfficientTrip(nextID, unvisitedIDs, newTotalDistance, order + 1);
+    } else {
+        qDebug() << "[ALGO] ERROR: Path broken at ID" << currentID;
+    }
+}
+
 QString getCampusName(const int campusID) {
     QSqlQuery query;
 
