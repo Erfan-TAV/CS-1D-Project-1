@@ -1,11 +1,7 @@
 #ifndef DBMANAGER_H
 #define DBMANAGER_H
 
-#include <QSqlDatabase>
 #include <QSqlQuery>
-#include <QSqlError>
-#include <QString>
-#include <QDebug>
 
 class DbManager {
 public:

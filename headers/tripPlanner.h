@@ -4,7 +4,6 @@
 #include <QVector>
 #include <QSqlQuery>
 #include <QString>
-#include <QDebug>
 
 struct TripResult {
     QVector<int> campusOrder;

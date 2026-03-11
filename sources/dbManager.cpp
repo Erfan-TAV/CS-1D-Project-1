@@ -1,6 +1,4 @@
 #include "dbManager.h"
-#include <QFile>
-#include <QDir>
 #include <QStandardPaths>
 #include <QDebug>
 #include <QSqlError>

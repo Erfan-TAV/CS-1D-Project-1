@@ -2,7 +2,6 @@
 #define PLANPAGE_H
 
 #include <QSqlTableModel>
-#include <QWidget>
 #include <QSortFilterProxyModel>
 #include <QSqlQueryModel>
 #include <QRegularExpression>

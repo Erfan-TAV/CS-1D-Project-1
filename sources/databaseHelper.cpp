@@ -1,6 +1,5 @@
 #include <QSqlQuery>
 #include <QDebug>
-#include <QSqlError>
 #include <QtSql>
 #include "xlsxdocument.h"
 

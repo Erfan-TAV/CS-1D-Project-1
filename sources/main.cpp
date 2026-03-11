@@ -1,11 +1,8 @@
 #include "../headers/mainwindow.h"
 #include <QApplication>
-#include <QStyleFactory>
-#include <QFileInfo>
 #include <QDir>
 #include <QStandardPaths>
 #include <QDebug>
-#include "databaseHelper.h"
 
 
 #include "dbManager.h"

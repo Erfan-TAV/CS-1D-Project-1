@@ -1,8 +1,6 @@
 #ifndef INFOPAGE_H
 #define INFOPAGE_H
 
-#include <QWidget>
-
 #include "databasePage.h"
 #include "tripPlanner.h"
 
