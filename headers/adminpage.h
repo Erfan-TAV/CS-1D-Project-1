@@ -87,6 +87,7 @@ private:
      * and QTableView to allow for live database editing.
      */
     void setupDatabaseTable();
+    void uploadCampusDistancesFromExcel(const QString &filePath);
 
     /**
      * @brief Configures the initial state of the login screen.

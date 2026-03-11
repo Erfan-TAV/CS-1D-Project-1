@@ -9,6 +9,7 @@
 #include <QFileDialog>
 #include <QStandardPaths>
 #include <QTableWidget>
+#include <xlsxdocument.h>
 
 AdminPage::AdminPage(QWidget* parent) :
     DatabasePage(parent), ui(new Ui::AdminPage)
@@ -300,13 +301,15 @@ void AdminPage::on_uploadFile_clicked() {
     // 1. Perform upload and get the names of NEW campuses
     QStringList added = uploadFileAppend(filePath);
 
+    uploadCampusDistancesFromExcel(filePath);
+
     // 2. Refresh the UI so the models see the new data
     refreshUI();
 
     // 3. If there were new campuses, prompt for their distances to existing ones
-    if (!added.isEmpty()) {
-        promptForDistances(added);
-    }
+    // if (!added.isEmpty()) {
+        // promptForDistances(added);
+    // }
 
     emit notifyStatus("File uploaded and distances configured!");
 }
@@ -457,4 +460,50 @@ bool AdminPage::verifyUserCredentials(const QString &username, const QString &pa
     }
 
     return false; // No match
+}
+
+void AdminPage::uploadCampusDistancesFromExcel(const QString &filePath) {
+  QXlsx::Document xlsx(filePath);
+  if (!xlsx.load()) {
+    qDebug() << "Failed to open Excel file:" << filePath;
+    return;
+  }
+
+  xlsx.selectSheet("campusDistances");
+
+  int row = 2; // assuming row 1 is headers
+  while (true) {
+    QVariant val1 = xlsx.read(row, 1); // campusID1
+    QVariant val2 = xlsx.read(row, 2); // campusID2
+    QVariant valDist = xlsx.read(row, 3); // distance (may be decimal)
+
+    if (val1.isNull() && val2.isNull() && valDist.isNull())
+      break;
+
+    int campusID1 = val1.toInt();
+    int campusID2 = val2.toInt();
+    double rawDistance = valDist.toDouble();
+    int distance = qRound(rawDistance); // round to nearest integer
+
+    if (campusID1 > 0 && campusID2 > 0 && distance >= 0) {
+      QSqlQuery query;
+      query.prepare("INSERT INTO campusDistances (campusID1, campusID2, distance) "
+                    "VALUES (:id1, :id2, :dist)");
+      query.bindValue(":id1", campusID1);
+      query.bindValue(":id2", campusID2);
+      query.bindValue(":dist", distance);
+
+      if (!query.exec()) {
+        qDebug() << "Failed to insert distance row:"
+                 << campusID1 << campusID2 << distance
+                 << "Error:" << query.lastError().text();
+      } else {
+        qDebug() << "Inserted distance:" << campusID1 << campusID2 << distance;
+      }
+    }
+
+    row++;
+  }
+
+  qDebug() << "Finished importing campusDistances with rounding.";
 }
