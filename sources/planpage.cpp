@@ -24,10 +24,8 @@ PlanPage::PlanPage(QWidget *parent)
     proxyModel = new QSortFilterProxyModel(this);
 
     ui->tripPlannerStack->setCurrentIndex(0);
-    qDebug() << "start page set";
 
     setupDatabaseTable();
-    qDebug()<< "setupDatabaseTable finished";
     setupResultsConnection();
     qDebug() << "[PLANPAGE] Constructor finished.";
 }
@@ -158,7 +156,6 @@ void PlanPage::setupDatabaseTable() {
         ui->comboBox->setModel(comboBoxModel);
         ui->comboBox->setModelColumn(1);
 
-        // This is the "Placeholder" fix:
         // We set index to -1 AFTER the model is attached and data is loaded
         ui->comboBox->setCurrentIndex(-1);
         ui->comboBox->setPlaceholderText("Select Starting Campus...");
@@ -287,34 +284,6 @@ void PlanPage::on_tripPlanStopNextButton_clicked()
 }
 
 // This function creates one "Campus -> Distance" block
-QWidget* PlanPage::createCampusWidget(QString name, QString distance, bool isLast) {
-    QWidget *item = new QWidget();
-    QHBoxLayout *layout = new QHBoxLayout(item);
-
-    // 1. The Campus Name
-    QLabel *nameLabel = new QLabel(name);
-    nameLabel->setStyleSheet("font-weight: bold; font-size: 14px;");
-    layout->addWidget(nameLabel);
-
-    if (!isLast) {
-        // 2. The Arrow and Distance (Stacked vertically)
-        QWidget *arrowContainer = new QWidget();
-        QVBoxLayout *vbox = new QVBoxLayout(arrowContainer);
-        vbox->setSpacing(0);
-
-        QLabel *arrowLabel = new QLabel("------->");
-        QLabel *distLabel = new QLabel(distance + "m");
-        distLabel->setAlignment(Qt::AlignCenter);
-        distLabel->setStyleSheet("color: #666; font-size: 10px;");
-
-        vbox->addWidget(arrowLabel);
-        vbox->addWidget(distLabel);
-        layout->addWidget(arrowContainer);
-    }
-
-    return item;
-}
-
 QWidget* PlanPage::createStopWidget(QString name, int distance, bool showArrow) {
     QWidget *stop = new QWidget();
     QHBoxLayout *mainLayout = new QHBoxLayout(stop);
@@ -334,7 +303,7 @@ QWidget* PlanPage::createStopWidget(QString name, int distance, bool showArrow) 
 
     QVBoxLayout *cardLayout = new QVBoxLayout(card);
     QLabel *nameLabel = new QLabel(name);
-    nameLabel->setStyleSheet("font-weight: bold; color: palette(window-text); font-size: 13px; border: none;");
+    nameLabel->setStyleSheet("font-weight: bold; color: palette(window-text); font-size: 18px; border: none;");
     nameLabel->setAlignment(Qt::AlignCenter);
     cardLayout->addWidget(nameLabel);
 
@@ -345,18 +314,18 @@ QWidget* PlanPage::createStopWidget(QString name, int distance, bool showArrow) 
         QWidget *connector = new QWidget();
         QVBoxLayout *vbox = new QVBoxLayout(connector);
         vbox->setAlignment(Qt::AlignCenter);
-        vbox->setContentsMargins(15, 0, 15, 0);
+        vbox->setContentsMargins(0, 0, 0, 0);
         vbox->setSpacing(2);
 
-        QLabel *arrow = new QLabel("────────▶");
+        QLabel *arrow = new QLabel("──────▶");
         arrow->setStyleSheet("color: palette(window-text); font-weight: bold; font-size: 16px;");
         arrow->setAlignment(Qt::AlignCenter);
         vbox->addWidget(arrow);
 
         // Only show distance if it's a positive value (greater than 0)
         if (distance > 0) {
-            QLabel *distLabel = new QLabel(QString::number(distance) + "m");
-            distLabel->setStyleSheet("font-size: 10px; color: palette(placeholder-text);");
+            QLabel *distLabel = new QLabel(QString::number(distance) + " miles");
+            distLabel->setStyleSheet("font-size: 12px; color: palette(placeholder-text);");
             distLabel->setAlignment(Qt::AlignCenter);
             vbox->addWidget(distLabel);
         } else {
@@ -372,17 +341,22 @@ QWidget* PlanPage::createStopWidget(QString name, int distance, bool showArrow) 
 }
 
 void PlanPage::renderTrip() {
+    // 1. Get the layout from the scroll area
     QHBoxLayout *layout = qobject_cast<QHBoxLayout*>(ui->scrollAreaWidgetContents->layout());
+    if (!layout) {
+        qDebug() << "[ERROR] Could not find layout for scrollAreaWidgetContents";
+        return;
+    }
 
-    // 1. Clear previous UI elements
+    // 2. Clear previous UI elements to prevent "ghosting" from old trips
     QLayoutItem *item;
     while ((item = layout->takeAt(0)) != nullptr) {
         if (item->widget()) delete item->widget();
         delete item;
     }
 
-    // 2. Fetch the trip sequence
-    // We order by visitOrder to ensure the tour is in the correct sequence
+    // 3. Fetch the trip sequence from the temporary trip table
+    // We order by visitOrder to ensure the tour displays in the correct path sequence
     QSqlQuery query("SELECT campusID, campusName, visitOrder FROM tripCampuses ORDER BY visitOrder ASC");
 
     while (query.next()) {
@@ -390,9 +364,9 @@ void PlanPage::renderTrip() {
         QString name = query.value("campusName").toString();
         int currentOrder = query.value("visitOrder").toInt();
 
-        int distance = 0;
+        int distanceToNext = 0;
 
-        // 3. Logic to find the nextID and Distance
+        // 4. Find the NEXT campus in the sequence to get the distance
         QSqlQuery nextQuery;
         nextQuery.prepare("SELECT campusID FROM tripCampuses WHERE visitOrder = :nextOrder");
         nextQuery.bindValue(":nextOrder", currentOrder + 1);
@@ -400,29 +374,31 @@ void PlanPage::renderTrip() {
         if (nextQuery.exec() && nextQuery.next()) {
             int nextID = nextQuery.value(0).toInt();
 
-            // Fetch distance using your existing table structure
-            // We check both directions (ID1->ID2 and ID2->ID1)
-            QSqlQuery distQuery;
-            distQuery.prepare("SELECT distance FROM campusDistances "
-                              "WHERE (campusID1 = :curr AND campusID2 = :next) "
-                              "OR (campusID1 = :next AND campusID2 = :curr)");
-            distQuery.bindValue(":curr", currentID);
-            distQuery.bindValue(":next", nextID);
+            // REFACTORED: Use the helper function from databaseHelper.h
+            // This handles the bi-directional SQL check (ID1->ID2 or ID2->ID1)
+            double distResult = getDistanceBetween(currentID, nextID);
 
-            if (distQuery.exec() && distQuery.next()) {
-                distance = distQuery.value(0).toInt();
+            // Check for the "Not Found" sentinel value (999999.0)
+            if (distResult < 999998.0) {
+                distanceToNext = static_cast<int>(distResult);
+            } else {
+                qDebug() << "[WARNING] No distance found between ID" << currentID << "and" << nextID;
             }
         }
 
-        // Add the campus stop. Every campus in this loop gets an arrow.
-        layout->addWidget(createStopWidget(name, distance, true));
+        // 5. Add the campus stop widget
+        // The 'true' flag ensures an arrow and distance label are drawn after this stop
+        layout->addWidget(createStopWidget(name, distanceToNext, true));
     }
 
-    // 4. Final Flag (No arrow follows this)
+    // 6. Add the final "Goal" flag
+    // We pass 'false' for showArrow because no path follows the final destination
     layout->addWidget(createStopWidget("🏁 Trip Finished", 0, false));
 
-    // Add stretch to keep everything left-aligned
+    // 7. Add stretch at the end to keep the trip sequence left-aligned
     layout->addStretch();
+
+    qDebug() << "[UI] Trip rendering complete.";
 }
 
 void PlanPage::updateSelectionCount() {

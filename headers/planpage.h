@@ -28,7 +28,6 @@ private:
     QSqlTableModel* tripModel = nullptr;       /**< Model for the current trip table */
     QSqlTableModel* tripSouvenirModel = nullptr;
     void setupResultsConnection();
-    QWidget* createCampusWidget(QString name, QString distance, bool isLast = false);
     // planonly page
     void renderTrip();
     QWidget* createStopWidget(QString name, int distance, bool showArrow);
