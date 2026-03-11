@@ -512,3 +512,135 @@ bool populateTripSouvenirs()
     qDebug() << "[DB] Trip souvenirs populated.";
     return true;
 }
+
+bool createTripInfoTable()
+{
+    QSqlQuery query;
+
+    QString sql =
+        "CREATE TABLE IF NOT EXISTS tripInfo ("
+        "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+        "campusName TEXT,"
+        "itemName TEXT,"
+        "numItem INTEGER,"
+        "itemPrice REAL,"
+        "totalPrice REAL"
+        ");";
+
+    if(!query.exec(sql))
+    {
+        qDebug() << "Error creating tripInfo table:" << query.lastError().text();
+        return false;
+    }
+
+    return true;
+}
+
+// helpers for trip info page
+bool addTripInfo(const QString& campusName,
+                 const QString& itemName,
+                 int numItem,
+                 double itemPrice,
+                 const int campusID)
+{
+    if (numItem <= 0 || itemPrice <= 0.0) {
+        qDebug() << "[WARN] Skipping insert: numItem or itemPrice is invalid:"
+                 << numItem << itemPrice;
+        return false;
+    }
+
+    QSqlQuery query;
+
+    // First, check if the row already exists
+    query.prepare("SELECT numItem FROM tripInfo WHERE campusID = :campusID AND itemName = :itemName");
+    query.bindValue(":campusID", campusID);
+    query.bindValue(":itemName", itemName);
+
+    if (!query.exec()) {
+        qDebug() << "[ERROR] addTripInfo SELECT failed:" << query.lastError().text();
+        return false;
+    }
+
+    if (query.next()) {
+        // Row exists — update it
+        int existingNumItem = query.value("numItem").toInt();
+        int newNumItem = existingNumItem + numItem;
+        double newTotalPrice = newNumItem * itemPrice;
+
+        QSqlQuery updateQuery;
+        updateQuery.prepare("UPDATE tripInfo "
+                            "SET numItem = :numItem, totalPrice = :totalPrice, itemPrice = :itemPrice "
+                            "WHERE campusID = :campusID AND itemName = :itemName");
+        updateQuery.bindValue(":numItem", newNumItem);
+        updateQuery.bindValue(":totalPrice", newTotalPrice);
+        updateQuery.bindValue(":itemPrice", itemPrice);
+        updateQuery.bindValue(":campusID", campusID);
+        updateQuery.bindValue(":itemName", itemName);
+
+        if (!updateQuery.exec()) {
+            qDebug() << "[ERROR] addTripInfo UPDATE failed:" << updateQuery.lastError().text();
+            return false;
+        }
+    } else {
+        // Row does not exist — insert new
+        double totalPrice = numItem * itemPrice;
+
+        QSqlQuery insertQuery;
+        insertQuery.prepare("INSERT INTO tripInfo "
+                            "(campusName, itemName, numItem, itemPrice, totalPrice, campusID) "
+                            "VALUES (:campusName, :itemName, :numItem, :itemPrice, :totalPrice, :campusID)");
+        insertQuery.bindValue(":campusName", campusName);
+        insertQuery.bindValue(":itemName", itemName);
+        insertQuery.bindValue(":numItem", numItem);
+        insertQuery.bindValue(":itemPrice", itemPrice);
+        insertQuery.bindValue(":totalPrice", totalPrice);
+        insertQuery.bindValue(":campusID", campusID);
+
+        if (!insertQuery.exec()) {
+            qDebug() << "[ERROR] addTripInfo INSERT failed:" << insertQuery.lastError().text();
+            return false;
+        }
+    }
+
+    return true;
+}
+
+bool clearTripInfoTable()
+{
+    QSqlQuery query;
+    if (!query.exec("DELETE FROM tripInfo")) {
+        qDebug() << "clearTripInfoTable error:" << query.lastError().text();
+        return false;
+    }
+    return true;
+}
+
+double getTripInfoTotalSpent()
+{
+    QSqlQuery query;
+    if (!query.exec("SELECT IFNULL(SUM(totalPrice), 0) FROM tripInfo")) {
+        qDebug() << "getTripInfoTotalSpent error:" << query.lastError().text();
+        return 0.0;
+    }
+
+    if (query.next()) {
+        return query.value(0).toDouble();
+    }
+
+    return 0.0;
+}
+
+int getTripInfoTotalItems()
+{
+    QSqlQuery query;
+    if (!query.exec("SELECT IFNULL(SUM(numItem), 0) FROM tripInfo")) {
+        qDebug() << "getTripInfoTotalItems error:" << query.lastError().text();
+        return 0;
+    }
+
+    if (query.next()) {
+        return query.value(0).toInt();
+    }
+
+    return 0;
+}

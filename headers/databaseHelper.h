@@ -96,7 +96,7 @@ QStringList uploadFileAppend(const QString &filePath);
 void resetAndReloadData(const QString &filePath);
 
 // TODO: add doxy
-bool addTripCampus(const int campusID, const QString &campusName, const int visitOrder);
+bool addTripCampus(const int campusID, const QString& campusName, const int visitOrder);
 // TODO: add doxy
 bool removeTripCampus(const int campusID);
 // TODO: add doxy
@@ -105,5 +105,19 @@ bool removeTripCampusByName(const QString &campusName);
 bool clearTripTable();
 
 bool populateTripSouvenirs();
+
+bool createTripInfoTable();
+
+bool addTripInfo(const QString& campusName,
+                 const QString& itemName,
+                 int numItem,
+                 double itemPrice,
+                 const int campusID);
+
+bool clearTripInfoTable();
+
+double getTripInfoTotalSpent();
+
+int getTripInfoTotalItems();
 
 #endif //COLLEGETOUR_DBMANAGERHELPER_H

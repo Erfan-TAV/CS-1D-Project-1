@@ -30,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent)
     // set starting tab to planning tab
     // TODO: change to 0 which is planner page, currently set to 1 for testing info page
     ui->tabWidget->setCurrentIndex(0);
+    createTripInfoTable();
 }
 
 MainWindow::~MainWindow()
@@ -99,6 +100,14 @@ void MainWindow::menuBarReset() const {
         ui->statusBar->showMessage("Database Reset Successful", 3000);
     } else {
         ui->statusBar->showMessage("Reset failed: Template file not found", 3000);
+    }
+
+    clearTripInfoTable();
+
+    // reset totaldistance label on infopage
+    QList<InfoPage*> infoPages = this->findChildren<InfoPage*>();
+    for (InfoPage* page : infoPages) {
+        page->resetUI();
     }
 }
 
