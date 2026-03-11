@@ -1,205 +1,173 @@
 /**
  * @file databaseHelper.h
- * @brief Utilities for managing the SQLite campus database.
+ * @brief Global utility functions for database CRUD operations and trip algorithms.
  * @author Erfan Tavassoli
  */
-#ifndef COLLEGETOUR_DBMANAGERHELPER_H
-#define COLLEGETOUR_DBMANAGERHELPER_H
 
+#ifndef DATABASEHELPER_H
+#define DATABASEHELPER_H
+
+#include <QString>
+#include <QStringList>
+#include <QList>
 #include "campusStructs.h"
 
-/**
- * @defgroup DB_Helpers Database Helper Functions
- * @brief  Standalone functions to interface with the SQLite tables/database.
- * @{
- */
-
-// --- Campus Helpers ---
+// --- Campus CRUD Helpers ---
 
 /**
- * @brief Adds a new campus to the database
- * @param name The name of the college/campus being added
- * @return true if inserted successfully, false otherwise
+ * @brief Adds a new campus to the system.
+ * @param name The name of the university.
+ * @return true if the insertion was successful.
  */
 bool addCampus(const QString& name);
+
 /**
- * @brief Deletes a campus from the database based on ID
- * @param campusID The unique identifier of the campus
- * @return true if deleted successfully, false otherwise
+ * @brief Removes a campus record from the database.
+ * @param campusID The unique ID of the campus to delete.
+ * @return true if the execution was successful.
+ * @note Without foreign key constraints, this may leave orphaned souvenirs or distances.
  */
-bool removeCampus(int campusID);
+bool removeCampus(const int campusID);
+
+/**
+ * @brief Retrieves the formal name of a campus.
+ * @param campusID The ID to look up.
+ * @return The name string, or an empty string if not found.
+ */
+QString getCampusName(const int campusID);
+
+/**
+ * @brief Fetches a complete data aggregate for a specific campus.
+ * @param campusID The ID of the campus.
+ * @return A Campus struct populated with name, souvenirs, and distances.
+ */
+Campus getFullCampus(const int campusID);
+
 
 // --- Souvenir Helpers ---
 
 /**
- * @brief Adds a souvenir to a specific campus's inventory
- * @param campusID ID of the campus providing the souvenir
- * @param name souvenir items name
- * @param price Cost of the souvenir
- * @return true if added successfully, false otherwise
+ * @brief Registers a new souvenir item for a specific campus.
+ * @param campusID The owner campus ID.
+ * @param name Name of the souvenir.
+ * @param price Retail price.
+ * @return true if successful.
  */
-bool addSouvenir(int campusID, const QString& name, double price);
-/**
- * @brief Updates the price of an existing souvenir
- * @param campusID ID of the campus
- * @param name Name of the souvenir to update
- * @param newPrice The updated cost
- * @return true if the price was updated, false otherwise
- */
-bool updateSouvenirPrice(int campusID, const QString& name, double newPrice);
-/**
- * @brief Removes a souvenir from a campus's inventory
- * @param campusID ID of the campus
- * @param name Name of the souvenir to remove
- * @return true if deleted successfully, false otherwise
- */
-bool removeSouvenir(int campusID, const QString& name);
-
-// --- Distance Helpers ---
+bool addSouvenir(const int campusID, const QString& name, const double price);
 
 /**
- * @brief Adds a distance record between two campuses
- * @param id1 Starting campus ID
- * @param id2 Destination campus ID
- * @param distance The distance between them
- * @return true if distance was recorded, false otherwise
+ * @brief Updates the pricing of an existing souvenir.
+ * @param campusID The owner campus ID.
+ * @param name The name of the item to update.
+ * @param newPrice The updated price.
+ * @return true if the update query executed successfully.
  */
-bool addDistance(int id1, int id2, int distance);
+bool updateSouvenirPrice(const int campusID, const QString& name, const double newPrice);
 
 /**
- * @brief Fetches the distance between two campuses from the database.
- * @param id1 First campus ID
- * @param id2 Second campus ID
+ * @brief Deletes a souvenir from a campus gift shop.
+ */
+bool removeSouvenir(const int campusID, const QString& name);
+
+
+// --- Distance & Graph Helpers ---
+
+/**
+ * @brief Adds a directed edge between two campuses.
+ * @param id1 Source campus.
+ * @param id2 Destination campus.
+ * @param distance Weight of the edge in miles.
+ */
+bool addDistance(const int id1, const int id2, const int distance);
+
+/**
+ * @brief Fetches the distance between two nodes in the graph.
+ * @details Checks both directions (A to B and B to A) to ensure pathing works.
  * @return The distance in miles, or 999999.0 if no connection exists.
  */
-double getDistanceBetween(const int id1, const int id2);
+double getDistanceBetween(int id1, int id2);
 
 /**
- * @brief Recursively calculates the most efficient trip using the Nearest Neighbor algorithm.
- * @param currentID The ID of the campus currently being visited.
- * @param unvisitedIDs A list of IDs for campuses that still need to be visited.
+ * @brief Simple greedy search for the closest neighboring campus.
+ * @param campusID The starting node.
+ * @return The ID of the nearest neighbor, or -1 if isolated.
+ */
+int closestCampus(const int campusID);
+
+
+// --- Algorithm Logic ---
+
+/**
+ * @brief Recursively calculates the most efficient route using a Nearest Neighbor approach.
+ * @details This function implements a greedy algorithm to visit all specified campuses. 
+ * It records each step of the trip into the 'tripCampuses' database table for UI display.
+ * @param currentID The ID of the campus currently being "visited".
+ * @param unvisitedIDs The list of campuses remaining in the itinerary.
  * @param totalDistance The cumulative distance traveled so far.
- * @param order The current sequence number of the stop (e.g., 1st, 2nd, 3rd).
- * @par Complexity: 
- * O(N^2) where N is the number of campuses. The function performs a linear search 
- * at each of the N recursive levels.
+ * @param order The sequence number of the current stop.
  */
 void calculateEfficientTrip(int currentID, QList<int> unvisitedIDs, double totalDistance, int order);
 
-/**
- * @brief Finds the nearest campus to a given location using a greedy search.
- * @param campusID The ID of the campus to start the search from.
- * @return The ID of the closest neighboring campus, or -1 if no connections exist.
- * @note Complexity: O(N) where N is the number of neighbors for the given campus.
- */
-int closestCampus(int campusID);
+
+
+
+// --- File Upload & Maintenance ---
 
 /**
- * @brief Retrieves the human-readable name of a campus
- * @param campusID The ID of the campus
- * @return QString containing the name associated with the campusID, or empty if not found
- */
-QString getCampusName(int campusID);
-/**
- * @brief Fetches all data (including souvenirs and distances) for a single campus
- * @param campusID The ID of the campus to fetch information
- * @return A Campus struct populated with campusID, name and qlist of souvenirs and distances
- */
-Campus getFullCampus(int campusID);
-
-// File Upload
-/**
- * @brief Parses an Excel file and appends new campus, souvenir, and distance data to the database.
- * @param filePath The absolute or relative path to the .xlsx file.
- * @return A QStringList containing the names of the campuses successfully added.
- * @par Complexity:
- * O(S * R) where S is the number of sheets and R is the number of rows per sheet. 
- * @warning This function loads the entire file into memory; large files may impact performance.
+ * @brief Parses an Excel file to append new data to the current database.
+ * @details Performs a complex mapping of Excel IDs to database auto-increment IDs 
+ * to ensure relational integrity across campuses, souvenirs, and distances.
+ * @param filePath Path to the .xlsx file.
+ * @return A list of names of the campuses successfully imported.
  */
 QStringList uploadFileAppend(const QString &filePath);
 
 /**
- * @brief Wipes the current database and reloads it entirely from an Excel file.
- * @param filePath The path to the master Excel data file.
- * @note This is used for "Reset to Default" functionality.
+ * @brief Wipes the current database and reloads it entirely from an Excel source.
+ * @details Uses a transaction to safely clear campusList, souvenirs, and campusDistances
+ * before performing batch inserts from the Excel sheets.
+ * @param filePath Path to the master .xlsx file.
  */
 void resetAndReloadData(const QString &filePath);
 
-/**
- * @brief Records a campus visit in the temporary trip itinerary table.
- * @param campusID ID of the campus visited.
- * @param campusName Name of the campus.
- * @param visitOrder The sequence number in the trip (1st, 2nd, etc.).
- * @return true if added to the itinerary, false otherwise.
- */
-bool addTripCampus(const int campusID, const QString& campusName, const int visitOrder);
+
+// --- Trip Management (Itinerary & Purchases) ---
 
 /**
- * @brief Removes a single campus from the itinerary by ID.
- * @param campusID The ID of the stop to remove.
- * @return true if removed successfully.
+ * @brief Logs a campus visit into the temporary trip itinerary table.
  */
-bool removeTripCampus(const int campusID);
+bool addTripCampus(const int campusID, const QString &campusName, const int visitOrder);
 
 /**
- * @brief Removes a single campus from the itinerary by Name.
- * @param campusName The name of the stop to remove.
- * @return true if removed successfully.
- */
-bool removeTripCampusByName(const QString &campusName);
-
-/**
- * @brief Clears all stops from the current trip itinerary.
- * @return true if table was successfully wiped.
+ * @brief Wipes the temporary itinerary table.
  */
 bool clearTripTable();
 
-// --- Trip Information & Analytics ---
-
 /**
- * @brief Populates the purchaseable souvenirs for all campuses currently in the trip itinerary.
- * @return true if information was synced successfully.
+ * @brief Populates the purchase list with all available souvenirs from the planned trip.
  */
 bool populateTripSouvenirs();
 
 /**
- * @brief Initializes the table used to track souvenir purchases during a trip.
- * @return true if table is ready for use.
+ * @brief Records a souvenir purchase during a trip.
+ * @details If the item already exists for that campus in the trip record, 
+ * it increments the quantity and updates the total price instead of creating a duplicate.
  */
-bool createTripInfoTable();
+bool addTripInfo(const QString& campusName, const QString& itemName, int numItem, double itemPrice, const int campusID);
 
 /**
- * @brief Records a souvenir purchase at a specific campus during the trip.
- * @param campusName Name of the campus where item was bought.
- * @param itemName Name of the souvenir.
- * @param numItem Quantity purchased.
- * @param itemPrice Price at the time of purchase.
- * @param campusID ID of the campus.
- * @return true if purchase was recorded.
- */
-bool addTripInfo(const QString& campusName,
-                 const QString& itemName,
-                 int numItem,
-                 double itemPrice,
-                 const int campusID);
-
-/**
- * @brief Wipes all recorded purchases for the current trip.
- */
-bool clearTripInfoTable();
-
-/**
- * @brief Calculates the total cost of all souvenirs purchased during the trip.
- * @return Total dollar amount spent.
+ * @brief Returns the total dollar amount spent across the entire trip.
  */
 double getTripInfoTotalSpent();
 
 /**
- * @brief Calculates the total number of items purchased across all campuses.
- * @return Total count of souvenirs bought.
+ * @brief Returns the total count of items purchased during the trip.
  */
 int getTripInfoTotalItems();
 
-/** @} */ // End of DB_Helpers group
+/**
+ * @brief Clears all purchase records for the current trip.
+ */
+bool clearTripInfoTable();
 
-#endif //COLLEGETOUR_DBMANAGERHELPER_H
+#endif // DATABASEHELPER_H
