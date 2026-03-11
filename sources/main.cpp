@@ -5,6 +5,8 @@
 #include <QDir>
 #include <QStandardPaths>
 #include <QDebug>
+#include "databaseHelper.h"
+
 
 #include "dbManager.h"
 
