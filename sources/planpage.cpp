@@ -1,16 +1,12 @@
 #include "planpage.h"
 #include "ui_planpage.h"
-#include "../headers/tripPlanner.h"
 #include <QSqlTableModel>
 #include <QSqlQueryModel>
-#include "adminpage.h"
-#include "ui_adminpage.h"
 #include <qsqlerror.h>
 #include <QSqlRecord>
 #include <QTimer>
 #include <QFileDialog>
 #include <QSortFilterProxyModel>
-#include <limits>
 #include <QSqlQuery>
 #include <QDebug>
 
@@ -20,16 +16,18 @@ PlanPage::PlanPage(QWidget *parent)
     : DatabasePage(parent)
     , ui(new Ui::PlanPage)
 {
-    qDebug() << "[PLANPAGE] Constructor started.";
     ui->setupUi(this);
+    qDebug() << "[PLANPAGE] Constructor started.";
 
     // INITIALIZE THESE FIRST
     campusModel = new QSqlQueryModel(this);
     proxyModel = new QSortFilterProxyModel(this);
 
     ui->tripPlannerStack->setCurrentIndex(0);
+    qDebug() << "start page set";
 
     setupDatabaseTable();
+    qDebug()<< "setupDatabaseTable finished";
     setupResultsConnection();
     qDebug() << "[PLANPAGE] Constructor finished.";
 }
@@ -48,51 +46,65 @@ void PlanPage::on_startTripButton_clicked() {
     QString currentCampusName = "";
 
     // 2. Add the Start Campus (The "Origin")
+    // FIX: We must extract the data from the record before assigning it to the variables
     if (ui->comboBox->currentIndex() != -1) {
         // We use the comboBoxModel directly to get the record
         QSqlRecord rec = comboBoxModel->record(ui->comboBox->currentIndex());
 
+        // Assigning the actual database values to our tracking variables
+        currentCampusID = rec.value("campusID").toInt();
+        currentCampusName = rec.value("campusName").toString();
+
         qDebug() << "[UI] Starting Campus selected:" << currentCampusName << "(ID:" << currentCampusID << ")";
+
+        // Add the origin stop as visitOrder 0
         addTripCampus(currentCampusID, currentCampusName, 0);
     } else {
         qDebug() << "[UI] WARNING: No starting campus selected.";
         return;
     }
 
-    // 2. Retrieve Selected Campuses
+    // 3. Retrieve Selected Campuses from the TableView
     QModelIndexList selectedRows = ui->tableViewSettings->selectionModel()->selectedRows();
     QList<int> unvisitedIDs;
 
     qDebug() << "[UI] Rows selected in list:" << selectedRows.size();
 
     for (const QModelIndex &proxyIndex : selectedRows) {
+        // Map the proxy (sorted/filtered) index back to the actual source model
         QModelIndex sourceIndex = proxyModel->mapToSource(proxyIndex);
         QSqlRecord record = campusModel->record(sourceIndex.row());
         int id = record.value("campusID").toInt();
 
+        // Only add to the unvisited list if it's not the starting campus
         if (id != currentCampusID) {
             unvisitedIDs.append(id);
         }
     }
 
-    // 3. Trigger the decoupled algorithm
+    // 4. Trigger the decoupled recursive algorithm
     qDebug() << "[ALGO] --- Starting RECURSIVE Trip Calculation ---";
 
-    // Start the recursion: 0.0 is initial distance, 1 is the first stop after origin
+    // Start the recursion:
+    // currentCampusID: the origin
+    // unvisitedIDs: the list of schools to hit
+    // 0.0: initial total distance
+    // 1: the visit order for the first stop after the origin
     calculateEfficientTrip(currentCampusID, unvisitedIDs, 0.0, 1);
 
-    // 4. Update UI state
+    // 5. Update UI state
     if (tripModel) {
         tripModel->select();
     }
 
+    // 6. Navigation Logic
     if (ui->planOnlyCheckBox->isChecked()) {
         qDebug() << "[UI] Navigating to Plan-Only view.";
-        ui->tripPlannerStack->setCurrentIndex(1);
-        renderTrip();
+        ui->tripPlannerStack->setCurrentIndex(1); // Index for the scrollable trip layout
+        renderTrip(); // Draw the widgets based on the newly calculated data
     } else {
         qDebug() << "[UI] Navigating to Full-Trip view.";
-        ui->tripPlannerStack->setCurrentIndex(2);
+        ui->tripPlannerStack->setCurrentIndex(2); // Index for the standard results page
     }
 }
 
@@ -100,71 +112,131 @@ void PlanPage::on_startTripButton_clicked() {
 // UI & DATABASE SETUP (Requirement 2 & 3)
 // ==========================================
 void PlanPage::setupDatabaseTable() {
-    QSqlDatabase db = QSqlDatabase::database();
+    qDebug() << "[DEBUG] Entering setupDatabaseTable";
 
+    QSqlDatabase db = QSqlDatabase::database();
     if (!db.isOpen()) {
-        qDebug() << "[DB] CRITICAL: Database is NOT open!";
+        qDebug() << "[DEBUG] Database not open - exiting setup";
         return;
     }
 
-    // 1. Universal Query
-    campusModel = new QSqlQueryModel(this);
-    QString universalQuery = "SELECT campusID, campusName FROM campusList";
-    campusModel->setQuery(universalQuery, db);
-    qDebug() << "[DB] Universal Campus Query executed. Row count:" << campusModel->rowCount();
+    if (!ui) return;
 
-    // 2. Setup Proxy Model
+    // 1. Initialize ALL models
+    if (!campusModel)   campusModel = new QSqlQueryModel(this);
+    if (!proxyModel)    proxyModel = new QSortFilterProxyModel(this);
+    if (!comboBoxModel) comboBoxModel = new QSqlTableModel(this, db);
+    if (!tripModel)     tripModel = new QSqlTableModel(this, db);
+
+    // 2. Setup Source Data
+    campusModel->setQuery("SELECT campusID, campusName FROM campusList", db);
+
+    // 3. Setup Proxy Model
     proxyModel->setSourceModel(campusModel);
-    proxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
+    // Explicitly tell the proxy to filter based on Column 1 (Campus Name)
     proxyModel->setFilterKeyColumn(1);
+    proxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
 
-    // 3. Apply to ListView (tableViewSettings)
-    ui->tableViewSettings->setModel(proxyModel);
-    ui->tableViewSettings->setModelColumn(1); // Show Names only
+    // 4. Attach to TableView
+    if (ui->tableViewSettings) {
+        ui->tableViewSettings->setModel(proxyModel);
+        ui->tableViewSettings->setModelColumn(1);
 
-    // Enable sort programmatically
-    proxyModel->sort(1, Qt::AscendingOrder);
-    qDebug() << "[UI] ListView model attached and sorted alphabetically.";
+        if (ui->tableViewSettings->selectionModel()) {
+            connect(ui->tableViewSettings->selectionModel(), &QItemSelectionModel::selectionChanged,
+                    this, &PlanPage::updateSelectionCount, Qt::UniqueConnection);
+        }
+    }
 
-    // 4. Setup ComboBox
-    comboBoxModel = new QSqlTableModel(this, db);
+    // 5. Setup ComboBox
     comboBoxModel->setTable("campusList");
     comboBoxModel->select();
-    ui->comboBox->setModel(comboBoxModel);
-    ui->comboBox->setModelColumn(1);
-    ui->comboBox->setPlaceholderText("--- Select a Campus ---");
-    ui->comboBox->setCurrentIndex(-1);
 
-    connect(ui->comboBox, &QComboBox::currentTextChanged, this, &PlanPage::updateFilteredTable);
+    if (ui->comboBox) {
+        ui->comboBox->blockSignals(true);
 
-    connect(ui->tableViewSettings->selectionModel(), &QItemSelectionModel::selectionChanged,
-            this, [this]() {
-        int count = ui->tableViewSettings->selectionModel()->selectedRows().count();
-        ui->numCampusRemaingAmount->setText(QString::number(count));
-        qDebug() << "[UI] Selection changed. Current count:" << count;
-    });
+        ui->comboBox->setModel(comboBoxModel);
+        ui->comboBox->setModelColumn(1);
 
-    tripModel = new QSqlTableModel(this, db);
+        // This is the "Placeholder" fix:
+        // We set index to -1 AFTER the model is attached and data is loaded
+        ui->comboBox->setCurrentIndex(-1);
+        ui->comboBox->setPlaceholderText("Select Starting Campus...");
+
+        ui->comboBox->blockSignals(false);
+
+        // Disconnect old connections to prevent double-firing, then reconnect
+        disconnect(ui->comboBox, &QComboBox::currentTextChanged, this, &PlanPage::updateFilteredTable);
+        connect(ui->comboBox, &QComboBox::currentTextChanged,
+                this, &PlanPage::updateFilteredTable, Qt::UniqueConnection);
+    }
+
     tripModel->setTable("tripCampuses");
     tripModel->select();
+
+    qDebug() << "[DEBUG] Exiting setupDatabaseTable normally.";
 }
 
 void PlanPage::refreshUI() {
     qDebug() << "[UI] Refreshing UI...";
-    ui->comboBox->blockSignals(true);
-    proxyModel->setFilterWildcard("");
-    comboBoxModel->setFilter("");
-    setupDatabaseTable();
-    comboBoxModel->select();
-    ui->comboBox->setCurrentIndex(-1);
-    ui->comboBox->blockSignals(false);
+
+    if (ui && ui->comboBox) {
+        ui->comboBox->blockSignals(true);
+
+        // 1. Clear the Proxy Filter first
+        if (proxyModel) {
+            proxyModel->setFilterFixedString("");
+        }
+
+        // 2. Refresh Database Queries
+        if (campusModel) {
+            campusModel->setQuery("SELECT campusID, campusName FROM campusList");
+        }
+
+        if (comboBoxModel) {
+            comboBoxModel->select();
+        }
+
+        if (tripModel) {
+            tripModel->select();
+        }
+
+        // 3. Reset UI state
+        ui->comboBox->setCurrentIndex(-1);
+        ui->comboBox->blockSignals(false);
+
+        qDebug() << "[UI] Refresh complete. ComboBox reset and filters cleared.";
+    }
 }
 
 void PlanPage::updateFilteredTable(const QString &selectedCampus) {
     if (!proxyModel) return;
-    qDebug() << "[UI] Start Campus changed. Filtering out:" << selectedCampus;
-    QString filterRegex = QString("^(?!%1$).*").arg(QRegularExpression::escape(selectedCampus));
-    proxyModel->setFilterRegularExpression(QRegularExpression(filterRegex));
+
+    if (selectedCampus.isEmpty()) {
+        qDebug() << "[UI] Filter cleared.";
+        proxyModel->setFilterFixedString("");
+        return;
+    }
+
+    qDebug() << "[UI] Filtering out selected campus:" << selectedCampus;
+
+    // Ensure the proxy is looking at the correct column (Column 1 = Campus Name)
+    proxyModel->setFilterKeyColumn(1);
+
+    // Regex Explanation:
+    // ^ = Start of string
+    // (?! ... $) = Negative lookahead: "Do not match if the string following is exactly this"
+    // .* = Match everything else
+    // \\Q and \\E = Treat the campus name as literal text (escapes special chars)
+    QString pattern = QString("^(?!\\Q%1\\E$).*").arg(selectedCampus);
+
+    QRegularExpression re(pattern);
+    proxyModel->setFilterRegularExpression(re);
+
+    // Force the view to update immediately
+    if (ui->tableViewSettings) {
+        ui->tableViewSettings->viewport()->update();
+    }
 }
 
 void PlanPage::setupResultsConnection() {
@@ -351,4 +423,12 @@ void PlanPage::renderTrip() {
 
     // Add stretch to keep everything left-aligned
     layout->addStretch();
+}
+
+void PlanPage::updateSelectionCount() {
+    if (!ui->tableViewSettings->selectionModel()) return;
+
+    int count = ui->tableViewSettings->selectionModel()->selectedRows().count();
+    ui->numCampusRemaingAmount->setText(QString::number(count));
+    qDebug() << "[UI] Selection changed. Current count:" << count;
 }

@@ -23,10 +23,10 @@ public:
 private:
     Ui::PlanPage *ui;
     void setupDatabaseTable();
-    QSqlQueryModel* campusModel;     /**< Model for the campus selection list on settings page. */
-    QSqlTableModel* comboBoxModel;   /**< Model for the combobox on settings page. */
-    QSqlTableModel* tripModel;       /**< Model for the current trip table */
-    QSqlTableModel* tripSouvenirModel;
+    QSqlQueryModel* campusModel = nullptr;     /**< Model for the campus selection list on settings page. */
+    QSqlTableModel* comboBoxModel = nullptr;   /**< Model for the combobox on settings page. */
+    QSqlTableModel* tripModel = nullptr;       /**< Model for the current trip table */
+    QSqlTableModel* tripSouvenirModel = nullptr;
     void setupResultsConnection();
     QWidget* createCampusWidget(QString name, QString distance, bool isLast = false);
     // planonly page
@@ -41,6 +41,7 @@ private slots:
     void on_tripPlanStopNextButton_clicked();
     void updateFilteredTable(const QString &selectedCampus);
     void updateSouvenirFilter(int index);
+    void updateSelectionCount();
 
     void refreshUI() override;
 
