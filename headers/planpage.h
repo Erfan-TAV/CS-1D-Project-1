@@ -1,7 +1,7 @@
 /**
  * @file planpage.h
  * @brief Header file for the trip planning and execution interface.
- * @author Erfan Tavassoli
+ * @author Shahob Shahmirzadi
  */
 
 #ifndef PLANPAGE_H
