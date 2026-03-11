@@ -39,6 +39,7 @@ void PlanPage::on_startTripButton_clicked() {
     // 1. Clear the table before starting a new calculation
     qDebug() << "[UI] Start Trip Button clicked.";
     clearTripTable();
+    clearTripInfoTable();
 
     int currentCampusID = -1;
     QString currentCampusName = "";
@@ -302,12 +303,14 @@ void PlanPage::on_resultPlanAnotherButton_clicked()
 {
     qDebug() << "[UI] Plan Another clicked.";
     clearTripTable();
+    clearTripInfoTable();
     ui->tripPlannerStack->setCurrentIndex(0);
 }
 void PlanPage::on_planOnlyPlanAnotherButton_clicked()
 {
     qDebug() << "[UI] Plan Another clicked.";
     clearTripTable();
+    clearTripInfoTable();
     ui->tripPlannerStack->setCurrentIndex(0);
 }
 void PlanPage::on_tripPlanStopNextButton_clicked()
