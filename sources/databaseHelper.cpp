@@ -145,47 +145,48 @@ Campus getFullCampus(const int campusID) {
     return campus;
 }
 
-// TODO: update logic to work with no repeated campusID in the first colum. needs the logic to find either id1 or id2 and then the other id is the other campus
-int closestCampus(const int ID1) {
-    QSqlQuery query;
-    int minDistance = INT_MAX;
-    int nearestID = -1;
+int closestCampus(const int campusID) {
+  QSqlQuery query;
+  int minDistance = INT_MAX;
+  int nearestID = -1;
 
-    // 1. Prepare the string first
-    query.prepare("SELECT campusID2, distance FROM campusDistances WHERE campusID1 = :id");
+         // The SQL logic:
+         // 1. Check if our ID is in column 1 OR column 2.
+         // 2. Use CASE to return the "other" ID as 'neighborID'.
+  query.prepare("SELECT "
+                "CASE WHEN campusID1 = :id THEN campusID2 ELSE campusID1 END AS neighborID, "
+                "distance "
+                "FROM campusDistances "
+                "WHERE campusID1 = :id OR campusID2 = :id");
 
-    // 2. Bind the actual value to the placeholder
-    query.bindValue(":id", ID1);
+  query.bindValue(":id", campusID);
 
-    // 3. Call exec() with NO arguments
-    if (!query.exec()) {
-        qDebug() << "SQL ERROR:" << query.lastError().text();
-        return -1;
+  if (!query.exec()) {
+    qDebug() << "SQL ERROR:" << query.lastError().text();
+    return -1;
+  }
+
+  while (query.next()) {
+    int neighborID = query.value(0).toInt();
+    int currentDist = query.value(1).toInt();
+
+           // Standard greedy check for the minimum distance
+    if (currentDist < minDistance) {
+      minDistance = currentDist;
+      nearestID = neighborID;
     }
+  }
 
-    int rowCount = 0;
-    while (query.next()) {
-        rowCount++;
-        int currentID2 = query.value(0).toInt();
-        int currentDist = query.value(1).toInt();
+  if (nearestID == -1) {
+    qDebug() << "No connections found for Campus ID:" << campusID;
+  }
 
-        if (currentDist < minDistance) {
-            minDistance = currentDist;
-            nearestID = currentID2;
-        }
-    }
-
-    if (rowCount == 0) {
-        qDebug() << "Zero rows found for ID1 =" << ID1;
-    }
-
-    return nearestID;
+  return nearestID;
 }
 
 // --- File Upload Helpers ---
 
 // TODO: notify if the campus already exists
-// TODO: bring up a popup for adding distances to existing campuses
 QStringList uploadFileAppend(const QString &filePath) {
     QXlsx::Document xlsx(filePath);
     if (!xlsx.load()) {
