@@ -85,6 +85,8 @@ QString getCampusName(int campusID);
  */
 Campus getFullCampus(int campusID);
 
+double getDistanceBetween(int id1, int id2);
+
 // File Upload
 // TODO: add doxy
 QStringList uploadFileAppend(const QString &filePath);

@@ -77,6 +77,22 @@ bool addDistance(const int id1, const int id2, const int distance) {
     return query.exec();
 }
 
+// Calculates the direct distance between two specific campuses
+double getDistanceBetween(int id1, int id2) {
+    QSqlQuery query;
+    query.prepare("SELECT distance FROM campusDistances WHERE "
+                  "(campusID1 = :id1 AND campusID2 = :id2) OR "
+                  "(campusID1 = :id2 AND campusID2 = :id1)");
+    query.bindValue(":id1", id1);
+    query.bindValue(":id2", id2);
+
+    if (query.exec() && query.next()) {
+        return query.value(0).toDouble();
+    }
+    return 999999.0; // Return an artificially high number if no direct connection exists
+}
+
+
 QString getCampusName(const int campusID) {
     QSqlQuery query;
 
