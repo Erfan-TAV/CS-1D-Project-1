@@ -1,7 +1,7 @@
 /**
  * @file databaseHelper.h
  * @brief Global utility functions for database CRUD operations and trip algorithms.
- * @author Erfan Tavassoli
+ * @author Erfan Tavassoli and Shahob Shahmirzadi
  */
 
 #ifndef DATABASEHELPER_H
