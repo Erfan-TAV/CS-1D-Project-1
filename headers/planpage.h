@@ -53,7 +53,7 @@ private slots:
     void refreshUI() override;
 
 signals:
-
+    void distanceCalculated(const int distance);
 };
 
 #endif // PLANPAGE_H

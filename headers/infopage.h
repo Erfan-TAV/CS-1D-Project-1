@@ -2,6 +2,8 @@
 #define INFOPAGE_H
 
 #include "databasePage.h"
+#include "planpage.h"
+#include <QStandardItemModel>
 #include "tripPlanner.h"
 
 namespace Ui {
@@ -16,9 +18,12 @@ public:
     explicit InfoPage(QWidget *parent = nullptr);
     ~InfoPage();
     void displayTripResults(const TripResult &result);
+    void calculateTotalDistance();
+    void resetUI();
 
 private:
     Ui::InfoPage *ui;
+    QStandardItemModel* model;
 
 private slots:
     void refreshUI() override;
