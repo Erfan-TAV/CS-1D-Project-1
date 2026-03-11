@@ -8,7 +8,6 @@
 #include <QRegularExpression>
 #include "databasePage.h"
 
-
 namespace Ui {
     class PlanPage;
 }
@@ -29,12 +28,16 @@ private:
     QSqlTableModel* tripModel;       /**< Model for the current trip table */
     QSqlTableModel* tripSouvenirModel;
     void setupResultsConnection();
+    QWidget* createCampusWidget(QString name, QString distance, bool isLast = false);
+    // planonly page
+    void renderTrip();
+    QWidget* createStopWidget(QString name, int distance, bool showArrow);
     QSortFilterProxyModel* proxyModel;
 
 private slots:
     void on_startTripButton_clicked();
     void on_resultPlanAnotherButton_clicked();
-    void on_planAnotherButton_1_clicked();
+    void on_planOnlyPlanAnotherButton_clicked();
     void on_tripPlanStopNextButton_clicked();
     void updateFilteredTable(const QString &selectedCampus);
     void updateSouvenirFilter(int index);
