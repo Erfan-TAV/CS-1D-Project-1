@@ -535,27 +535,71 @@ bool createTripInfoTable()
 
     return true;
 }
+
+// helpers for trip info page
 bool addTripInfo(const QString& campusName,
                  const QString& itemName,
                  int numItem,
-                 double itemPrice)
+                 double itemPrice,
+                 const int campusID)
 {
+    if (numItem <= 0 || itemPrice <= 0.0) {
+        qDebug() << "[WARN] Skipping insert: numItem or itemPrice is invalid:"
+                 << numItem << itemPrice;
+        return false;
+    }
+
     QSqlQuery query;
-    double totalPrice = numItem * itemPrice;
 
-    query.prepare("INSERT INTO tripInfo "
-                  "(campusName, itemName, numItem, itemPrice, totalPrice) "
-                  "VALUES (:campusName, :itemName, :numItem, :itemPrice, :totalPrice)");
-
-    query.bindValue(":campusName", campusName);
+    // First, check if the row already exists
+    query.prepare("SELECT numItem FROM tripInfo WHERE campusID = :campusID AND itemName = :itemName");
+    query.bindValue(":campusID", campusID);
     query.bindValue(":itemName", itemName);
-    query.bindValue(":numItem", numItem);
-    query.bindValue(":itemPrice", itemPrice);
-    query.bindValue(":totalPrice", totalPrice);
 
     if (!query.exec()) {
-        qDebug() << "addTripInfo error:" << query.lastError().text();
+        qDebug() << "[ERROR] addTripInfo SELECT failed:" << query.lastError().text();
         return false;
+    }
+
+    if (query.next()) {
+        // Row exists — update it
+        int existingNumItem = query.value("numItem").toInt();
+        int newNumItem = existingNumItem + numItem;
+        double newTotalPrice = newNumItem * itemPrice;
+
+        QSqlQuery updateQuery;
+        updateQuery.prepare("UPDATE tripInfo "
+                            "SET numItem = :numItem, totalPrice = :totalPrice, itemPrice = :itemPrice "
+                            "WHERE campusID = :campusID AND itemName = :itemName");
+        updateQuery.bindValue(":numItem", newNumItem);
+        updateQuery.bindValue(":totalPrice", newTotalPrice);
+        updateQuery.bindValue(":itemPrice", itemPrice);
+        updateQuery.bindValue(":campusID", campusID);
+        updateQuery.bindValue(":itemName", itemName);
+
+        if (!updateQuery.exec()) {
+            qDebug() << "[ERROR] addTripInfo UPDATE failed:" << updateQuery.lastError().text();
+            return false;
+        }
+    } else {
+        // Row does not exist — insert new
+        double totalPrice = numItem * itemPrice;
+
+        QSqlQuery insertQuery;
+        insertQuery.prepare("INSERT INTO tripInfo "
+                            "(campusName, itemName, numItem, itemPrice, totalPrice, campusID) "
+                            "VALUES (:campusName, :itemName, :numItem, :itemPrice, :totalPrice, :campusID)");
+        insertQuery.bindValue(":campusName", campusName);
+        insertQuery.bindValue(":itemName", itemName);
+        insertQuery.bindValue(":numItem", numItem);
+        insertQuery.bindValue(":itemPrice", itemPrice);
+        insertQuery.bindValue(":totalPrice", totalPrice);
+        insertQuery.bindValue(":campusID", campusID);
+
+        if (!insertQuery.exec()) {
+            qDebug() << "[ERROR] addTripInfo INSERT failed:" << insertQuery.lastError().text();
+            return false;
+        }
     }
 
     return true;

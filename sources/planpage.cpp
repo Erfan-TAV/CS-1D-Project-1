@@ -39,7 +39,7 @@ void PlanPage::on_startTripButton_clicked() {
     // 1. Clear the table before starting a new calculation
     qDebug() << "[UI] Start Trip Button clicked.";
     clearTripTable();
-    clearTripInfoTable();
+    // clearTripInfoTable();
 
     int currentCampusID = -1;
     QString currentCampusName = "";
@@ -302,15 +302,51 @@ void PlanPage::updateSouvenirFilter(int index)
 void PlanPage::on_resultPlanAnotherButton_clicked()
 {
     qDebug() << "[UI] Plan Another clicked.";
+
+    // Add all purchased souvenirs to tripInfo first
+    QSqlQuery query;
+    query.prepare(R"(
+        SELECT t.campusID, c.campusName, t.souvenirName, t.price, t.quantity
+        FROM tripSouvenirPurchases t
+        JOIN campusList c ON t.campusID = c.campusID
+        WHERE t.quantity > 0
+    )");
+
+    if (query.exec()) {
+        while (query.next()) {
+            int campusID = query.value("campusID").toInt();
+            QString campusName = query.value("campusName").toString();
+            QString itemName = query.value("souvenirName").toString();
+
+            // Use the actual column name 'price' here
+            QVariant priceVar = query.value("price");
+            double price = priceVar.isNull() ? 0.0 : priceVar.toDouble();
+
+            int quantity = query.value("quantity").toInt();
+
+            if (price <= 0.0) {
+                qDebug() << "[WARN] Price for" << itemName << "is zero or missing!";
+            }
+
+            // Now pass it to addTripInfo which expects itemPrice
+            if (!addTripInfo(campusName, itemName, quantity, price, campusID)) {
+                qDebug() << "[ERROR] Failed to add tripInfo for" << itemName;
+            }
+        }
+        qDebug() << "[DB] All purchased souvenirs added to tripInfo.";
+    } else {
+        qDebug() << "[ERROR] Failed to query tripSouvenirPurchases:" << query.lastError().text();
+    }
+
     clearTripTable();
-    clearTripInfoTable();
     ui->tripPlannerStack->setCurrentIndex(0);
 }
+
 void PlanPage::on_planOnlyPlanAnotherButton_clicked()
 {
     qDebug() << "[UI] Plan Another clicked.";
     clearTripTable();
-    clearTripInfoTable();
+    // clearTripInfoTable();
     ui->tripPlannerStack->setCurrentIndex(0);
 }
 void PlanPage::on_tripPlanStopNextButton_clicked()
@@ -542,6 +578,16 @@ void PlanPage::updateTotalDistance()
     }
 
     ui->resultTotalDistanceAmt->setText(QString::number(totalDistance) + " miles");
+    // Prepare an INSERT statement
+    query.prepare("INSERT INTO tripInfoDistances (tripDistance) VALUES (:distance)");
+    query.bindValue(":distance", totalDistance);
+
+    if (!query.exec()) {
+        qDebug() << "[DB ERROR] Failed to insert tripDistance:" << query.lastError().text();
+        return;
+    }
+
+    qDebug() << "[DB] tripDistance inserted:" << totalDistance;
 }
 
 void PlanPage::updateCampusSpent(int campusID)

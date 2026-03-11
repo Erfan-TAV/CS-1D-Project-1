@@ -101,6 +101,14 @@ void MainWindow::menuBarReset() const {
     } else {
         ui->statusBar->showMessage("Reset failed: Template file not found", 3000);
     }
+
+    clearTripInfoTable();
+
+    // reset totaldistance label on infopage
+    QList<InfoPage*> infoPages = this->findChildren<InfoPage*>();
+    for (InfoPage* page : infoPages) {
+        page->resetUI();
+    }
 }
 
 // mainwindow.cpp
