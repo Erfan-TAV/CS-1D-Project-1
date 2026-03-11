@@ -90,6 +90,15 @@ void PlanPage::on_startTripButton_clicked() {
     // 1: the visit order for the first stop after the origin
     calculateEfficientTrip(currentCampusID, unvisitedIDs, 0.0, 1);
 
+    populateTripSouvenirs();
+    setupTripStopModel();
+
+    currentTripOrder = 0;
+    int campusID = getCampusIDByOrder(currentTripOrder);
+
+    showCurrentCampusSouvenirs(campusID);
+    updateStopLabels();
+
     // 5. Update UI state
     if (tripModel) {
         tripModel->select();
@@ -240,19 +249,32 @@ void PlanPage::setupResultsConnection() {
     QSqlDatabase db = QSqlDatabase::database();
     qDebug() << "[UI] Setting up results page connections.";
 
-    ui->resultCampusSouvenirPurchases->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->resultCampusSouvenirPurchases->horizontalHeader()
+        ->setSectionResizeMode(QHeaderView::Stretch);
 
     tripSouvenirModel = new QSqlTableModel(this, db);
     tripSouvenirModel->setTable("tripSouvenirPurchases");
+    tripSouvenirModel->setFilter("quantity > 0");
     tripSouvenirModel->select();
 
     ui->resultCampusSouvenirPurchases->setModel(tripSouvenirModel);
 
+    ui->resultCampusSouvenirPurchases->hideColumn(0);
+    ui->resultCampusSouvenirPurchases->hideColumn(1);
+    ui->resultCampusSouvenirPurchases->verticalHeader()->setVisible(false);
+
+    // Combo box setup
     ui->resultCampusCombo->setModel(tripModel);
     ui->resultCampusCombo->setModelColumn(3);
 
     connect(ui->resultCampusCombo, QOverload<int>::of(&QComboBox::currentIndexChanged),
             this, &PlanPage::updateSouvenirFilter);
+
+    // 🔹 Force first campus selection
+    if (tripModel->rowCount() > 0) {
+        ui->resultCampusCombo->setCurrentIndex(0);
+        updateSouvenirFilter(0);
+    }
 }
 
 void PlanPage::updateSouvenirFilter(int index) {
@@ -261,9 +283,12 @@ void PlanPage::updateSouvenirFilter(int index) {
     QSqlRecord record = tripModel->record(index);
     int selectedID = record.value("campusID").toInt();
 
-    qDebug() << "[UI] Viewing souvenirs for ID:" << selectedID;
-    tripSouvenirModel->setFilter(QString("campusID = %1").arg(selectedID));
+    tripSouvenirModel->setFilter(
+        QString("campusID = %1 AND quantity > 0").arg(selectedID)
+    );
+
     tripSouvenirModel->select();
+    ui->resultCampusSouvenirPurchases->viewport()->update();
 }
 
 void PlanPage::on_resultPlanAnotherButton_clicked()
@@ -280,7 +305,18 @@ void PlanPage::on_planOnlyPlanAnotherButton_clicked()
 }
 void PlanPage::on_tripPlanStopNextButton_clicked()
 {
-    ui->tripPlannerStack->setCurrentIndex(3);
+    currentTripOrder++;
+
+    int campusID = getCampusIDByOrder(currentTripOrder);
+
+    if (campusID == -1) {
+        ui->tripPlannerStack->setCurrentIndex(3);
+        updateSouvenirFilter(ui->resultCampusCombo->currentIndex());
+        return;
+    }
+
+    showCurrentCampusSouvenirs(campusID);
+    updateStopLabels();   // <-- AFTER order change
 }
 
 // This function creates one "Campus -> Distance" block
@@ -407,4 +443,74 @@ void PlanPage::updateSelectionCount() {
     int count = ui->tableViewSettings->selectionModel()->selectedRows().count();
     ui->numCampusRemaingAmount->setText(QString::number(count));
     qDebug() << "[UI] Selection changed. Current count:" << count;
+}
+
+void PlanPage::setupTripStopModel()
+{
+    QSqlDatabase db = QSqlDatabase::database();
+
+    if (!tripStopSouvenirModel)
+        tripStopSouvenirModel = new QSqlTableModel(this, db);
+
+    tripStopSouvenirModel->setTable("tripSouvenirPurchases");
+    tripStopSouvenirModel->setEditStrategy(QSqlTableModel::OnFieldChange);
+
+    ui->stopSouvenirTableView->setModel(tripStopSouvenirModel);
+
+    ui->stopSouvenirTableView->verticalHeader()->setVisible(false); // hide row numbers
+    ui->stopSouvenirTableView->hideColumn(0);
+    ui->stopSouvenirTableView->hideColumn(1);
+
+    ui->stopSouvenirTableView->horizontalHeader()
+        ->setSectionResizeMode(QHeaderView::Stretch);
+
+    ui->stopSouvenirTableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+    tripStopSouvenirModel->select();
+}
+
+void PlanPage::showCurrentCampusSouvenirs(int campusID)
+{
+    if (!tripStopSouvenirModel) return;
+
+    QString filter = QString("campusID = %1").arg(campusID);
+    tripStopSouvenirModel->setFilter(filter);
+    tripStopSouvenirModel->select();
+}
+
+int PlanPage::getCampusIDByOrder(int order)
+{
+    QSqlQuery query;
+    query.prepare("SELECT campusID FROM tripCampuses WHERE visitOrder = :order");
+    query.bindValue(":order", order);
+
+    if (query.exec() && query.next())
+        return query.value(0).toInt();
+
+    return -1;
+}
+
+void PlanPage::updateStopLabels()
+{
+    int currentID = getCampusIDByOrder(currentTripOrder);
+    int nextID = getCampusIDByOrder(currentTripOrder + 1);
+
+    ui->stopCurrentCampusLabel->setText(getCampusName(currentID));
+
+    if (nextID != -1) {
+        ui->stopNextCampusLabel->setText(getCampusName(nextID));
+        ui->stopNextCampusDIstanceLabel->setText(
+            QString::number(getDistanceBetween(currentID, nextID)) + " miles"
+        );
+
+        // Normal case
+        ui->tripPlanStopNextButton->setText("Next Campus");
+    }
+    else {
+        ui->stopNextCampusLabel->setText("Trip Complete");
+        ui->stopNextCampusDIstanceLabel->setText("");
+
+        // Last stop
+        ui->tripPlanStopNextButton->setText("Finish Trip");
+    }
 }

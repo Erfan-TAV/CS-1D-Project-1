@@ -256,8 +256,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>1092</width>
-              <height>157</height>
+              <width>794</width>
+              <height>146</height>
              </rect>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -305,7 +305,7 @@
            <item alignment="Qt::AlignmentFlag::AlignLeft">
             <widget class="QLabel" name="stopTravelArrowLabel">
              <property name="text">
-              <string>------&gt;</string>
+              <string>───▶</string>
              </property>
             </widget>
            </item>
