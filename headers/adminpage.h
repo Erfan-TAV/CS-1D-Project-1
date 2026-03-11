@@ -1,15 +1,15 @@
 /**
-* @file adminpage.h
- * @brief Handles logic for the adminpage.ui such as login and campus management
+ * @file adminpage.h
+ * @brief Handles logic for the adminpage.ui such as login and campus management.
  * @author Erfan Tavassoli
  */
+
 #ifndef COLLEGETOUR_ADMINPAGE_H
 #define COLLEGETOUR_ADMINPAGE_H
 
 #include <QSqlTableModel>
 #include "ui_adminpage.h"
 #include "databasePage.h"
-
 
 QT_BEGIN_NAMESPACE
 
@@ -22,11 +22,11 @@ QT_END_NAMESPACE
 /**
  * @class AdminPage
  * @brief Provides an administrative interface to manage campuses, souvenirs, and distances.
- * * This class inherits from DatabasePage and handles the secure login process,
+ * @details This class inherits from DatabasePage and handles the secure login process,
  * as well as CRUD (Create, Read, Update, Delete) operations on the database
- * using QSqlTableModel.
+ * using QSqlTableModel. It acts as the primary gatekeeper for modifying project data.
  */
-class AdminPage : public DatabasePage{
+class AdminPage : public DatabasePage {
     Q_OBJECT
 
 public:
@@ -35,6 +35,7 @@ public:
      * @param parent Pointer to the parent widget.
      */
     explicit AdminPage(QWidget* parent = nullptr);
+
     /**
      * @brief Destructor for AdminPage.
      */
@@ -74,39 +75,42 @@ private:
     /**
      * @brief Prompts the user to manually input distances for newly added campuses.
      * @details Triggered after an Excel import if the file lacks specific distance mappings.
+     * This creates a dynamic interface to ensure the graph remains connected.
      * @param newCampusNames List of campuses that were just added to the system.
      * @return The number of distance records successfully created by the user.
      */
     int promptForDistances(const QStringList &newCampusNames);
 
     /**
-     * @brief Initializes the SQL models and attaches them to the UI views along with the CRUD interactions
+     * @brief Initializes the SQL models and attaches them to the UI views.
+     * @details Sets the EditStrategy for the models and configures the QListView 
+     * and QTableView to allow for live database editing.
      */
     void setupDatabaseTable();
 
     /**
      * @brief Configures the initial state of the login screen.
-     * @details Sets up validators for input fields and hides management tabs until login is successful.
+     * @details Sets up validators for input fields, links the Enter key to the login 
+     * logic, and ensures the management tabs are hidden until authentication.
      */
     void setupLoginPage();
 
     /**
-     * @brief Static helper to check login credentials.
+     * @brief Static helper to check login credentials against the database.
      * @param username The entered administrative username.
      * @param password The entered administrative password.
-     * @return true if credentials match the admin records, false otherwise.
+     * @return true if credentials match the admin records (hashed), false otherwise.
      * @note This is kept static to ensure it doesn't rely on UI state for validation.
      */
     static bool verifyUserCredentials(const QString &username, const QString &password);
 
 signals:
     /**
-     * @brief Emitted to request a status message update in the main window.
+     * @brief Emitted to request a status message update in the main window's status bar.
      * @param message The text to display.
      * @param timeout Duration in milliseconds before the message clears.
      */
     void notifyStatus(const QString &message, int timeout = 2500);
 };
 
-
-#endif //COLLEGETOUR_ADMINPAGE_H
+#endif // COLLEGETOUR_ADMINPAGE_H
