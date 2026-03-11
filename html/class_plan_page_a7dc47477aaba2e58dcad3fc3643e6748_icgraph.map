@@ -1,0 +1,10 @@
+<map id="PlanPage::updateSouvenirFilter" name="PlanPage::updateSouvenirFilter">
+<area shape="rect" id="Node000001" title="Filters the souvenir list to show only items for the selected campus." alt="" coords="471,35,646,75"/>
+<area shape="rect" id="Node000002" href="$class_plan_page.html#aa0511c865d24a2a78dbab899aa874034" title="Initiates the recursive trip algorithm based on user selections." alt="" coords="213,5,405,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="453,43,406,40,406,34,458,43"/>
+<area shape="rect" id="Node000003" href="$class_plan_page.html#a9e81d1296b8fbfd76f2f7e3d3439cfc8" title="Configures the final results page UI and purchase models." alt="" coords="195,70,423,96"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="458,66,424,73,423,67,453,67"/>
+<area shape="rect" id="Node000004" href="$class_plan_page.html#a608bd53cd9bb8fb5b7d34dfedf81c5fe" title="Constructor for PlanPage." alt="" coords="5,70,147,96"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="176,83,147,86,147,80,182,83"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="115,56,103,51,76,49,51,51,38,56,35,61,42,69,37,70,30,62,34,52,50,46,76,44,104,46,120,55"/>
+</map>

@@ -1,0 +1,23 @@
+<map id="sources/dbManager.cpp" name="sources/dbManager.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="435,5,594,31"/>
+<area shape="rect" id="Node000002" href="$db_manager_8h.html" title="Core database controller for managing the SQLite connection and lifecycle." alt="" coords="219,79,314,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="470,32,324,77,323,72,475,31"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="338,79,456,105"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="497,31,431,73,429,68,492,32"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="480,79,549,105"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="516,29,517,65,512,62,513,33"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="573,79,651,105"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="532,29,586,70,581,69,530,34"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="675,79,764,105"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="550,29,673,73,668,74,549,34"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,153,112,178"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="232,108,109,150,107,145,230,103"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="136,153,205,178"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="253,104,200,146,197,141,248,106"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="229,153,304,178"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="268,103,269,138,264,135,265,107"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="328,153,376,178"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="282,103,329,143,323,142,280,108"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="400,153,453,178"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="294,103,389,146,383,146,293,108"/>
+</map>

@@ -1,0 +1,39 @@
+\doxysection{db\+Manager.\+h}
+\hypertarget{db_manager_8h_source}{}\label{db_manager_8h_source}\index{headers/dbManager.h@{headers/dbManager.h}}
+\doxymbox{\hyperlink{db_manager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{db_manager_8h_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{db_manager_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{db_manager_8h_source_l00007}00007\ \textcolor{preprocessor}{\#ifndef\ DBMANAGER\_H}}
+\DoxyCodeLine{\Hypertarget{db_manager_8h_source_l00008}00008\ \textcolor{preprocessor}{\#define\ DBMANAGER\_H}}
+\DoxyCodeLine{\Hypertarget{db_manager_8h_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{db_manager_8h_source_l00010}00010\ \textcolor{preprocessor}{\#include\ <QSqlDatabase>}}
+\DoxyCodeLine{\Hypertarget{db_manager_8h_source_l00011}00011\ \textcolor{preprocessor}{\#include\ <QObject>}}
+\DoxyCodeLine{\Hypertarget{db_manager_8h_source_l00012}00012\ \textcolor{preprocessor}{\#include\ <QFileInfo>}}
+\DoxyCodeLine{\Hypertarget{db_manager_8h_source_l00013}00013\ \textcolor{preprocessor}{\#include\ <QDir>}}
+\DoxyCodeLine{\Hypertarget{db_manager_8h_source_l00014}00014\ \textcolor{preprocessor}{\#include\ <QFile>}}
+\DoxyCodeLine{\Hypertarget{db_manager_8h_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{db_manager_8h_source_l00023}\doxymbox{\hyperlink{class_db_manager}{00023}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_db_manager_ae5f76fc37263238b67ef524761ea4295}{DbManager}}\ :\ \textcolor{keyword}{public}\ QObject\ \{}
+\DoxyCodeLine{\Hypertarget{db_manager_8h_source_l00024}00024\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{\Hypertarget{db_manager_8h_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{db_manager_8h_source_l00026}00026\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{db_manager_8h_source_l00037}00037\ \ \ \ \ \doxymbox{\hyperlink{class_db_manager_ae5f76fc37263238b67ef524761ea4295}{DbManager}}(\textcolor{keyword}{const}\ QString\&\ fullPath);}
+\DoxyCodeLine{\Hypertarget{db_manager_8h_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{db_manager_8h_source_l00042}00042\ \ \ \ \ \doxymbox{\hyperlink{class_db_manager_ac5cdf8e5e932d1681ab807d8f256374c}{\string~DbManager}}();}
+\DoxyCodeLine{\Hypertarget{db_manager_8h_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{db_manager_8h_source_l00048}00048\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_db_manager_ac04baba8f5d5197f8bcd9230393501de}{isOpen}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{db_manager_8h_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{db_manager_8h_source_l00054}\doxymbox{\hyperlink{class_db_manager_a5e20d5c4251c1bb0d6352e7cc623dd4c}{00054}}\ \ \ \ \ QSqlDatabase\ \doxymbox{\hyperlink{class_db_manager_a5e20d5c4251c1bb0d6352e7cc623dd4c}{getDatabase}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_db_manager_a289f7f1c539781db95292c79fb13a632}{m\_db}};\ \}}
+\DoxyCodeLine{\Hypertarget{db_manager_8h_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{db_manager_8h_source_l00061}\doxymbox{\hyperlink{class_db_manager_a43add3148c4d8ae14ecdd003bd00fb12}{00061}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_db_manager_a43add3148c4d8ae14ecdd003bd00fb12}{notifyDataChange}}()\ \{\ emit\ \doxymbox{\hyperlink{class_db_manager_a44fbaa94fcdc7c5a0b0933cbbe2acc4c}{dataChanged}}();\ \}}
+\DoxyCodeLine{\Hypertarget{db_manager_8h_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{db_manager_8h_source_l00063}00063\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{db_manager_8h_source_l00064}\doxymbox{\hyperlink{class_db_manager_a289f7f1c539781db95292c79fb13a632}{00064}}\ \ \ \ \ QSqlDatabase\ \doxymbox{\hyperlink{class_db_manager_a289f7f1c539781db95292c79fb13a632}{m\_db}};\ }
+\DoxyCodeLine{\Hypertarget{db_manager_8h_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{db_manager_8h_source_l00066}00066\ signals:}
+\DoxyCodeLine{\Hypertarget{db_manager_8h_source_l00072}\doxymbox{\hyperlink{class_db_manager_a44fbaa94fcdc7c5a0b0933cbbe2acc4c}{00072}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_db_manager_a44fbaa94fcdc7c5a0b0933cbbe2acc4c}{dataChanged}}();}
+\DoxyCodeLine{\Hypertarget{db_manager_8h_source_l00073}00073\ \};}
+\DoxyCodeLine{\Hypertarget{db_manager_8h_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{db_manager_8h_source_l00075}00075\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ DBMANAGER\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,371 @@
+\doxysection{Info\+Page Class Reference}
+\hypertarget{class_info_page}{}\label{class_info_page}\index{InfoPage@{InfoPage}}
+
+
+Provides a summary interface displaying trip results and purchase history.  
+
+
+
+
+{\ttfamily \+\#include $<$infopage.\+h$>$}
+
+
+
+Inheritance diagram for Info\+Page:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=203pt]{class_info_page__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Info\+Page:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_info_page__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_info_page_a5f0e8b3e066ff3c3980582cbce843715}{Info\+Page}} (QWidget \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{class_info_page}{Info\+Page}. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_info_page_a85d8e19daad22c976c53e46ad6d63e00}{\texorpdfstring{$\sim$}{\string~}\+Info\+Page}} () override
+\begin{DoxyCompactList}\small\item\em Destructor for \doxylink{class_info_page}{Info\+Page}. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_info_page_a35843a78b2c0f30592439aae941aa5f8}{display\+Trip\+Results}} (const Trip\+Result \&result)
+\begin{DoxyCompactList}\small\item\em Formats and displays the results of the pathfinding algorithm. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_info_page_ab30b3950a2371800b6a1f340af6337db}{refresh\+UI}} () override
+\begin{DoxyCompactList}\small\item\em Re-\/syncs the summary table and labels with the current database state. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_info_page_a487c9c7c030aa387b295429642f2de1c}{reset\+UI}} ()
+\begin{DoxyCompactList}\small\item\em Clears all displayed data and resets counters to zero. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_database_page}{Database\+Page}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_database_page_adf83a1f998dc86afd7229db40628857a}{Database\+Page}} (QWidget \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{class_database_page}{Database\+Page}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_info_page_a56a4d4b9c53ec63f9c1d0c07414ed3fa}{calculate\+Total\+Distance}} ()
+\begin{DoxyCompactList}\small\item\em Calculates the cumulative distance of the current trip from the database. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_ui_1_1_info_page}{Ui::\+\+Info\+Page}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}}
+\item 
+QStandard\+Item\+Model \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_info_page_a16cf98ff866cbb7c498b19a59b2c962c}{model}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Provides a summary interface displaying trip results and purchase history. 
+
+This class is responsible for presenting the final itinerary, total items purchased, total cost spent, and the cumulative distance traveled. It pulls data from the \textquotesingle{}trip\+Info\textquotesingle{} and \textquotesingle{}trip\+Info\+Distances\textquotesingle{} tables to populate its view. 
+
+Definition at line \doxymbox{\hyperlink{infopage_8h_source_l00028}{28}} of file \doxymbox{\hyperlink{infopage_8h_source}{infopage.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_info_page_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_info_page_a5f0e8b3e066ff3c3980582cbce843715}\index{InfoPage@{InfoPage}!InfoPage@{InfoPage}}
+\index{InfoPage@{InfoPage}!InfoPage@{InfoPage}}
+\doxysubsubsection{\texorpdfstring{InfoPage()}{InfoPage()}}
+{\footnotesize\ttfamily \label{class_info_page_a5f0e8b3e066ff3c3980582cbce843715} 
+Info\+Page::\+\+Info\+Page (\begin{DoxyParamCaption}\item[{QWidget \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructor for \doxylink{class_info_page}{Info\+Page}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Pointer to the parent widget. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{infopage_8cpp_source_l00012}{12}} of file \doxymbox{\hyperlink{infopage_8cpp_source}{infopage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00013\ \ \ \ \ :\ \doxymbox{\hyperlink{class_database_page_adf83a1f998dc86afd7229db40628857a}{DatabasePage}}(parent)}
+\DoxyCodeLine{00014\ \ \ \ \ ,\ \doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}}(\textcolor{keyword}{new}\ Ui::InfoPage)}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}}-\/>setupUi(\textcolor{keyword}{this});}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{comment}{//\ Create\ the\ model\ for\ the\ QTableView}}
+\DoxyCodeLine{00019\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a16cf98ff866cbb7c498b19a59b2c962c}{model}}\ =\ \textcolor{keyword}{new}\ QStandardItemModel(\textcolor{keyword}{this});}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{//\ Set\ headers\ (same\ as\ before)}}
+\DoxyCodeLine{00022\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a16cf98ff866cbb7c498b19a59b2c962c}{model}}-\/>setHorizontalHeaderLabels(\{\ \textcolor{stringliteral}{"{}Campus"{}},\ \textcolor{stringliteral}{"{}Item"{}},\ \textcolor{stringliteral}{"{}Quantity"{}},\ \textcolor{stringliteral}{"{}Price"{}},\ \textcolor{stringliteral}{"{}Total"{}}\ \});}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}}-\/>tableView-\/>setModel(\doxymbox{\hyperlink{class_info_page_a16cf98ff866cbb7c498b19a59b2c962c}{model}});}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{comment}{//\ Hide\ row\ headers}}
+\DoxyCodeLine{00027\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}}-\/>tableView-\/>verticalHeader()-\/>setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ Column\ resizing}}
+\DoxyCodeLine{00030\ \ \ \ \ QHeaderView\ *header\ =\ \doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}}-\/>tableView-\/>horizontalHeader();}
+\DoxyCodeLine{00031\ \ \ \ \ header-\/>setStretchLastSection(\textcolor{keyword}{false});}
+\DoxyCodeLine{00032\ \ \ \ \ header-\/>setSectionResizeMode(0,\ QHeaderView::Stretch);}
+\DoxyCodeLine{00033\ \ \ \ \ header-\/>setSectionResizeMode(1,\ QHeaderView::Stretch);}
+\DoxyCodeLine{00034\ \ \ \ \ header-\/>setSectionResizeMode(2,\ QHeaderView::Interactive);}
+\DoxyCodeLine{00035\ \ \ \ \ header-\/>setSectionResizeMode(3,\ QHeaderView::Interactive);}
+\DoxyCodeLine{00036\ \ \ \ \ header-\/>setSectionResizeMode(4,\ QHeaderView::Interactive);}
+\DoxyCodeLine{00037\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}}-\/>tableView-\/>setColumnWidth(2,\ 60);}
+\DoxyCodeLine{00038\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}}-\/>tableView-\/>setColumnWidth(3,\ 100);}
+\DoxyCodeLine{00039\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}}-\/>tableView-\/>setColumnWidth(4,\ 70);}
+\DoxyCodeLine{00040\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_info_page_a5f0e8b3e066ff3c3980582cbce843715_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=180pt]{class_info_page_a5f0e8b3e066ff3c3980582cbce843715_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_info_page_a85d8e19daad22c976c53e46ad6d63e00}\index{InfoPage@{InfoPage}!````~InfoPage@{\texorpdfstring{$\sim$}{\string~}InfoPage}}
+\index{````~InfoPage@{\texorpdfstring{$\sim$}{\string~}InfoPage}!InfoPage@{InfoPage}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}InfoPage()}{\string~InfoPage()}}
+{\footnotesize\ttfamily \label{class_info_page_a85d8e19daad22c976c53e46ad6d63e00} 
+Info\+Page::\+\texorpdfstring{$\sim$}{\string~}\+Info\+Page (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Destructor for \doxylink{class_info_page}{Info\+Page}. 
+
+
+
+Definition at line \doxymbox{\hyperlink{infopage_8cpp_source_l00042}{42}} of file \doxymbox{\hyperlink{infopage_8cpp_source}{infopage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00042\ \{\ \textcolor{keyword}{delete}\ \doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}};\ \}}
+
+\end{DoxyCode}
+
+
+\label{doc-func-members}
+\Hypertarget{class_info_page_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_info_page_a56a4d4b9c53ec63f9c1d0c07414ed3fa}\index{InfoPage@{InfoPage}!calculateTotalDistance@{calculateTotalDistance}}
+\index{calculateTotalDistance@{calculateTotalDistance}!InfoPage@{InfoPage}}
+\doxysubsubsection{\texorpdfstring{calculateTotalDistance()}{calculateTotalDistance()}}
+{\footnotesize\ttfamily \label{class_info_page_a56a4d4b9c53ec63f9c1d0c07414ed3fa} 
+void Info\+Page::\+calculate\+Total\+Distance (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Calculates the cumulative distance of the current trip from the database. 
+
+Queries the \textquotesingle{}trip\+Info\+Distances\textquotesingle{} table to sum up all legs of the journey and updates the total\+Distance\+Amount label. 
+
+Definition at line \doxymbox{\hyperlink{infopage_8cpp_source_l00104}{104}} of file \doxymbox{\hyperlink{infopage_8cpp_source}{infopage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00105\ \ \ \ \ QSqlQuery\ query;}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{double}\ totalDistance\ =\ 0.0;}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordflow}{if}\ (!query.exec(\textcolor{stringliteral}{"{}SELECT\ IFNULL(SUM(tripDistance),\ 0)\ FROM\ tripInfoDistances"{}}))\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[DB\ ERROR]\ Failed\ to\ get\ total\ tripDistance:"{}}\ <<\ query.lastError().text();}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00111\ \ \ \ \ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordflow}{if}\ (query.next())\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ totalDistance\ =\ query.value(0).toDouble();}
+\DoxyCodeLine{00115\ \ \ \ \ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}}-\/>totalDistanceAmount-\/>setText(QString::number(totalDistance,\ \textcolor{charliteral}{'f'},\ 2));}
+\DoxyCodeLine{00118\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=339pt]{class_info_page_a56a4d4b9c53ec63f9c1d0c07414ed3fa_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_info_page_a35843a78b2c0f30592439aae941aa5f8}\index{InfoPage@{InfoPage}!displayTripResults@{displayTripResults}}
+\index{displayTripResults@{displayTripResults}!InfoPage@{InfoPage}}
+\doxysubsubsection{\texorpdfstring{displayTripResults()}{displayTripResults()}}
+{\footnotesize\ttfamily \label{class_info_page_a35843a78b2c0f30592439aae941aa5f8} 
+void Info\+Page::\+display\+Trip\+Results (\begin{DoxyParamCaption}\item[{const Trip\+Result \&}]{result}{}\end{DoxyParamCaption})}
+
+
+
+Formats and displays the results of the pathfinding algorithm. 
+
+Updates the UI labels with the total distance and populates the table with the sequence of campuses visited. 
+\begin{DoxyParams}{Parameters}
+{\em result} & A Trip\+Result struct containing the ordered IDs and total miles.\\
+\hline
+\end{DoxyParams}
+Updates the UI with the final recursive path and distance. 
+
+Definition at line \doxymbox{\hyperlink{infopage_8cpp_source_l00047}{47}} of file \doxymbox{\hyperlink{infopage_8cpp_source}{infopage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00048\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}}-\/>totalDistanceAmount-\/>setText(QString::number(result.totalDistance,\ \textcolor{charliteral}{'f'},\ 2)\ +\ \textcolor{stringliteral}{"{}\ mi"{}});}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a16cf98ff866cbb7c498b19a59b2c962c}{model}}-\/>removeRows(0,\ \doxymbox{\hyperlink{class_info_page_a16cf98ff866cbb7c498b19a59b2c962c}{model}}-\/>rowCount());}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ result.campusOrder.size();\ ++i)\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ campusId\ =\ result.campusOrder[i];}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ QSqlQuery\ query;}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ query.prepare(\textcolor{stringliteral}{"{}SELECT\ campusName\ FROM\ campusList\ WHERE\ campusID\ =\ :id"{}});}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:id"{}},\ campusId);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (query.exec()\ \&\&\ query.next())\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ QList<QStandardItem*>\ rowItems;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ rowItems\ <<\ \textcolor{keyword}{new}\ QStandardItem(query.value(0).toString());\ \textcolor{comment}{//\ campusName}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ rowItems\ <<\ \textcolor{keyword}{new}\ QStandardItem(QString::number(i\ +\ 1));\ \ \ \ \ \textcolor{comment}{//\ visit\ order}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ rowItems\ <<\ \textcolor{keyword}{new}\ QStandardItem(QString::number(campusId));\ \ \textcolor{comment}{//\ campusID}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ table\ consistency,\ add\ empty\ items\ for\ remaining\ columns}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ rowItems\ <<\ \textcolor{keyword}{new}\ QStandardItem(\textcolor{stringliteral}{"{}"{}});\ \textcolor{comment}{//\ itemPrice\ placeholder}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ rowItems\ <<\ \textcolor{keyword}{new}\ QStandardItem(\textcolor{stringliteral}{"{}"{}});\ \textcolor{comment}{//\ totalPrice\ placeholder}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a16cf98ff866cbb7c498b19a59b2c962c}{model}}-\/>appendRow(rowItems);}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+\DoxyCodeLine{00073\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_info_page_ab30b3950a2371800b6a1f340af6337db}\index{InfoPage@{InfoPage}!refreshUI@{refreshUI}}
+\index{refreshUI@{refreshUI}!InfoPage@{InfoPage}}
+\doxysubsubsection{\texorpdfstring{refreshUI()}{refreshUI()}}
+{\footnotesize\ttfamily \label{class_info_page_ab30b3950a2371800b6a1f340af6337db} 
+void Info\+Page::\+refresh\+UI (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Re-\/syncs the summary table and labels with the current database state. 
+
+Fetches souvenir purchase records (name, quantity, price) from the database and calculates total spent and total items. It also triggers a distance recalculation. \begin{DoxyNote}{Note}
+Overrides \doxylink{class_database_page_ac5eac9c210411877ef0d3fce5c971223}{Database\+Page::\+refresh\+UI()}. 
+\end{DoxyNote}
+
+
+Implements \doxymbox{\hyperlink{class_database_page_ac5eac9c210411877ef0d3fce5c971223}{Database\+Page}}.
+
+
+
+Definition at line \doxymbox{\hyperlink{infopage_8cpp_source_l00075}{75}} of file \doxymbox{\hyperlink{infopage_8cpp_source}{infopage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00076\ \{}
+\DoxyCodeLine{00077\ \ \ \ \ QSqlDatabase\ db\ =\ QSqlDatabase::database();}
+\DoxyCodeLine{00078\ \ \ \ \ QSqlQuery\ query(db);}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a16cf98ff866cbb7c498b19a59b2c962c}{model}}-\/>removeRows(0,\ \doxymbox{\hyperlink{class_info_page_a16cf98ff866cbb7c498b19a59b2c962c}{model}}-\/>rowCount());\ \textcolor{comment}{//\ clear\ model}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordflow}{if}\ (!query.exec(\textcolor{stringliteral}{"{}SELECT\ campusName,\ itemName,\ numItem,\ itemPrice,\ totalPrice\ FROM\ tripInfo"{}}))\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}InfoPage\ refresh\ error:"{}}\ <<\ query.lastError().text();}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00085\ \ \ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordflow}{while}\ (query.next())\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ QList<QStandardItem*>\ rowItems;}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ rowItems\ <<\ \textcolor{keyword}{new}\ QStandardItem(query.value(0).toString());\ \textcolor{comment}{//\ campusName}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ rowItems\ <<\ \textcolor{keyword}{new}\ QStandardItem(query.value(1).toString());\ \textcolor{comment}{//\ itemName}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ rowItems\ <<\ \textcolor{keyword}{new}\ QStandardItem(QString::number(query.value(2).toInt()));\ \textcolor{comment}{//\ numItem}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ rowItems\ <<\ \textcolor{keyword}{new}\ QStandardItem(QString::number(query.value(3).toDouble(),\ \textcolor{charliteral}{'f'},\ 2));\ \textcolor{comment}{//\ itemPrice}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ rowItems\ <<\ \textcolor{keyword}{new}\ QStandardItem(QString::number(query.value(4).toDouble(),\ \textcolor{charliteral}{'f'},\ 2));\ \textcolor{comment}{//\ totalPrice}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a16cf98ff866cbb7c498b19a59b2c962c}{model}}-\/>appendRow(rowItems);}
+\DoxyCodeLine{00096\ \ \ \ \ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}}-\/>totalSpentAmount-\/>setText(QString::number(\doxymbox{\hyperlink{database_helper_8h_a451944b5a3a2bc8ad9fd8a3a7aa14830}{getTripInfoTotalSpent}}(),\ \textcolor{charliteral}{'f'},\ 2));}
+\DoxyCodeLine{00099\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}}-\/>totalItemAmount-\/>setText(QString::number(\doxymbox{\hyperlink{database_helper_8h_a831579ca9fc2f58292a660c42b86b91d}{getTripInfoTotalItems}}()));}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a56a4d4b9c53ec63f9c1d0c07414ed3fa}{calculateTotalDistance}}();}
+\DoxyCodeLine{00102\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=339pt]{class_info_page_ab30b3950a2371800b6a1f340af6337db_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_info_page_a487c9c7c030aa387b295429642f2de1c}\index{InfoPage@{InfoPage}!resetUI@{resetUI}}
+\index{resetUI@{resetUI}!InfoPage@{InfoPage}}
+\doxysubsubsection{\texorpdfstring{resetUI()}{resetUI()}}
+{\footnotesize\ttfamily \label{class_info_page_a487c9c7c030aa387b295429642f2de1c} 
+void Info\+Page::\+reset\+UI (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Clears all displayed data and resets counters to zero. 
+
+Used when starting a new plan or clearing an existing itinerary. 
+
+Definition at line \doxymbox{\hyperlink{infopage_8cpp_source_l00120}{120}} of file \doxymbox{\hyperlink{infopage_8cpp_source}{infopage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00121\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a16cf98ff866cbb7c498b19a59b2c962c}{model}}-\/>removeRows(0,\ \doxymbox{\hyperlink{class_info_page_a16cf98ff866cbb7c498b19a59b2c962c}{model}}-\/>rowCount());\ \ \ \textcolor{comment}{//\ clear\ table}}
+\DoxyCodeLine{00123\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}}-\/>totalSpentAmount-\/>setText(\textcolor{stringliteral}{"{}0.00"{}});}
+\DoxyCodeLine{00124\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}}-\/>totalItemAmount-\/>setText(\textcolor{stringliteral}{"{}0"{}});}
+\DoxyCodeLine{00125\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}}-\/>totalDistanceAmount-\/>setText(\textcolor{stringliteral}{"{}0.00"{}});}
+\DoxyCodeLine{00126\ \}}
+
+\end{DoxyCode}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_info_page_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_info_page_a16cf98ff866cbb7c498b19a59b2c962c}\index{InfoPage@{InfoPage}!model@{model}}
+\index{model@{model}!InfoPage@{InfoPage}}
+\doxysubsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily \label{class_info_page_a16cf98ff866cbb7c498b19a59b2c962c} 
+QStandard\+Item\+Model\texorpdfstring{$\ast$}{*} Info\+Page::\+model\hspace{0.3cm}{\ttfamily [private]}}
+
+Model used to manage the summary table data. 
+
+Definition at line \doxymbox{\hyperlink{infopage_8h_source_l00075}{75}} of file \doxymbox{\hyperlink{infopage_8h_source}{infopage.\+h}}.
+
+\Hypertarget{class_info_page_a436b257aa1286e4818cf8ca56791e603}\index{InfoPage@{InfoPage}!ui@{ui}}
+\index{ui@{ui}!InfoPage@{InfoPage}}
+\doxysubsubsection{\texorpdfstring{ui}{ui}}
+{\footnotesize\ttfamily \label{class_info_page_a436b257aa1286e4818cf8ca56791e603} 
+\doxymbox{\hyperlink{class_ui_1_1_info_page}{Ui::\+\+Info\+Page}}\texorpdfstring{$\ast$}{*} Info\+Page::\+ui\hspace{0.3cm}{\ttfamily [private]}}
+
+Pointer to the UI setup. 
+
+Definition at line \doxymbox{\hyperlink{infopage_8h_source_l00074}{74}} of file \doxymbox{\hyperlink{infopage_8h_source}{infopage.\+h}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+headers/\+\doxymbox{\hyperlink{infopage_8h}{infopage.\+h}}\item 
+sources/\+\doxymbox{\hyperlink{infopage_8cpp}{infopage.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,17 @@
+<map id="AdminPage::notifyStatus" name="AdminPage::notifyStatus">
+<area shape="rect" id="Node000001" title="Emitted to request a status message update in the main window&#39;s status bar." alt="" coords="693,96,860,122"/>
+<area shape="rect" id="Node000002" href="$class_admin_page.html#a16675919043ae4f2160148da4ecdc22d" title="Validates administrator credentials and toggles the UI stack." alt="" coords="467,35,632,60"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="709,91,600,64,600,58,714,91"/>
+<area shape="rect" id="Node000005" href="$class_main_window.html#aca7667d5bc8417a6804938b030541a6c" title="Connects internal signals from the AdminPage to the MainWindow&#39;s statusBar." alt="" coords="454,96,645,122"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="675,109,646,111,646,106,680,109"/>
+<area shape="rect" id="Node000007" href="$class_admin_page.html#afbcd4cb0e0f9d51f618253f984498e2d" title="Opens a file dialog to import campus data from an Excel file." alt="" coords="462,146,638,186"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="711,126,634,148,633,143,705,126"/>
+<area shape="rect" id="Node000003" href="$class_admin_page.html#aaba950e4cfef2bdb3519652a687e7e94" title="Configures the initial state of the login screen." alt="" coords="217,29,406,55"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="449,46,407,47,406,42,454,45"/>
+<area shape="rect" id="Node000004" href="$class_admin_page.html#a1150741b249e777a213dbe57802db854" title="Constructor for AdminPage." alt="" coords="5,29,169,55"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="199,43,170,45,169,40,204,41"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="125,15,113,10,87,8,63,10,50,15,48,20,54,28,49,30,42,21,47,11,62,5,87,3,114,5,130,14"/>
+<area shape="rect" id="Node000006" href="$class_main_window.html#a996c5a2b6f77944776856f08ec30858d" title="Constructor for MainWindow." alt="" coords="222,103,401,128"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="436,112,402,116,401,110,441,112"/>
+<area shape="poly" id="edge7_Node000006_Node000006" title=" " alt="" coords="349,88,337,84,311,81,288,83,275,88,272,93,279,103,274,102,267,94,271,84,286,78,311,76,339,79,354,88"/>
+</map>

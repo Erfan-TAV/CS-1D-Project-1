@@ -1,0 +1,5 @@
+<map id="DbManager::notifyDataChange" name="DbManager::notifyDataChange">
+<area shape="rect" id="Node000001" title="Manually triggers the dataChanged() signal." alt="" coords="5,5,207,31"/>
+<area shape="rect" id="Node000002" href="$class_db_manager.html#a44fbaa94fcdc7c5a0b0933cbbe2acc4c" title="Signal emitted whenever the database content is modified." alt="" coords="255,5,428,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="207,16,241,18,236,18,207,21"/>
+</map>

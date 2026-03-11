@@ -1,0 +1,895 @@
+\doxysection{Admin\+Page Class Reference}
+\hypertarget{class_admin_page}{}\label{class_admin_page}\index{AdminPage@{AdminPage}}
+
+
+Provides an administrative interface to manage campuses, souvenirs, and distances.  
+
+
+
+
+{\ttfamily \+\#include $<$adminpage.\+h$>$}
+
+
+
+Inheritance diagram for Admin\+Page:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=200pt]{class_admin_page__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Admin\+Page:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_admin_page__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_admin_page_a4a3217feb907b151e7efba86e2153d78}{notify\+Status}} (const QString \&message, int timeout=2500)
+\begin{DoxyCompactList}\small\item\em Emitted to request a status message update in the main window\textquotesingle{}s status bar. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_admin_page_a1150741b249e777a213dbe57802db854}{Admin\+Page}} (QWidget \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{class_admin_page}{Admin\+Page}. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_admin_page_ab3298c7c5465e3ff6908b74660238480}{\texorpdfstring{$\sim$}{\string~}\+Admin\+Page}} () override
+\begin{DoxyCompactList}\small\item\em Destructor for \doxylink{class_admin_page}{Admin\+Page}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_database_page}{Database\+Page}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_database_page_adf83a1f998dc86afd7229db40628857a}{Database\+Page}} (QWidget \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{class_database_page}{Database\+Page}. \end{DoxyCompactList}\item 
+virtual void \doxymbox{\hyperlink{class_database_page_ac5eac9c210411877ef0d3fce5c971223}{refresh\+UI}} ()=0
+\begin{DoxyCompactList}\small\item\em Pure virtual function to update the UI with the latest database data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_admin_page_a16675919043ae4f2160148da4ecdc22d}{handle\+Login}} ()
+\begin{DoxyCompactList}\small\item\em Validates administrator credentials and toggles the UI stack. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_admin_page_afbcd4cb0e0f9d51f618253f984498e2d}{on\+\_\+upload\+File\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em Opens a file dialog to import campus data from an Excel file. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_admin_page_aff83326be65d2e96c925f1f4aba7a1e2}{refresh\+UI}} () override
+\begin{DoxyCompactList}\small\item\em Re-\/syncs the SQL models with the database. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{class_admin_page_a609026d0ed071ff25100ac5ad88b7192}{prompt\+For\+Distances}} (const QString\+List \&new\+Campus\+Names)
+\begin{DoxyCompactList}\small\item\em Prompts the user to manually input distances for newly added campuses. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_admin_page_a32a6022c291fc9905398f61979bfe66a}{setup\+Database\+Table}} ()
+\begin{DoxyCompactList}\small\item\em Initializes the SQL models and attaches them to the UI views. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_admin_page_aaba950e4cfef2bdb3519652a687e7e94}{setup\+Login\+Page}} ()
+\begin{DoxyCompactList}\small\item\em Configures the initial state of the login screen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \doxymbox{\hyperlink{class_admin_page_a525dd78af12c754112f7e7dcc6990fa7}{verify\+User\+Credentials}} (const QString \&username, const QString \&password)
+\begin{DoxyCompactList}\small\item\em Static helper to check login credentials against the database. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_ui_1_1_admin_page}{Ui::\+\+Admin\+Page}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}
+\item 
+QSql\+Table\+Model \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_admin_page_ab0a581b58900e0d0a6161a8263effe84}{campus\+Model}}
+\item 
+QSql\+Table\+Model \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_admin_page_adaf2b3c18aa4084b3e7f53ec4c3dc519}{souvenir\+Model}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Provides an administrative interface to manage campuses, souvenirs, and distances. 
+
+This class inherits from \doxylink{class_database_page}{Database\+Page} and handles the secure login process, as well as CRUD (Create, Read, Update, Delete) operations on the database using QSql\+Table\+Model. It acts as the primary gatekeeper for modifying project data. 
+
+Definition at line \doxymbox{\hyperlink{adminpage_8h_source_l00029}{29}} of file \doxymbox{\hyperlink{adminpage_8h_source}{adminpage.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_admin_page_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_admin_page_a1150741b249e777a213dbe57802db854}\index{AdminPage@{AdminPage}!AdminPage@{AdminPage}}
+\index{AdminPage@{AdminPage}!AdminPage@{AdminPage}}
+\doxysubsubsection{\texorpdfstring{AdminPage()}{AdminPage()}}
+{\footnotesize\ttfamily \label{class_admin_page_a1150741b249e777a213dbe57802db854} 
+Admin\+Page::\+\+Admin\+Page (\begin{DoxyParamCaption}\item[{QWidget \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructor for \doxylink{class_admin_page}{Admin\+Page}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Pointer to the parent widget. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{adminpage_8cpp_source_l00013}{13}} of file \doxymbox{\hyperlink{adminpage_8cpp_source}{adminpage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :}
+\DoxyCodeLine{00014\ \ \ \ \ \doxymbox{\hyperlink{class_database_page_adf83a1f998dc86afd7229db40628857a}{DatabasePage}}(parent),\ \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}(\textcolor{keyword}{new}\ Ui::AdminPage)}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>setupUi(\textcolor{keyword}{this});}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{comment}{//\ set\ the\ page\ to\ login\ screen\ by\ default}}
+\DoxyCodeLine{00019\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>adminPageStack-\/>setCurrentIndex(0);}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_aaba950e4cfef2bdb3519652a687e7e94}{setupLoginPage}}();}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_a32a6022c291fc9905398f61979bfe66a}{setupDatabaseTable}}();}
+\DoxyCodeLine{00024\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_admin_page_a1150741b249e777a213dbe57802db854_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=203pt]{class_admin_page_a1150741b249e777a213dbe57802db854_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_admin_page_ab3298c7c5465e3ff6908b74660238480}\index{AdminPage@{AdminPage}!````~AdminPage@{\texorpdfstring{$\sim$}{\string~}AdminPage}}
+\index{````~AdminPage@{\texorpdfstring{$\sim$}{\string~}AdminPage}!AdminPage@{AdminPage}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}AdminPage()}{\string~AdminPage()}}
+{\footnotesize\ttfamily \label{class_admin_page_ab3298c7c5465e3ff6908b74660238480} 
+Admin\+Page::\+\texorpdfstring{$\sim$}{\string~}\+Admin\+Page (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Destructor for \doxylink{class_admin_page}{Admin\+Page}. 
+
+
+
+Definition at line \doxymbox{\hyperlink{adminpage_8cpp_source_l00026}{26}} of file \doxymbox{\hyperlink{adminpage_8cpp_source}{adminpage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{delete}\ \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}};}
+\DoxyCodeLine{00029\ \}}
+
+\end{DoxyCode}
+
+
+\label{doc-func-members}
+\Hypertarget{class_admin_page_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_admin_page_a16675919043ae4f2160148da4ecdc22d}\index{AdminPage@{AdminPage}!handleLogin@{handleLogin}}
+\index{handleLogin@{handleLogin}!AdminPage@{AdminPage}}
+\doxysubsubsection{\texorpdfstring{handleLogin}{handleLogin}}
+{\footnotesize\ttfamily \label{class_admin_page_a16675919043ae4f2160148da4ecdc22d} 
+void Admin\+Page::\+handle\+Login (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Validates administrator credentials and toggles the UI stack. 
+
+Reads the username and password from the line edits and compares them using \doxylink{class_admin_page_a525dd78af12c754112f7e7dcc6990fa7}{verify\+User\+Credentials()}. If successful, it clears the input fields and switches the QStacked\+Widget index to the Management view. \begin{DoxyNote}{Note}
+Shows an error message via \doxylink{class_admin_page_a4a3217feb907b151e7efba86e2153d78}{notify\+Status()} if the login fails. 
+\end{DoxyNote}
+
+
+Definition at line \doxymbox{\hyperlink{adminpage_8cpp_source_l00032}{32}} of file \doxymbox{\hyperlink{adminpage_8cpp_source}{adminpage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ QString\ username\ =\ \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>usernameField-\/>text();}
+\DoxyCodeLine{00034\ \ \ \ \ QString\ password\ =\ \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>passwordField-\/>text();}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_admin_page_a525dd78af12c754112f7e7dcc6990fa7}{verifyUserCredentials}}(username,\ password))\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>adminPageStack-\/>setCurrentIndex(1);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ emit\ \doxymbox{\hyperlink{class_admin_page_a4a3217feb907b151e7efba86e2153d78}{notifyStatus}}(\textcolor{stringliteral}{"{}Login\ Successful"{}});}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>usernameField-\/>clear();}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>passwordField-\/>clear();}
+\DoxyCodeLine{00042\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ emit\ \doxymbox{\hyperlink{class_admin_page_a4a3217feb907b151e7efba86e2153d78}{notifyStatus}}(\textcolor{stringliteral}{"{}Login\ Failed"{}});}
+\DoxyCodeLine{00044\ \ \ \ \ \}}
+\DoxyCodeLine{00045\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_admin_page_a16675919043ae4f2160148da4ecdc22d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_admin_page_a16675919043ae4f2160148da4ecdc22d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_admin_page_a4a3217feb907b151e7efba86e2153d78}\index{AdminPage@{AdminPage}!notifyStatus@{notifyStatus}}
+\index{notifyStatus@{notifyStatus}!AdminPage@{AdminPage}}
+\doxysubsubsection{\texorpdfstring{notifyStatus}{notifyStatus}}
+{\footnotesize\ttfamily \label{class_admin_page_a4a3217feb907b151e7efba86e2153d78} 
+void Admin\+Page::\+notify\+Status (\begin{DoxyParamCaption}\item[{const QString \&}]{message}{, }\item[{int}]{timeout}{ = {\ttfamily 2500}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Emitted to request a status message update in the main window\textquotesingle{}s status bar. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The text to display. \\
+\hline
+{\em timeout} & Duration in milliseconds before the message clears. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_admin_page_a4a3217feb907b151e7efba86e2153d78_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_admin_page_afbcd4cb0e0f9d51f618253f984498e2d}\index{AdminPage@{AdminPage}!on\_uploadFile\_clicked@{on\_uploadFile\_clicked}}
+\index{on\_uploadFile\_clicked@{on\_uploadFile\_clicked}!AdminPage@{AdminPage}}
+\doxysubsubsection{\texorpdfstring{on\_uploadFile\_clicked}{on\_uploadFile\_clicked}}
+{\footnotesize\ttfamily \label{class_admin_page_afbcd4cb0e0f9d51f618253f984498e2d} 
+void Admin\+Page::\+on\+\_\+upload\+File\+\_\+clicked (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Opens a file dialog to import campus data from an Excel file. 
+
+Launches a QFile\+Dialog to select a .xlsx file. It then calls \doxylink{database_helper_8h_ab5be4a2470cfc5c6d8bd862833bfd3dc}{upload\+File\+Append()} to process the data. If new campuses are detected, it automatically triggers \doxylink{class_admin_page_a609026d0ed071ff25100ac5ad88b7192}{prompt\+For\+Distances()} to ensure the database maintains a complete graph of campus connections. 
+
+Definition at line \doxymbox{\hyperlink{adminpage_8cpp_source_l00291}{291}} of file \doxymbox{\hyperlink{adminpage_8cpp_source}{adminpage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00292\ \ \ \ \ QString\ filePath\ =\ QFileDialog::getOpenFileName(}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \textcolor{keyword}{this},\ tr(\textcolor{stringliteral}{"{}Select\ Excel\ File"{}}),}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation),}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ tr(\textcolor{stringliteral}{"{}Excel\ Files\ (*.xlsx\ *.xls)"{}})}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00298\ \ \ \ \ \textcolor{keywordflow}{if}\ (filePath.isEmpty())\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{comment}{//\ 1.\ Perform\ upload\ and\ get\ the\ names\ of\ NEW\ campuses}}
+\DoxyCodeLine{00301\ \ \ \ \ QStringList\ added\ =\ \doxymbox{\hyperlink{database_helper_8h_ab5be4a2470cfc5c6d8bd862833bfd3dc}{uploadFileAppend}}(filePath);}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ \ \ \ \ \textcolor{comment}{//\ 2.\ Refresh\ the\ UI\ so\ the\ models\ see\ the\ new\ data}}
+\DoxyCodeLine{00304\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_aff83326be65d2e96c925f1f4aba7a1e2}{refreshUI}}();}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00306\ \ \ \ \ \textcolor{comment}{//\ 3.\ If\ there\ were\ new\ campuses,\ prompt\ for\ their\ distances\ to\ existing\ ones}}
+\DoxyCodeLine{00307\ \ \ \ \ \textcolor{keywordflow}{if}\ (!added.isEmpty())\ \{}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_a609026d0ed071ff25100ac5ad88b7192}{promptForDistances}}(added);}
+\DoxyCodeLine{00309\ \ \ \ \ \}}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ \ \ \ \ emit\ \doxymbox{\hyperlink{class_admin_page_a4a3217feb907b151e7efba86e2153d78}{notifyStatus}}(\textcolor{stringliteral}{"{}File\ uploaded\ and\ distances\ configured!"{}});}
+\DoxyCodeLine{00312\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_admin_page_afbcd4cb0e0f9d51f618253f984498e2d_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_admin_page_a609026d0ed071ff25100ac5ad88b7192}\index{AdminPage@{AdminPage}!promptForDistances@{promptForDistances}}
+\index{promptForDistances@{promptForDistances}!AdminPage@{AdminPage}}
+\doxysubsubsection{\texorpdfstring{promptForDistances()}{promptForDistances()}}
+{\footnotesize\ttfamily \label{class_admin_page_a609026d0ed071ff25100ac5ad88b7192} 
+int Admin\+Page::\+prompt\+For\+Distances (\begin{DoxyParamCaption}\item[{const QString\+List \&}]{new\+Campus\+Names}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Prompts the user to manually input distances for newly added campuses. 
+
+Triggered after an Excel import if the file lacks specific distance mappings. This creates a dynamic interface to ensure the graph remains connected. 
+\begin{DoxyParams}{Parameters}
+{\em new\+Campus\+Names} & List of campuses that were just added to the system. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of distance records successfully created by the user. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{adminpage_8cpp_source_l00331}{331}} of file \doxymbox{\hyperlink{adminpage_8cpp_source}{adminpage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00332\ \ \ \ \ \textcolor{keywordflow}{if}\ (newCampusNames.isEmpty())\ \textcolor{keywordflow}{return}\ QDialog::Rejected;}
+\DoxyCodeLine{00333\ }
+\DoxyCodeLine{00334\ \ \ \ \ QDialog\ detailDialog(\textcolor{keyword}{this});}
+\DoxyCodeLine{00335\ \ \ \ \ detailDialog.setWindowTitle(\textcolor{stringliteral}{"{}Configure\ Campus\ Distances"{}});}
+\DoxyCodeLine{00336\ \ \ \ \ detailDialog.setMinimumSize(650,\ 450);}
+\DoxyCodeLine{00337\ \ \ \ \ detailDialog.setModal(\textcolor{keyword}{true});}
+\DoxyCodeLine{00338\ }
+\DoxyCodeLine{00339\ \ \ \ \ QVBoxLayout\ *layout\ =\ \textcolor{keyword}{new}\ QVBoxLayout(\&detailDialog);}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ \ \ \ \ \textcolor{comment}{//\ Create\ the\ Table}}
+\DoxyCodeLine{00342\ \ \ \ \ QTableWidget\ *distanceTable\ =\ \textcolor{keyword}{new}\ QTableWidget(\&detailDialog);}
+\DoxyCodeLine{00343\ \ \ \ \ distanceTable-\/>verticalHeader()-\/>setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{00344\ \ \ \ \ distanceTable-\/>setColumnCount(3);}
+\DoxyCodeLine{00345\ \ \ \ \ distanceTable-\/>setHorizontalHeaderLabels(\{\textcolor{stringliteral}{"{}New\ Campus"{}},\ \textcolor{stringliteral}{"{}To\ Existing\ Campus"{}},\ \textcolor{stringliteral}{"{}Distance\ (mi)"{}}\});}
+\DoxyCodeLine{00346\ \ \ \ \ distanceTable-\/>horizontalHeader()-\/>setSectionResizeMode(QHeaderView::Stretch);}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00348\ \ \ \ \ \textcolor{comment}{//\ 1.\ Fetch\ ALL\ existing\ campuses\ directly\ from\ the\ DB\ to\ ensure\ we\ have\ the\ latest\ data}}
+\DoxyCodeLine{00349\ \ \ \ \ \textcolor{keyword}{struct\ }CampusInfo\ \{\ \textcolor{keywordtype}{int}\ id;\ QString\ name;\ \};}
+\DoxyCodeLine{00350\ \ \ \ \ QList<CampusInfo>\ existingCampuses;}
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00352\ \ \ \ \ QSqlQuery\ query(\textcolor{stringliteral}{"{}SELECT\ campusId,\ campusName\ FROM\ campusList"{}});}
+\DoxyCodeLine{00353\ \ \ \ \ \textcolor{keywordflow}{while}\ (query.next())\ \{}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ QString\ name\ =\ query.value(1).toString();}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ only\ want\ to\ pair\ the\ "{}New"{}\ campus\ with\ campuses\ that\ were\ ALREADY\ there}}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!newCampusNames.contains(name))\ \{}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ existingCampuses.append(\{query.value(0).toInt(),\ name\});}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00359\ \ \ \ \ \}}
+\DoxyCodeLine{00360\ }
+\DoxyCodeLine{00361\ \ \ \ \ \textcolor{comment}{//\ 2.\ Populate\ the\ Table\ Rows}}
+\DoxyCodeLine{00362\ \ \ \ \ \textcolor{comment}{//\ Logic:\ For\ every\ NEW\ campus,\ create\ a\ row\ for\ every\ EXISTING\ campus}}
+\DoxyCodeLine{00363\ \ \ \ \ \textcolor{keywordtype}{int}\ currentRow\ =\ 0;}
+\DoxyCodeLine{00364\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ QString\ \&newName\ :\ newCampusNames)\ \{}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&ex\ :\ existingCampuses)\ \{}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ distanceTable-\/>insertRow(currentRow);}
+\DoxyCodeLine{00367\ }
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Column\ 0:\ New\ Campus\ Name\ (Read\ Only)}}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ QTableWidgetItem\ *newItem\ =\ \textcolor{keyword}{new}\ QTableWidgetItem(newName);}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ newItem-\/>setFlags(newItem-\/>flags()\ \&\ \string~Qt::ItemIsEditable);}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ distanceTable-\/>setItem(currentRow,\ 0,\ newItem);}
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Column\ 1:\ Existing\ Campus\ Name\ (Read\ Only)}}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ QTableWidgetItem\ *exItem\ =\ \textcolor{keyword}{new}\ QTableWidgetItem(ex.name);}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ exItem-\/>setData(Qt::UserRole,\ ex.id);\ \textcolor{comment}{//\ Store\ the\ ID\ for\ the\ database\ helper}}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ exItem-\/>setFlags(exItem-\/>flags()\ \&\ \string~Qt::ItemIsEditable);}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ distanceTable-\/>setItem(currentRow,\ 1,\ exItem);}
+\DoxyCodeLine{00378\ }
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Column\ 2:\ Distance\ Input\ (Editable)}}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ QTableWidgetItem\ *distItem\ =\ \textcolor{keyword}{new}\ QTableWidgetItem(\textcolor{stringliteral}{"{}0"{}});}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ distItem-\/>setTextAlignment(Qt::AlignCenter);}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ distanceTable-\/>setItem(currentRow,\ 2,\ distItem);}
+\DoxyCodeLine{00383\ }
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ currentRow++;}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00386\ \ \ \ \ \}}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00388\ \ \ \ \ \textcolor{comment}{//\ 3.\ Add\ Buttons}}
+\DoxyCodeLine{00389\ \ \ \ \ QPushButton\ *saveBtn\ =\ \textcolor{keyword}{new}\ QPushButton(\textcolor{stringliteral}{"{}Save\ Distances"{}},\ \&detailDialog);}
+\DoxyCodeLine{00390\ \ \ \ \ \textcolor{comment}{//\ saveBtn-\/>setStyleSheet("{}padding:\ 8px;\ font-\/weight:\ bold;"{});}}
+\DoxyCodeLine{00391\ \ \ \ \ layout-\/>addWidget(distanceTable);}
+\DoxyCodeLine{00392\ \ \ \ \ layout-\/>addWidget(saveBtn);}
+\DoxyCodeLine{00393\ }
+\DoxyCodeLine{00394\ \ \ \ \ \textcolor{comment}{//\ Connect\ Save\ Button\ to\ Database\ Logic}}
+\DoxyCodeLine{00395\ \ \ \ \ connect(saveBtn,\ \&QPushButton::clicked,\ [\&]()\ \{}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ QSqlQuery\ idLookup;}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ distanceTable-\/>rowCount();\ ++i)\ \{}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ QString\ newName\ =\ distanceTable-\/>item(i,\ 0)-\/>text();}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ targetId\ =\ distanceTable-\/>item(i,\ 1)-\/>data(Qt::UserRole).toInt();}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ dist\ =\ distanceTable-\/>item(i,\ 2)-\/>text().toInt();}
+\DoxyCodeLine{00401\ }
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Find\ the\ ID\ of\ the\ New\ Campus}}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \ \ \ \ idLookup.prepare(\textcolor{stringliteral}{"{}SELECT\ campusId\ FROM\ campusList\ WHERE\ campusName\ =\ :name"{}});}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \ \ idLookup.bindValue(\textcolor{stringliteral}{"{}:name"{}},\ newName);}
+\DoxyCodeLine{00405\ }
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (idLookup.exec()\ \&\&\ idLookup.next())\ \{}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ newId\ =\ idLookup.value(0).toInt();}
+\DoxyCodeLine{00408\ }
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ your\ databaseHelper\ functions\ to\ add\ edges\ in\ both\ directions}}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{database_helper_8h_a03b4e3382e830c7a89466a8eb7f643a4}{addDistance}}(newId,\ targetId,\ dist);}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{database_helper_8h_a03b4e3382e830c7a89466a8eb7f643a4}{addDistance}}(targetId,\ newId,\ dist);}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ detailDialog.accept();\ \textcolor{comment}{//\ Closes\ with\ QDialog::Accepted}}
+\DoxyCodeLine{00415\ \ \ \ \ \});}
+\DoxyCodeLine{00416\ }
+\DoxyCodeLine{00417\ \ \ \ \ \textcolor{keywordflow}{return}\ detailDialog.exec();}
+\DoxyCodeLine{00418\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=348pt]{class_admin_page_a609026d0ed071ff25100ac5ad88b7192_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_admin_page_a609026d0ed071ff25100ac5ad88b7192_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_admin_page_aff83326be65d2e96c925f1f4aba7a1e2}\index{AdminPage@{AdminPage}!refreshUI@{refreshUI}}
+\index{refreshUI@{refreshUI}!AdminPage@{AdminPage}}
+\doxysubsubsection{\texorpdfstring{refreshUI}{refreshUI}}
+{\footnotesize\ttfamily \label{class_admin_page_aff83326be65d2e96c925f1f4aba7a1e2} 
+void Admin\+Page::\+refresh\+UI (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Re-\/syncs the SQL models with the database. 
+
+\begin{DoxyNote}{Note}
+Overrides \doxylink{class_database_page_ac5eac9c210411877ef0d3fce5c971223}{Database\+Page::\+refresh\+UI()}. This ensures that if a campus is deleted in the Admin tab, it immediately disappears from the User/\+\+Plan tabs as well. 
+\end{DoxyNote}
+
+
+Definition at line \doxymbox{\hyperlink{adminpage_8cpp_source_l00314}{314}} of file \doxymbox{\hyperlink{adminpage_8cpp_source}{adminpage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00315\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}AdminPage:\ Database\ data\ re-\/synced\ to\ UI."{}};}
+\DoxyCodeLine{00316\ \ \ \ \ \textcolor{comment}{//\ 1.\ Reload\ the\ main\ campus\ list}}
+\DoxyCodeLine{00317\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_ab0a581b58900e0d0a6161a8263effe84}{campusModel}}-\/>select();}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ \ \ \ \ \textcolor{comment}{//\ 2.\ Figure\ out\ which\ campus\ was\ selected\ before\ the\ refresh}}
+\DoxyCodeLine{00320\ \ \ \ \ QModelIndex\ currentIndex\ =\ \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>campusList-\/>currentIndex();}
+\DoxyCodeLine{00321\ \ \ \ \ \textcolor{keywordflow}{if}\ (currentIndex.isValid())\ \{}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ QSqlRecord\ record\ =\ \doxymbox{\hyperlink{class_admin_page_ab0a581b58900e0d0a6161a8263effe84}{campusModel}}-\/>record(currentIndex.row());}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ campusId\ =\ record.value(\textcolor{stringliteral}{"{}campusId"{}}).toInt();}
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3.\ Re-\/apply\ the\ filter\ to\ the\ souvenirs\ so\ they\ stay\ visible}}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_adaf2b3c18aa4084b3e7f53ec4c3dc519}{souvenirModel}}-\/>setFilter(QString(\textcolor{stringliteral}{"{}campusId\ =\ \%1"{}}).arg(campusId));}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_adaf2b3c18aa4084b3e7f53ec4c3dc519}{souvenirModel}}-\/>select();}
+\DoxyCodeLine{00328\ \ \ \ \ \}}
+\DoxyCodeLine{00329\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_admin_page_aff83326be65d2e96c925f1f4aba7a1e2_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_admin_page_a32a6022c291fc9905398f61979bfe66a}\index{AdminPage@{AdminPage}!setupDatabaseTable@{setupDatabaseTable}}
+\index{setupDatabaseTable@{setupDatabaseTable}!AdminPage@{AdminPage}}
+\doxysubsubsection{\texorpdfstring{setupDatabaseTable()}{setupDatabaseTable()}}
+{\footnotesize\ttfamily \label{class_admin_page_a32a6022c291fc9905398f61979bfe66a} 
+void Admin\+Page::\+setup\+Database\+Table (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initializes the SQL models and attaches them to the UI views. 
+
+Sets the Edit\+Strategy for the models and configures the QList\+View and QTable\+View to allow for live database editing. 
+
+Definition at line \doxymbox{\hyperlink{adminpage_8cpp_source_l00047}{47}} of file \doxymbox{\hyperlink{adminpage_8cpp_source}{adminpage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//\ 1.\ Get\ the\ connection\ you\ opened\ in\ main.cpp}}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//\ If\ DbManager\ didn't\ give\ it\ a\ specific\ name,\ it's\ the\ default:}}
+\DoxyCodeLine{00050\ \ \ \ \ QSqlDatabase\ db\ =\ QSqlDatabase::database();}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{if}\ (!db.isOpen())\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}AdminPage:\ Database\ is\ NOT\ open\ at"{}}\ <<\ db.databaseName();}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//\ 2.\ Pass\ the\ 'db'\ object\ to\ the\ model}}
+\DoxyCodeLine{00058\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_ab0a581b58900e0d0a6161a8263effe84}{campusModel}}\ =\ \textcolor{keyword}{new}\ QSqlTableModel(\textcolor{keyword}{this},\ db);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ 3.\ Match\ the\ table\ name\ exactly}}
+\DoxyCodeLine{00061\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_ab0a581b58900e0d0a6161a8263effe84}{campusModel}}-\/>setTable(\textcolor{stringliteral}{"{}campusList"{}});}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{//\ 4.\ Important:\ Set\ the\ Edit\ Strategy\ before\ selecting}}
+\DoxyCodeLine{00064\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_ab0a581b58900e0d0a6161a8263effe84}{campusModel}}-\/>setEditStrategy(QSqlTableModel::OnFieldChange);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{comment}{//\ 5.\ Fetch\ the\ data}}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{class_admin_page_ab0a581b58900e0d0a6161a8263effe84}{campusModel}}-\/>select())\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}SQL\ Error:"{}}\ <<\ \doxymbox{\hyperlink{class_admin_page_ab0a581b58900e0d0a6161a8263effe84}{campusModel}}-\/>lastError().text();}
+\DoxyCodeLine{00069\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}AdminPage:\ Successfully\ loaded"{}}\ <<\ \doxymbox{\hyperlink{class_admin_page_ab0a581b58900e0d0a6161a8263effe84}{campusModel}}-\/>rowCount()\ <<\ \textcolor{stringliteral}{"{}campus\ rows"{}};}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{comment}{//\ 6.\ Set\ the\ model\ to\ your\ ListView\ from\ the\ UI\ screenshot}}
+\DoxyCodeLine{00074\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>campusList-\/>setModel(\doxymbox{\hyperlink{class_admin_page_ab0a581b58900e0d0a6161a8263effe84}{campusModel}});}
+\DoxyCodeLine{00075\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>campusList-\/>setModelColumn(1);\ \textcolor{comment}{//\ Column\ 0\ is\ usually\ 'campusName'}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{//\ set\ up\ the\ souvenir\ table}}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{comment}{//\ 1.\ Initialize\ the\ Souvenir\ Model\ (the\ right-\/hand\ table)}}
+\DoxyCodeLine{00080\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_adaf2b3c18aa4084b3e7f53ec4c3dc519}{souvenirModel}}\ =\ \textcolor{keyword}{new}\ QSqlTableModel(\textcolor{keyword}{this},\ QSqlDatabase::database());}
+\DoxyCodeLine{00081\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_adaf2b3c18aa4084b3e7f53ec4c3dc519}{souvenirModel}}-\/>setTable(\textcolor{stringliteral}{"{}souvenirs"{}});\ \textcolor{comment}{//\ Replace\ with\ your\ actual\ table\ name}}
+\DoxyCodeLine{00082\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_adaf2b3c18aa4084b3e7f53ec4c3dc519}{souvenirModel}}-\/>setEditStrategy(QSqlTableModel::OnFieldChange);}
+\DoxyCodeLine{00083\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>tableView-\/>setModel(\doxymbox{\hyperlink{class_admin_page_adaf2b3c18aa4084b3e7f53ec4c3dc519}{souvenirModel}});}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{comment}{//\ hide\ the\ campus\ id}}
+\DoxyCodeLine{00085\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>tableView-\/>setColumnHidden(0,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{comment}{//\ add\ nice\ headers\ for\ the\ columns}}
+\DoxyCodeLine{00087\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_adaf2b3c18aa4084b3e7f53ec4c3dc519}{souvenirModel}}-\/>setHeaderData(1,\ Qt::Horizontal,\ \textcolor{stringliteral}{"{}Souvenir\ Name"{}});}
+\DoxyCodeLine{00088\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_adaf2b3c18aa4084b3e7f53ec4c3dc519}{souvenirModel}}-\/>setHeaderData(2,\ Qt::Horizontal,\ \textcolor{stringliteral}{"{}Price\ (\$)"{}});}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ QHeaderView\ *header\ =\ \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>tableView-\/>horizontalHeader();}
+\DoxyCodeLine{00091\ \ \ \ \ header-\/>setSectionResizeMode(1,\ QHeaderView::Stretch);}
+\DoxyCodeLine{00092\ \ \ \ \ header-\/>setSectionResizeMode(2,\ QHeaderView::ResizeToContents);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{comment}{//\ 2.\ Handle\ the\ "{}Click"{}\ on\ the\ Campus\ List}}
+\DoxyCodeLine{00095\ \ \ \ \ connect(\doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>campusList,\ \&QListView::clicked,\ \textcolor{keyword}{this},\ [\textcolor{keyword}{this}](\textcolor{keyword}{const}\ QModelIndex\ \&index)\ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ the\ full\ record\ for\ the\ row\ you\ just\ clicked}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ QSqlRecord\ record\ =\ campusModel-\/>record(index.row());}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ the\ LineEdit\ with\ the\ name}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ QString\ name\ =\ record.value(\textcolor{stringliteral}{"{}campusName"{}}).toString();\ \textcolor{comment}{//\ Use\ your\ actual\ column\ name}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ ui-\/>collegeNameLineEdit-\/>setText(name);}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Filter\ the\ Souvenirs\ table\ by\ Campus\ ID}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ int\ campusId\ =\ record.value(\textcolor{stringliteral}{"{}campusId"{}}).toInt();\ \textcolor{comment}{//\ Use\ your\ actual\ ID\ column\ name}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ souvenirModel-\/>setFilter(QString(\textcolor{stringliteral}{"{}campusId\ =\ \%1"{}}).arg(campusId));}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ souvenirModel-\/>select();}
+\DoxyCodeLine{00107\ \ \ \ \ \});}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{comment}{//\ 3.\ Handle\ live-\/editing\ the\ name\ back\ to\ the\ DB}}
+\DoxyCodeLine{00110\ \ \ \ \ connect(\doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>collegeNameLineEdit,\ \&QLineEdit::textEdited,\ \textcolor{keyword}{this},\ [\textcolor{keyword}{this}](\textcolor{keyword}{const}\ QString\ \&newText)\ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ QModelIndex\ currentIndex\ =\ ui-\/>campusList-\/>currentIndex();}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ if\ (currentIndex.isValid())\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ updates\ the\ model,\ which\ updates\ the\ DB\ because\ of\ OnFieldChange}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ campusModel-\/>setData(campusModel-\/>index(currentIndex.row(),\ 1),\ newText);}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00116\ \ \ \ \ \});}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{comment}{//\ When\ the\ user\ presses\ Enter\ in\ the\ LineEdit}}
+\DoxyCodeLine{00119\ \ \ \ \ connect(\doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>collegeNameLineEdit,\ \&QLineEdit::returnPressed,\ \textcolor{keyword}{this},\ [\textcolor{keyword}{this}]()\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ QModelIndex\ currentIndex\ =\ ui-\/>campusList-\/>currentIndex();}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ if\ (currentIndex.isValid())\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ an\ index\ specifically\ for\ Column\ 1\ (campusName)}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ QModelIndex\ nameIndex\ =\ campusModel-\/>index(currentIndex.row(),\ 1);}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ QString\ newName\ =\ ui-\/>collegeNameLineEdit-\/>text();}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ the\ name,\ not\ the\ ID!}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (campusModel-\/>setData(nameIndex,\ newName))\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ campusModel-\/>submitAll();\ \textcolor{comment}{//\ Push\ to\ project1.db}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ emit\ notifyStatus(\textcolor{stringliteral}{"{}Campus\ updated\ successfully!"{}});}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Update\ failed:"{}}\ <<\ campusModel-\/>lastError().text();}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00135\ \ \ \ \ \});}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{comment}{//\ enable\ +/-\/\ for\ souvenirs}}
+\DoxyCodeLine{00138\ \ \ \ \ connect(\doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>removeSouvenirButton,\ \&QPushButton::clicked,\ \textcolor{keyword}{this},\ [\textcolor{keyword}{this}]()\ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ QModelIndex\ currentIndex\ =\ ui-\/>tableView-\/>currentIndex();}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ if\ (!currentIndex.isValid())\ return;}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1.\ Get\ the\ identifying\ data\ from\ the\ selected\ row}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Column\ 1\ is\ souvenirName\ (based\ on\ your\ DB\ screenshot)}}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ QString\ nameToDelete\ =\ souvenirModel-\/>data(souvenirModel-\/>index(currentIndex.row(),\ 1)).toString();}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ int\ campusID\ =\ souvenirModel-\/>data(souvenirModel-\/>index(currentIndex.row(),\ 0)).toInt();}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2.\ Run\ a\ direct\ SQL\ Query\ to\ bypass\ the\ model's\ cache}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ QSqlQuery\ query;}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ query.prepare(\textcolor{stringliteral}{"{}DELETE\ FROM\ souvenirs\ WHERE\ souvenirName\ =\ :name\ AND\ campusID\ =\ :id"{}});}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:name"{}},\ nameToDelete);}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:id"{}},\ campusID);}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ if\ (query.exec())\ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3.\ The\ data\ is\ GONE\ from\ the\ .db\ file.\ Now\ force\ the\ UI\ to\ match.}}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Re-\/applying\ the\ filter\ and\ calling\ select()\ flushes\ the\ ghost\ rows.}}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ souvenirModel-\/>setFilter(QString(\textcolor{stringliteral}{"{}campusID\ =\ \%1"{}}).arg(campusID));}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ souvenirModel-\/>select();}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Direct\ SQL\ Delete\ successful\ for:"{}}\ <<\ nameToDelete;}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}SQL\ Error:"{}}\ <<\ query.lastError().text();}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00163\ \ \ \ \ \});}
+\DoxyCodeLine{00164\ \ \ \ \ connect(\doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>addSouvenirButton,\ \&QPushButton::clicked,\ \textcolor{keyword}{this},\ [\textcolor{keyword}{this}]()\ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1.\ Get\ the\ Campus\ ID\ from\ the\ left\ list\ to\ link\ the\ new\ souvenir}}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ QModelIndex\ campusIndex\ =\ ui-\/>campusList-\/>currentIndex();}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ if\ (!campusIndex.isValid())\ return;}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Assuming\ Column\ 0\ of\ campusModel\ is\ campusID}}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ int\ currentCampusID\ =\ campusModel-\/>data(campusModel-\/>index(campusIndex.row(),\ 0)).toInt();}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2.\ Insert\ a\ new\ row\ at\ the\ end\ of\ the\ filtered\ list}}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ int\ rowCount\ =\ souvenirModel-\/>rowCount();}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ souvenirModel-\/>insertRow(rowCount);}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3.\ Set\ the\ Foreign\ Key\ (campusID)\ automatically\ in\ Column\ 0\ (hidden)}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ souvenirModel-\/>setData(souvenirModel-\/>index(rowCount,\ 0),\ currentCampusID);}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 4.\ Select\ the\ new\ row\ and\ start\ editing\ the\ Name\ (Column\ 1)}}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ QModelIndex\ nameIndex\ =\ souvenirModel-\/>index(rowCount,\ 1);}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ ui-\/>tableView-\/>setCurrentIndex(nameIndex);}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ ui-\/>tableView-\/>edit(nameIndex);}
+\DoxyCodeLine{00183\ \ \ \ \ \});}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{comment}{//\ this\ jumps\ the\ user\ to\ the\ price\ column\ when\ done\ writing\ the\ price}}
+\DoxyCodeLine{00185\ \ \ \ \ connect(\doxymbox{\hyperlink{class_admin_page_adaf2b3c18aa4084b3e7f53ec4c3dc519}{souvenirModel}},\ \&QSqlTableModel::dataChanged,\ \textcolor{keyword}{this},\ [\textcolor{keyword}{this}](\textcolor{keyword}{const}\ QModelIndex\ \&topLeft,\ \textcolor{keyword}{const}\ QModelIndex\ \&bottomRight)\ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ only\ care\ if\ the\ 'Souvenir\ Name'\ (Column\ 1)\ was\ the\ one\ changed}}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (topLeft.column()\ ==\ 1)\ \{}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1.\ Identify\ the\ 'Price'\ cell\ in\ the\ same\ row\ (Column\ 2)}}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ QModelIndex\ priceIndex\ =\ \doxymbox{\hyperlink{class_admin_page_adaf2b3c18aa4084b3e7f53ec4c3dc519}{souvenirModel}}-\/>index(topLeft.row(),\ 2);}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2.\ Set\ the\ focus\ to\ the\ table\ and\ start\ editing\ the\ price}}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>tableView-\/>setCurrentIndex(priceIndex);}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ use\ a\ timer\ with\ 0ms\ to\ let\ the\ current\ 'Enter'\ event\ finish}}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ before\ opening\ the\ next\ editor,\ preventing\ a\ focus\ glitch.}}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ QTimer::singleShot(0,\ \textcolor{keyword}{this},\ [\textcolor{keyword}{this},\ priceIndex]()\ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>tableView-\/>edit(priceIndex);}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00201\ \ \ \ \ \});}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{comment}{//\ enable\ +/-\/\ for\ campusList}}
+\DoxyCodeLine{00204\ \ \ \ \ connect(\doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>removeCampusButton,\ \&QPushButton::clicked,\ \textcolor{keyword}{this},\ [\textcolor{keyword}{this}]()\ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ QModelIndex\ currentIndex\ =\ ui-\/>campusList-\/>currentIndex();}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ if\ (!currentIndex.isValid())\ return;}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ int\ idToDelete\ =\ campusModel-\/>data(campusModel-\/>index(currentIndex.row(),\ 0)).toInt();}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ QSqlDatabase\ db\ =\ QSqlDatabase::database();}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Start\ a\ transaction\ to\ ensure\ all\ deletes\ happen\ together\ or\ none\ at\ all}}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ db.transaction();}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ QSqlQuery\ query;}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1.\ Delete\ associated\ souvenirs}}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ query.prepare(\textcolor{stringliteral}{"{}DELETE\ FROM\ souvenirs\ WHERE\ campusID\ =\ :id"{}});}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:id"{}},\ idToDelete);}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ if\ (!query.exec())\ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Souvenir\ delete\ failed:"{}}\ <<\ query.lastError().text();}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ db.rollback();}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ return;}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2.\ Delete\ associated\ distances\ (where\ \ is\ campusID1)}}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ will\ remove\ all\ rows\ where\ this\ campus\ is\ the\ 'source'\ of\ a\ distance}}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ query.prepare(\textcolor{stringliteral}{"{}DELETE\ FROM\ campusDistances\ WHERE\ campusID1\ =\ :id\ OR\ campusID2\ =\ :id"{}});}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:id"{}},\ idToDelete);}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ if\ (!query.exec())\ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Distance\ delete\ failed:"{}}\ <<\ query.lastError().text();}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ db.rollback();}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ return;}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3.\ Delete\ the\ actual\ campus}}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ query.prepare(\textcolor{stringliteral}{"{}DELETE\ FROM\ campusList\ WHERE\ campusID\ =\ :id"{}});}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:id"{}},\ idToDelete);}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ if\ (!query.exec())\ \{}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Campus\ delete\ failed:"{}}\ <<\ query.lastError().text();}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ db.rollback();}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ return;}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Commit\ the\ changes\ to\ disk}}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ if\ (db.commit())\ \{}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ campusModel-\/>select();\ \textcolor{comment}{//\ Refresh\ UI\ list}}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ ui-\/>collegeNameLineEdit-\/>clear();}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ souvenirModel-\/>setFilter(\textcolor{stringliteral}{"{}campusID\ =\ -\/1"{}});}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ souvenirModel-\/>select();}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Campus\ and\ all\ related\ data\ successfully\ deleted."{}};}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00252\ \ \ \ \ \});}
+\DoxyCodeLine{00253\ \ \ \ \ connect(\doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>addCampusButton,\ \&QPushButton::clicked,\ \textcolor{keyword}{this},\ [\textcolor{keyword}{this}]()\ \{}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1.\ Determine\ a\ unique\ placeholder\ name}}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ int\ count\ =\ 1;}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ QSqlQuery\ countQuery;}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Count\ how\ many\ campuses\ currently\ start\ with\ "{}New\ College"{}}}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ countQuery.prepare(\textcolor{stringliteral}{"{}SELECT\ COUNT(*)\ FROM\ campusList\ WHERE\ campusName\ LIKE\ 'New\ College\%'"{}});}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ if\ (countQuery.exec()\ \&\&\ countQuery.next())\ \{}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ count\ =\ countQuery.value(0).toInt()\ +\ 1;}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ QString\ uniquePlaceholder\ =\ QString(\textcolor{stringliteral}{"{}New\ College\ \%1"{}}).arg(count);}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ rowCount\ =\ \doxymbox{\hyperlink{class_admin_page_ab0a581b58900e0d0a6161a8263effe84}{campusModel}}-\/>rowCount();}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_admin_page_ab0a581b58900e0d0a6161a8263effe84}{campusModel}}-\/>insertRow(rowCount))\ \{}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2.\ Set\ the\ unique\ name}}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ campusModel-\/>setData(campusModel-\/>index(rowCount,\ 1),\ uniquePlaceholder);}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (campusModel-\/>submitAll())\ \{}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ui-\/>campusList-\/>setCurrentIndex(campusModel-\/>index(rowCount,\ 1));}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ui-\/>collegeNameLineEdit-\/>setText(uniquePlaceholder);}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ui-\/>collegeNameLineEdit-\/>setFocus();}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ui-\/>collegeNameLineEdit-\/>selectAll();}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3.\ Trigger\ the\ popup\ with\ the\ unique\ name}}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ popup\ logic\ will\ now\ find\ the\ correct\ ID\ because\ the\ name\ is\ unique}}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (promptForDistances(\{uniquePlaceholder\})\ ==\ QDialog::Rejected)\ \{}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Distance\ entry\ cancelled.\ Deleting"{}}\ <<\ uniquePlaceholder;}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fetch\ the\ ID\ of\ the\ row\ we\ just\ added\ to\ ensure\ clean\ removal}}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ int\ idToDelete\ =\ campusModel-\/>record(rowCount).value(\textcolor{stringliteral}{"{}campusId"{}}).toInt();}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ removeCampus(idToDelete);}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ refreshUI();}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00288\ \ \ \ \ \});}
+\DoxyCodeLine{00289\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_admin_page_a32a6022c291fc9905398f61979bfe66a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_admin_page_aaba950e4cfef2bdb3519652a687e7e94}\index{AdminPage@{AdminPage}!setupLoginPage@{setupLoginPage}}
+\index{setupLoginPage@{setupLoginPage}!AdminPage@{AdminPage}}
+\doxysubsubsection{\texorpdfstring{setupLoginPage()}{setupLoginPage()}}
+{\footnotesize\ttfamily \label{class_admin_page_aaba950e4cfef2bdb3519652a687e7e94} 
+void Admin\+Page::\+setup\+Login\+Page (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Configures the initial state of the login screen. 
+
+Sets up validators for input fields, links the Enter key to the login logic, and ensures the management tabs are hidden until authentication. 
+
+Definition at line \doxymbox{\hyperlink{adminpage_8cpp_source_l00420}{420}} of file \doxymbox{\hyperlink{adminpage_8cpp_source}{adminpage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00421\ \ \ \ \ \textcolor{comment}{//\ Make\ pressing\ enter\ submit\ the\ user\ info}}
+\DoxyCodeLine{00422\ \ \ \ \ connect(\doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>usernameField,\ \&QLineEdit::returnPressed,\ \textcolor{keyword}{this},\ \&\doxymbox{\hyperlink{class_admin_page_a16675919043ae4f2160148da4ecdc22d}{AdminPage::handleLogin}});}
+\DoxyCodeLine{00423\ \ \ \ \ connect(\doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>passwordField,\ \&QLineEdit::returnPressed,\ \textcolor{keyword}{this},\ \&\doxymbox{\hyperlink{class_admin_page_a16675919043ae4f2160148da4ecdc22d}{AdminPage::handleLogin}});}
+\DoxyCodeLine{00424\ }
+\DoxyCodeLine{00425\ \ \ \ \ \textcolor{comment}{//\ link\ the\ login\ button}}
+\DoxyCodeLine{00426\ \ \ \ \ connect(\doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>buttonBox,\ \&QDialogButtonBox::accepted,\ \textcolor{keyword}{this},\ \&\doxymbox{\hyperlink{class_admin_page_a16675919043ae4f2160148da4ecdc22d}{AdminPage::handleLogin}});}
+\DoxyCodeLine{00427\ \ \ \ \ \textcolor{comment}{//\ link\ the\ cancel\ button}}
+\DoxyCodeLine{00428\ \ \ \ \ connect(\doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>buttonBox,\ \&QDialogButtonBox::rejected,\ [\textcolor{keyword}{this}]()\{}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ ui-\/>usernameField-\/>clear();}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ ui-\/>passwordField-\/>clear();}
+\DoxyCodeLine{00431\ \ \ \ \ \});}
+\DoxyCodeLine{00432\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_admin_page_aaba950e4cfef2bdb3519652a687e7e94_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_admin_page_aaba950e4cfef2bdb3519652a687e7e94_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_admin_page_a525dd78af12c754112f7e7dcc6990fa7}\index{AdminPage@{AdminPage}!verifyUserCredentials@{verifyUserCredentials}}
+\index{verifyUserCredentials@{verifyUserCredentials}!AdminPage@{AdminPage}}
+\doxysubsubsection{\texorpdfstring{verifyUserCredentials()}{verifyUserCredentials()}}
+{\footnotesize\ttfamily \label{class_admin_page_a525dd78af12c754112f7e7dcc6990fa7} 
+bool Admin\+Page::\+verify\+User\+Credentials (\begin{DoxyParamCaption}\item[{const QString \&}]{username}{, }\item[{const QString \&}]{password}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Static helper to check login credentials against the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & The entered administrative username. \\
+\hline
+{\em password} & The entered administrative password. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if credentials match the admin records (hashed), false otherwise. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This is kept static to ensure it doesn\textquotesingle{}t rely on UI state for validation. 
+\end{DoxyNote}
+
+
+Definition at line \doxymbox{\hyperlink{adminpage_8cpp_source_l00434}{434}} of file \doxymbox{\hyperlink{adminpage_8cpp_source}{adminpage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00435\ \ \ \ \ \textcolor{comment}{//\ 1.\ Hash\ the\ password\ using\ SHA-\/256}}
+\DoxyCodeLine{00436\ \ \ \ \ QByteArray\ hash\ =\ QCryptographicHash::hash(password.toUtf8(),\ QCryptographicHash::Sha256);}
+\DoxyCodeLine{00437\ \ \ \ \ QString\ hashedPassword\ =\ hash.toHex();}
+\DoxyCodeLine{00438\ }
+\DoxyCodeLine{00439\ \ \ \ \ qDebug()\ <<\ hash;}
+\DoxyCodeLine{00440\ \ \ \ \ qDebug()\ <<\ hashedPassword;}
+\DoxyCodeLine{00441\ }
+\DoxyCodeLine{00442\ \ \ \ \ \textcolor{comment}{//\ 2.\ Prepare\ a\ parameterized\ query\ to\ avoid\ SQL\ injection}}
+\DoxyCodeLine{00443\ \ \ \ \ QSqlQuery\ query;}
+\DoxyCodeLine{00444\ \ \ \ \ query.prepare(\textcolor{stringliteral}{"{}SELECT\ id\ FROM\ users\ WHERE\ username\ =\ :username\ AND\ password\_hash\ =\ :password"{}});}
+\DoxyCodeLine{00445\ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:username"{}},\ username);}
+\DoxyCodeLine{00446\ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:password"{}},\ hashedPassword);}
+\DoxyCodeLine{00447\ }
+\DoxyCodeLine{00448\ \ \ \ \ \textcolor{comment}{//\ 3.\ Execute\ and\ check\ for\ matches}}
+\DoxyCodeLine{00449\ \ \ \ \ \textcolor{keywordflow}{if}\ (!query.exec())\ \{}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Login\ query\ failed:"{}}\ <<\ query.lastError().text();}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00452\ \ \ \ \ \}}
+\DoxyCodeLine{00453\ }
+\DoxyCodeLine{00454\ \ \ \ \ \textcolor{keywordflow}{if}\ (query.next())\ \{}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Found\ a\ matching\ user}}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00457\ \ \ \ \ \}}
+\DoxyCodeLine{00458\ }
+\DoxyCodeLine{00459\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ No\ match}}
+\DoxyCodeLine{00460\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_admin_page_a525dd78af12c754112f7e7dcc6990fa7_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_admin_page_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_admin_page_ab0a581b58900e0d0a6161a8263effe84}\index{AdminPage@{AdminPage}!campusModel@{campusModel}}
+\index{campusModel@{campusModel}!AdminPage@{AdminPage}}
+\doxysubsubsection{\texorpdfstring{campusModel}{campusModel}}
+{\footnotesize\ttfamily \label{class_admin_page_ab0a581b58900e0d0a6161a8263effe84} 
+QSql\+Table\+Model\texorpdfstring{$\ast$}{*} Admin\+Page::\+campus\+Model\hspace{0.3cm}{\ttfamily [private]}}
+
+Model for the campus list table. 
+
+Definition at line \doxymbox{\hyperlink{adminpage_8h_source_l00072}{72}} of file \doxymbox{\hyperlink{adminpage_8h_source}{adminpage.\+h}}.
+
+\Hypertarget{class_admin_page_adaf2b3c18aa4084b3e7f53ec4c3dc519}\index{AdminPage@{AdminPage}!souvenirModel@{souvenirModel}}
+\index{souvenirModel@{souvenirModel}!AdminPage@{AdminPage}}
+\doxysubsubsection{\texorpdfstring{souvenirModel}{souvenirModel}}
+{\footnotesize\ttfamily \label{class_admin_page_adaf2b3c18aa4084b3e7f53ec4c3dc519} 
+QSql\+Table\+Model\texorpdfstring{$\ast$}{*} Admin\+Page::\+souvenir\+Model\hspace{0.3cm}{\ttfamily [private]}}
+
+Model for the souvenirs table. 
+
+Definition at line \doxymbox{\hyperlink{adminpage_8h_source_l00073}{73}} of file \doxymbox{\hyperlink{adminpage_8h_source}{adminpage.\+h}}.
+
+\Hypertarget{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}\index{AdminPage@{AdminPage}!ui@{ui}}
+\index{ui@{ui}!AdminPage@{AdminPage}}
+\doxysubsubsection{\texorpdfstring{ui}{ui}}
+{\footnotesize\ttfamily \label{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8} 
+\doxymbox{\hyperlink{class_ui_1_1_admin_page}{Ui::\+\+Admin\+Page}}\texorpdfstring{$\ast$}{*} Admin\+Page::\+ui\hspace{0.3cm}{\ttfamily [private]}}
+
+Pointer to the UI setup. 
+
+Definition at line \doxymbox{\hyperlink{adminpage_8h_source_l00071}{71}} of file \doxymbox{\hyperlink{adminpage_8h_source}{adminpage.\+h}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+headers/\+\doxymbox{\hyperlink{adminpage_8h}{adminpage.\+h}}\item 
+sources/\+\doxymbox{\hyperlink{adminpage_8cpp}{adminpage.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,5 @@
+<map id="MainWindow::linkAdminPage" name="MainWindow::linkAdminPage">
+<area shape="rect" id="Node000001" title="Connects internal signals from the AdminPage to the MainWindow&#39;s statusBar." alt="" coords="5,5,197,31"/>
+<area shape="rect" id="Node000002" href="$class_admin_page.html#a4a3217feb907b151e7efba86e2153d78" title="Emitted to request a status message update in the main window&#39;s status bar." alt="" coords="245,5,411,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="197,16,232,18,227,18,197,21"/>
+</map>

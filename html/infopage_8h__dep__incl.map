@@ -1,0 +1,9 @@
+<map id="headers/infopage.h" name="headers/infopage.h">
+<area shape="rect" id="Node000001" title="Handles the display of final trip statistics, including costs and distances." alt="" coords="114,5,246,31"/>
+<area shape="rect" id="Node000002" href="$ui__mainwindow_8h.html" title=" " alt="" coords="5,79,174,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="155,44,120,80,116,77,159,40"/>
+<area shape="rect" id="Node000004" href="$infopage_8cpp.html" title=" " alt="" coords="198,94,344,120"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="205,39,261,93,256,94,203,44"/>
+<area shape="rect" id="Node000003" href="$mainwindow_8cpp.html" title=" " alt="" coords="6,183,173,208"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="91,148,92,183,87,181,88,152"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="PlanPage::showCurrentCampusSouvenirs" name="PlanPage::showCurrentCampusSouvenirs">
+<area shape="rect" id="Node000001" title="Updates the shopping table to show souvenirs for a specific ID." alt="" coords="246,5,454,46"/>
+<area shape="rect" id="Node000002" href="$class_plan_page.html#aa0511c865d24a2a78dbab899aa874034" title="Initiates the recursive trip algorithm based on user selections." alt="" coords="5,5,198,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="227,26,198,28,198,23,233,25"/>
+</map>

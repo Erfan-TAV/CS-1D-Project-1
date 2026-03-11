@@ -1,0 +1,22 @@
+<map id="headers/databasePage.h" name="headers/databasePage.h">
+<area shape="rect" id="Node000001" title="Base class for UI pages requiring database synchronization." alt="" coords="325,5,490,31"/>
+<area shape="rect" id="Node000002" href="$adminpage_8h.html" title="Handles logic for the adminpage.ui such as login and campus management." alt="" coords="498,79,643,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="449,35,545,78,540,79,449,40"/>
+<area shape="rect" id="Node000006" href="$infopage_8h.html" title="Handles the display of final trip statistics, including costs and distances." alt="" coords="342,79,473,105"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="409,44,410,80,405,77,406,49"/>
+<area shape="rect" id="Node000008" href="$planpage_8h.html" title="Header file for the trip planning and execution interface." alt="" coords="183,79,317,105"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="365,39,278,81,276,76,369,36"/>
+<area shape="rect" id="Node000003" href="$ui__mainwindow_8h.html" title=" " alt="" coords="347,153,516,208"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="541,112,476,155,474,150,536,114"/>
+<area shape="rect" id="Node000005" href="$adminpage_8cpp.html" title=" " alt="" coords="540,168,699,193"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="586,116,615,168,610,166,583,120"/>
+<area shape="rect" id="Node000004" href="$mainwindow_8cpp.html" title=" " alt="" coords="348,256,515,282"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="433,222,434,257,429,254,430,226"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="416,117,426,153,422,151,414,122"/>
+<area shape="rect" id="Node000007" href="$infopage_8cpp.html" title=" " alt="" coords="178,168,323,193"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="375,111,273,169,271,165,370,114"/>
+<area shape="poly" id="edge9_Node000008_Node000003" title=" " alt="" coords="290,109,377,152,372,153,289,114"/>
+<area shape="poly" id="edge10_Node000008_Node000007" title=" " alt="" coords="252,118,253,168,248,166,249,123"/>
+<area shape="rect" id="Node000009" href="$planpage_8cpp.html" title=" " alt="" coords="5,168,154,193"/>
+<area shape="poly" id="edge11_Node000008_Node000009" title=" " alt="" coords="212,114,105,169,102,165,214,110"/>
+</map>

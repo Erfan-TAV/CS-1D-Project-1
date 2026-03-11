@@ -1,0 +1,16 @@
+<map id="AdminPage::on_uploadFile_clicked" name="AdminPage::on_uploadFile_clicked">
+<area shape="rect" id="Node000001" title="Opens a file dialog to import campus data from an Excel file." alt="" coords="5,72,182,113"/>
+<area shape="rect" id="Node000002" href="$class_admin_page.html#a4a3217feb907b151e7efba86e2153d78" title="Emitted to request a status message update in the main window&#39;s status bar." alt="" coords="254,5,420,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,69,229,40,258,34,253,36,230,45,147,74"/>
+<area shape="rect" id="Node000003" href="$class_admin_page.html#a609026d0ed071ff25100ac5ad88b7192" title="Prompts the user to manually input distances for newly added campuses." alt="" coords="230,55,444,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="181,81,217,79,212,81,183,86"/>
+<area shape="rect" id="Node000005" href="$class_admin_page.html#aff83326be65d2e96c925f1f4aba7a1e2" title="Re&#45;syncs the SQL models with the database." alt="" coords="262,104,412,130"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="182,99,249,107,244,109,182,104"/>
+<area shape="rect" id="Node000006" href="$database_helper_8cpp.html#ab5be4a2470cfc5c6d8bd862833bfd3dc" title="Parses an Excel file to append new data to the current database." alt="" coords="275,153,399,179"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="147,111,230,140,262,150,257,150,229,145,146,116"/>
+<area shape="rect" id="Node000004" href="$database_helper_8cpp.html#a03b4e3382e830c7a89466a8eb7f643a4" title="Adds a directed edge between two campuses." alt="" coords="492,80,586,106"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="444,78,479,85,474,85,444,84"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="399,153,443,140,501,114,506,113,445,145,400,158"/>
+<area shape="rect" id="Node000007" href="$database_helper_8cpp.html#a44dac679a954686debebbeb013e85075" title="Registers a new souvenir item for a specific campus." alt="" coords="492,153,586,179"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="399,164,480,166,475,166,399,169"/>
+</map>

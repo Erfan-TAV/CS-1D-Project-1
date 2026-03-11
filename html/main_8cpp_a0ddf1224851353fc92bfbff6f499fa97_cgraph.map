@@ -1,0 +1,5 @@
+<map id="main" name="main">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,55,31"/>
+<area shape="rect" id="Node000002" href="$class_db_manager.html#ac04baba8f5d5197f8bcd9230393501de" title="Validates if the database connection is currently active." alt="" coords="103,5,240,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="55,16,90,17,85,19,55,21"/>
+</map>

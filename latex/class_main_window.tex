@@ -1,0 +1,380 @@
+\doxysection{Main\+Window Class Reference}
+\hypertarget{class_main_window}{}\label{class_main_window}\index{MainWindow@{MainWindow}}
+
+
+The main entry point and UI controller for the College Tour application.  
+
+
+
+
+{\ttfamily \+\#include $<$mainwindow.\+h$>$}
+
+
+
+Inheritance diagram for Main\+Window:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{class_main_window__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Main\+Window:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_main_window__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_main_window_a996c5a2b6f77944776856f08ec30858d}{Main\+Window}} (QWidget \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{class_main_window}{Main\+Window}. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_main_window_ae98d00a93bc118200eeef9f9bba1dba7}{\texorpdfstring{$\sim$}{\string~}\+Main\+Window}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for \doxylink{class_main_window}{Main\+Window}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_main_window_aff9e658ae579df50b17031095e7fcb27}{on\+\_\+tab\+Widget\+\_\+current\+Changed}} (int index) const
+\begin{DoxyCompactList}\small\item\em Slot triggered when the user switches tabs in the main interface. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_main_window_a4c85dbf2ae494394c7d1136017ff2774}{menu\+Bar\+Reset}} () const
+\begin{DoxyCompactList}\small\item\em Resets the entire application database to its original state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_main_window_aca7667d5bc8417a6804938b030541a6c}{link\+Admin\+Page}} ()
+\begin{DoxyCompactList}\small\item\em Connects internal signals from the \doxylink{class_admin_page}{Admin\+Page} to the \doxylink{class_main_window}{Main\+Window}\textquotesingle{}s status\+Bar. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_main_window_afc1a52235a552c40d0a4026b99941131}{initialize\+List}} ()
+\begin{DoxyCompactList}\small\item\em Placeholder for initializing QSql\+Table\+Models for list-\/based views. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_ui_1_1_main_window}{Ui::\+\+Main\+Window}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_main_window_a35466a70ed47252a0191168126a352a5}{ui}}
+\item 
+\doxymbox{\hyperlink{class_db_manager}{Db\+Manager}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_main_window_a3642f631531fee9161fac371c8179750}{db\+Handler}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The main entry point and UI controller for the College Tour application. 
+
+This class manages the central QTab\+Widget, coordinates signal/\+slot connections between sub-\/pages (like \doxylink{class_admin_page}{Admin\+Page} and \doxylink{class_info_page}{Info\+Page}), and handles application-\/wide database maintenance tasks. 
+
+Definition at line \doxymbox{\hyperlink{mainwindow_8h_source_l00025}{25}} of file \doxymbox{\hyperlink{mainwindow_8h_source}{mainwindow.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_main_window_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_main_window_a996c5a2b6f77944776856f08ec30858d}\index{MainWindow@{MainWindow}!MainWindow@{MainWindow}}
+\index{MainWindow@{MainWindow}!MainWindow@{MainWindow}}
+\doxysubsubsection{\texorpdfstring{MainWindow()}{MainWindow()}}
+{\footnotesize\ttfamily \label{class_main_window_a996c5a2b6f77944776856f08ec30858d} 
+Main\+Window::\+\+Main\+Window (\begin{DoxyParamCaption}\item[{QWidget \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructor for \doxylink{class_main_window}{Main\+Window}. 
+
+Initializes the UI, clears temporary trip data, establishes connections for administration signals, and sets up the initial tab state. 
+\begin{DoxyParams}{Parameters}
+{\em parent} & Pointer to the parent widget. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{mainwindow_8cpp_source_l00015}{15}} of file \doxymbox{\hyperlink{mainwindow_8cpp_source}{mainwindow.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00016\ \ \ \ \ :\ QMainWindow(parent)}
+\DoxyCodeLine{00017\ \ \ \ \ ,\ \doxymbox{\hyperlink{class_main_window_a35466a70ed47252a0191168126a352a5}{ui}}(\textcolor{keyword}{new}\ Ui::MainWindow)}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \doxymbox{\hyperlink{class_main_window_a35466a70ed47252a0191168126a352a5}{ui}}-\/>setupUi(\textcolor{keyword}{this});}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{//\ reset\ the\ trip\ table\ when\ the\ application\ is\ launched}}
+\DoxyCodeLine{00022\ \ \ \ \ \doxymbox{\hyperlink{database_helper_8h_a43d3aaa47509c7d2a3133e29ea8bc1a9}{clearTripTable}}();}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \doxymbox{\hyperlink{class_main_window_aca7667d5bc8417a6804938b030541a6c}{linkAdminPage}}();}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{comment}{//\ link\ menubar\ item}}
+\DoxyCodeLine{00027\ \ \ \ \ connect(\doxymbox{\hyperlink{class_main_window_a35466a70ed47252a0191168126a352a5}{ui}}-\/>actionreset\_all\_information,\ \&QAction::triggered,\ \textcolor{keyword}{this},\ \&\doxymbox{\hyperlink{class_main_window_a4c85dbf2ae494394c7d1136017ff2774}{MainWindow::menuBarReset}});}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ set\ starting\ tab\ to\ planning\ tab}}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//\ TODO:\ change\ to\ 0\ which\ is\ planner\ page,\ currently\ set\ to\ 1\ for\ testing\ info\ page}}
+\DoxyCodeLine{00031\ \ \ \ \ \doxymbox{\hyperlink{class_main_window_a35466a70ed47252a0191168126a352a5}{ui}}-\/>tabWidget-\/>setCurrentIndex(0);}
+\DoxyCodeLine{00032\ \ \ \ \ \doxymbox{\hyperlink{database_helper_8cpp_af290827365ce3b3378a5d25c7d8d0f35}{createTripInfoTable}}();}
+\DoxyCodeLine{00033\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_main_window_a996c5a2b6f77944776856f08ec30858d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=215pt]{class_main_window_a996c5a2b6f77944776856f08ec30858d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_main_window_ae98d00a93bc118200eeef9f9bba1dba7}\index{MainWindow@{MainWindow}!````~MainWindow@{\texorpdfstring{$\sim$}{\string~}MainWindow}}
+\index{````~MainWindow@{\texorpdfstring{$\sim$}{\string~}MainWindow}!MainWindow@{MainWindow}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}MainWindow()}{\string~MainWindow()}}
+{\footnotesize\ttfamily \label{class_main_window_ae98d00a93bc118200eeef9f9bba1dba7} 
+Main\+Window::\+\texorpdfstring{$\sim$}{\string~}\+Main\+Window (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destructor for \doxylink{class_main_window}{Main\+Window}. 
+
+
+
+Definition at line \doxymbox{\hyperlink{mainwindow_8cpp_source_l00035}{35}} of file \doxymbox{\hyperlink{mainwindow_8cpp_source}{mainwindow.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00036\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{delete}\ \doxymbox{\hyperlink{class_main_window_a35466a70ed47252a0191168126a352a5}{ui}};}
+\DoxyCodeLine{00038\ \}}
+
+\end{DoxyCode}
+
+
+\label{doc-func-members}
+\Hypertarget{class_main_window_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_main_window_afc1a52235a552c40d0a4026b99941131}\index{MainWindow@{MainWindow}!initializeList@{initializeList}}
+\index{initializeList@{initializeList}!MainWindow@{MainWindow}}
+\doxysubsubsection{\texorpdfstring{initializeList()}{initializeList()}}
+{\footnotesize\ttfamily \label{class_main_window_afc1a52235a552c40d0a4026b99941131} 
+void Main\+Window::\+initialize\+List (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Placeholder for initializing QSql\+Table\+Models for list-\/based views. 
+
+
+
+Definition at line \doxymbox{\hyperlink{mainwindow_8cpp_source_l00041}{41}} of file \doxymbox{\hyperlink{mainwindow_8cpp_source}{mainwindow.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//\ 1.\ Create\ the\ Model}}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ 'dbManager'\ is\ your\ instance\ of\ DbManager.}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//\ 'this'\ ensures\ the\ model\ is\ deleted\ when\ the\ window\ closes.}}
+\DoxyCodeLine{00045\ \ \ \ \ QSqlTableModel\ *model\ =\ \textcolor{keyword}{new}\ QSqlTableModel(\textcolor{keyword}{this},\ \doxymbox{\hyperlink{class_main_window_a3642f631531fee9161fac371c8179750}{dbHandler}}-\/>getDatabase());}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ 2.\ Specify\ your\ table\ name\ exactly\ as\ it\ appears\ in\ the\ .db\ file}}
+\DoxyCodeLine{00048\ \ \ \ \ model-\/>setTable(\textcolor{stringliteral}{"{}your\_table\_name"{}});}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{//\ 3.\ (Optional)\ If\ you\ want\ to\ sort\ by\ a\ specific\ column\ (e.g.,\ Column\ 0)}}
+\DoxyCodeLine{00051\ \ \ \ \ model-\/>setSort(0,\ Qt::AscendingOrder);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{//\ 4.\ Fetch\ the\ data\ from\ the\ database\ into\ the\ model}}
+\DoxyCodeLine{00054\ \ \ \ \ model-\/>select();}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ 5.\ Tell\ the\ ListView\ to\ use\ this\ model}}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//\ ui-\/>campusList-\/>setModel(model);}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{//\ 6.\ Tell\ the\ ListView\ which\ column\ to\ display\ (0,\ 1,\ 2,\ etc.)}}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ For\ example,\ if\ Column\ 1\ is\ "{}Campus\ Name"{},\ set\ it\ to\ 1.}}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{comment}{//\ ui-\/>campusList-\/>setModelColumn(1);}}
+\DoxyCodeLine{00062\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_main_window_aca7667d5bc8417a6804938b030541a6c}\index{MainWindow@{MainWindow}!linkAdminPage@{linkAdminPage}}
+\index{linkAdminPage@{linkAdminPage}!MainWindow@{MainWindow}}
+\doxysubsubsection{\texorpdfstring{linkAdminPage()}{linkAdminPage()}}
+{\footnotesize\ttfamily \label{class_main_window_aca7667d5bc8417a6804938b030541a6c} 
+void Main\+Window::\+link\+Admin\+Page (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Connects internal signals from the \doxylink{class_admin_page}{Admin\+Page} to the \doxylink{class_main_window}{Main\+Window}\textquotesingle{}s status\+Bar. 
+
+Allows nested widgets to display temporary status messages (like "{}\+Login Successful"{}) without having direct access to the \doxylink{class_main_window}{Main\+Window} pointer. 
+
+Definition at line \doxymbox{\hyperlink{mainwindow_8cpp_source_l00064}{64}} of file \doxymbox{\hyperlink{mainwindow_8cpp_source}{mainwindow.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{//\ We\ connect\ the\ CUSTOM\ signal\ from\ AdminPage\ to\ the\ BUILT-\/IN\ slot\ of\ MainWindow}}
+\DoxyCodeLine{00066\ \ \ \ \ connect(\doxymbox{\hyperlink{class_main_window_a35466a70ed47252a0191168126a352a5}{ui}}-\/>adminPageWidget,\ \&\doxymbox{\hyperlink{class_admin_page_a4a3217feb907b151e7efba86e2153d78}{AdminPage::notifyStatus}},\ \textcolor{keyword}{this},\ [\textcolor{keyword}{this}](\textcolor{keyword}{const}\ QString\ \&msg)\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ lambda\ function\ runs\ whenever\ notifyStatus\ is\ emitted}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ ui-\/>statusBar-\/>showMessage(msg,\ 3000);\ \textcolor{comment}{//\ Show\ for\ 3\ seconds}}
+\DoxyCodeLine{00069\ \ \ \ \ \});}
+\DoxyCodeLine{00070\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_main_window_aca7667d5bc8417a6804938b030541a6c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_main_window_aca7667d5bc8417a6804938b030541a6c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_main_window_a4c85dbf2ae494394c7d1136017ff2774}\index{MainWindow@{MainWindow}!menuBarReset@{menuBarReset}}
+\index{menuBarReset@{menuBarReset}!MainWindow@{MainWindow}}
+\doxysubsubsection{\texorpdfstring{menuBarReset}{menuBarReset}}
+{\footnotesize\ttfamily \label{class_main_window_a4c85dbf2ae494394c7d1136017ff2774} 
+void Main\+Window::\+menu\+Bar\+Reset (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Resets the entire application database to its original state. 
+
+Triggered via the menu bar. It extracts a fresh master Excel file from resources to the local App\+Data folder and performs a full reload of the SQL tables. 
+
+Definition at line \doxymbox{\hyperlink{mainwindow_8cpp_source_l00072}{72}} of file \doxymbox{\hyperlink{mainwindow_8cpp_source}{mainwindow.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{comment}{//\ 1.\ Define\ a\ universal\ path\ in\ AppData}}
+\DoxyCodeLine{00074\ \ \ \ \ QString\ appDataPath\ =\ QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);}
+\DoxyCodeLine{00075\ \ \ \ \ QString\ excelPath\ =\ appDataPath\ +\ \textcolor{stringliteral}{"{}/starterInformation.xlsx"{}};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}-\/-\/-\/\ Template\ Debug\ Info\ -\/-\/-\/"{}};}
+\DoxyCodeLine{00078\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Expected\ Folder:"{}}\ <<\ appDataPath;}
+\DoxyCodeLine{00079\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Full\ excel\ Path:"{}}\ <<\ excelPath;}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{comment}{//\ 2.\ If\ it's\ not\ in\ AppData\ yet,\ copy\ it\ from\ the\ internal\ resources}}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordflow}{if}\ (!QFile::exists(excelPath))\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ QDir().mkpath(appDataPath);\ \textcolor{comment}{//\ Ensure\ folder\ exists}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ QFile::copy(\textcolor{stringliteral}{"{}:/res/starterInformation.xlsx"{}},\ excelPath);}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Remove\ read-\/only\ attribute\ so\ we\ can\ use\ it}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ QFile::setPermissions(excelPath,\ QFileDevice::WriteOwner\ |\ QFileDevice::ReadOwner);}
+\DoxyCodeLine{00087\ \ \ \ \ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{comment}{//\ 3.\ Use\ the\ local\ AppData\ path\ instead\ of\ the\ C:/Users\ hardcoded\ path}}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordflow}{if}\ (QFile::exists(excelPath))\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{database_helper_8h_a303fcb2cb85e0a1ff5906db6fd8767cb}{resetAndReloadData}}(excelPath);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Refresh\ pages...}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ QList<DatabasePage*>\ allPages\ =\ this-\/>findChildren<DatabasePage*>();}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (DatabasePage*\ page\ :\ std::as\_const(allPages))\ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (page)\ page-\/>refreshUI();}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_main_window_a35466a70ed47252a0191168126a352a5}{ui}}-\/>statusBar-\/>showMessage(\textcolor{stringliteral}{"{}Database\ Reset\ Successful"{}},\ 3000);}
+\DoxyCodeLine{00100\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_main_window_a35466a70ed47252a0191168126a352a5}{ui}}-\/>statusBar-\/>showMessage(\textcolor{stringliteral}{"{}Reset\ failed:\ Template\ file\ not\ found"{}},\ 3000);}
+\DoxyCodeLine{00102\ \ \ \ \ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \doxymbox{\hyperlink{database_helper_8h_a79b962714031fc06de95d2ad7f2cfb62}{clearTripInfoTable}}();}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{comment}{//\ reset\ totaldistance\ label\ on\ infopage}}
+\DoxyCodeLine{00107\ \ \ \ \ QList<InfoPage*>\ infoPages\ =\ this-\/>findChildren<InfoPage*>();}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordflow}{for}\ (InfoPage*\ page\ :\ infoPages)\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ page-\/>resetUI();}
+\DoxyCodeLine{00110\ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_main_window_a4c85dbf2ae494394c7d1136017ff2774_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_main_window_a4c85dbf2ae494394c7d1136017ff2774_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_main_window_aff9e658ae579df50b17031095e7fcb27}\index{MainWindow@{MainWindow}!on\_tabWidget\_currentChanged@{on\_tabWidget\_currentChanged}}
+\index{on\_tabWidget\_currentChanged@{on\_tabWidget\_currentChanged}!MainWindow@{MainWindow}}
+\doxysubsubsection{\texorpdfstring{on\_tabWidget\_currentChanged}{on\_tabWidget\_currentChanged}}
+{\footnotesize\ttfamily \label{class_main_window_aff9e658ae579df50b17031095e7fcb27} 
+void Main\+Window::\+on\+\_\+tab\+Widget\+\_\+current\+Changed (\begin{DoxyParamCaption}\item[{int}]{index}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Slot triggered when the user switches tabs in the main interface. 
+
+This function acts as a global refresh trigger. It finds all children of type \doxylink{class_database_page}{Database\+Page} and calls their refresh\+UI() method to ensure data consistency across the application. 
+\begin{DoxyParams}{Parameters}
+{\em index} & The index of the newly selected tab. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{mainwindow_8cpp_source_l00114}{114}} of file \doxymbox{\hyperlink{mainwindow_8cpp_source}{mainwindow.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00115\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Auto-\/connected\ Tab\ Change.\ Current\ Index:"{}}\ <<\ index;}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{comment}{//\ We\ look\ inside\ the\ container\ (databasePage)\ for\ any\ PlanPage\ instances}}
+\DoxyCodeLine{00118\ \ \ \ \ QList<DatabasePage*>\ allPages\ =\ this-\/>findChildren<DatabasePage*>();}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordflow}{if}\ (allPages.isEmpty())\ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Warning:\ No\ PlanPage\ found\ inside\ databasePage!"{}};}
+\DoxyCodeLine{00122\ \ \ \ \ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordflow}{for}\ (DatabasePage*\ page\ :\ allPages)\ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ page-\/>refreshUI();}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Successfully\ refreshed:"{}}\ <<\ page-\/>objectName();}
+\DoxyCodeLine{00127\ \ \ \ \ \}}
+\DoxyCodeLine{00128\ \}}
+
+\end{DoxyCode}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_main_window_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_main_window_a3642f631531fee9161fac371c8179750}\index{MainWindow@{MainWindow}!dbHandler@{dbHandler}}
+\index{dbHandler@{dbHandler}!MainWindow@{MainWindow}}
+\doxysubsubsection{\texorpdfstring{dbHandler}{dbHandler}}
+{\footnotesize\ttfamily \label{class_main_window_a3642f631531fee9161fac371c8179750} 
+\doxymbox{\hyperlink{class_db_manager}{Db\+Manager}}\texorpdfstring{$\ast$}{*} Main\+Window::\+db\+Handler\hspace{0.3cm}{\ttfamily [private]}}
+
+Pointer to the global database manager. 
+
+Definition at line \doxymbox{\hyperlink{mainwindow_8h_source_l00075}{75}} of file \doxymbox{\hyperlink{mainwindow_8h_source}{mainwindow.\+h}}.
+
+\Hypertarget{class_main_window_a35466a70ed47252a0191168126a352a5}\index{MainWindow@{MainWindow}!ui@{ui}}
+\index{ui@{ui}!MainWindow@{MainWindow}}
+\doxysubsubsection{\texorpdfstring{ui}{ui}}
+{\footnotesize\ttfamily \label{class_main_window_a35466a70ed47252a0191168126a352a5} 
+\doxymbox{\hyperlink{class_ui_1_1_main_window}{Ui::\+\+Main\+Window}}\texorpdfstring{$\ast$}{*} Main\+Window::\+ui\hspace{0.3cm}{\ttfamily [private]}}
+
+Pointer to the UI setup. 
+
+Definition at line \doxymbox{\hyperlink{mainwindow_8h_source_l00074}{74}} of file \doxymbox{\hyperlink{mainwindow_8h_source}{mainwindow.\+h}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+headers/\+\doxymbox{\hyperlink{mainwindow_8h}{mainwindow.\+h}}\item 
+sources/\+\doxymbox{\hyperlink{mainwindow_8cpp}{mainwindow.\+cpp}}\end{DoxyCompactItemize}

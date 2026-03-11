@@ -1,0 +1,6 @@
+<map id="calculateEfficientTrip" name="calculateEfficientTrip">
+<area shape="rect" id="Node000001" title="Recursively calculates the most efficient route using a Nearest Neighbor approach." alt="" coords="246,29,389,55"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="353,14,342,10,317,8,295,10,282,15,280,20,286,30,281,28,274,21,279,11,293,5,317,3,344,5,359,15"/>
+<area shape="rect" id="Node000002" href="$class_plan_page.html#aa0511c865d24a2a78dbab899aa874034" title="Initiates the recursive trip algorithm based on user selections." alt="" coords="5,22,198,62"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="227,42,198,45,198,40,233,42"/>
+</map>

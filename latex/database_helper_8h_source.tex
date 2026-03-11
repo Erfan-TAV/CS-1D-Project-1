@@ -1,0 +1,76 @@
+\doxysection{database\+Helper.\+h}
+\hypertarget{database_helper_8h_source}{}\label{database_helper_8h_source}\index{headers/databaseHelper.h@{headers/databaseHelper.h}}
+\doxymbox{\hyperlink{database_helper_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00007}00007\ \textcolor{preprocessor}{\#ifndef\ DATABASEHELPER\_H}}
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00008}00008\ \textcolor{preprocessor}{\#define\ DATABASEHELPER\_H}}
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00010}00010\ \textcolor{preprocessor}{\#include\ <QString>}}
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00011}00011\ \textcolor{preprocessor}{\#include\ <QStringList>}}
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00012}00012\ \textcolor{preprocessor}{\#include\ <QList>}}
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00013}00013\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{campus_structs_8h}{campusStructs.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00015}00015\ \textcolor{comment}{//\ -\/-\/-\/\ Campus\ CRUD\ Helpers\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00022}00022\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{database_helper_8h_ae9dc5b09f0efa326744fc1d55f3c37a5}{addCampus}}(\textcolor{keyword}{const}\ QString\&\ name);}
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00030}00030\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{database_helper_8h_aaa58653010445ac38e0df532c01f4b88}{removeCampus}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ campusID);}
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00037}00037\ QString\ \doxymbox{\hyperlink{database_helper_8h_aa6d10f89d7ee6f7a937b5bc5c9979fd3}{getCampusName}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ campusID);}
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00044}00044\ \doxymbox{\hyperlink{struct_campus}{Campus}}\ \doxymbox{\hyperlink{database_helper_8h_a02a8b600d5924cdb93c270d695350fa7}{getFullCampus}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ campusID);}
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00047}00047\ \textcolor{comment}{//\ -\/-\/-\/\ Souvenir\ Helpers\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00056}00056\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{database_helper_8h_a44dac679a954686debebbeb013e85075}{addSouvenir}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ campusID,\ \textcolor{keyword}{const}\ QString\&\ name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ price);}
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00065}00065\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{database_helper_8h_a118f35c1a1476e09dd314c5bb1f5d6a9}{updateSouvenirPrice}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ campusID,\ \textcolor{keyword}{const}\ QString\&\ name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ newPrice);}
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00070}00070\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{database_helper_8h_ad8060f84cc153842dec994fb977bc508}{removeSouvenir}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ campusID,\ \textcolor{keyword}{const}\ QString\&\ name);}
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00073}00073\ \textcolor{comment}{//\ -\/-\/-\/\ Distance\ \&\ Graph\ Helpers\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00081}00081\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{database_helper_8h_a03b4e3382e830c7a89466a8eb7f643a4}{addDistance}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ id1,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ id2,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ distance);}
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00088}00088\ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{database_helper_8h_a242017b47cfdc29400bab979847020ec}{getDistanceBetween}}(\textcolor{keywordtype}{int}\ id1,\ \textcolor{keywordtype}{int}\ id2);}
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00095}00095\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{database_helper_8h_a48548e1be3c34f20d14c206a5f757f54}{closestCampus}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ campusID);}
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00098}00098\ \textcolor{comment}{//\ -\/-\/-\/\ Algorithm\ Logic\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00109}00109\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{database_helper_8h_a4a6041a0ff797e48810a9120ed86cf2f}{calculateEfficientTrip}}(\textcolor{keywordtype}{int}\ currentID,\ QList<int>\ unvisitedIDs,\ \textcolor{keywordtype}{double}\ totalDistance,\ \textcolor{keywordtype}{int}\ order);}
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00114}00114\ \textcolor{comment}{//\ -\/-\/-\/\ File\ Upload\ \&\ Maintenance\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00123}00123\ QStringList\ \doxymbox{\hyperlink{database_helper_8h_ab5be4a2470cfc5c6d8bd862833bfd3dc}{uploadFileAppend}}(\textcolor{keyword}{const}\ QString\ \&filePath);}
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00131}00131\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{database_helper_8h_a303fcb2cb85e0a1ff5906db6fd8767cb}{resetAndReloadData}}(\textcolor{keyword}{const}\ QString\ \&filePath);}
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00134}00134\ \textcolor{comment}{//\ -\/-\/-\/\ Trip\ Management\ (Itinerary\ \&\ Purchases)\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00139}00139\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{database_helper_8h_a9f21bb493b041e5c62f84211de360468}{addTripCampus}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ campusID,\ \textcolor{keyword}{const}\ QString\ \&campusName,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ visitOrder);}
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00144}00144\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{database_helper_8h_a43d3aaa47509c7d2a3133e29ea8bc1a9}{clearTripTable}}();}
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00149}00149\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{database_helper_8h_a752947b2f77e0cda9a0bccb1b334770d}{populateTripSouvenirs}}();}
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00156}00156\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{database_helper_8h_a7dc11b7a6e3a3d3d359068cf66578868}{addTripInfo}}(\textcolor{keyword}{const}\ QString\&\ campusName,\ \textcolor{keyword}{const}\ QString\&\ itemName,\ \textcolor{keywordtype}{int}\ numItem,\ \textcolor{keywordtype}{double}\ itemPrice,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ campusID);}
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00161}00161\ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{database_helper_8h_a451944b5a3a2bc8ad9fd8a3a7aa14830}{getTripInfoTotalSpent}}();}
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00162}00162\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00166}00166\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{database_helper_8h_a831579ca9fc2f58292a660c42b86b91d}{getTripInfoTotalItems}}();}
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00171}00171\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{database_helper_8h_a79b962714031fc06de95d2ad7f2cfb62}{clearTripInfoTable}}();}
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00172}00172\ }
+\DoxyCodeLine{\Hypertarget{database_helper_8h_source_l00173}00173\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ DATABASEHELPER\_H}}
+
+\end{DoxyCode}

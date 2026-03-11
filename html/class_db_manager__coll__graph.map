@@ -1,0 +1,5 @@
+<map id="DbManager" name="DbManager">
+<area shape="rect" id="Node000001" title="Manages the physical connection to the SQLite database." alt="" coords="5,120,142,267"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="44,5,103,72"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,84,76,120,71,119,73,89"/>
+</map>

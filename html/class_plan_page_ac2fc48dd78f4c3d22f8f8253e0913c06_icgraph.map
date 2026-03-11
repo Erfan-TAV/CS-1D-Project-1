@@ -1,0 +1,6 @@
+<map id="PlanPage::setupDatabaseTable" name="PlanPage::setupDatabaseTable">
+<area shape="rect" id="Node000001" title="Initializes database models and connects UI elements for the setup screen." alt="" coords="195,29,399,55"/>
+<area shape="rect" id="Node000002" href="$class_plan_page.html#a608bd53cd9bb8fb5b7d34dfedf81c5fe" title="Constructor for PlanPage." alt="" coords="5,29,147,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,42,147,45,147,40,182,42"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="113,15,102,10,76,8,53,10,40,15,37,20,44,29,39,29,32,21,36,11,51,5,76,3,103,5,118,14"/>
+</map>

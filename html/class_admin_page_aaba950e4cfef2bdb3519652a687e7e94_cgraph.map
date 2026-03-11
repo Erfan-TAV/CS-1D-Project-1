@@ -1,0 +1,9 @@
+<map id="AdminPage::setupLoginPage" name="AdminPage::setupLoginPage">
+<area shape="rect" id="Node000001" title="Configures the initial state of the login screen." alt="" coords="5,31,195,56"/>
+<area shape="rect" id="Node000002" href="$class_admin_page.html#a16675919043ae4f2160148da4ecdc22d" title="Validates administrator credentials and toggles the UI stack." alt="" coords="243,31,408,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="195,41,230,43,224,44,195,46"/>
+<area shape="rect" id="Node000003" href="$class_admin_page.html#a4a3217feb907b151e7efba86e2153d78" title="Emitted to request a status message update in the main window&#39;s status bar." alt="" coords="484,5,650,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="408,32,471,28,466,29,409,37"/>
+<area shape="rect" id="Node000004" href="$class_admin_page.html#a525dd78af12c754112f7e7dcc6990fa7" title="Static helper to check login credentials against the database." alt="" coords="456,55,678,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="409,49,443,55,438,55,409,54"/>
+</map>

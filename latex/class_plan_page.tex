@@ -1,0 +1,1369 @@
+\doxysection{Plan\+Page Class Reference}
+\hypertarget{class_plan_page}{}\label{class_plan_page}\index{PlanPage@{PlanPage}}
+
+
+Manages the multi-\/step trip planning process and the live tour interface.  
+
+
+
+
+{\ttfamily \+\#include $<$planpage.\+h$>$}
+
+
+
+Inheritance diagram for Plan\+Page:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_plan_page__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Plan\+Page:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_plan_page__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_plan_page_a3be54275ced4afc72495e4287fc1fb62}{distance\+Calculated}} (const int distance)
+\begin{DoxyCompactList}\small\item\em Signal emitted when a new total distance is calculated. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_plan_page_a608bd53cd9bb8fb5b7d34dfedf81c5fe}{Plan\+Page}} (QWidget \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{class_plan_page}{Plan\+Page}. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_plan_page_a05854eb691b2b6de5a16c32ae170df54}{\texorpdfstring{$\sim$}{\string~}\+Plan\+Page}} () override
+\begin{DoxyCompactList}\small\item\em Destructor for \doxylink{class_plan_page}{Plan\+Page}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_database_page}{Database\+Page}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_database_page_adf83a1f998dc86afd7229db40628857a}{Database\+Page}} (QWidget \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{class_database_page}{Database\+Page}. \end{DoxyCompactList}\item 
+virtual void \doxymbox{\hyperlink{class_database_page_ac5eac9c210411877ef0d3fce5c971223}{refresh\+UI}} ()=0
+\begin{DoxyCompactList}\small\item\em Pure virtual function to update the UI with the latest database data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_plan_page_aa0511c865d24a2a78dbab899aa874034}{on\+\_\+start\+Trip\+Button\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em Initiates the recursive trip algorithm based on user selections. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_plan_page_aece1d1d7a5f0626e42410f5feca446a0}{on\+\_\+result\+Plan\+Another\+Button\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em Finalizes the trip and returns to the planning screen. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_plan_page_abf76652af89df5b08ca460f3adb8ffa0}{on\+\_\+plan\+Only\+Plan\+Another\+Button\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em Returns to the planning screen from the plan-\/only view. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_plan_page_a3d91bd03cbd5be3f0e225a29cf50aa41}{on\+\_\+trip\+Plan\+Stop\+Next\+Button\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em Advances the user to the next campus in the tour sequence. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_plan_page_a09a3e851a9c453d581003a3b90a3d031}{update\+Filtered\+Table}} (const QString \&selected\+Campus)
+\begin{DoxyCompactList}\small\item\em Filters the selection table to hide the campus selected as the starting point. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_plan_page_a7dc47477aaba2e58dcad3fc3643e6748}{update\+Souvenir\+Filter}} (int index)
+\begin{DoxyCompactList}\small\item\em Filters the souvenir list to show only items for the selected campus. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_plan_page_a9c256fd339d54cb2149190a41a259073}{update\+Selection\+Count}} ()
+\begin{DoxyCompactList}\small\item\em Updates the UI label showing how many campuses are currently selected. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_plan_page_a86480ced8dfa743ff4593917d116abf3}{setup\+Trip\+Stop\+Model}} ()
+\begin{DoxyCompactList}\small\item\em Initializes the table view used for buying souvenirs during the trip. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_plan_page_a7f98740d9c7aa63199af873075ab2b1f}{show\+Current\+Campus\+Souvenirs}} (int campus\+ID)
+\begin{DoxyCompactList}\small\item\em Updates the shopping table to show souvenirs for a specific ID. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_plan_page_aa61c32857843d11ea1638f5fe94a304c}{get\+Campus\+IDBy\+Order}} (int order)
+\begin{DoxyCompactList}\small\item\em Helper to find a campus ID based on its position in the trip. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_plan_page_a913c019bbef87646bdca1c830f9ed668}{update\+Stop\+Labels}} ()
+\begin{DoxyCompactList}\small\item\em Updates labels (Current/\+\+Next) during the live tour phase. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_plan_page_a6f56f05951a0b45dfa0867ba8b9306f2}{update\+Total\+Distance}} ()
+\begin{DoxyCompactList}\small\item\em Sums the distance of the calculated trip and saves it to the database. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_plan_page_a9a56d9743c7febd1834af436f3bc827f}{update\+Campus\+Spent}} (int campus\+ID)
+\begin{DoxyCompactList}\small\item\em Calculates how much money was spent at a specific stop. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_plan_page_abf00a60aa85a44061adbe8233b25cc6a}{update\+Total\+Trip\+Purchased}} ()
+\begin{DoxyCompactList}\small\item\em Calculates the total monetary cost of the entire trip. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_plan_page_aa277112662d7a9e3d58c03b8c82dda77}{refresh\+UI}} () override
+\begin{DoxyCompactList}\small\item\em Refreshes all models to ensure data reflects the latest database state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_plan_page_ac2fc48dd78f4c3d22f8f8253e0913c06}{setup\+Database\+Table}} ()
+\begin{DoxyCompactList}\small\item\em Initializes database models and connects UI elements for the setup screen. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_plan_page_a9e81d1296b8fbfd76f2f7e3d3439cfc8}{setup\+Results\+Connection}} ()
+\begin{DoxyCompactList}\small\item\em Configures the final results page UI and purchase models. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_plan_page_a3e9d440af37075bb04ae3dd0e52c96bc}{render\+Trip}} ()
+\begin{DoxyCompactList}\small\item\em Dynamically renders a horizontal visual representation of the trip. \end{DoxyCompactList}\item 
+QWidget \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_plan_page_a2fccd653c31cc0e1e3e1ba387eeebbd1}{create\+Stop\+Widget}} (QString name, int distance, bool show\+Arrow)
+\begin{DoxyCompactList}\small\item\em Factory function to create a UI component for a single trip leg. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_ui_1_1_plan_page}{Ui::\+\+Plan\+Page}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}
+\item 
+QSql\+Query\+Model \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_plan_page_ab7140a4c85ceee6ad4a9b3787ad05f98}{campus\+Model}} = nullptr
+\item 
+QSql\+Table\+Model \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_plan_page_a45441e439b3ca65588bd7dfc406f5319}{combo\+Box\+Model}} = nullptr
+\item 
+QSql\+Table\+Model \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_plan_page_ab186f1c89fe2652199d82bc6f7842a4a}{trip\+Model}} = nullptr
+\item 
+QSql\+Table\+Model \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_plan_page_a60d847f3d9e07faa25800d3041b23f25}{trip\+Souvenir\+Model}} = nullptr
+\item 
+QSql\+Table\+Model \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_plan_page_add965acd8bc98d8cf894a37ebacde1f9}{trip\+Stop\+Souvenir\+Model}} = nullptr
+\item 
+QSort\+Filter\+Proxy\+Model \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_plan_page_ae450329955e5249199e8e3552c2a6de0}{proxy\+Model}}
+\item 
+int \doxymbox{\hyperlink{class_plan_page_a247fc30520b3dbc2d6e4d6aab5993e4b}{current\+Trip\+Order}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages the multi-\/step trip planning process and the live tour interface. 
+
+This class handles three distinct UI states via a QStacked\+Widget:\+
+\begin{DoxyEnumerate}
+\item {\bfseries{Settings (Index 0):\+}} Users select a starting campus and destination schools.
+\item {\bfseries{Plan-\/\+Only (Index 1):\+}} A visual horizontal scroll view of the calculated path.
+\item {\bfseries{Full-\/\+Trip (Index 2):\+}} An interactive "{}\+Stop-\/by-\/\+Stop"{} shopping interface.
+\item {\bfseries{Results (Index 3):\+}} A summary of purchases and total distances for the trip. 
+\end{DoxyEnumerate}
+
+Definition at line \doxymbox{\hyperlink{planpage_8h_source_l00029}{29}} of file \doxymbox{\hyperlink{planpage_8h_source}{planpage.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_plan_page_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_plan_page_a608bd53cd9bb8fb5b7d34dfedf81c5fe}\index{PlanPage@{PlanPage}!PlanPage@{PlanPage}}
+\index{PlanPage@{PlanPage}!PlanPage@{PlanPage}}
+\doxysubsubsection{\texorpdfstring{PlanPage()}{PlanPage()}}
+{\footnotesize\ttfamily \label{class_plan_page_a608bd53cd9bb8fb5b7d34dfedf81c5fe} 
+Plan\+Page::\+\+Plan\+Page (\begin{DoxyParamCaption}\item[{QWidget \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructor for \doxylink{class_plan_page}{Plan\+Page}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Pointer to the parent widget. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{planpage_8cpp_source_l00015}{15}} of file \doxymbox{\hyperlink{planpage_8cpp_source}{planpage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00016\ \ \ \ \ :\ \doxymbox{\hyperlink{class_database_page_adf83a1f998dc86afd7229db40628857a}{DatabasePage}}(parent)}
+\DoxyCodeLine{00017\ \ \ \ \ ,\ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}(\textcolor{keyword}{new}\ Ui::PlanPage)}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>setupUi(\textcolor{keyword}{this});}
+\DoxyCodeLine{00020\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[PLANPAGE]\ Constructor\ started."{}};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{comment}{//\ INITIALIZE\ THESE\ FIRST}}
+\DoxyCodeLine{00023\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_ab7140a4c85ceee6ad4a9b3787ad05f98}{campusModel}}\ =\ \textcolor{keyword}{new}\ QSqlQueryModel(\textcolor{keyword}{this});}
+\DoxyCodeLine{00024\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_ae450329955e5249199e8e3552c2a6de0}{proxyModel}}\ =\ \textcolor{keyword}{new}\ QSortFilterProxyModel(\textcolor{keyword}{this});}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>tripPlannerStack-\/>setCurrentIndex(0);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_ac2fc48dd78f4c3d22f8f8253e0913c06}{setupDatabaseTable}}();}
+\DoxyCodeLine{00029\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9e81d1296b8fbfd76f2f7e3d3439cfc8}{setupResultsConnection}}();}
+\DoxyCodeLine{00030\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[PLANPAGE]\ Constructor\ finished."{}};}
+\DoxyCodeLine{00031\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_plan_page_a608bd53cd9bb8fb5b7d34dfedf81c5fe_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=186pt]{class_plan_page_a608bd53cd9bb8fb5b7d34dfedf81c5fe_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_plan_page_a05854eb691b2b6de5a16c32ae170df54}\index{PlanPage@{PlanPage}!````~PlanPage@{\texorpdfstring{$\sim$}{\string~}PlanPage}}
+\index{````~PlanPage@{\texorpdfstring{$\sim$}{\string~}PlanPage}!PlanPage@{PlanPage}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}PlanPage()}{\string~PlanPage()}}
+{\footnotesize\ttfamily \label{class_plan_page_a05854eb691b2b6de5a16c32ae170df54} 
+Plan\+Page::\+\texorpdfstring{$\sim$}{\string~}\+Plan\+Page (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Destructor for \doxylink{class_plan_page}{Plan\+Page}. 
+
+
+
+Definition at line \doxymbox{\hyperlink{planpage_8cpp_source_l00033}{33}} of file \doxymbox{\hyperlink{planpage_8cpp_source}{planpage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00034\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{delete}\ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}};}
+\DoxyCodeLine{00036\ \}}
+
+\end{DoxyCode}
+
+
+\label{doc-func-members}
+\Hypertarget{class_plan_page_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_plan_page_a2fccd653c31cc0e1e3e1ba387eeebbd1}\index{PlanPage@{PlanPage}!createStopWidget@{createStopWidget}}
+\index{createStopWidget@{createStopWidget}!PlanPage@{PlanPage}}
+\doxysubsubsection{\texorpdfstring{createStopWidget()}{createStopWidget()}}
+{\footnotesize\ttfamily \label{class_plan_page_a2fccd653c31cc0e1e3e1ba387eeebbd1} 
+QWidget \texorpdfstring{$\ast$}{*} Plan\+Page::\+create\+Stop\+Widget (\begin{DoxyParamCaption}\item[{QString}]{name}{, }\item[{int}]{distance}{, }\item[{bool}]{show\+Arrow}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Factory function to create a UI component for a single trip leg. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the campus. \\
+\hline
+{\em distance} & The mileage to the next stop. \\
+\hline
+{\em show\+Arrow} & If true, draws a connector arrow after the card. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the constructed stop widget. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{planpage_8cpp_source_l00364}{364}} of file \doxymbox{\hyperlink{planpage_8cpp_source}{planpage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00370\ \ \ \ \ QWidget\ *stop\ =\ \textcolor{keyword}{new}\ QWidget();}
+\DoxyCodeLine{00371\ \ \ \ \ QHBoxLayout\ *mainLayout\ =\ \textcolor{keyword}{new}\ QHBoxLayout(stop);}
+\DoxyCodeLine{00372\ \ \ \ \ mainLayout-\/>setContentsMargins(5,\ 5,\ 5,\ 5);}
+\DoxyCodeLine{00373\ \ \ \ \ mainLayout-\/>setSpacing(0);}
+\DoxyCodeLine{00374\ }
+\DoxyCodeLine{00375\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ 1.\ The\ Campus\ Card\ -\/-\/-\/}}
+\DoxyCodeLine{00376\ \ \ \ \ QFrame\ *card\ =\ \textcolor{keyword}{new}\ QFrame();}
+\DoxyCodeLine{00377\ \ \ \ \ card-\/>setStyleSheet(}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}QFrame\ \{"{}}}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\ \ background-\/color:\ palette(button);"{}}}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\ \ border:\ 1px\ solid\ palette(mid);"{}}}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\ \ border-\/radius:\ 8px;"{}}}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\ \ padding:\ 10px;"{}}}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\}"{}}}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00385\ }
+\DoxyCodeLine{00386\ \ \ \ \ QVBoxLayout\ *cardLayout\ =\ \textcolor{keyword}{new}\ QVBoxLayout(card);}
+\DoxyCodeLine{00387\ \ \ \ \ QLabel\ *nameLabel\ =\ \textcolor{keyword}{new}\ QLabel(name);}
+\DoxyCodeLine{00388\ \ \ \ \ nameLabel-\/>setStyleSheet(\textcolor{stringliteral}{"{}font-\/weight:\ bold;\ color:\ palette(window-\/text);\ font-\/size:\ 18px;\ border:\ none;"{}});}
+\DoxyCodeLine{00389\ \ \ \ \ nameLabel-\/>setAlignment(Qt::AlignCenter);}
+\DoxyCodeLine{00390\ \ \ \ \ cardLayout-\/>addWidget(nameLabel);}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \ \ \ \ mainLayout-\/>addWidget(card);}
+\DoxyCodeLine{00393\ }
+\DoxyCodeLine{00394\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ 2.\ The\ Connector\ (Only\ if\ showArrow\ is\ true)\ -\/-\/-\/}}
+\DoxyCodeLine{00395\ \ \ \ \ \textcolor{keywordflow}{if}\ (showArrow)\ \{}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ QWidget\ *connector\ =\ \textcolor{keyword}{new}\ QWidget();}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ QVBoxLayout\ *vbox\ =\ \textcolor{keyword}{new}\ QVBoxLayout(connector);}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ vbox-\/>setAlignment(Qt::AlignCenter);}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ vbox-\/>setContentsMargins(0,\ 0,\ 0,\ 0);}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ vbox-\/>setSpacing(2);}
+\DoxyCodeLine{00401\ }
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ QLabel\ *arrow\ =\ \textcolor{keyword}{new}\ QLabel(\textcolor{stringliteral}{"{}──────▶"{}});}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ arrow-\/>setStyleSheet(\textcolor{stringliteral}{"{}color:\ palette(window-\/text);\ font-\/weight:\ bold;\ font-\/size:\ 16px;"{}});}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ arrow-\/>setAlignment(Qt::AlignCenter);}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ vbox-\/>addWidget(arrow);}
+\DoxyCodeLine{00406\ }
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Only\ show\ distance\ if\ it's\ a\ positive\ value\ (greater\ than\ 0)}}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (distance\ >\ 0)\ \{}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \ \ \ \ QLabel\ *distLabel\ =\ \textcolor{keyword}{new}\ QLabel(QString::number(distance)\ +\ \textcolor{stringliteral}{"{}\ miles"{}});}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \ \ \ \ distLabel-\/>setStyleSheet(\textcolor{stringliteral}{"{}font-\/size:\ 12px;\ color:\ palette(placeholder-\/text);"{}});}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ distLabel-\/>setAlignment(Qt::AlignCenter);}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \ \ \ \ vbox-\/>addWidget(distLabel);}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Spacer\ to\ keep\ arrow\ vertically\ aligned\ with\ others}}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \ \ \ \ QLabel\ *spacer\ =\ \textcolor{keyword}{new}\ QLabel(\textcolor{stringliteral}{"{}\ "{}});}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \ \ \ \ spacer-\/>setStyleSheet(\textcolor{stringliteral}{"{}font-\/size:\ 10px;"{}});}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \ \ \ \ vbox-\/>addWidget(spacer);}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_plan_page_a3be54275ced4afc72495e4287fc1fb62}\index{PlanPage@{PlanPage}!distanceCalculated@{distanceCalculated}}
+\index{distanceCalculated@{distanceCalculated}!PlanPage@{PlanPage}}
+\doxysubsubsection{\texorpdfstring{distanceCalculated}{distanceCalculated}}
+{\footnotesize\ttfamily \label{class_plan_page_a3be54275ced4afc72495e4287fc1fb62} 
+void Plan\+Page::\+distance\+Calculated (\begin{DoxyParamCaption}\item[{const int}]{distance}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Signal emitted when a new total distance is calculated. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em distance} & The total mileage of the trip. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_plan_page_aa61c32857843d11ea1638f5fe94a304c}\index{PlanPage@{PlanPage}!getCampusIDByOrder@{getCampusIDByOrder}}
+\index{getCampusIDByOrder@{getCampusIDByOrder}!PlanPage@{PlanPage}}
+\doxysubsubsection{\texorpdfstring{getCampusIDByOrder}{getCampusIDByOrder}}
+{\footnotesize\ttfamily \label{class_plan_page_aa61c32857843d11ea1638f5fe94a304c} 
+int Plan\+Page::\+get\+Campus\+IDBy\+Order (\begin{DoxyParamCaption}\item[{int}]{order}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Helper to find a campus ID based on its position in the trip. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em order} & The visit order (0, 1, 2...). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The campus\+ID, or -\/1 if not found. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{planpage_8cpp_source_l00522}{522}} of file \doxymbox{\hyperlink{planpage_8cpp_source}{planpage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00528\ \{}
+\DoxyCodeLine{00529\ \ \ \ \ QSqlQuery\ query;}
+\DoxyCodeLine{00530\ \ \ \ \ query.prepare(\textcolor{stringliteral}{"{}SELECT\ campusID\ FROM\ tripCampuses\ WHERE\ visitOrder\ =\ :order"{}});}
+\DoxyCodeLine{00531\ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:order"{}},\ order);}
+\DoxyCodeLine{00532\ }
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_plan_page_aa61c32857843d11ea1638f5fe94a304c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_plan_page_abf76652af89df5b08ca460f3adb8ffa0}\index{PlanPage@{PlanPage}!on\_planOnlyPlanAnotherButton\_clicked@{on\_planOnlyPlanAnotherButton\_clicked}}
+\index{on\_planOnlyPlanAnotherButton\_clicked@{on\_planOnlyPlanAnotherButton\_clicked}!PlanPage@{PlanPage}}
+\doxysubsubsection{\texorpdfstring{on\_planOnlyPlanAnotherButton\_clicked}{on\_planOnlyPlanAnotherButton\_clicked}}
+{\footnotesize\ttfamily \label{class_plan_page_abf76652af89df5b08ca460f3adb8ffa0} 
+void Plan\+Page::\+on\+\_\+plan\+Only\+Plan\+Another\+Button\+\_\+clicked (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Returns to the planning screen from the plan-\/only view. 
+
+
+
+Definition at line \doxymbox{\hyperlink{planpage_8cpp_source_l00340}{340}} of file \doxymbox{\hyperlink{planpage_8cpp_source}{planpage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00346\ \{}
+
+\end{DoxyCode}
+\Hypertarget{class_plan_page_aece1d1d7a5f0626e42410f5feca446a0}\index{PlanPage@{PlanPage}!on\_resultPlanAnotherButton\_clicked@{on\_resultPlanAnotherButton\_clicked}}
+\index{on\_resultPlanAnotherButton\_clicked@{on\_resultPlanAnotherButton\_clicked}!PlanPage@{PlanPage}}
+\doxysubsubsection{\texorpdfstring{on\_resultPlanAnotherButton\_clicked}{on\_resultPlanAnotherButton\_clicked}}
+{\footnotesize\ttfamily \label{class_plan_page_aece1d1d7a5f0626e42410f5feca446a0} 
+void Plan\+Page::\+on\+\_\+result\+Plan\+Another\+Button\+\_\+clicked (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Finalizes the trip and returns to the planning screen. 
+
+
+
+Definition at line \doxymbox{\hyperlink{planpage_8cpp_source_l00302}{302}} of file \doxymbox{\hyperlink{planpage_8cpp_source}{planpage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00303\ \{}
+\DoxyCodeLine{00304\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[UI]\ Plan\ Another\ clicked."{}};}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00306\ \ \ \ \ \textcolor{comment}{//\ Add\ all\ purchased\ souvenirs\ to\ tripInfo\ first}}
+\DoxyCodeLine{00307\ \ \ \ \ QSqlQuery\ query;}
+\DoxyCodeLine{00308\ \ \ \ \ query.prepare(R\textcolor{stringliteral}{"{}(}}
+\DoxyCodeLine{00309\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ SELECT\ t.campusID,\ c.campusName,\ t.souvenirName,\ t.price,\ t.quantity}}
+\DoxyCodeLine{00310\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ FROM\ tripSouvenirPurchases\ t}}
+\DoxyCodeLine{00311\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ JOIN\ campusList\ c\ ON\ t.campusID\ =\ c.campusID}}
+\DoxyCodeLine{00312\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ WHERE\ t.quantity\ >\ 0}}
+\DoxyCodeLine{00313\ \textcolor{stringliteral}{\ \ \ \ )"{});}}
+\DoxyCodeLine{00314\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00315\ \textcolor{stringliteral}{\ \ \ \ }\textcolor{keywordflow}{if}\ (query.exec())\ \{}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (query.next())\ \{}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ campusID\ =\ query.value(\textcolor{stringliteral}{"{}campusID"{}}).toInt();}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ QString\ campusName\ =\ query.value(\textcolor{stringliteral}{"{}campusName"{}}).toString();}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ QString\ itemName\ =\ query.value(\textcolor{stringliteral}{"{}souvenirName"{}}).toString();}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ the\ actual\ column\ name\ 'price'\ here}}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ QVariant\ priceVar\ =\ query.value(\textcolor{stringliteral}{"{}price"{}});}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ price\ =\ priceVar.isNull()\ ?\ 0.0\ :\ priceVar.toDouble();}
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ quantity\ =\ query.value(\textcolor{stringliteral}{"{}quantity"{}}).toInt();}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (price\ <=\ 0.0)\ \{}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[WARN]\ Price\ for"{}}\ <<\ itemName\ <<\ \textcolor{stringliteral}{"{}is\ zero\ or\ missing!"{}};}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00330\ }
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Now\ pass\ it\ to\ addTripInfo\ which\ expects\ itemPrice}}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{database_helper_8h_a7dc11b7a6e3a3d3d359068cf66578868}{addTripInfo}}(campusName,\ itemName,\ quantity,\ price,\ campusID))\ \{}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[ERROR]\ Failed\ to\ add\ tripInfo\ for"{}}\ <<\ itemName;}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[DB]\ All\ purchased\ souvenirs\ added\ to\ tripInfo."{}};}
+\DoxyCodeLine{00337\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[ERROR]\ Failed\ to\ query\ tripSouvenirPurchases:"{}}\ <<\ query.lastError().text();}
+
+\end{DoxyCode}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=338pt]{class_plan_page_aece1d1d7a5f0626e42410f5feca446a0_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_plan_page_aa0511c865d24a2a78dbab899aa874034}\index{PlanPage@{PlanPage}!on\_startTripButton\_clicked@{on\_startTripButton\_clicked}}
+\index{on\_startTripButton\_clicked@{on\_startTripButton\_clicked}!PlanPage@{PlanPage}}
+\doxysubsubsection{\texorpdfstring{on\_startTripButton\_clicked}{on\_startTripButton\_clicked}}
+{\footnotesize\ttfamily \label{class_plan_page_aa0511c865d24a2a78dbab899aa874034} 
+void Plan\+Page::\+on\+\_\+start\+Trip\+Button\+\_\+clicked (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Initiates the recursive trip algorithm based on user selections. 
+
+
+
+Definition at line \doxymbox{\hyperlink{planpage_8cpp_source_l00038}{38}} of file \doxymbox{\hyperlink{planpage_8cpp_source}{planpage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//\ 1.\ Clear\ the\ table\ before\ starting\ a\ new\ calculation}}
+\DoxyCodeLine{00040\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[UI]\ Start\ Trip\ Button\ clicked."{}};}
+\DoxyCodeLine{00041\ \ \ \ \ \doxymbox{\hyperlink{database_helper_8h_a43d3aaa47509c7d2a3133e29ea8bc1a9}{clearTripTable}}();}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//\ clearTripInfoTable();}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{int}\ currentCampusID\ =\ -\/1;}
+\DoxyCodeLine{00045\ \ \ \ \ QString\ currentCampusName\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ 2.\ Add\ the\ Start\ Campus\ (The\ "{}Origin"{})}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//\ FIX:\ We\ must\ extract\ the\ data\ from\ the\ record\ before\ assigning\ it\ to\ the\ variables}}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>comboBox-\/>currentIndex()\ !=\ -\/1)\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ use\ the\ comboBoxModel\ directly\ to\ get\ the\ record}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ QSqlRecord\ rec\ =\ \doxymbox{\hyperlink{class_plan_page_a45441e439b3ca65588bd7dfc406f5319}{comboBoxModel}}-\/>record(\doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>comboBox-\/>currentIndex());}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Assigning\ the\ actual\ database\ values\ to\ our\ tracking\ variables}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ currentCampusID\ =\ rec.value(\textcolor{stringliteral}{"{}campusID"{}}).toInt();}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ currentCampusName\ =\ rec.value(\textcolor{stringliteral}{"{}campusName"{}}).toString();}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[UI]\ Starting\ Campus\ selected:"{}}\ <<\ currentCampusName\ <<\ \textcolor{stringliteral}{"{}(ID:"{}}\ <<\ currentCampusID\ <<\ \textcolor{stringliteral}{"{})"{}};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ the\ origin\ stop\ as\ visitOrder\ 0}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{database_helper_8h_a9f21bb493b041e5c62f84211de360468}{addTripCampus}}(currentCampusID,\ currentCampusName,\ 0);}
+\DoxyCodeLine{00061\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[UI]\ WARNING:\ No\ starting\ campus\ selected."{}};}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{comment}{//\ 3.\ Retrieve\ Selected\ Campuses\ from\ the\ TableView}}
+\DoxyCodeLine{00067\ \ \ \ \ QModelIndexList\ selectedRows\ =\ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>tableViewSettings-\/>selectionModel()-\/>selectedRows();}
+\DoxyCodeLine{00068\ \ \ \ \ QList<int>\ unvisitedIDs;}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[UI]\ Rows\ selected\ in\ list:"{}}\ <<\ selectedRows.size();}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ QModelIndex\ \&proxyIndex\ :\ selectedRows)\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Map\ the\ proxy\ (sorted/filtered)\ index\ back\ to\ the\ actual\ source\ model}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ QModelIndex\ sourceIndex\ =\ \doxymbox{\hyperlink{class_plan_page_ae450329955e5249199e8e3552c2a6de0}{proxyModel}}-\/>mapToSource(proxyIndex);}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ QSqlRecord\ record\ =\ \doxymbox{\hyperlink{class_plan_page_ab7140a4c85ceee6ad4a9b3787ad05f98}{campusModel}}-\/>record(sourceIndex.row());}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id}\ =\ record.value(\textcolor{stringliteral}{"{}campusID"{}}).toInt();}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Only\ add\ to\ the\ unvisited\ list\ if\ it's\ not\ the\ starting\ campus}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{id}\ !=\ currentCampusID)\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ unvisitedIDs.append(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00082\ \ \ \ \ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{comment}{//\ 4.\ Trigger\ the\ decoupled\ recursive\ algorithm}}
+\DoxyCodeLine{00085\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[ALGO]\ -\/-\/-\/\ Starting\ RECURSIVE\ Trip\ Calculation\ -\/-\/-\/"{}};}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{comment}{//\ Start\ the\ recursion:}}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{comment}{//\ currentCampusID:\ the\ origin}}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{comment}{//\ unvisitedIDs:\ the\ list\ of\ schools\ to\ hit}}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{comment}{//\ 0.0:\ initial\ total\ distance}}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{comment}{//\ 1:\ the\ visit\ order\ for\ the\ first\ stop\ after\ the\ origin}}
+\DoxyCodeLine{00092\ \ \ \ \ \doxymbox{\hyperlink{database_helper_8h_a4a6041a0ff797e48810a9120ed86cf2f}{calculateEfficientTrip}}(currentCampusID,\ unvisitedIDs,\ 0.0,\ 1);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \doxymbox{\hyperlink{database_helper_8h_a752947b2f77e0cda9a0bccb1b334770d}{populateTripSouvenirs}}();}
+\DoxyCodeLine{00095\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a86480ced8dfa743ff4593917d116abf3}{setupTripStopModel}}();}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a247fc30520b3dbc2d6e4d6aab5993e4b}{currentTripOrder}}\ =\ 0;}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{int}\ campusID\ =\ \doxymbox{\hyperlink{class_plan_page_aa61c32857843d11ea1638f5fe94a304c}{getCampusIDByOrder}}(\doxymbox{\hyperlink{class_plan_page_a247fc30520b3dbc2d6e4d6aab5993e4b}{currentTripOrder}});}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a7f98740d9c7aa63199af873075ab2b1f}{showCurrentCampusSouvenirs}}(campusID);}
+\DoxyCodeLine{00101\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a913c019bbef87646bdca1c830f9ed668}{updateStopLabels}}();}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{comment}{//\ 5.\ Update\ UI\ state}}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_plan_page_ab186f1c89fe2652199d82bc6f7842a4a}{tripModel}})\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_ab186f1c89fe2652199d82bc6f7842a4a}{tripModel}}-\/>select();}
+\DoxyCodeLine{00106\ \ \ \ \ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{comment}{//\ 6.\ Navigation\ Logic}}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>planOnlyCheckBox-\/>isChecked())\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[UI]\ Navigating\ to\ Plan-\/Only\ view."{}};}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>tripPlannerStack-\/>setCurrentIndex(1);\ \textcolor{comment}{//\ Index\ for\ the\ scrollable\ trip\ layout}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a3e9d440af37075bb04ae3dd0e52c96bc}{renderTrip}}();\ \textcolor{comment}{//\ Draw\ the\ widgets\ based\ on\ the\ newly\ calculated\ data}}
+\DoxyCodeLine{00113\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[UI]\ Navigating\ to\ Full-\/Trip\ view."{}};}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>tripPlannerStack-\/>setCurrentIndex(2);\ \textcolor{comment}{//\ Index\ for\ the\ standard\ results\ page}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a60d847f3d9e07faa25800d3041b23f25}{tripSouvenirModel}}-\/>select();}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a7dc47477aaba2e58dcad3fc3643e6748}{updateSouvenirFilter}}(\doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>resultCampusCombo-\/>currentIndex());}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a6f56f05951a0b45dfa0867ba8b9306f2}{updateTotalDistance}}();}
+\DoxyCodeLine{00120\ \ \ \ \ \}}
+\DoxyCodeLine{00121\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_plan_page_aa0511c865d24a2a78dbab899aa874034_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_plan_page_a3d91bd03cbd5be3f0e225a29cf50aa41}\index{PlanPage@{PlanPage}!on\_tripPlanStopNextButton\_clicked@{on\_tripPlanStopNextButton\_clicked}}
+\index{on\_tripPlanStopNextButton\_clicked@{on\_tripPlanStopNextButton\_clicked}!PlanPage@{PlanPage}}
+\doxysubsubsection{\texorpdfstring{on\_tripPlanStopNextButton\_clicked}{on\_tripPlanStopNextButton\_clicked}}
+{\footnotesize\ttfamily \label{class_plan_page_a3d91bd03cbd5be3f0e225a29cf50aa41} 
+void Plan\+Page::\+on\+\_\+trip\+Plan\+Stop\+Next\+Button\+\_\+clicked (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Advances the user to the next campus in the tour sequence. 
+
+
+
+Definition at line \doxymbox{\hyperlink{planpage_8cpp_source_l00347}{347}} of file \doxymbox{\hyperlink{planpage_8cpp_source}{planpage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00353\ \{}
+\DoxyCodeLine{00354\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a247fc30520b3dbc2d6e4d6aab5993e4b}{currentTripOrder}}++;}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00356\ \ \ \ \ \textcolor{keywordtype}{int}\ campusID\ =\ \doxymbox{\hyperlink{class_plan_page_aa61c32857843d11ea1638f5fe94a304c}{getCampusIDByOrder}}(\doxymbox{\hyperlink{class_plan_page_a247fc30520b3dbc2d6e4d6aab5993e4b}{currentTripOrder}});}
+\DoxyCodeLine{00357\ }
+\DoxyCodeLine{00358\ \ \ \ \ \textcolor{keywordflow}{if}\ (campusID\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>tripPlannerStack-\/>setCurrentIndex(3);}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a7dc47477aaba2e58dcad3fc3643e6748}{updateSouvenirFilter}}(\doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>resultCampusCombo-\/>currentIndex());}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+
+\end{DoxyCode}
+\Hypertarget{class_plan_page_aa277112662d7a9e3d58c03b8c82dda77}\index{PlanPage@{PlanPage}!refreshUI@{refreshUI}}
+\index{refreshUI@{refreshUI}!PlanPage@{PlanPage}}
+\doxysubsubsection{\texorpdfstring{refreshUI}{refreshUI}}
+{\footnotesize\ttfamily \label{class_plan_page_aa277112662d7a9e3d58c03b8c82dda77} 
+void Plan\+Page::\+refresh\+UI (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Refreshes all models to ensure data reflects the latest database state. 
+
+\begin{DoxyNote}{Note}
+Overrides \doxylink{class_database_page_ac5eac9c210411877ef0d3fce5c971223}{Database\+Page::\+refresh\+UI()}. 
+\end{DoxyNote}
+
+
+Definition at line \doxymbox{\hyperlink{planpage_8cpp_source_l00191}{191}} of file \doxymbox{\hyperlink{planpage_8cpp_source}{planpage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00192\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[UI]\ Refreshing\ UI..."{}};}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}\ \&\&\ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>comboBox)\ \{}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>comboBox-\/>blockSignals(\textcolor{keyword}{true});}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1.\ Clear\ the\ Proxy\ Filter\ first}}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_plan_page_ae450329955e5249199e8e3552c2a6de0}{proxyModel}})\ \{}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_ae450329955e5249199e8e3552c2a6de0}{proxyModel}}-\/>setFilterFixedString(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2.\ Refresh\ Database\ Queries}}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_plan_page_ab7140a4c85ceee6ad4a9b3787ad05f98}{campusModel}})\ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_ab7140a4c85ceee6ad4a9b3787ad05f98}{campusModel}}-\/>setQuery(\textcolor{stringliteral}{"{}SELECT\ campusID,\ campusName\ FROM\ campusList"{}});}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_plan_page_a45441e439b3ca65588bd7dfc406f5319}{comboBoxModel}})\ \{}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a45441e439b3ca65588bd7dfc406f5319}{comboBoxModel}}-\/>select();}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_plan_page_ab186f1c89fe2652199d82bc6f7842a4a}{tripModel}})\ \{}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_ab186f1c89fe2652199d82bc6f7842a4a}{tripModel}}-\/>select();}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3.\ Reset\ UI\ state}}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>comboBox-\/>setCurrentIndex(-\/1);}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>comboBox-\/>blockSignals(\textcolor{keyword}{false});}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[UI]\ Refresh\ complete.\ ComboBox\ reset\ and\ filters\ cleared."{}};}
+\DoxyCodeLine{00220\ \ \ \ \ \}}
+\DoxyCodeLine{00221\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_plan_page_a3e9d440af37075bb04ae3dd0e52c96bc}\index{PlanPage@{PlanPage}!renderTrip@{renderTrip}}
+\index{renderTrip@{renderTrip}!PlanPage@{PlanPage}}
+\doxysubsubsection{\texorpdfstring{renderTrip()}{renderTrip()}}
+{\footnotesize\ttfamily \label{class_plan_page_a3e9d440af37075bb04ae3dd0e52c96bc} 
+void Plan\+Page::\+render\+Trip (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Dynamically renders a horizontal visual representation of the trip. 
+
+Clears the scroll area and populates it with \textquotesingle{}Stop\textquotesingle{} widgets containing campus names and mileages. 
+
+Definition at line \doxymbox{\hyperlink{planpage_8cpp_source_l00420}{420}} of file \doxymbox{\hyperlink{planpage_8cpp_source}{planpage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00426\ \ \ \ \ \textcolor{comment}{//\ 1.\ Get\ the\ layout\ from\ the\ scroll\ area}}
+\DoxyCodeLine{00427\ \ \ \ \ QHBoxLayout\ *layout\ =\ qobject\_cast<QHBoxLayout*>(\doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>scrollAreaWidgetContents-\/>layout());}
+\DoxyCodeLine{00428\ \ \ \ \ \textcolor{keywordflow}{if}\ (!layout)\ \{}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[ERROR]\ Could\ not\ find\ layout\ for\ scrollAreaWidgetContents"{}};}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00431\ \ \ \ \ \}}
+\DoxyCodeLine{00432\ }
+\DoxyCodeLine{00433\ \ \ \ \ \textcolor{comment}{//\ 2.\ Clear\ previous\ UI\ elements\ to\ prevent\ "{}ghosting"{}\ from\ old\ trips}}
+\DoxyCodeLine{00434\ \ \ \ \ QLayoutItem\ *item;}
+\DoxyCodeLine{00435\ \ \ \ \ \textcolor{keywordflow}{while}\ ((item\ =\ layout-\/>takeAt(0))\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (item-\/>widget())\ \textcolor{keyword}{delete}\ item-\/>widget();}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ item;}
+\DoxyCodeLine{00438\ \ \ \ \ \}}
+\DoxyCodeLine{00439\ }
+\DoxyCodeLine{00440\ \ \ \ \ \textcolor{comment}{//\ 3.\ Fetch\ the\ trip\ sequence\ from\ the\ temporary\ trip\ table}}
+\DoxyCodeLine{00441\ \ \ \ \ \textcolor{comment}{//\ We\ order\ by\ visitOrder\ to\ ensure\ the\ tour\ displays\ in\ the\ correct\ path\ sequence}}
+\DoxyCodeLine{00442\ \ \ \ \ QSqlQuery\ query(\textcolor{stringliteral}{"{}SELECT\ campusID,\ campusName,\ visitOrder\ FROM\ tripCampuses\ ORDER\ BY\ visitOrder\ ASC"{}});}
+\DoxyCodeLine{00443\ }
+\DoxyCodeLine{00444\ \ \ \ \ \textcolor{keywordflow}{while}\ (query.next())\ \{}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ currentID\ =\ query.value(\textcolor{stringliteral}{"{}campusID"{}}).toInt();}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ QString\ name\ =\ query.value(\textcolor{stringliteral}{"{}campusName"{}}).toString();}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ currentOrder\ =\ query.value(\textcolor{stringliteral}{"{}visitOrder"{}}).toInt();}
+\DoxyCodeLine{00448\ }
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ distanceToNext\ =\ 0;}
+\DoxyCodeLine{00450\ }
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 4.\ Find\ the\ NEXT\ campus\ in\ the\ sequence\ to\ get\ the\ distance}}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ QSqlQuery\ nextQuery;}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ nextQuery.prepare(\textcolor{stringliteral}{"{}SELECT\ campusID\ FROM\ tripCampuses\ WHERE\ visitOrder\ =\ :nextOrder"{}});}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ nextQuery.bindValue(\textcolor{stringliteral}{"{}:nextOrder"{}},\ currentOrder\ +\ 1);}
+\DoxyCodeLine{00455\ }
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (nextQuery.exec()\ \&\&\ nextQuery.next())\ \{}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ nextID\ =\ nextQuery.value(0).toInt();}
+\DoxyCodeLine{00458\ }
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ REFACTORED:\ Use\ the\ helper\ function\ from\ databaseHelper.h}}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ handles\ the\ bi-\/directional\ SQL\ check\ (ID1-\/>ID2\ or\ ID2-\/>ID1)}}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ distResult\ =\ \doxymbox{\hyperlink{database_helper_8h_a242017b47cfdc29400bab979847020ec}{getDistanceBetween}}(currentID,\ nextID);}
+\DoxyCodeLine{00462\ }
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ for\ the\ "{}Not\ Found"{}\ sentinel\ value\ (999999.0)}}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (distResult\ <\ 999998.0)\ \{}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ distanceToNext\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(distResult);}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[WARNING]\ No\ distance\ found\ between\ ID"{}}\ <<\ currentID\ <<\ \textcolor{stringliteral}{"{}and"{}}\ <<\ nextID;}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00470\ }
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 5.\ Add\ the\ campus\ stop\ widget}}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ 'true'\ flag\ ensures\ an\ arrow\ and\ distance\ label\ are\ drawn\ after\ this\ stop}}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ layout-\/>addWidget(\doxymbox{\hyperlink{class_plan_page_a2fccd653c31cc0e1e3e1ba387eeebbd1}{createStopWidget}}(name,\ distanceToNext,\ \textcolor{keyword}{true}));}
+\DoxyCodeLine{00474\ \ \ \ \ \}}
+\DoxyCodeLine{00475\ }
+\DoxyCodeLine{00476\ \ \ \ \ \textcolor{comment}{//\ 6.\ Add\ the\ final\ "{}Goal"{}\ flag}}
+\DoxyCodeLine{00477\ \ \ \ \ \textcolor{comment}{//\ We\ pass\ 'false'\ for\ showArrow\ because\ no\ path\ follows\ the\ final\ destination}}
+\DoxyCodeLine{00478\ \ \ \ \ layout-\/>addWidget(\doxymbox{\hyperlink{class_plan_page_a2fccd653c31cc0e1e3e1ba387eeebbd1}{createStopWidget}}(\textcolor{stringliteral}{"{}🏁\ Trip\ Finished"{}},\ 0,\ \textcolor{keyword}{false}));}
+\DoxyCodeLine{00479\ }
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_plan_page_a3e9d440af37075bb04ae3dd0e52c96bc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_plan_page_ac2fc48dd78f4c3d22f8f8253e0913c06}\index{PlanPage@{PlanPage}!setupDatabaseTable@{setupDatabaseTable}}
+\index{setupDatabaseTable@{setupDatabaseTable}!PlanPage@{PlanPage}}
+\doxysubsubsection{\texorpdfstring{setupDatabaseTable()}{setupDatabaseTable()}}
+{\footnotesize\ttfamily \label{class_plan_page_ac2fc48dd78f4c3d22f8f8253e0913c06} 
+void Plan\+Page::\+setup\+Database\+Table (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initializes database models and connects UI elements for the setup screen. 
+
+Sets up models for the campus selection list, the starting campus combo box, and the temporary trip table. 
+
+Definition at line \doxymbox{\hyperlink{planpage_8cpp_source_l00126}{126}} of file \doxymbox{\hyperlink{planpage_8cpp_source}{planpage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00127\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[DEBUG]\ Entering\ setupDatabaseTable"{}};}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ QSqlDatabase\ db\ =\ QSqlDatabase::database();}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordflow}{if}\ (!db.isOpen())\ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[DEBUG]\ Database\ not\ open\ -\/\ exiting\ setup"{}};}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00133\ \ \ \ \ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{comment}{//\ 1.\ Initialize\ ALL\ models}}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{class_plan_page_ab7140a4c85ceee6ad4a9b3787ad05f98}{campusModel}})\ \ \ \doxymbox{\hyperlink{class_plan_page_ab7140a4c85ceee6ad4a9b3787ad05f98}{campusModel}}\ =\ \textcolor{keyword}{new}\ QSqlQueryModel(\textcolor{keyword}{this});}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{class_plan_page_ae450329955e5249199e8e3552c2a6de0}{proxyModel}})\ \ \ \ \doxymbox{\hyperlink{class_plan_page_ae450329955e5249199e8e3552c2a6de0}{proxyModel}}\ =\ \textcolor{keyword}{new}\ QSortFilterProxyModel(\textcolor{keyword}{this});}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{class_plan_page_a45441e439b3ca65588bd7dfc406f5319}{comboBoxModel}})\ \doxymbox{\hyperlink{class_plan_page_a45441e439b3ca65588bd7dfc406f5319}{comboBoxModel}}\ =\ \textcolor{keyword}{new}\ QSqlTableModel(\textcolor{keyword}{this},\ db);}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{class_plan_page_ab186f1c89fe2652199d82bc6f7842a4a}{tripModel}})\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_ab186f1c89fe2652199d82bc6f7842a4a}{tripModel}}\ =\ \textcolor{keyword}{new}\ QSqlTableModel(\textcolor{keyword}{this},\ db);}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{comment}{//\ 2.\ Setup\ Source\ Data}}
+\DoxyCodeLine{00144\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_ab7140a4c85ceee6ad4a9b3787ad05f98}{campusModel}}-\/>setQuery(\textcolor{stringliteral}{"{}SELECT\ campusID,\ campusName\ FROM\ campusList"{}},\ db);}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{comment}{//\ 3.\ Setup\ Proxy\ Model}}
+\DoxyCodeLine{00147\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_ae450329955e5249199e8e3552c2a6de0}{proxyModel}}-\/>setSourceModel(\doxymbox{\hyperlink{class_plan_page_ab7140a4c85ceee6ad4a9b3787ad05f98}{campusModel}});}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{comment}{//\ Explicitly\ tell\ the\ proxy\ to\ filter\ based\ on\ Column\ 1\ (Campus\ Name)}}
+\DoxyCodeLine{00149\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_ae450329955e5249199e8e3552c2a6de0}{proxyModel}}-\/>setFilterKeyColumn(1);}
+\DoxyCodeLine{00150\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_ae450329955e5249199e8e3552c2a6de0}{proxyModel}}-\/>setFilterCaseSensitivity(Qt::CaseInsensitive);}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{comment}{//\ 4.\ Attach\ to\ TableView}}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>tableViewSettings)\ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>tableViewSettings-\/>setModel(\doxymbox{\hyperlink{class_plan_page_ae450329955e5249199e8e3552c2a6de0}{proxyModel}});}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>tableViewSettings-\/>setModelColumn(1);}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>tableViewSettings-\/>selectionModel())\ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ connect(\doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>tableViewSettings-\/>selectionModel(),\ \&QItemSelectionModel::selectionChanged,}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{this},\ \&\doxymbox{\hyperlink{class_plan_page_a9c256fd339d54cb2149190a41a259073}{PlanPage::updateSelectionCount}},\ Qt::UniqueConnection);}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00161\ \ \ \ \ \}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{comment}{//\ 5.\ Setup\ ComboBox}}
+\DoxyCodeLine{00164\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a45441e439b3ca65588bd7dfc406f5319}{comboBoxModel}}-\/>setTable(\textcolor{stringliteral}{"{}campusList"{}});}
+\DoxyCodeLine{00165\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a45441e439b3ca65588bd7dfc406f5319}{comboBoxModel}}-\/>select();}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>comboBox)\ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>comboBox-\/>blockSignals(\textcolor{keyword}{true});}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>comboBox-\/>setModel(\doxymbox{\hyperlink{class_plan_page_a45441e439b3ca65588bd7dfc406f5319}{comboBoxModel}});}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>comboBox-\/>setModelColumn(1);}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ set\ index\ to\ -\/1\ AFTER\ the\ model\ is\ attached\ and\ data\ is\ loaded}}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>comboBox-\/>setCurrentIndex(-\/1);}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>comboBox-\/>setPlaceholderText(\textcolor{stringliteral}{"{}Select\ Starting\ Campus..."{}});}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>comboBox-\/>blockSignals(\textcolor{keyword}{false});}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Disconnect\ old\ connections\ to\ prevent\ double-\/firing,\ then\ reconnect}}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ disconnect(\doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>comboBox,\ \&QComboBox::currentTextChanged,\ \textcolor{keyword}{this},\ \&\doxymbox{\hyperlink{class_plan_page_a09a3e851a9c453d581003a3b90a3d031}{PlanPage::updateFilteredTable}});}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ connect(\doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>comboBox,\ \&QComboBox::currentTextChanged,}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{this},\ \&\doxymbox{\hyperlink{class_plan_page_a09a3e851a9c453d581003a3b90a3d031}{PlanPage::updateFilteredTable}},\ Qt::UniqueConnection);}
+\DoxyCodeLine{00183\ \ \ \ \ \}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_ab186f1c89fe2652199d82bc6f7842a4a}{tripModel}}-\/>setTable(\textcolor{stringliteral}{"{}tripCampuses"{}});}
+\DoxyCodeLine{00186\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_ab186f1c89fe2652199d82bc6f7842a4a}{tripModel}}-\/>select();}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[DEBUG]\ Exiting\ setupDatabaseTable\ normally."{}};}
+\DoxyCodeLine{00189\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_plan_page_ac2fc48dd78f4c3d22f8f8253e0913c06_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_plan_page_ac2fc48dd78f4c3d22f8f8253e0913c06_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_plan_page_a9e81d1296b8fbfd76f2f7e3d3439cfc8}\index{PlanPage@{PlanPage}!setupResultsConnection@{setupResultsConnection}}
+\index{setupResultsConnection@{setupResultsConnection}!PlanPage@{PlanPage}}
+\doxysubsubsection{\texorpdfstring{setupResultsConnection()}{setupResultsConnection()}}
+{\footnotesize\ttfamily \label{class_plan_page_a9e81d1296b8fbfd76f2f7e3d3439cfc8} 
+void Plan\+Page::\+setup\+Results\+Connection (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Configures the final results page UI and purchase models. 
+
+
+
+Definition at line \doxymbox{\hyperlink{planpage_8cpp_source_l00253}{253}} of file \doxymbox{\hyperlink{planpage_8cpp_source}{planpage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00254\ \ \ \ \ QSqlDatabase\ db\ =\ QSqlDatabase::database();}
+\DoxyCodeLine{00255\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[UI]\ Setting\ up\ results\ page\ connections."{}};}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00257\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>resultCampusSouvenirPurchases-\/>horizontalHeader()}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ -\/>setSectionResizeMode(QHeaderView::Stretch);}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a60d847f3d9e07faa25800d3041b23f25}{tripSouvenirModel}}\ =\ \textcolor{keyword}{new}\ QSqlTableModel(\textcolor{keyword}{this},\ db);}
+\DoxyCodeLine{00261\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a60d847f3d9e07faa25800d3041b23f25}{tripSouvenirModel}}-\/>setTable(\textcolor{stringliteral}{"{}tripSouvenirPurchases"{}});}
+\DoxyCodeLine{00262\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a60d847f3d9e07faa25800d3041b23f25}{tripSouvenirModel}}-\/>setFilter(\textcolor{stringliteral}{"{}quantity\ >\ 0"{}});}
+\DoxyCodeLine{00263\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a60d847f3d9e07faa25800d3041b23f25}{tripSouvenirModel}}-\/>select();}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>resultCampusSouvenirPurchases-\/>setModel(\doxymbox{\hyperlink{class_plan_page_a60d847f3d9e07faa25800d3041b23f25}{tripSouvenirModel}});}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00267\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>resultCampusSouvenirPurchases-\/>hideColumn(0);}
+\DoxyCodeLine{00268\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>resultCampusSouvenirPurchases-\/>hideColumn(1);}
+\DoxyCodeLine{00269\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>resultCampusSouvenirPurchases-\/>verticalHeader()-\/>setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{comment}{//\ Combo\ box\ setup}}
+\DoxyCodeLine{00272\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>resultCampusCombo-\/>setModel(\doxymbox{\hyperlink{class_plan_page_ab186f1c89fe2652199d82bc6f7842a4a}{tripModel}});}
+\DoxyCodeLine{00273\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>resultCampusCombo-\/>setModelColumn(3);}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \ \ \ \ connect(\doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>resultCampusCombo,\ QOverload<int>::of(\&QComboBox::currentIndexChanged),}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{this},\ \&\doxymbox{\hyperlink{class_plan_page_a7dc47477aaba2e58dcad3fc3643e6748}{PlanPage::updateSouvenirFilter}});}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \ \ \ \ \textcolor{comment}{//\ 🔹\ Force\ first\ campus\ selection}}
+\DoxyCodeLine{00279\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_plan_page_ab186f1c89fe2652199d82bc6f7842a4a}{tripModel}}-\/>rowCount()\ >\ 0)\ \{}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>resultCampusCombo-\/>setCurrentIndex(0);}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a7dc47477aaba2e58dcad3fc3643e6748}{updateSouvenirFilter}}(0);}
+\DoxyCodeLine{00282\ \ \ \ \ \}}
+\DoxyCodeLine{00283\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_plan_page_a9e81d1296b8fbfd76f2f7e3d3439cfc8_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_plan_page_a9e81d1296b8fbfd76f2f7e3d3439cfc8_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_plan_page_a86480ced8dfa743ff4593917d116abf3}\index{PlanPage@{PlanPage}!setupTripStopModel@{setupTripStopModel}}
+\index{setupTripStopModel@{setupTripStopModel}!PlanPage@{PlanPage}}
+\doxysubsubsection{\texorpdfstring{setupTripStopModel}{setupTripStopModel}}
+{\footnotesize\ttfamily \label{class_plan_page_a86480ced8dfa743ff4593917d116abf3} 
+void Plan\+Page::\+setup\+Trip\+Stop\+Model (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Initializes the table view used for buying souvenirs during the trip. 
+
+
+
+Definition at line \doxymbox{\hyperlink{planpage_8cpp_source_l00489}{489}} of file \doxymbox{\hyperlink{planpage_8cpp_source}{planpage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\textcolor{stringliteral}{"{}\ <<\ count;}}
+\DoxyCodeLine{00492\ \textcolor{stringliteral}{\}}}
+\DoxyCodeLine{00493\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00494\ \textcolor{stringliteral}{void\ PlanPage::setupTripStopModel()}}
+\DoxyCodeLine{00495\ \textcolor{stringliteral}{\{}}
+\DoxyCodeLine{00496\ \textcolor{stringliteral}{\ \ \ \ QSqlDatabase\ db\ =\ QSqlDatabase::database();}}
+\DoxyCodeLine{00497\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00498\ \textcolor{stringliteral}{\ \ \ \ if\ (!tripStopSouvenirModel)}}
+\DoxyCodeLine{00499\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ tripStopSouvenirModel\ =\ new\ QSqlTableModel(this,\ db);}}
+\DoxyCodeLine{00500\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00501\ \textcolor{stringliteral}{\ \ \ \ tripStopSouvenirModel-\/>setTable("{}}tripSouvenirPurchases\textcolor{stringliteral}{"{});}}
+\DoxyCodeLine{00502\ \textcolor{stringliteral}{\ \ \ \ tripStopSouvenirModel-\/>setEditStrategy(QSqlTableModel::OnFieldChange);}}
+\DoxyCodeLine{00503\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00504\ \textcolor{stringliteral}{\ \ \ \ ui-\/>stopSouvenirTableView-\/>setModel(tripStopSouvenirModel);}}
+\DoxyCodeLine{00505\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00506\ \textcolor{stringliteral}{\ \ \ \ ui-\/>stopSouvenirTableView-\/>verticalHeader()-\/>setVisible(false);\ //\ hide\ row\ numbers}}
+\DoxyCodeLine{00507\ \textcolor{stringliteral}{\ \ \ \ ui-\/>stopSouvenirTableView-\/>hideColumn(0);}}
+\DoxyCodeLine{00508\ \textcolor{stringliteral}{\ \ \ \ ui-\/>stopSouvenirTableView-\/>hideColumn(1);}}
+\DoxyCodeLine{00509\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00510\ \textcolor{stringliteral}{\ \ \ \ ui-\/>stopSouvenirTableView-\/>horizontalHeader()}}
+\DoxyCodeLine{00511\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ -\/>setSectionResizeMode(QHeaderView::Stretch);}}
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_plan_page_a86480ced8dfa743ff4593917d116abf3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_plan_page_a7f98740d9c7aa63199af873075ab2b1f}\index{PlanPage@{PlanPage}!showCurrentCampusSouvenirs@{showCurrentCampusSouvenirs}}
+\index{showCurrentCampusSouvenirs@{showCurrentCampusSouvenirs}!PlanPage@{PlanPage}}
+\doxysubsubsection{\texorpdfstring{showCurrentCampusSouvenirs}{showCurrentCampusSouvenirs}}
+{\footnotesize\ttfamily \label{class_plan_page_a7f98740d9c7aa63199af873075ab2b1f} 
+void Plan\+Page::\+show\+Current\+Campus\+Souvenirs (\begin{DoxyParamCaption}\item[{int}]{campus\+ID}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Updates the shopping table to show souvenirs for a specific ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em campus\+ID} & The unique ID of the campus the user is "{}visiting."{} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{planpage_8cpp_source_l00513}{513}} of file \doxymbox{\hyperlink{planpage_8cpp_source}{planpage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00519\ \{}
+\DoxyCodeLine{00520\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{class_plan_page_add965acd8bc98d8cf894a37ebacde1f9}{tripStopSouvenirModel}})\ \textcolor{keywordflow}{return};}
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_plan_page_a7f98740d9c7aa63199af873075ab2b1f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_plan_page_a9a56d9743c7febd1834af436f3bc827f}\index{PlanPage@{PlanPage}!updateCampusSpent@{updateCampusSpent}}
+\index{updateCampusSpent@{updateCampusSpent}!PlanPage@{PlanPage}}
+\doxysubsubsection{\texorpdfstring{updateCampusSpent}{updateCampusSpent}}
+{\footnotesize\ttfamily \label{class_plan_page_a9a56d9743c7febd1834af436f3bc827f} 
+void Plan\+Page::\+update\+Campus\+Spent (\begin{DoxyParamCaption}\item[{int}]{campus\+ID}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Calculates how much money was spent at a specific stop. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em campus\+ID} & The ID of the campus to calculate. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{planpage_8cpp_source_l00588}{588}} of file \doxymbox{\hyperlink{planpage_8cpp_source}{planpage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00590\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\textcolor{stringliteral}{"{}\ <<\ totalDistance;}}
+\DoxyCodeLine{00591\ \textcolor{stringliteral}{\}}}
+\DoxyCodeLine{00592\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00593\ \textcolor{stringliteral}{void\ PlanPage::updateCampusSpent(int\ campusID)}}
+\DoxyCodeLine{00594\ \textcolor{stringliteral}{\{}}
+\DoxyCodeLine{00595\ \textcolor{stringliteral}{\ \ \ \ QSqlQuery\ query;}}
+\DoxyCodeLine{00596\ \textcolor{stringliteral}{\ \ \ \ query.prepare(}}
+\DoxyCodeLine{00597\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}}SELECT\ SUM(price\ *\ quantity)\ \textcolor{stringliteral}{"{}}}
+\DoxyCodeLine{00598\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}}FROM\ tripSouvenirPurchases\ \textcolor{stringliteral}{"{}}}
+\DoxyCodeLine{00599\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}}WHERE\ campusID\ =\ :\textcolor{keywordtype}{id}\textcolor{stringliteral}{"{}}}
+\DoxyCodeLine{00600\ \textcolor{stringliteral}{\ \ \ \ );}}
+\DoxyCodeLine{00601\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00602\ \textcolor{stringliteral}{\ \ \ \ query.bindValue("{}}:\textcolor{keywordtype}{id}\textcolor{stringliteral}{"{},\ campusID);}}
+\DoxyCodeLine{00603\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00604\ \textcolor{stringliteral}{\ \ \ \ double\ total\ =\ 0;}}
+\DoxyCodeLine{00605\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00606\ \textcolor{stringliteral}{\ \ \ \ if\ (query.exec()\ \&\&\ query.next())\ \{}}
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_plan_page_a9a56d9743c7febd1834af436f3bc827f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_plan_page_a09a3e851a9c453d581003a3b90a3d031}\index{PlanPage@{PlanPage}!updateFilteredTable@{updateFilteredTable}}
+\index{updateFilteredTable@{updateFilteredTable}!PlanPage@{PlanPage}}
+\doxysubsubsection{\texorpdfstring{updateFilteredTable}{updateFilteredTable}}
+{\footnotesize\ttfamily \label{class_plan_page_a09a3e851a9c453d581003a3b90a3d031} 
+void Plan\+Page::\+update\+Filtered\+Table (\begin{DoxyParamCaption}\item[{const QString \&}]{selected\+Campus}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Filters the selection table to hide the campus selected as the starting point. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em selected\+Campus} & The name of the campus to exclude from the list. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{planpage_8cpp_source_l00223}{223}} of file \doxymbox{\hyperlink{planpage_8cpp_source}{planpage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00224\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{class_plan_page_ae450329955e5249199e8e3552c2a6de0}{proxyModel}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keywordflow}{if}\ (selectedCampus.isEmpty())\ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[UI]\ Filter\ cleared."{}};}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_ae450329955e5249199e8e3552c2a6de0}{proxyModel}}-\/>setFilterFixedString(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00230\ \ \ \ \ \}}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[UI]\ Filtering\ out\ selected\ campus:"{}}\ <<\ selectedCampus;}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{comment}{//\ Ensure\ the\ proxy\ is\ looking\ at\ the\ correct\ column\ (Column\ 1\ =\ Campus\ Name)}}
+\DoxyCodeLine{00235\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_ae450329955e5249199e8e3552c2a6de0}{proxyModel}}-\/>setFilterKeyColumn(1);}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{comment}{//\ Regex\ Explanation:}}
+\DoxyCodeLine{00238\ \ \ \ \ \textcolor{comment}{//\ \string^\ =\ Start\ of\ string}}
+\DoxyCodeLine{00239\ \ \ \ \ \textcolor{comment}{//\ (?!\ ...\ \$)\ =\ Negative\ lookahead:\ "{}Do\ not\ match\ if\ the\ string\ following\ is\ exactly\ this"{}}}
+\DoxyCodeLine{00240\ \ \ \ \ \textcolor{comment}{//\ .*\ =\ Match\ everything\ else}}
+\DoxyCodeLine{00241\ \ \ \ \ \textcolor{comment}{//\ \(\backslash\)\(\backslash\)Q\ and\ \(\backslash\)\(\backslash\)E\ =\ Treat\ the\ campus\ name\ as\ literal\ text\ (escapes\ special\ chars)}}
+\DoxyCodeLine{00242\ \ \ \ \ QString\ pattern\ =\ QString(\textcolor{stringliteral}{"{}\string^(?!\(\backslash\)\(\backslash\)Q\%1\(\backslash\)\(\backslash\)E\$).*"{}}).arg(selectedCampus);}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \ \ \ \ QRegularExpression\ re(pattern);}
+\DoxyCodeLine{00245\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_ae450329955e5249199e8e3552c2a6de0}{proxyModel}}-\/>setFilterRegularExpression(re);}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{comment}{//\ Force\ the\ view\ to\ update\ immediately}}
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>tableViewSettings)\ \{}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>tableViewSettings-\/>viewport()-\/>update();}
+\DoxyCodeLine{00250\ \ \ \ \ \}}
+\DoxyCodeLine{00251\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_plan_page_a09a3e851a9c453d581003a3b90a3d031_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_plan_page_a9c256fd339d54cb2149190a41a259073}\index{PlanPage@{PlanPage}!updateSelectionCount@{updateSelectionCount}}
+\index{updateSelectionCount@{updateSelectionCount}!PlanPage@{PlanPage}}
+\doxysubsubsection{\texorpdfstring{updateSelectionCount}{updateSelectionCount}}
+{\footnotesize\ttfamily \label{class_plan_page_a9c256fd339d54cb2149190a41a259073} 
+void Plan\+Page::\+update\+Selection\+Count (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Updates the UI label showing how many campuses are currently selected. 
+
+
+
+Definition at line \doxymbox{\hyperlink{planpage_8cpp_source_l00481}{481}} of file \doxymbox{\hyperlink{planpage_8cpp_source}{planpage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00487\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>tableViewSettings-\/>selectionModel())\ \textcolor{keywordflow}{return};}
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_plan_page_a9c256fd339d54cb2149190a41a259073_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_plan_page_a7dc47477aaba2e58dcad3fc3643e6748}\index{PlanPage@{PlanPage}!updateSouvenirFilter@{updateSouvenirFilter}}
+\index{updateSouvenirFilter@{updateSouvenirFilter}!PlanPage@{PlanPage}}
+\doxysubsubsection{\texorpdfstring{updateSouvenirFilter}{updateSouvenirFilter}}
+{\footnotesize\ttfamily \label{class_plan_page_a7dc47477aaba2e58dcad3fc3643e6748} 
+void Plan\+Page::\+update\+Souvenir\+Filter (\begin{DoxyParamCaption}\item[{int}]{index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Filters the souvenir list to show only items for the selected campus. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The index of the campus in the result model. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{planpage_8cpp_source_l00285}{285}} of file \doxymbox{\hyperlink{planpage_8cpp_source}{planpage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00286\ \{}
+\DoxyCodeLine{00287\ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ ==\ -\/1\ ||\ !\doxymbox{\hyperlink{class_plan_page_a60d847f3d9e07faa25800d3041b23f25}{tripSouvenirModel}}\ ||\ !\doxymbox{\hyperlink{class_plan_page_ab186f1c89fe2652199d82bc6f7842a4a}{tripModel}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \ \ \ \ QSqlRecord\ record\ =\ \doxymbox{\hyperlink{class_plan_page_ab186f1c89fe2652199d82bc6f7842a4a}{tripModel}}-\/>record(index);}
+\DoxyCodeLine{00290\ \ \ \ \ \textcolor{keywordtype}{int}\ selectedID\ =\ record.value(\textcolor{stringliteral}{"{}campusID"{}}).toInt();}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00292\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a60d847f3d9e07faa25800d3041b23f25}{tripSouvenirModel}}-\/>setFilter(}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ QString(\textcolor{stringliteral}{"{}campusID\ =\ \%1\ AND\ quantity\ >\ 0"{}}).arg(selectedID)}
+\DoxyCodeLine{00294\ \ \ \ \ );}
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00296\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a60d847f3d9e07faa25800d3041b23f25}{tripSouvenirModel}}-\/>select();}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00298\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9a56d9743c7febd1834af436f3bc827f}{updateCampusSpent}}(selectedID);}
+\DoxyCodeLine{00299\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_abf00a60aa85a44061adbe8233b25cc6a}{updateTotalTripPurchased}}();}
+\DoxyCodeLine{00300\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_plan_page_a7dc47477aaba2e58dcad3fc3643e6748_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_plan_page_a7dc47477aaba2e58dcad3fc3643e6748_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_plan_page_a913c019bbef87646bdca1c830f9ed668}\index{PlanPage@{PlanPage}!updateStopLabels@{updateStopLabels}}
+\index{updateStopLabels@{updateStopLabels}!PlanPage@{PlanPage}}
+\doxysubsubsection{\texorpdfstring{updateStopLabels}{updateStopLabels}}
+{\footnotesize\ttfamily \label{class_plan_page_a913c019bbef87646bdca1c830f9ed668} 
+void Plan\+Page::\+update\+Stop\+Labels (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Updates labels (Current/\+\+Next) during the live tour phase. 
+
+
+
+Definition at line \doxymbox{\hyperlink{planpage_8cpp_source_l00534}{534}} of file \doxymbox{\hyperlink{planpage_8cpp_source}{planpage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00540\ \{}
+\DoxyCodeLine{00541\ \ \ \ \ \textcolor{keywordtype}{int}\ currentID\ =\ \doxymbox{\hyperlink{class_plan_page_aa61c32857843d11ea1638f5fe94a304c}{getCampusIDByOrder}}(\doxymbox{\hyperlink{class_plan_page_a247fc30520b3dbc2d6e4d6aab5993e4b}{currentTripOrder}});}
+\DoxyCodeLine{00542\ \ \ \ \ \textcolor{keywordtype}{int}\ nextID\ =\ \doxymbox{\hyperlink{class_plan_page_aa61c32857843d11ea1638f5fe94a304c}{getCampusIDByOrder}}(\doxymbox{\hyperlink{class_plan_page_a247fc30520b3dbc2d6e4d6aab5993e4b}{currentTripOrder}}\ +\ 1);}
+\DoxyCodeLine{00543\ }
+\DoxyCodeLine{00544\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>stopCurrentCampusLabel-\/>setText(\doxymbox{\hyperlink{database_helper_8h_aa6d10f89d7ee6f7a937b5bc5c9979fd3}{getCampusName}}(currentID));}
+\DoxyCodeLine{00545\ }
+\DoxyCodeLine{00546\ \ \ \ \ \textcolor{keywordflow}{if}\ (nextID\ !=\ -\/1)\ \{}
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>stopNextCampusLabel-\/>setText(\doxymbox{\hyperlink{database_helper_8h_aa6d10f89d7ee6f7a937b5bc5c9979fd3}{getCampusName}}(nextID));}
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>stopNextCampusDIstanceLabel-\/>setText(}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ \ \ \ \ QString::number(\doxymbox{\hyperlink{database_helper_8h_a242017b47cfdc29400bab979847020ec}{getDistanceBetween}}(currentID,\ nextID))\ +\ \textcolor{stringliteral}{"{}\ miles"{}}}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00551\ }
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Normal\ case}}
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>tripPlanStopNextButton-\/>setText(\textcolor{stringliteral}{"{}Next\ Campus"{}});}
+\DoxyCodeLine{00554\ \ \ \ \ \}}
+\DoxyCodeLine{00555\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>stopNextCampusLabel-\/>setText(\textcolor{stringliteral}{"{}Trip\ Complete"{}});}
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>stopNextCampusDIstanceLabel-\/>setText(\textcolor{stringliteral}{"{}"{}});}
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_plan_page_a913c019bbef87646bdca1c830f9ed668_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_plan_page_a6f56f05951a0b45dfa0867ba8b9306f2}\index{PlanPage@{PlanPage}!updateTotalDistance@{updateTotalDistance}}
+\index{updateTotalDistance@{updateTotalDistance}!PlanPage@{PlanPage}}
+\doxysubsubsection{\texorpdfstring{updateTotalDistance}{updateTotalDistance}}
+{\footnotesize\ttfamily \label{class_plan_page_a6f56f05951a0b45dfa0867ba8b9306f2} 
+void Plan\+Page::\+update\+Total\+Distance (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Sums the distance of the calculated trip and saves it to the database. 
+
+
+
+Definition at line \doxymbox{\hyperlink{planpage_8cpp_source_l00559}{559}} of file \doxymbox{\hyperlink{planpage_8cpp_source}{planpage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00565\ \{}
+\DoxyCodeLine{00566\ \ \ \ \ \textcolor{keywordtype}{double}\ totalDistance\ =\ 0;}
+\DoxyCodeLine{00567\ }
+\DoxyCodeLine{00568\ \ \ \ \ QSqlQuery\ query(\textcolor{stringliteral}{"{}SELECT\ campusID\ FROM\ tripCampuses\ ORDER\ BY\ visitOrder\ ASC"{}});}
+\DoxyCodeLine{00569\ }
+\DoxyCodeLine{00570\ \ \ \ \ QList<int>\ campusIDs;}
+\DoxyCodeLine{00571\ }
+\DoxyCodeLine{00572\ \ \ \ \ \textcolor{keywordflow}{while}\ (query.next())\ \{}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ campusIDs.append(query.value(0).toInt());}
+\DoxyCodeLine{00574\ \ \ \ \ \}}
+\DoxyCodeLine{00575\ }
+\DoxyCodeLine{00576\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ campusIDs.size()\ -\/\ 1;\ i++)\ \{}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ totalDistance\ +=\ \doxymbox{\hyperlink{database_helper_8h_a242017b47cfdc29400bab979847020ec}{getDistanceBetween}}(campusIDs[i],\ campusIDs[i\ +\ 1]);}
+\DoxyCodeLine{00578\ \ \ \ \ \}}
+\DoxyCodeLine{00579\ }
+\DoxyCodeLine{00580\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}}-\/>resultTotalDistanceAmt-\/>setText(QString::number(totalDistance)\ +\ \textcolor{stringliteral}{"{}\ miles"{}});}
+\DoxyCodeLine{00581\ \ \ \ \ \textcolor{comment}{//\ Prepare\ an\ INSERT\ statement}}
+\DoxyCodeLine{00582\ \ \ \ \ query.prepare(\textcolor{stringliteral}{"{}INSERT\ INTO\ tripInfoDistances\ (tripDistance)\ VALUES\ (:distance)"{}});}
+\DoxyCodeLine{00583\ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:distance"{}},\ totalDistance);}
+\DoxyCodeLine{00584\ }
+\DoxyCodeLine{00585\ \ \ \ \ \textcolor{keywordflow}{if}\ (!query.exec())\ \{}
+\DoxyCodeLine{00586\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[DB\ ERROR]\ Failed\ to\ insert\ tripDistance:"{}}\ <<\ query.lastError().text();}
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_plan_page_a6f56f05951a0b45dfa0867ba8b9306f2_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_plan_page_abf00a60aa85a44061adbe8233b25cc6a}\index{PlanPage@{PlanPage}!updateTotalTripPurchased@{updateTotalTripPurchased}}
+\index{updateTotalTripPurchased@{updateTotalTripPurchased}!PlanPage@{PlanPage}}
+\doxysubsubsection{\texorpdfstring{updateTotalTripPurchased}{updateTotalTripPurchased}}
+{\footnotesize\ttfamily \label{class_plan_page_abf00a60aa85a44061adbe8233b25cc6a} 
+void Plan\+Page::\+update\+Total\+Trip\+Purchased (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Calculates the total monetary cost of the entire trip. 
+
+
+
+Definition at line \doxymbox{\hyperlink{planpage_8cpp_source_l00608}{608}} of file \doxymbox{\hyperlink{planpage_8cpp_source}{planpage.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00614\ \{}
+\DoxyCodeLine{00615\ \ \ \ \ \textcolor{keywordtype}{double}\ total\ =\ 0.0;}
+\DoxyCodeLine{00616\ \ \ \ \ QSqlDatabase\ db\ =\ QSqlDatabase::database();}
+\DoxyCodeLine{00617\ \ \ \ \ QSqlQuery\ query(db);}
+\DoxyCodeLine{00618\ }
+\DoxyCodeLine{00619\ \ \ \ \ \textcolor{comment}{//\ =========================}}
+\DoxyCodeLine{00620\ \ \ \ \ \textcolor{comment}{//\ OPTION\ A:\ Single\ Query\ (All\ Campuses\ Together)}}
+\DoxyCodeLine{00621\ \ \ \ \ \textcolor{comment}{//\ =========================}}
+\DoxyCodeLine{00622\ \ \ \ \ query.prepare(\textcolor{stringliteral}{"{}SELECT\ SUM(price\ *\ quantity)\ FROM\ tripSouvenirPurchases\ WHERE\ quantity\ >\ 0"{}});}
+\DoxyCodeLine{00623\ \ \ \ \ \textcolor{keywordflow}{if}\ (query.exec()\ \&\&\ query.next()\ \&\&\ !query.value(0).isNull())\ \{}
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \ \ total\ =\ query.value(0).toDouble();}
+\DoxyCodeLine{00625\ \ \ \ \ \}}
+\DoxyCodeLine{00626\ }
+\DoxyCodeLine{00627\ \ \ \ \ \textcolor{comment}{//\ =========================}}
+\DoxyCodeLine{00628\ \ \ \ \ \textcolor{comment}{//\ OPTION\ B:\ Sum\ Each\ Campus\ Separately}}
+\DoxyCodeLine{00629\ \ \ \ \ \textcolor{comment}{//\ =========================}}
+\DoxyCodeLine{00630\ \ \ \ \ \textcolor{comment}{//\ if\ (!tripModel)\ return;}}
+\DoxyCodeLine{00631\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00632\ \ \ \ \ \textcolor{comment}{//\ for\ (int\ row\ =\ 0;\ row\ <\ tripModel-\/>rowCount();\ ++row)\ \{}}
+\DoxyCodeLine{00633\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ int\ campusID\ =\ tripModel-\/>record(row).value("{}campusID"{}).toInt();}}
+\DoxyCodeLine{00634\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00635\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ query.prepare("{}SELECT\ SUM(price\ *\ quantity)\ FROM\ tripSouvenirPurchases\ "{}}}
+\DoxyCodeLine{00636\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}WHERE\ campusID\ =\ :id\ AND\ quantity\ >\ 0"{});}}
+\DoxyCodeLine{00637\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ query.bindValue("{}:id"{},\ campusID);}}
+\DoxyCodeLine{00638\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00639\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ if\ (query.exec()\ \&\&\ query.next()\ \&\&\ !query.value(0).isNull())\ \{}}
+\DoxyCodeLine{00640\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ total\ +=\ query.value(0).toDouble();}}
+\DoxyCodeLine{00641\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \}}}
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_plan_page_abf00a60aa85a44061adbe8233b25cc6a_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_plan_page_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_plan_page_ab7140a4c85ceee6ad4a9b3787ad05f98}\index{PlanPage@{PlanPage}!campusModel@{campusModel}}
+\index{campusModel@{campusModel}!PlanPage@{PlanPage}}
+\doxysubsubsection{\texorpdfstring{campusModel}{campusModel}}
+{\footnotesize\ttfamily \label{class_plan_page_ab7140a4c85ceee6ad4a9b3787ad05f98} 
+QSql\+Query\+Model\texorpdfstring{$\ast$}{*} Plan\+Page::\+campus\+Model = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+Model for the campus selection list. 
+
+Definition at line \doxymbox{\hyperlink{planpage_8h_source_l00075}{75}} of file \doxymbox{\hyperlink{planpage_8h_source}{planpage.\+h}}.
+
+\Hypertarget{class_plan_page_a45441e439b3ca65588bd7dfc406f5319}\index{PlanPage@{PlanPage}!comboBoxModel@{comboBoxModel}}
+\index{comboBoxModel@{comboBoxModel}!PlanPage@{PlanPage}}
+\doxysubsubsection{\texorpdfstring{comboBoxModel}{comboBoxModel}}
+{\footnotesize\ttfamily \label{class_plan_page_a45441e439b3ca65588bd7dfc406f5319} 
+QSql\+Table\+Model\texorpdfstring{$\ast$}{*} Plan\+Page::\+combo\+Box\+Model = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+Model for the starting campus selector. 
+
+Definition at line \doxymbox{\hyperlink{planpage_8h_source_l00076}{76}} of file \doxymbox{\hyperlink{planpage_8h_source}{planpage.\+h}}.
+
+\Hypertarget{class_plan_page_a247fc30520b3dbc2d6e4d6aab5993e4b}\index{PlanPage@{PlanPage}!currentTripOrder@{currentTripOrder}}
+\index{currentTripOrder@{currentTripOrder}!PlanPage@{PlanPage}}
+\doxysubsubsection{\texorpdfstring{currentTripOrder}{currentTripOrder}}
+{\footnotesize\ttfamily \label{class_plan_page_a247fc30520b3dbc2d6e4d6aab5993e4b} 
+int Plan\+Page::\+current\+Trip\+Order = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+Tracks the current stop index during a live tour. 
+
+Definition at line \doxymbox{\hyperlink{planpage_8h_source_l00081}{81}} of file \doxymbox{\hyperlink{planpage_8h_source}{planpage.\+h}}.
+
+\Hypertarget{class_plan_page_ae450329955e5249199e8e3552c2a6de0}\index{PlanPage@{PlanPage}!proxyModel@{proxyModel}}
+\index{proxyModel@{proxyModel}!PlanPage@{PlanPage}}
+\doxysubsubsection{\texorpdfstring{proxyModel}{proxyModel}}
+{\footnotesize\ttfamily \label{class_plan_page_ae450329955e5249199e8e3552c2a6de0} 
+QSort\+Filter\+Proxy\+Model\texorpdfstring{$\ast$}{*} Plan\+Page::\+proxy\+Model\hspace{0.3cm}{\ttfamily [private]}}
+
+Filters out the starting campus from the selection list. 
+
+Definition at line \doxymbox{\hyperlink{planpage_8h_source_l00080}{80}} of file \doxymbox{\hyperlink{planpage_8h_source}{planpage.\+h}}.
+
+\Hypertarget{class_plan_page_ab186f1c89fe2652199d82bc6f7842a4a}\index{PlanPage@{PlanPage}!tripModel@{tripModel}}
+\index{tripModel@{tripModel}!PlanPage@{PlanPage}}
+\doxysubsubsection{\texorpdfstring{tripModel}{tripModel}}
+{\footnotesize\ttfamily \label{class_plan_page_ab186f1c89fe2652199d82bc6f7842a4a} 
+QSql\+Table\+Model\texorpdfstring{$\ast$}{*} Plan\+Page::\+trip\+Model = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+Model for the current calculated trip sequence. 
+
+Definition at line \doxymbox{\hyperlink{planpage_8h_source_l00077}{77}} of file \doxymbox{\hyperlink{planpage_8h_source}{planpage.\+h}}.
+
+\Hypertarget{class_plan_page_a60d847f3d9e07faa25800d3041b23f25}\index{PlanPage@{PlanPage}!tripSouvenirModel@{tripSouvenirModel}}
+\index{tripSouvenirModel@{tripSouvenirModel}!PlanPage@{PlanPage}}
+\doxysubsubsection{\texorpdfstring{tripSouvenirModel}{tripSouvenirModel}}
+{\footnotesize\ttfamily \label{class_plan_page_a60d847f3d9e07faa25800d3041b23f25} 
+QSql\+Table\+Model\texorpdfstring{$\ast$}{*} Plan\+Page::\+trip\+Souvenir\+Model = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+Model for viewing purchased items in results. 
+
+Definition at line \doxymbox{\hyperlink{planpage_8h_source_l00078}{78}} of file \doxymbox{\hyperlink{planpage_8h_source}{planpage.\+h}}.
+
+\Hypertarget{class_plan_page_add965acd8bc98d8cf894a37ebacde1f9}\index{PlanPage@{PlanPage}!tripStopSouvenirModel@{tripStopSouvenirModel}}
+\index{tripStopSouvenirModel@{tripStopSouvenirModel}!PlanPage@{PlanPage}}
+\doxysubsubsection{\texorpdfstring{tripStopSouvenirModel}{tripStopSouvenirModel}}
+{\footnotesize\ttfamily \label{class_plan_page_add965acd8bc98d8cf894a37ebacde1f9} 
+QSql\+Table\+Model\texorpdfstring{$\ast$}{*} Plan\+Page::\+trip\+Stop\+Souvenir\+Model = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+Model for live shopping at a specific stop. 
+
+Definition at line \doxymbox{\hyperlink{planpage_8h_source_l00079}{79}} of file \doxymbox{\hyperlink{planpage_8h_source}{planpage.\+h}}.
+
+\Hypertarget{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}\index{PlanPage@{PlanPage}!ui@{ui}}
+\index{ui@{ui}!PlanPage@{PlanPage}}
+\doxysubsubsection{\texorpdfstring{ui}{ui}}
+{\footnotesize\ttfamily \label{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c} 
+\doxymbox{\hyperlink{class_ui_1_1_plan_page}{Ui::\+\+Plan\+Page}}\texorpdfstring{$\ast$}{*} Plan\+Page::\+ui\hspace{0.3cm}{\ttfamily [private]}}
+
+Pointer to the UI setup. 
+
+Definition at line \doxymbox{\hyperlink{planpage_8h_source_l00074}{74}} of file \doxymbox{\hyperlink{planpage_8h_source}{planpage.\+h}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+headers/\+\doxymbox{\hyperlink{planpage_8h}{planpage.\+h}}\item 
+sources/\+\doxymbox{\hyperlink{planpage_8cpp}{planpage.\+cpp}}\end{DoxyCompactItemize}

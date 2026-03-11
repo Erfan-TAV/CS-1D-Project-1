@@ -1,0 +1,5 @@
+<map id="PlanPage::getCampusIDByOrder" name="PlanPage::getCampusIDByOrder">
+<area shape="rect" id="Node000001" title="Helper to find a campus ID based on its position in the trip." alt="" coords="246,13,460,38"/>
+<area shape="rect" id="Node000002" href="$class_plan_page.html#aa0511c865d24a2a78dbab899aa874034" title="Initiates the recursive trip algorithm based on user selections." alt="" coords="5,5,198,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="227,26,198,28,198,23,233,25"/>
+</map>

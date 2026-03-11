@@ -1,0 +1,108 @@
+\doxysection{Database\+Page Class Reference}
+\hypertarget{class_database_page}{}\label{class_database_page}\index{DatabasePage@{DatabasePage}}
+
+
+An abstract base class for all pages that display database-\/driven content.  
+
+
+
+
+{\ttfamily \+\#include $<$database\+Page.\+h$>$}
+
+
+
+Inheritance diagram for Database\+Page:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_database_page__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Database\+Page:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=169pt]{class_database_page__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_database_page_adf83a1f998dc86afd7229db40628857a}{Database\+Page}} (QWidget \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{class_database_page}{Database\+Page}. \end{DoxyCompactList}\item 
+virtual void \doxymbox{\hyperlink{class_database_page_ac5eac9c210411877ef0d3fce5c971223}{refresh\+UI}} ()=0
+\begin{DoxyCompactList}\small\item\em Pure virtual function to update the UI with the latest database data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+An abstract base class for all pages that display database-\/driven content. 
+
+This class serves as an interface to ensure that all sub-\/pages (like Admin, View Campuses, etc.) implement a standardized refresh mechanism to stay in sync with the SQLite database. 
+
+Definition at line \doxymbox{\hyperlink{database_page_8h_source_l00019}{19}} of file \doxymbox{\hyperlink{database_page_8h_source}{database\+Page.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_database_page_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_database_page_adf83a1f998dc86afd7229db40628857a}\index{DatabasePage@{DatabasePage}!DatabasePage@{DatabasePage}}
+\index{DatabasePage@{DatabasePage}!DatabasePage@{DatabasePage}}
+\doxysubsubsection{\texorpdfstring{DatabasePage()}{DatabasePage()}}
+{\footnotesize\ttfamily \label{class_database_page_adf83a1f998dc86afd7229db40628857a} 
+Database\+Page::\+\+Database\+Page (\begin{DoxyParamCaption}\item[{QWidget \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Constructor for \doxylink{class_database_page}{Database\+Page}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Pointer to the parent QWidget. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{database_page_8h_source_l00026}{26}} of file \doxymbox{\hyperlink{database_page_8h_source}{database\+Page.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00026\ :\ QWidget(parent)\ \{\}}
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_database_page_adf83a1f998dc86afd7229db40628857a_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-func-members}
+\Hypertarget{class_database_page_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_database_page_ac5eac9c210411877ef0d3fce5c971223}\index{DatabasePage@{DatabasePage}!refreshUI@{refreshUI}}
+\index{refreshUI@{refreshUI}!DatabasePage@{DatabasePage}}
+\doxysubsubsection{\texorpdfstring{refreshUI()}{refreshUI()}}
+{\footnotesize\ttfamily \label{class_database_page_ac5eac9c210411877ef0d3fce5c971223} 
+virtual void Database\+Page::\+refresh\+UI (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Pure virtual function to update the UI with the latest database data. 
+
+Every child class must implement this method to reload its models, refresh table views, or update labels whenever a change occurs in the database. 
+
+Implemented in \doxymbox{\hyperlink{class_info_page_ab30b3950a2371800b6a1f340af6337db}{Info\+Page}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+headers/\+\doxymbox{\hyperlink{database_page_8h}{database\+Page.\+h}}\end{DoxyCompactItemize}

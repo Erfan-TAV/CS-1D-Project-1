@@ -1,0 +1,56 @@
+\doxysection{adminpage.\+h}
+\hypertarget{adminpage_8h_source}{}\label{adminpage_8h_source}\index{headers/adminpage.h@{headers/adminpage.h}}
+\doxymbox{\hyperlink{adminpage_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00007}00007\ \textcolor{preprocessor}{\#ifndef\ COLLEGETOUR\_ADMINPAGE\_H}}
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00008}00008\ \textcolor{preprocessor}{\#define\ COLLEGETOUR\_ADMINPAGE\_H}}
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00010}00010\ \textcolor{preprocessor}{\#include\ <QSqlTableModel>}}
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00011}00011\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{ui__adminpage_8h}{ui\_adminpage.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{database_page_8h}{databasePage.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00014}00014\ QT\_BEGIN\_NAMESPACE}
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00016}00016\ \textcolor{keyword}{namespace\ }\doxymbox{\hyperlink{namespace_ui}{Ui}}\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00017}00017\ \ \ \ \ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_ui_1_1_admin_page}{AdminPage}};}
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00018}00018\ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00020}00020\ QT\_END\_NAMESPACE}
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00029}\doxymbox{\hyperlink{class_admin_page}{00029}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_admin_page_a1150741b249e777a213dbe57802db854}{AdminPage}}\ :\ \textcolor{keyword}{public}\ \doxymbox{\hyperlink{class_database_page_adf83a1f998dc86afd7229db40628857a}{DatabasePage}}\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00030}00030\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00032}00032\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00037}00037\ \ \ \ \ \textcolor{keyword}{explicit}\ \doxymbox{\hyperlink{class_admin_page_a1150741b249e777a213dbe57802db854}{AdminPage}}(QWidget*\ parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00042}00042\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_ab3298c7c5465e3ff6908b74660238480}{\string~AdminPage}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00044}00044\ \textcolor{keyword}{private}\ slots:}
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00052}00052\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_admin_page_a16675919043ae4f2160148da4ecdc22d}{handleLogin}}();}
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00061}00061\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_admin_page_afbcd4cb0e0f9d51f618253f984498e2d}{on\_uploadFile\_clicked}}();}
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00068}00068\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_admin_page_aff83326be65d2e96c925f1f4aba7a1e2}{refreshUI}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00070}00070\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00071}\doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{00071}}\ \ \ \ \ \doxymbox{\hyperlink{class_ui_1_1_admin_page}{Ui::AdminPage}}*\ \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00072}\doxymbox{\hyperlink{class_admin_page_ab0a581b58900e0d0a6161a8263effe84}{00072}}\ \ \ \ \ QSqlTableModel*\ \doxymbox{\hyperlink{class_admin_page_ab0a581b58900e0d0a6161a8263effe84}{campusModel}};\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00073}\doxymbox{\hyperlink{class_admin_page_adaf2b3c18aa4084b3e7f53ec4c3dc519}{00073}}\ \ \ \ \ QSqlTableModel*\ \doxymbox{\hyperlink{class_admin_page_adaf2b3c18aa4084b3e7f53ec4c3dc519}{souvenirModel}};\ \ \ }
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00082}00082\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_admin_page_a609026d0ed071ff25100ac5ad88b7192}{promptForDistances}}(\textcolor{keyword}{const}\ QStringList\ \&newCampusNames);}
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00089}00089\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_admin_page_a32a6022c291fc9905398f61979bfe66a}{setupDatabaseTable}}();}
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00096}00096\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_admin_page_aaba950e4cfef2bdb3519652a687e7e94}{setupLoginPage}}();}
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00105}00105\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_admin_page_a525dd78af12c754112f7e7dcc6990fa7}{verifyUserCredentials}}(\textcolor{keyword}{const}\ QString\ \&username,\ \textcolor{keyword}{const}\ QString\ \&password);}
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00107}00107\ signals:}
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00113}\doxymbox{\hyperlink{class_admin_page_a4a3217feb907b151e7efba86e2153d78}{00113}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_admin_page_a4a3217feb907b151e7efba86e2153d78}{notifyStatus}}(\textcolor{keyword}{const}\ QString\ \&message,\ \textcolor{keywordtype}{int}\ timeout\ =\ 2500);}
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00114}00114\ \};}
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8h_source_l00116}00116\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ COLLEGETOUR\_ADMINPAGE\_H}}
+
+\end{DoxyCode}

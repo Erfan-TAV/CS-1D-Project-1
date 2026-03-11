@@ -1,0 +1,11 @@
+<map id="InfoPage" name="InfoPage">
+<area shape="rect" id="Node000001" title="Provides a summary interface displaying trip results and purchase history." alt="" coords="44,543,208,711"/>
+<area shape="rect" id="Node000002" href="$class_database_page.html" title="An abstract base class for all pages that display database&#45;driven content." alt="" coords="5,385,123,472"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,484,102,543,97,543,81,489"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="32,138,94,204"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="64,216,67,385,61,385,63,222"/>
+<area shape="rect" id="Node000004" href="$class_ui_1_1_info_page.html" title=" " alt="" coords="149,396,233,462"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="182,459,161,528,156,526,179,464"/>
+<area shape="rect" id="Node000005" href="$class_ui___info_page.html" title=" " alt="" coords="118,5,264,336"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="192,348,194,396,188,395,190,354"/>
+</map>

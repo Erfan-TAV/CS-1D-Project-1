@@ -1,0 +1,7 @@
+<map id="uploadFileAppend" name="uploadFileAppend">
+<area shape="rect" id="Node000001" title="Parses an Excel file to append new data to the current database." alt="" coords="5,31,130,56"/>
+<area shape="rect" id="Node000002" href="$database_helper_8cpp.html#a03b4e3382e830c7a89466a8eb7f643a4" title="Adds a directed edge between two campuses." alt="" coords="178,5,272,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="129,31,165,27,159,29,131,36"/>
+<area shape="rect" id="Node000003" href="$database_helper_8cpp.html#a44dac679a954686debebbeb013e85075" title="Registers a new souvenir item for a specific campus." alt="" coords="178,55,272,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="130,50,165,58,160,58,130,56"/>
+</map>

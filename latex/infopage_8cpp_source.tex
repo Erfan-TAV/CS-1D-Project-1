@@ -1,0 +1,129 @@
+\doxysection{infopage.\+cpp}
+\hypertarget{infopage_8cpp_source}{}\label{infopage_8cpp_source}\index{sources/infopage.cpp@{sources/infopage.cpp}}
+\doxymbox{\hyperlink{infopage_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{infopage_8h}{infopage.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{ui__infopage_8h}{ui\_infopage.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <QHeaderView>}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <QSqlQuery>}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <QSqlError>}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{database_helper_8h}{databaseHelper.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <QTableWidgetItem>}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ <QDebug>}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{planpage_8h}{planpage.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00012}\doxymbox{\hyperlink{class_info_page_a5f0e8b3e066ff3c3980582cbce843715}{00012}}\ \doxymbox{\hyperlink{class_info_page_a5f0e8b3e066ff3c3980582cbce843715}{InfoPage::InfoPage}}(\ QWidget\ *parent)}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00013}00013\ \ \ \ \ :\ \doxymbox{\hyperlink{class_database_page_adf83a1f998dc86afd7229db40628857a}{DatabasePage}}(parent)}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00014}00014\ \ \ \ \ ,\ \doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}}(new\ \doxymbox{\hyperlink{namespace_ui}{Ui}}::\doxymbox{\hyperlink{class_info_page_a5f0e8b3e066ff3c3980582cbce843715}{InfoPage}})}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00015}00015\ \{}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00016}00016\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}}-\/>setupUi(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00018}00018\ \ \ \ \ \textcolor{comment}{//\ Create\ the\ model\ for\ the\ QTableView}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00019}00019\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a16cf98ff866cbb7c498b19a59b2c962c}{model}}\ =\ \textcolor{keyword}{new}\ QStandardItemModel(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00021}00021\ \ \ \ \ \textcolor{comment}{//\ Set\ headers\ (same\ as\ before)}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00022}00022\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a16cf98ff866cbb7c498b19a59b2c962c}{model}}-\/>setHorizontalHeaderLabels(\{\ \textcolor{stringliteral}{"{}Campus"{}},\ \textcolor{stringliteral}{"{}Item"{}},\ \textcolor{stringliteral}{"{}Quantity"{}},\ \textcolor{stringliteral}{"{}Price"{}},\ \textcolor{stringliteral}{"{}Total"{}}\ \});}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00024}00024\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}}-\/>tableView-\/>setModel(\doxymbox{\hyperlink{class_info_page_a16cf98ff866cbb7c498b19a59b2c962c}{model}});}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00026}00026\ \ \ \ \ \textcolor{comment}{//\ Hide\ row\ headers}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00027}00027\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}}-\/>tableView-\/>verticalHeader()-\/>setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00029}00029\ \ \ \ \ \textcolor{comment}{//\ Column\ resizing}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00030}00030\ \ \ \ \ QHeaderView\ *header\ =\ \doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}}-\/>tableView-\/>horizontalHeader();}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00031}00031\ \ \ \ \ header-\/>setStretchLastSection(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00032}00032\ \ \ \ \ header-\/>setSectionResizeMode(0,\ QHeaderView::Stretch);}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00033}00033\ \ \ \ \ header-\/>setSectionResizeMode(1,\ QHeaderView::Stretch);}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00034}00034\ \ \ \ \ header-\/>setSectionResizeMode(2,\ QHeaderView::Interactive);}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00035}00035\ \ \ \ \ header-\/>setSectionResizeMode(3,\ QHeaderView::Interactive);}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00036}00036\ \ \ \ \ header-\/>setSectionResizeMode(4,\ QHeaderView::Interactive);}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00037}00037\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}}-\/>tableView-\/>setColumnWidth(2,\ 60);}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00038}00038\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}}-\/>tableView-\/>setColumnWidth(3,\ 100);}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00039}00039\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}}-\/>tableView-\/>setColumnWidth(4,\ 70);}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00040}00040\ \}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00042}\doxymbox{\hyperlink{class_info_page_a85d8e19daad22c976c53e46ad6d63e00}{00042}}\ \doxymbox{\hyperlink{class_info_page_a85d8e19daad22c976c53e46ad6d63e00}{InfoPage::\string~InfoPage}}()\ \{\ \textcolor{keyword}{delete}\ \doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}};\ \}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00047}\doxymbox{\hyperlink{class_info_page_a35843a78b2c0f30592439aae941aa5f8}{00047}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_info_page_a35843a78b2c0f30592439aae941aa5f8}{InfoPage::displayTripResults}}(\textcolor{keyword}{const}\ TripResult\ \&result)}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00048}00048\ \{}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00049}00049\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}}-\/>totalDistanceAmount-\/>setText(QString::number(result.totalDistance,\ \textcolor{charliteral}{'f'},\ 2)\ +\ \textcolor{stringliteral}{"{}\ mi"{}});}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00051}00051\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a16cf98ff866cbb7c498b19a59b2c962c}{model}}-\/>removeRows(0,\ \doxymbox{\hyperlink{class_info_page_a16cf98ff866cbb7c498b19a59b2c962c}{model}}-\/>rowCount());}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00053}00053\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ result.campusOrder.size();\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ campusId\ =\ result.campusOrder[i];}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ QSqlQuery\ query;}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ query.prepare(\textcolor{stringliteral}{"{}SELECT\ campusName\ FROM\ campusList\ WHERE\ campusID\ =\ :id"{}});}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:id"{}},\ campusId);}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (query.exec()\ \&\&\ query.next())\ \{}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ QList<QStandardItem*>\ rowItems;}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ rowItems\ <<\ \textcolor{keyword}{new}\ QStandardItem(query.value(0).toString());\ \textcolor{comment}{//\ campusName}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ rowItems\ <<\ \textcolor{keyword}{new}\ QStandardItem(QString::number(i\ +\ 1));\ \ \ \ \ \textcolor{comment}{//\ visit\ order}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ rowItems\ <<\ \textcolor{keyword}{new}\ QStandardItem(QString::number(campusId));\ \ \textcolor{comment}{//\ campusID}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ table\ consistency,\ add\ empty\ items\ for\ remaining\ columns}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ rowItems\ <<\ \textcolor{keyword}{new}\ QStandardItem(\textcolor{stringliteral}{"{}"{}});\ \textcolor{comment}{//\ itemPrice\ placeholder}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ rowItems\ <<\ \textcolor{keyword}{new}\ QStandardItem(\textcolor{stringliteral}{"{}"{}});\ \textcolor{comment}{//\ totalPrice\ placeholder}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a16cf98ff866cbb7c498b19a59b2c962c}{model}}-\/>appendRow(rowItems);}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00072}00072\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00073}00073\ \}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00075}\doxymbox{\hyperlink{class_info_page_ab30b3950a2371800b6a1f340af6337db}{00075}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_info_page_ab30b3950a2371800b6a1f340af6337db}{InfoPage::refreshUI}}()}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00076}00076\ \{}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00077}00077\ \ \ \ \ QSqlDatabase\ db\ =\ QSqlDatabase::database();}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00078}00078\ \ \ \ \ QSqlQuery\ query(db);}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00080}00080\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a16cf98ff866cbb7c498b19a59b2c962c}{model}}-\/>removeRows(0,\ \doxymbox{\hyperlink{class_info_page_a16cf98ff866cbb7c498b19a59b2c962c}{model}}-\/>rowCount());\ \textcolor{comment}{//\ clear\ model}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00082}00082\ \ \ \ \ \textcolor{keywordflow}{if}\ (!query.exec(\textcolor{stringliteral}{"{}SELECT\ campusName,\ itemName,\ numItem,\ itemPrice,\ totalPrice\ FROM\ tripInfo"{}}))\ \{}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}InfoPage\ refresh\ error:"{}}\ <<\ query.lastError().text();}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00085}00085\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00087}00087\ \ \ \ \ \textcolor{keywordflow}{while}\ (query.next())\ \{}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ QList<QStandardItem*>\ rowItems;}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ rowItems\ <<\ \textcolor{keyword}{new}\ QStandardItem(query.value(0).toString());\ \textcolor{comment}{//\ campusName}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ rowItems\ <<\ \textcolor{keyword}{new}\ QStandardItem(query.value(1).toString());\ \textcolor{comment}{//\ itemName}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ rowItems\ <<\ \textcolor{keyword}{new}\ QStandardItem(QString::number(query.value(2).toInt()));\ \textcolor{comment}{//\ numItem}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ rowItems\ <<\ \textcolor{keyword}{new}\ QStandardItem(QString::number(query.value(3).toDouble(),\ \textcolor{charliteral}{'f'},\ 2));\ \textcolor{comment}{//\ itemPrice}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ rowItems\ <<\ \textcolor{keyword}{new}\ QStandardItem(QString::number(query.value(4).toDouble(),\ \textcolor{charliteral}{'f'},\ 2));\ \textcolor{comment}{//\ totalPrice}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a16cf98ff866cbb7c498b19a59b2c962c}{model}}-\/>appendRow(rowItems);}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00096}00096\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00098}00098\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}}-\/>totalSpentAmount-\/>setText(QString::number(\doxymbox{\hyperlink{database_helper_8h_a451944b5a3a2bc8ad9fd8a3a7aa14830}{getTripInfoTotalSpent}}(),\ \textcolor{charliteral}{'f'},\ 2));}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00099}00099\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}}-\/>totalItemAmount-\/>setText(QString::number(\doxymbox{\hyperlink{database_helper_8h_a831579ca9fc2f58292a660c42b86b91d}{getTripInfoTotalItems}}()));}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00101}00101\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a56a4d4b9c53ec63f9c1d0c07414ed3fa}{calculateTotalDistance}}();}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00102}00102\ \}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00104}\doxymbox{\hyperlink{class_info_page_a56a4d4b9c53ec63f9c1d0c07414ed3fa}{00104}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_info_page_a56a4d4b9c53ec63f9c1d0c07414ed3fa}{InfoPage::calculateTotalDistance}}()\ \{}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00105}00105\ \ \ \ \ QSqlQuery\ query;}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00106}00106\ \ \ \ \ \textcolor{keywordtype}{double}\ totalDistance\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00108}00108\ \ \ \ \ \textcolor{keywordflow}{if}\ (!query.exec(\textcolor{stringliteral}{"{}SELECT\ IFNULL(SUM(tripDistance),\ 0)\ FROM\ tripInfoDistances"{}}))\ \{}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[DB\ ERROR]\ Failed\ to\ get\ total\ tripDistance:"{}}\ <<\ query.lastError().text();}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00111}00111\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00113}00113\ \ \ \ \ \textcolor{keywordflow}{if}\ (query.next())\ \{}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ totalDistance\ =\ query.value(0).toDouble();}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00115}00115\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00117}00117\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}}-\/>totalDistanceAmount-\/>setText(QString::number(totalDistance,\ \textcolor{charliteral}{'f'},\ 2));}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00118}00118\ \}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00120}\doxymbox{\hyperlink{class_info_page_a487c9c7c030aa387b295429642f2de1c}{00120}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_info_page_a487c9c7c030aa387b295429642f2de1c}{InfoPage::resetUI}}()}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00121}00121\ \{}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00122}00122\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a16cf98ff866cbb7c498b19a59b2c962c}{model}}-\/>removeRows(0,\ \doxymbox{\hyperlink{class_info_page_a16cf98ff866cbb7c498b19a59b2c962c}{model}}-\/>rowCount());\ \ \ \textcolor{comment}{//\ clear\ table}}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00123}00123\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}}-\/>totalSpentAmount-\/>setText(\textcolor{stringliteral}{"{}0.00"{}});}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00124}00124\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}}-\/>totalItemAmount-\/>setText(\textcolor{stringliteral}{"{}0"{}});}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00125}00125\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}}-\/>totalDistanceAmount-\/>setText(\textcolor{stringliteral}{"{}0.00"{}});}
+\DoxyCodeLine{\Hypertarget{infopage_8cpp_source_l00126}00126\ \}}
+
+\end{DoxyCode}

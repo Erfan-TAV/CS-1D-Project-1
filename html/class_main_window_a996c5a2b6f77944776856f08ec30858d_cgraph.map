@@ -1,0 +1,18 @@
+<map id="MainWindow::MainWindow" name="MainWindow::MainWindow">
+<area shape="rect" id="Node000001" title="Constructor for MainWindow." alt="" coords="5,80,185,106"/>
+<area shape="poly" id="edge5_Node000001_Node000001" title=" " alt="" coords="56,80,49,71,53,62,69,55,95,53,123,56,139,64,134,66,122,61,95,59,70,61,57,65,54,71,61,79"/>
+<area shape="rect" id="Node000002" href="$database_helper_8cpp.html#a43d3aaa47509c7d2a3133e29ea8bc1a9" title="Wipes the temporary itinerary table." alt="" coords="277,5,380,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="128,77,232,40,264,32,260,35,233,45,130,82"/>
+<area shape="rect" id="Node000003" href="$database_helper_8cpp.html#af290827365ce3b3378a5d25c7d8d0f35" title=" " alt="" coords="262,55,394,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="184,81,249,75,244,78,186,86"/>
+<area shape="rect" id="Node000004" href="$class_main_window.html#aca7667d5bc8417a6804938b030541a6c" title="Connects internal signals from the AdminPage to the MainWindow&#39;s statusBar." alt="" coords="233,104,424,130"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="184,99,220,105,214,106,185,105"/>
+<area shape="rect" id="Node000006" href="$class_main_window.html#a4c85dbf2ae494394c7d1136017ff2774" title="Resets the entire application database to its original state." alt="" coords="233,153,424,179"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="130,103,233,140,258,149,253,149,232,145,130,109"/>
+<area shape="rect" id="Node000005" href="$class_admin_page.html#a4a3217feb907b151e7efba86e2153d78" title="Emitted to request a status message update in the main window&#39;s status bar." alt="" coords="472,104,638,130"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="424,114,459,116,454,117,424,119"/>
+<area shape="rect" id="Node000007" href="$database_helper_8cpp.html#a79b962714031fc06de95d2ad7f2cfb62" title="Clears all purchase records for the current trip." alt="" coords="493,153,617,179"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="424,164,480,166,475,166,424,169"/>
+<area shape="rect" id="Node000008" href="$database_helper_8cpp.html#a303fcb2cb85e0a1ff5906db6fd8767cb" title="Wipes the current database and reloads it entirely from an Excel source." alt="" coords="484,203,626,228"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="391,177,480,199,475,199,391,182"/>
+</map>

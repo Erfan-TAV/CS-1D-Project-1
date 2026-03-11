@@ -1,0 +1,5 @@
+<map id="Ui::InfoPage" name="Ui::InfoPage">
+<area shape="rect" id="Node000001" title=" " alt="" coords="36,384,120,450"/>
+<area shape="rect" id="Node000002" href="$class_ui___info_page.html" title=" " alt="" coords="5,5,151,336"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="80,349,81,385,76,383,77,354"/>
+</map>

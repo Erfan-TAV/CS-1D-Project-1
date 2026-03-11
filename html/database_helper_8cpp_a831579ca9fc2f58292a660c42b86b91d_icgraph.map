@@ -1,0 +1,5 @@
+<map id="getTripInfoTotalItems" name="getTripInfoTotalItems">
+<area shape="rect" id="Node000001" title="Returns the total count of items purchased during the trip." alt="" coords="189,5,333,31"/>
+<area shape="rect" id="Node000002" href="$class_info_page.html#ab30b3950a2371800b6a1f340af6337db" title="Re&#45;syncs the summary table and labels with the current database state." alt="" coords="5,5,141,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="171,18,141,21,141,16,176,18"/>
+</map>

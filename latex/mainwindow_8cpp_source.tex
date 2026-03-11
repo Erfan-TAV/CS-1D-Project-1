@@ -1,0 +1,134 @@
+\doxysection{mainwindow.\+cpp}
+\hypertarget{mainwindow_8cpp_source}{}\label{mainwindow_8cpp_source}\index{sources/mainwindow.cpp@{sources/mainwindow.cpp}}
+\doxymbox{\hyperlink{mainwindow_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{mainwindow_8h}{mainwindow.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{ui__mainwindow_8h}{ui\_mainwindow.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{database_helper_8h}{databaseHelper.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <QStandardPaths>}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <QDir>}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <QSqlTableModel>}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00008}00008\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00009}00009\ \textcolor{comment}{\ *\ trip\ planner\ page\ indexes}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00010}00010\ \textcolor{comment}{index\ 0\ =\ home}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00011}00011\ \textcolor{comment}{index\ 1\ =\ plan}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00012}00012\ \textcolor{comment}{index\ 2\ =\ stop}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00013}00013\ \textcolor{comment}{index\ 3\ =\ result}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00014}00014\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00015}\doxymbox{\hyperlink{class_main_window_a996c5a2b6f77944776856f08ec30858d}{00015}}\ \doxymbox{\hyperlink{class_main_window_a996c5a2b6f77944776856f08ec30858d}{MainWindow::MainWindow}}(QWidget\ *parent)}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00016}00016\ \ \ \ \ :\ QMainWindow(parent)}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00017}00017\ \ \ \ \ ,\ \doxymbox{\hyperlink{class_main_window_a35466a70ed47252a0191168126a352a5}{ui}}(new\ \doxymbox{\hyperlink{namespace_ui}{Ui}}::\doxymbox{\hyperlink{class_main_window_a996c5a2b6f77944776856f08ec30858d}{MainWindow}})}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00018}00018\ \{}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00019}00019\ \ \ \ \ \doxymbox{\hyperlink{class_main_window_a35466a70ed47252a0191168126a352a5}{ui}}-\/>setupUi(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00021}00021\ \ \ \ \ \textcolor{comment}{//\ reset\ the\ trip\ table\ when\ the\ application\ is\ launched}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00022}00022\ \ \ \ \ \doxymbox{\hyperlink{database_helper_8h_a43d3aaa47509c7d2a3133e29ea8bc1a9}{clearTripTable}}();}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00024}00024\ \ \ \ \ \doxymbox{\hyperlink{class_main_window_aca7667d5bc8417a6804938b030541a6c}{linkAdminPage}}();}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00026}00026\ \ \ \ \ \textcolor{comment}{//\ link\ menubar\ item}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00027}00027\ \ \ \ \ connect(\doxymbox{\hyperlink{class_main_window_a35466a70ed47252a0191168126a352a5}{ui}}-\/>actionreset\_all\_information,\ \&QAction::triggered,\ \textcolor{keyword}{this},\ \&\doxymbox{\hyperlink{class_main_window_a4c85dbf2ae494394c7d1136017ff2774}{MainWindow::menuBarReset}});}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00029}00029\ \ \ \ \ \textcolor{comment}{//\ set\ starting\ tab\ to\ planning\ tab}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00030}00030\ \ \ \ \ \textcolor{comment}{//\ TODO:\ change\ to\ 0\ which\ is\ planner\ page,\ currently\ set\ to\ 1\ for\ testing\ info\ page}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00031}00031\ \ \ \ \ \doxymbox{\hyperlink{class_main_window_a35466a70ed47252a0191168126a352a5}{ui}}-\/>tabWidget-\/>setCurrentIndex(0);}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00032}00032\ \ \ \ \ \doxymbox{\hyperlink{database_helper_8cpp_af290827365ce3b3378a5d25c7d8d0f35}{createTripInfoTable}}();}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00033}00033\ \}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00035}\doxymbox{\hyperlink{class_main_window_ae98d00a93bc118200eeef9f9bba1dba7}{00035}}\ \doxymbox{\hyperlink{class_main_window_ae98d00a93bc118200eeef9f9bba1dba7}{MainWindow::\string~MainWindow}}()}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00036}00036\ \{}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00037}00037\ \ \ \ \ \textcolor{keyword}{delete}\ \doxymbox{\hyperlink{class_main_window_a35466a70ed47252a0191168126a352a5}{ui}};}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00038}00038\ \}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00040}00040\ \textcolor{comment}{//\ Run\ this\ in\ your\ constructor\ or\ a\ setup\ function}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00041}\doxymbox{\hyperlink{class_main_window_afc1a52235a552c40d0a4026b99941131}{00041}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_main_window_afc1a52235a552c40d0a4026b99941131}{MainWindow::initializeList}}()\ \{}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00042}00042\ \ \ \ \ \textcolor{comment}{//\ 1.\ Create\ the\ Model}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00043}00043\ \ \ \ \ \textcolor{comment}{//\ 'dbManager'\ is\ your\ instance\ of\ DbManager.}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00044}00044\ \ \ \ \ \textcolor{comment}{//\ 'this'\ ensures\ the\ model\ is\ deleted\ when\ the\ window\ closes.}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00045}00045\ \ \ \ \ QSqlTableModel\ *model\ =\ \textcolor{keyword}{new}\ QSqlTableModel(\textcolor{keyword}{this},\ \doxymbox{\hyperlink{class_main_window_a3642f631531fee9161fac371c8179750}{dbHandler}}-\/>getDatabase());}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00047}00047\ \ \ \ \ \textcolor{comment}{//\ 2.\ Specify\ your\ table\ name\ exactly\ as\ it\ appears\ in\ the\ .db\ file}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00048}00048\ \ \ \ \ model-\/>setTable(\textcolor{stringliteral}{"{}your\_table\_name"{}});}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00050}00050\ \ \ \ \ \textcolor{comment}{//\ 3.\ (Optional)\ If\ you\ want\ to\ sort\ by\ a\ specific\ column\ (e.g.,\ Column\ 0)}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00051}00051\ \ \ \ \ model-\/>setSort(0,\ Qt::AscendingOrder);}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00053}00053\ \ \ \ \ \textcolor{comment}{//\ 4.\ Fetch\ the\ data\ from\ the\ database\ into\ the\ model}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00054}00054\ \ \ \ \ model-\/>select();}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00056}00056\ \ \ \ \ \textcolor{comment}{//\ 5.\ Tell\ the\ ListView\ to\ use\ this\ model}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00057}00057\ \ \ \ \ \textcolor{comment}{//\ ui-\/>campusList-\/>setModel(model);}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00059}00059\ \ \ \ \ \textcolor{comment}{//\ 6.\ Tell\ the\ ListView\ which\ column\ to\ display\ (0,\ 1,\ 2,\ etc.)}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00060}00060\ \ \ \ \ \textcolor{comment}{//\ For\ example,\ if\ Column\ 1\ is\ "{}Campus\ Name"{},\ set\ it\ to\ 1.}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00061}00061\ \ \ \ \ \textcolor{comment}{//\ ui-\/>campusList-\/>setModelColumn(1);}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00062}00062\ \}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00064}\doxymbox{\hyperlink{class_main_window_aca7667d5bc8417a6804938b030541a6c}{00064}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_main_window_aca7667d5bc8417a6804938b030541a6c}{MainWindow::linkAdminPage}}()\ \{}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00065}00065\ \ \ \ \ \textcolor{comment}{//\ We\ connect\ the\ CUSTOM\ signal\ from\ AdminPage\ to\ the\ BUILT-\/IN\ slot\ of\ MainWindow}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00066}00066\ \ \ \ \ connect(\doxymbox{\hyperlink{class_main_window_a35466a70ed47252a0191168126a352a5}{ui}}-\/>adminPageWidget,\ \&\doxymbox{\hyperlink{class_admin_page_a4a3217feb907b151e7efba86e2153d78}{AdminPage::notifyStatus}},\ \textcolor{keyword}{this},\ [\textcolor{keyword}{this}](\textcolor{keyword}{const}\ QString\ \&msg)\ \{}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ lambda\ function\ runs\ whenever\ notifyStatus\ is\ emitted}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ ui-\/>statusBar-\/>showMessage(msg,\ 3000);\ \textcolor{comment}{//\ Show\ for\ 3\ seconds}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00069}00069\ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00070}00070\ \}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00072}\doxymbox{\hyperlink{class_main_window_a4c85dbf2ae494394c7d1136017ff2774}{00072}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_main_window_a4c85dbf2ae494394c7d1136017ff2774}{MainWindow::menuBarReset}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00073}00073\ \ \ \ \ \textcolor{comment}{//\ 1.\ Define\ a\ universal\ path\ in\ AppData}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00074}00074\ \ \ \ \ QString\ appDataPath\ =\ QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00075}00075\ \ \ \ \ QString\ excelPath\ =\ appDataPath\ +\ \textcolor{stringliteral}{"{}/starterInformation.xlsx"{}};}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00077}00077\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}-\/-\/-\/\ Template\ Debug\ Info\ -\/-\/-\/"{}};}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00078}00078\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Expected\ Folder:"{}}\ <<\ appDataPath;}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00079}00079\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Full\ excel\ Path:"{}}\ <<\ excelPath;}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00081}00081\ \ \ \ \ \textcolor{comment}{//\ 2.\ If\ it's\ not\ in\ AppData\ yet,\ copy\ it\ from\ the\ internal\ resources}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00082}00082\ \ \ \ \ \textcolor{keywordflow}{if}\ (!QFile::exists(excelPath))\ \{}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ QDir().mkpath(appDataPath);\ \textcolor{comment}{//\ Ensure\ folder\ exists}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ QFile::copy(\textcolor{stringliteral}{"{}:/res/starterInformation.xlsx"{}},\ excelPath);}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Remove\ read-\/only\ attribute\ so\ we\ can\ use\ it}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ QFile::setPermissions(excelPath,\ QFileDevice::WriteOwner\ |\ QFileDevice::ReadOwner);}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00087}00087\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00089}00089\ \ \ \ \ \textcolor{comment}{//\ 3.\ Use\ the\ local\ AppData\ path\ instead\ of\ the\ C:/Users\ hardcoded\ path}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00090}00090\ \ \ \ \ \textcolor{keywordflow}{if}\ (QFile::exists(excelPath))\ \{}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{database_helper_8h_a303fcb2cb85e0a1ff5906db6fd8767cb}{resetAndReloadData}}(excelPath);}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Refresh\ pages...}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ QList<DatabasePage*>\ allPages\ =\ this-\/>findChildren<DatabasePage*>();}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\doxymbox{\hyperlink{class_database_page}{DatabasePage}}*\ page\ :\ std::as\_const(allPages))\ \{}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (page)\ page-\/>refreshUI();}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_main_window_a35466a70ed47252a0191168126a352a5}{ui}}-\/>statusBar-\/>showMessage(\textcolor{stringliteral}{"{}Database\ Reset\ Successful"{}},\ 3000);}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00100}00100\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_main_window_a35466a70ed47252a0191168126a352a5}{ui}}-\/>statusBar-\/>showMessage(\textcolor{stringliteral}{"{}Reset\ failed:\ Template\ file\ not\ found"{}},\ 3000);}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00102}00102\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00104}00104\ \ \ \ \ \doxymbox{\hyperlink{database_helper_8h_a79b962714031fc06de95d2ad7f2cfb62}{clearTripInfoTable}}();}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00106}00106\ \ \ \ \ \textcolor{comment}{//\ reset\ totaldistance\ label\ on\ infopage}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00107}00107\ \ \ \ \ QList<InfoPage*>\ infoPages\ =\ this-\/>findChildren<InfoPage*>();}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00108}00108\ \ \ \ \ \textcolor{keywordflow}{for}\ (\doxymbox{\hyperlink{class_info_page}{InfoPage}}*\ page\ :\ infoPages)\ \{}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ page-\/>resetUI();}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00110}00110\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00111}00111\ \}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00113}00113\ \textcolor{comment}{//\ mainwindow.cpp}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00114}\doxymbox{\hyperlink{class_main_window_aff9e658ae579df50b17031095e7fcb27}{00114}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_main_window_aff9e658ae579df50b17031095e7fcb27}{MainWindow::on\_tabWidget\_currentChanged}}(\textcolor{keywordtype}{int}\ index)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00115}00115\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Auto-\/connected\ Tab\ Change.\ Current\ Index:"{}}\ <<\ index;}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00117}00117\ \ \ \ \ \textcolor{comment}{//\ We\ look\ inside\ the\ container\ (databasePage)\ for\ any\ PlanPage\ instances}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00118}00118\ \ \ \ \ QList<DatabasePage*>\ allPages\ =\ this-\/>findChildren<DatabasePage*>();}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00120}00120\ \ \ \ \ \textcolor{keywordflow}{if}\ (allPages.isEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Warning:\ No\ PlanPage\ found\ inside\ databasePage!"{}};}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00122}00122\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00124}00124\ \ \ \ \ \textcolor{keywordflow}{for}\ (\doxymbox{\hyperlink{class_database_page}{DatabasePage}}*\ page\ :\ allPages)\ \{}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ page-\/>refreshUI();}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00126}00126\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Successfully\ refreshed:"{}}\ <<\ page-\/>objectName();}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00127}00127\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8cpp_source_l00128}00128\ \}}
+
+\end{DoxyCode}

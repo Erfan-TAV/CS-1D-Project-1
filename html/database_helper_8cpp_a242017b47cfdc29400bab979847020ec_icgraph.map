@@ -1,0 +1,8 @@
+<map id="getDistanceBetween" name="getDistanceBetween">
+<area shape="rect" id="Node000001" title="Fetches the distance between two nodes in the graph." alt="" coords="437,29,579,55"/>
+<area shape="rect" id="Node000002" href="$database_helper_8cpp.html#a4a6041a0ff797e48810a9120ed86cf2f" title="Recursively calculates the most efficient route using a Nearest Neighbor approach." alt="" coords="246,29,389,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="419,42,389,45,389,40,424,42"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="349,14,339,10,317,8,297,10,287,15,284,20,290,30,285,28,279,21,283,11,296,5,317,3,340,5,354,15"/>
+<area shape="rect" id="Node000003" href="$class_plan_page.html#aa0511c865d24a2a78dbab899aa874034" title="Initiates the recursive trip algorithm based on user selections." alt="" coords="5,22,198,62"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="227,42,198,45,198,40,233,42"/>
+</map>

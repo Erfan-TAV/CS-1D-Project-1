@@ -1,0 +1,5 @@
+<map id="PlanPage::on_resultPlanAnotherButton_clicked" name="PlanPage::on_resultPlanAnotherButton_clicked">
+<area shape="rect" id="Node000001" title="Finalizes the trip and returns to the planning screen." alt="" coords="5,5,215,46"/>
+<area shape="rect" id="Node000002" href="$database_helper_8cpp.html#a7dc11b7a6e3a3d3d359068cf66578868" title="Records a souvenir purchase during a trip." alt="" coords="263,13,349,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="215,23,250,26,244,26,215,28"/>
+</map>

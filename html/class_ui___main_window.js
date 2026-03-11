@@ -1,0 +1,25 @@
+var class_ui___main_window =
+[
+    [ "retranslateUi", "class_ui___main_window.html#a097dd160c3534a204904cb374412c618", null ],
+    [ "setupUi", "class_ui___main_window.html#acf4a0872c4c77d8f43a2ec66ed849b58", null ],
+    [ "actionreset_all_information", "class_ui___main_window.html#aa977dadab14667cbeb8bd3b27a8b00b7", null ],
+    [ "actiontesting", "class_ui___main_window.html#a38d2524b47645b3c54cb88ec00444ba7", null ],
+    [ "actiontesting_2", "class_ui___main_window.html#a1db234eff671ffe51f062c00afe4736e", null ],
+    [ "actiontesting_3", "class_ui___main_window.html#a742fe778dab3950761022f4f42ecf145", null ],
+    [ "adminPageWidget", "class_ui___main_window.html#a93c6cd6b1321f7669a08f2f473f5da3b", null ],
+    [ "adminTab", "class_ui___main_window.html#ae8b6d6599681ec2a99f7e109926b5762", null ],
+    [ "centralwidget", "class_ui___main_window.html#a356f1cf3ebda15f1fac59467ee081b74", null ],
+    [ "gridLayout_2", "class_ui___main_window.html#a6b2a0c5f7e8ff2a87134908dd770d2d2", null ],
+    [ "label", "class_ui___main_window.html#ad9c89133780f28e6efa2ec17ceb9cff5", null ],
+    [ "menu_data", "class_ui___main_window.html#a259ba4c56c26e915e074eb9fad062f95", null ],
+    [ "menubar", "class_ui___main_window.html#adf43d9a67adaec750aaa956b5e082f09", null ],
+    [ "statusBar", "class_ui___main_window.html#a50fa481337604bcc8bf68de18ab16ecd", null ],
+    [ "tabWidget", "class_ui___main_window.html#a3260b943854b841c986f47c4726ee7f9", null ],
+    [ "tripInfo", "class_ui___main_window.html#a301cf7daeaacc8c20184fbd35a568ba6", null ],
+    [ "tripInfoPageWidget", "class_ui___main_window.html#a9fc552d3939824daa3ebaf1361b232bf", null ],
+    [ "tripPlanner", "class_ui___main_window.html#a7448dcaf74b1da669e4aed85f62f6df0", null ],
+    [ "tripPlanPageWidget", "class_ui___main_window.html#a67c9aa997a977d401168c7f89588f930", null ],
+    [ "verticalLayout_2", "class_ui___main_window.html#a0c01bad60d9f422a1258e710635a2f65", null ],
+    [ "verticalLayout_7", "class_ui___main_window.html#a7b66d5d6ab55f3977317359d09a42345", null ],
+    [ "verticalLayout_8", "class_ui___main_window.html#aaa8cc393d5a44562d629a9f646d2c6dd", null ]
+];

@@ -1,0 +1,5 @@
+<map id="AdminPage::promptForDistances" name="AdminPage::promptForDistances">
+<area shape="rect" id="Node000001" title="Prompts the user to manually input distances for newly added campuses." alt="" coords="230,13,444,38"/>
+<area shape="rect" id="Node000002" href="$class_admin_page.html#afbcd4cb0e0f9d51f618253f984498e2d" title="Opens a file dialog to import campus data from an Excel file." alt="" coords="5,5,182,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="211,26,182,28,182,23,217,25"/>
+</map>

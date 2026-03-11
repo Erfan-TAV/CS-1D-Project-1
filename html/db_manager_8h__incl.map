@@ -1,0 +1,13 @@
+<map id="headers/dbManager.h" name="headers/dbManager.h">
+<area shape="rect" id="Node000001" title="Core database controller for managing the SQLite connection and lifecycle." alt="" coords="194,5,339,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,112,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="232,34,109,76,107,71,230,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="136,79,205,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="253,31,200,72,197,67,248,32"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="229,79,304,105"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="268,29,269,65,264,62,265,33"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="328,79,376,105"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="282,29,329,69,323,69,280,34"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="400,79,453,105"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="294,29,389,72,383,73,293,34"/>
+</map>

@@ -1,0 +1,43 @@
+\doxysection{mainwindow.\+h}
+\hypertarget{mainwindow_8h_source}{}\label{mainwindow_8h_source}\index{headers/mainwindow.h@{headers/mainwindow.h}}
+\doxymbox{\hyperlink{mainwindow_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00007}00007\ \textcolor{preprocessor}{\#ifndef\ MAINWINDOW\_H}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00008}00008\ \textcolor{preprocessor}{\#define\ MAINWINDOW\_H}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00010}00010\ \textcolor{preprocessor}{\#include\ <QMainWindow>}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00011}00011\ \textcolor{preprocessor}{\#include\ <QSqlTableModel>}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{db_manager_8h}{dbManager.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00014}00014\ QT\_BEGIN\_NAMESPACE}
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00015}00015\ \textcolor{keyword}{namespace\ }\doxymbox{\hyperlink{namespace_ui}{Ui}}\ \{\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_ui_1_1_main_window}{MainWindow}};\ \}}
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00016}00016\ QT\_END\_NAMESPACE}
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00025}\doxymbox{\hyperlink{class_main_window}{00025}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_main_window_a996c5a2b6f77944776856f08ec30858d}{MainWindow}}\ :\ \textcolor{keyword}{public}\ QMainWindow}
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00026}00026\ \{}
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00027}00027\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00029}00029\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00036}00036\ \ \ \ \ \textcolor{keyword}{explicit}\ \doxymbox{\hyperlink{class_main_window_a996c5a2b6f77944776856f08ec30858d}{MainWindow}}(QWidget\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00041}00041\ \ \ \ \ \doxymbox{\hyperlink{class_main_window_ae98d00a93bc118200eeef9f9bba1dba7}{\string~MainWindow}}();}
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00043}00043\ \textcolor{keyword}{private}\ slots:}
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00051}00051\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_main_window_aff9e658ae579df50b17031095e7fcb27}{on\_tabWidget\_currentChanged}}(\textcolor{keywordtype}{int}\ index)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00059}00059\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_main_window_a4c85dbf2ae494394c7d1136017ff2774}{menuBarReset}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00061}00061\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00067}00067\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_main_window_aca7667d5bc8417a6804938b030541a6c}{linkAdminPage}}();}
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00072}00072\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_main_window_afc1a52235a552c40d0a4026b99941131}{initializeList}}();}
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00074}\doxymbox{\hyperlink{class_main_window_a35466a70ed47252a0191168126a352a5}{00074}}\ \ \ \ \ \doxymbox{\hyperlink{class_ui_1_1_main_window}{Ui::MainWindow}}\ *\doxymbox{\hyperlink{class_main_window_a35466a70ed47252a0191168126a352a5}{ui}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00075}\doxymbox{\hyperlink{class_main_window_a3642f631531fee9161fac371c8179750}{00075}}\ \ \ \ \ \doxymbox{\hyperlink{class_db_manager}{DbManager}}\ *\doxymbox{\hyperlink{class_main_window_a3642f631531fee9161fac371c8179750}{dbHandler}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00076}00076\ \};}
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{mainwindow_8h_source_l00078}00078\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MAINWINDOW\_H}}
+
+\end{DoxyCode}

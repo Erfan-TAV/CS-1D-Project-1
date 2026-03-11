@@ -1,0 +1,10 @@
+<map id="headers/infopage.h" name="headers/infopage.h">
+<area shape="rect" id="Node000001" title="Handles the display of final trip statistics, including costs and distances." alt="" coords="28,5,159,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="79,153,151,178"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="64,34,43,47,21,64,9,83,8,93,12,103,35,129,67,147,62,150,32,133,7,106,3,94,4,82,18,61,40,43,67,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="22,79,166,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="95,29,96,64,91,63,93,34"/>
+<area shape="rect" id="Node000004" href="$database_page_8h.html" title="Base class for UI pages requiring database synchronization." alt="" coords="189,79,305,105"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="120,29,210,71,205,73,120,34"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="227,105,152,148,149,143,222,106"/>
+</map>

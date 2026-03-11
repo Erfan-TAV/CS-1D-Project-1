@@ -1,0 +1,6 @@
+<map id="InfoPage::InfoPage" name="InfoPage::InfoPage">
+<area shape="rect" id="Node000001" title="Constructor for InfoPage." alt="" coords="5,29,139,55"/>
+<area shape="poly" id="edge2_Node000001_Node000001" title=" " alt="" coords="36,29,29,21,33,11,48,5,72,3,98,5,113,14,108,15,97,10,72,8,49,10,37,15,34,20,41,29"/>
+<area shape="rect" id="Node000002" href="$class_database_page.html#adf83a1f998dc86afd7229db40628857a" title="Constructor for DatabasePage." alt="" coords="187,29,388,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="139,40,174,42,169,42,139,45"/>
+</map>

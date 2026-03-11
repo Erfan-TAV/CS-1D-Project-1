@@ -1,0 +1,290 @@
+\doxysection{Db\+Manager Class Reference}
+\hypertarget{class_db_manager}{}\label{class_db_manager}\index{DbManager@{DbManager}}
+
+
+Manages the physical connection to the SQLite database.  
+
+
+
+
+{\ttfamily \+\#include $<$db\+Manager.\+h$>$}
+
+
+
+Inheritance diagram for Db\+Manager:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=183pt]{class_db_manager__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Db\+Manager:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=183pt]{class_db_manager__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_db_manager_a44fbaa94fcdc7c5a0b0933cbbe2acc4c}{data\+Changed}} ()
+\begin{DoxyCompactList}\small\item\em Signal emitted whenever the database content is modified. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_db_manager_ae5f76fc37263238b67ef524761ea4295}{Db\+Manager}} (const QString \&full\+Path)
+\begin{DoxyCompactList}\small\item\em Constructor that initializes and opens the SQLite database. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_db_manager_ac5cdf8e5e932d1681ab807d8f256374c}{\texorpdfstring{$\sim$}{\string~}\+Db\+Manager}} ()
+\begin{DoxyCompactList}\small\item\em Destructor that safely closes the database connection. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_db_manager_ac04baba8f5d5197f8bcd9230393501de}{is\+Open}} () const
+\begin{DoxyCompactList}\small\item\em Validates if the database connection is currently active. \end{DoxyCompactList}\item 
+QSql\+Database \doxymbox{\hyperlink{class_db_manager_a5e20d5c4251c1bb0d6352e7cc623dd4c}{get\+Database}} () const
+\begin{DoxyCompactList}\small\item\em Returns a handle to the internal QSql\+Database object. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_db_manager_a43add3148c4d8ae14ecdd003bd00fb12}{notify\+Data\+Change}} ()
+\begin{DoxyCompactList}\small\item\em Manually triggers the \doxylink{class_db_manager_a44fbaa94fcdc7c5a0b0933cbbe2acc4c}{data\+Changed()} signal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+QSql\+Database \doxymbox{\hyperlink{class_db_manager_a289f7f1c539781db95292c79fb13a632}{m\+\_\+db}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages the physical connection to the SQLite database. 
+
+This class handles the initialization of the database file. If the database does not exist in the local writable directory, it copies a template from the application resources, ensures write permissions are set, and opens the connection. 
+
+Definition at line \doxymbox{\hyperlink{db_manager_8h_source_l00023}{23}} of file \doxymbox{\hyperlink{db_manager_8h_source}{db\+Manager.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_db_manager_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_db_manager_ae5f76fc37263238b67ef524761ea4295}\index{DbManager@{DbManager}!DbManager@{DbManager}}
+\index{DbManager@{DbManager}!DbManager@{DbManager}}
+\doxysubsubsection{\texorpdfstring{DbManager()}{DbManager()}}
+{\footnotesize\ttfamily \label{class_db_manager_ae5f76fc37263238b67ef524761ea4295} 
+Db\+Manager::\+\+Db\+Manager (\begin{DoxyParamCaption}\item[{const QString \&}]{full\+Path}{}\end{DoxyParamCaption})}
+
+
+
+Constructor that initializes and opens the SQLite database. 
+
+The constructor performs the following sequence:\+
+\begin{DoxyEnumerate}
+\item Extracts the directory path from the provided full\+Path.
+\item Creates the target directory if it does not exist.
+\item Checks if the .db file exists at full\+Path; if not, copies it from \textquotesingle{}:\+/\+res/\+project1.db\textquotesingle{}.
+\item Adjusts file permissions to ensure the database is writable.
+\item Opens the connection using the QSQLITE driver. 
+\begin{DoxyParams}{Parameters}
+{\em full\+Path} & The target absolute path where the database should reside. \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyEnumerate}
+
+Definition at line \doxymbox{\hyperlink{db_manager_8cpp_source_l00007}{7}} of file \doxymbox{\hyperlink{db_manager_8cpp_source}{db\+Manager.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00007\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{comment}{//\ 1.\ Get\ the\ directory\ part\ of\ the\ path}}
+\DoxyCodeLine{00009\ \ \ \ \ QFileInfo\ dbFileInfo(fullPath);}
+\DoxyCodeLine{00010\ \ \ \ \ QDir\ dir\ =\ dbFileInfo.absoluteDir();}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{comment}{//\ 1.\ Get\ the\ target\ path}}
+\DoxyCodeLine{00013\ \ \ \ \ QString\ appDataPath\ =\ QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);}
+\DoxyCodeLine{00014\ \ \ \ \ QString\ dbPath\ =\ appDataPath\ +\ \textcolor{stringliteral}{"{}/project1.db"{}};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}-\/-\/-\/\ Database\ Debug\ Info\ -\/-\/-\/"{}};}
+\DoxyCodeLine{00017\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Expected\ Folder:"{}}\ <<\ appDataPath;}
+\DoxyCodeLine{00018\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Full\ DB\ Path:\ \ \ "{}}\ <<\ dbPath;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//\ 2.\ Create\ the\ folder\ path\ if\ it's\ missing}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordflow}{if}\ (!dir.exists())\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dir.mkpath(\textcolor{stringliteral}{"{}."{}}))\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Successfully\ created\ directory:"{}}\ <<\ dir.absolutePath();}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}CRITICAL\ ERROR:\ Could\ not\ create\ directory:"{}}\ <<\ dir.absolutePath();}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00027\ \ \ \ \ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ 3.\ Copy\ from\ resources\ if\ the\ file\ doesn't\ exist\ yet}}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordflow}{if}\ (!QFile::exists(fullPath))\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (QFile::copy(\textcolor{stringliteral}{"{}:/res/project1.db"{}},\ fullPath))\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Very\ Important:\ Files\ copied\ from\ resources\ are\ read-\/only\ by\ default.}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ must\ change\ permissions\ so\ SQLite\ can\ write\ to\ it.}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ QFile::setPermissions(fullPath,\ QFileDevice::WriteOwner\ |\ QFileDevice::ReadOwner);}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Database\ successfully\ copied\ to\ AppData."{}};}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Failed\ to\ copy\ database\ from\ resources!"{}};}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ 4.\ Now\ open\ the\ database}}
+\DoxyCodeLine{00042\ \ \ \ \ \doxymbox{\hyperlink{class_db_manager_a289f7f1c539781db95292c79fb13a632}{m\_db}}\ =\ QSqlDatabase::addDatabase(\textcolor{stringliteral}{"{}QSQLITE"{}});}
+\DoxyCodeLine{00043\ \ \ \ \ \doxymbox{\hyperlink{class_db_manager_a289f7f1c539781db95292c79fb13a632}{m\_db}}.setDatabaseName(fullPath);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{class_db_manager_a289f7f1c539781db95292c79fb13a632}{m\_db}}.open())\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Database\ Error:"{}}\ <<\ \doxymbox{\hyperlink{class_db_manager_a289f7f1c539781db95292c79fb13a632}{m\_db}}.lastError().text();}
+\DoxyCodeLine{00047\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Database\ is\ open\ and\ ready!"{}};}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+\DoxyCodeLine{00050\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_db_manager_ac5cdf8e5e932d1681ab807d8f256374c}\index{DbManager@{DbManager}!````~DbManager@{\texorpdfstring{$\sim$}{\string~}DbManager}}
+\index{````~DbManager@{\texorpdfstring{$\sim$}{\string~}DbManager}!DbManager@{DbManager}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}DbManager()}{\string~DbManager()}}
+{\footnotesize\ttfamily \label{class_db_manager_ac5cdf8e5e932d1681ab807d8f256374c} 
+Db\+Manager::\+\texorpdfstring{$\sim$}{\string~}\+Db\+Manager (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destructor that safely closes the database connection. 
+
+
+
+Definition at line \doxymbox{\hyperlink{db_manager_8cpp_source_l00052}{52}} of file \doxymbox{\hyperlink{db_manager_8cpp_source}{db\+Manager.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_db_manager_a289f7f1c539781db95292c79fb13a632}{m\_db}}.isOpen())\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_db_manager_a289f7f1c539781db95292c79fb13a632}{m\_db}}.close();}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \}}
+
+\end{DoxyCode}
+
+
+\label{doc-func-members}
+\Hypertarget{class_db_manager_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_db_manager_a44fbaa94fcdc7c5a0b0933cbbe2acc4c}\index{DbManager@{DbManager}!dataChanged@{dataChanged}}
+\index{dataChanged@{dataChanged}!DbManager@{DbManager}}
+\doxysubsubsection{\texorpdfstring{dataChanged}{dataChanged}}
+{\footnotesize\ttfamily \label{class_db_manager_a44fbaa94fcdc7c5a0b0933cbbe2acc4c} 
+void Db\+Manager::\+data\+Changed (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Signal emitted whenever the database content is modified. 
+
+This allows for real-\/time UI updates across different tabs when the underlying data changes. Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_db_manager_a44fbaa94fcdc7c5a0b0933cbbe2acc4c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_db_manager_a5e20d5c4251c1bb0d6352e7cc623dd4c}\index{DbManager@{DbManager}!getDatabase@{getDatabase}}
+\index{getDatabase@{getDatabase}!DbManager@{DbManager}}
+\doxysubsubsection{\texorpdfstring{getDatabase()}{getDatabase()}}
+{\footnotesize\ttfamily \label{class_db_manager_a5e20d5c4251c1bb0d6352e7cc623dd4c} 
+QSql\+Database Db\+Manager::\+get\+Database (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns a handle to the internal QSql\+Database object. 
+
+\begin{DoxyReturn}{Returns}
+The active QSql\+Database instance for executing queries. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{db_manager_8h_source_l00054}{54}} of file \doxymbox{\hyperlink{db_manager_8h_source}{db\+Manager.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00054\ \{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_db_manager_a289f7f1c539781db95292c79fb13a632}{m\_db}};\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_db_manager_ac04baba8f5d5197f8bcd9230393501de}\index{DbManager@{DbManager}!isOpen@{isOpen}}
+\index{isOpen@{isOpen}!DbManager@{DbManager}}
+\doxysubsubsection{\texorpdfstring{isOpen()}{isOpen()}}
+{\footnotesize\ttfamily \label{class_db_manager_ac04baba8f5d5197f8bcd9230393501de} 
+bool Db\+Manager::\+is\+Open (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Validates if the database connection is currently active. 
+
+\begin{DoxyReturn}{Returns}
+true if the database is open and ready for queries. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{db_manager_8cpp_source_l00058}{58}} of file \doxymbox{\hyperlink{db_manager_8cpp_source}{db\+Manager.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_db_manager_a289f7f1c539781db95292c79fb13a632}{m\_db}}.isOpen();}
+\DoxyCodeLine{00060\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=256pt]{class_db_manager_ac04baba8f5d5197f8bcd9230393501de_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_db_manager_a43add3148c4d8ae14ecdd003bd00fb12}\index{DbManager@{DbManager}!notifyDataChange@{notifyDataChange}}
+\index{notifyDataChange@{notifyDataChange}!DbManager@{DbManager}}
+\doxysubsubsection{\texorpdfstring{notifyDataChange()}{notifyDataChange()}}
+{\footnotesize\ttfamily \label{class_db_manager_a43add3148c4d8ae14ecdd003bd00fb12} 
+void Db\+Manager::\+notify\+Data\+Change (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Manually triggers the \doxylink{class_db_manager_a44fbaa94fcdc7c5a0b0933cbbe2acc4c}{data\+Changed()} signal. 
+
+Emits the \doxylink{class_db_manager_a44fbaa94fcdc7c5a0b0933cbbe2acc4c}{data\+Changed()} signal to notify any connected UI pages (\doxylink{class_database_page}{Database\+Page} objects) that they need to refresh their views. 
+
+Definition at line \doxymbox{\hyperlink{db_manager_8h_source_l00061}{61}} of file \doxymbox{\hyperlink{db_manager_8h_source}{db\+Manager.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00061\ \{\ emit\ \doxymbox{\hyperlink{class_db_manager_a44fbaa94fcdc7c5a0b0933cbbe2acc4c}{dataChanged}}();\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_db_manager_a43add3148c4d8ae14ecdd003bd00fb12_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_db_manager_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_db_manager_a289f7f1c539781db95292c79fb13a632}\index{DbManager@{DbManager}!m\_db@{m\_db}}
+\index{m\_db@{m\_db}!DbManager@{DbManager}}
+\doxysubsubsection{\texorpdfstring{m\_db}{m\_db}}
+{\footnotesize\ttfamily \label{class_db_manager_a289f7f1c539781db95292c79fb13a632} 
+QSql\+Database Db\+Manager::\+m\+\_\+db\hspace{0.3cm}{\ttfamily [private]}}
+
+The underlying Qt SQL database object. 
+
+Definition at line \doxymbox{\hyperlink{db_manager_8h_source_l00064}{64}} of file \doxymbox{\hyperlink{db_manager_8h_source}{db\+Manager.\+h}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+headers/\+\doxymbox{\hyperlink{db_manager_8h}{db\+Manager.\+h}}\item 
+sources/\+\doxymbox{\hyperlink{db_manager_8cpp}{db\+Manager.\+cpp}}\end{DoxyCompactItemize}

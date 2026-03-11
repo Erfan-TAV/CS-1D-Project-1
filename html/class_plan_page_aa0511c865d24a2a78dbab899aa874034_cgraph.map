@@ -1,0 +1,35 @@
+<map id="PlanPage::on_startTripButton_clicked" name="PlanPage::on_startTripButton_clicked">
+<area shape="rect" id="Node000001" title="Initiates the recursive trip algorithm based on user selections." alt="" coords="5,275,198,316"/>
+<area shape="rect" id="Node000002" href="$database_helper_8cpp.html#a9f21bb493b041e5c62f84211de360468" title="Logs a campus visit into the temporary trip itinerary table." alt="" coords="555,18,668,43"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,274,120,225,147,162,166,129,188,98,214,70,244,47,280,29,318,16,357,8,397,4,474,5,542,14,538,16,474,10,397,10,358,14,319,21,282,34,247,51,218,74,192,101,170,132,152,164,125,227,110,276"/>
+<area shape="rect" id="Node000003" href="$database_helper_8cpp.html#a4a6041a0ff797e48810a9120ed86cf2f" title="Recursively calculates the most efficient route using a Nearest Neighbor approach." alt="" coords="281,86,424,111"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="111,274,132,240,162,198,200,156,244,120,268,110,265,114,247,125,203,159,166,201,137,242,116,276"/>
+<area shape="rect" id="Node000006" href="$database_helper_8cpp.html#a43d3aaa47509c7d2a3133e29ea8bc1a9" title="Wipes the temporary itinerary table." alt="" coords="302,135,404,161"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="118,274,171,221,206,193,245,169,288,155,284,159,247,174,209,197,175,225,123,277"/>
+<area shape="rect" id="Node000007" href="$class_plan_page.html#aa61c32857843d11ea1638f5fe94a304c" title="Helper to find a campus ID based on its position in the trip." alt="" coords="246,184,460,210"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="134,273,186,245,245,219,268,213,264,216,247,224,188,250,138,277"/>
+<area shape="rect" id="Node000008" href="$database_helper_8cpp.html#a752947b2f77e0cda9a0bccb1b334770d" title="Populates the purchase list with all available souvenirs from the planned trip." alt="" coords="278,234,428,259"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="197,275,271,261,267,264,200,279"/>
+<area shape="rect" id="Node000009" href="$class_plan_page.html#a3e9d440af37075bb04ae3dd0e52c96bc" title="Dynamically renders a horizontal visual representation of the trip." alt="" coords="281,283,424,309"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="197,293,268,294,264,297,199,298"/>
+<area shape="rect" id="Node000010" href="$class_plan_page.html#a86480ced8dfa743ff4593917d116abf3" title="Initializes the table view used for buying souvenirs during the trip." alt="" coords="252,332,454,358"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="198,312,271,328,267,330,199,317"/>
+<area shape="rect" id="Node000011" href="$class_plan_page.html#a7f98740d9c7aa63199af873075ab2b1f" title="Updates the shopping table to show souvenirs for a specific ID." alt="" coords="249,382,457,423"/>
+<area shape="poly" id="edge12_Node000001_Node000011" title=" " alt="" coords="138,314,190,341,247,368,265,376,260,377,245,373,187,346,139,319"/>
+<area shape="rect" id="Node000012" href="$class_plan_page.html#a7dc47477aaba2e58dcad3fc3643e6748" title="Filters the souvenir list to show only items for the selected campus." alt="" coords="265,447,440,488"/>
+<area shape="poly" id="edge13_Node000001_Node000012" title=" " alt="" coords="119,314,173,373,208,405,247,432,260,441,255,441,244,437,205,409,170,377,119,319"/>
+<area shape="rect" id="Node000015" href="$class_plan_page.html#a913c019bbef87646bdca1c830f9ed668" title="Updates labels (Current/Next) during the live tour phase." alt="" coords="258,512,448,538"/>
+<area shape="poly" id="edge16_Node000001_Node000015" title=" " alt="" coords="111,314,132,355,161,404,200,455,222,478,247,498,258,506,253,505,244,502,219,482,196,459,157,407,128,357,111,319"/>
+<area shape="rect" id="Node000016" href="$class_plan_page.html#a6f56f05951a0b45dfa0867ba8b9306f2" title="Sums the distance of the calculated trip and saves it to the database." alt="" coords="251,562,455,587"/>
+<area shape="poly" id="edge17_Node000001_Node000016" title=" " alt="" coords="109,314,126,364,154,428,194,493,219,523,247,548,253,554,248,553,244,553,215,527,189,496,149,430,121,366,108,319"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="404,83,547,46,543,49,406,87"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="311,86,303,77,308,67,325,61,353,59,384,62,401,71,396,72,383,67,353,64,326,66,312,71,308,76,316,85"/>
+<area shape="rect" id="Node000004" href="$database_helper_8cpp.html#aa6d10f89d7ee6f7a937b5bc5c9979fd3" title="Retrieves the formal name of a campus." alt="" coords="550,79,673,105"/>
+<area shape="poly" id="edge5_Node000003_Node000004" title=" " alt="" coords="424,94,537,92,532,95,426,99"/>
+<area shape="rect" id="Node000005" href="$database_helper_8cpp.html#a242017b47cfdc29400bab979847020ec" title="Fetches the distance between two nodes in the graph." alt="" coords="540,128,683,154"/>
+<area shape="poly" id="edge6_Node000003_Node000005" title=" " alt="" coords="424,108,527,126,522,128,425,113"/>
+<area shape="rect" id="Node000013" href="$class_plan_page.html#a9a56d9743c7febd1834af436f3bc827f" title="Calculates how much money was spent at a specific stop." alt="" coords="508,427,715,453"/>
+<area shape="poly" id="edge14_Node000012_Node000013" title=" " alt="" coords="440,456,495,452,490,453,441,461"/>
+<area shape="rect" id="Node000014" href="$class_plan_page.html#abf00a60aa85a44061adbe8233b25cc6a" title="Calculates the total monetary cost of the entire trip." alt="" coords="524,477,699,517"/>
+<area shape="poly" id="edge15_Node000012_Node000014" title=" " alt="" coords="441,475,512,485,507,486,441,480"/>
+</map>

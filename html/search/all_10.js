@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['setupdatabasetable_0',['setupDatabaseTable',['../class_admin_page.html#a32a6022c291fc9905398f61979bfe66a',1,'AdminPage::setupDatabaseTable()'],['../class_plan_page.html#ac2fc48dd78f4c3d22f8f8253e0913c06',1,'PlanPage::setupDatabaseTable()']]],
+  ['setuploginpage_1',['setupLoginPage',['../class_admin_page.html#aaba950e4cfef2bdb3519652a687e7e94',1,'AdminPage']]],
+  ['setupresultsconnection_2',['setupResultsConnection',['../class_plan_page.html#a9e81d1296b8fbfd76f2f7e3d3439cfc8',1,'PlanPage']]],
+  ['setuptripstopmodel_3',['setupTripStopModel',['../class_plan_page.html#a86480ced8dfa743ff4593917d116abf3',1,'PlanPage']]],
+  ['setupui_4',['setupUi',['../class_ui___admin_page.html#a7f51a77abd3bbc72b43ec07c09a94c77',1,'Ui_AdminPage::setupUi()'],['../class_ui___info_page.html#a161fe8e6611a79b6558b576541b36aea',1,'Ui_InfoPage::setupUi()'],['../class_ui___main_window.html#acf4a0872c4c77d8f43a2ec66ed849b58',1,'Ui_MainWindow::setupUi()'],['../class_ui___plan_page.html#addb86c450c662e45d3ddc7a06a262fe5',1,'Ui_PlanPage::setupUi()']]],
+  ['showcurrentcampussouvenirs_5',['showCurrentCampusSouvenirs',['../class_plan_page.html#a7f98740d9c7aa63199af873075ab2b1f',1,'PlanPage']]],
+  ['sizeof_5fdptr_6',['SIZEOF_DPTR',['../_college_tour__autogen_2moc__predefs_8h.html#addad5b57ed33bc5c79361574d9e03c06',1,'SIZEOF_DPTR:&#160;moc_predefs.h'],['../res_2_q_xlsx_2_q_xlsx_2_q_xlsx__autogen_2moc__predefs_8h.html#addad5b57ed33bc5c79361574d9e03c06',1,'SIZEOF_DPTR:&#160;moc_predefs.h']]],
+  ['souvenircontainer_7',['souvenirContainer',['../class_ui___admin_page.html#a8ab945296b9e59c6864def405efc0871',1,'Ui_AdminPage']]],
+  ['souvenirmodel_8',['souvenirModel',['../class_admin_page.html#adaf2b3c18aa4084b3e7f53ec4c3dc519',1,'AdminPage']]],
+  ['souvenirs_9',['souvenirs',['../struct_campus.html#a6af7677880b2e3abe9c534f7ea94a62e',1,'Campus']]],
+  ['spent_5ftotal_5fdivider_10',['spent_total_divider',['../class_ui___info_page.html#a500871327af912101f8d5fe12d431209',1,'Ui_InfoPage']]],
+  ['startingcampuslabel_11',['startingCampusLabel',['../class_ui___plan_page.html#a7a2cf2363d79b1c91d6ad0aaf1898b81',1,'Ui_PlanPage']]],
+  ['starttripbutton_12',['startTripButton',['../class_ui___plan_page.html#a73ce46d90f2632dac32ce62cc7053636',1,'Ui_PlanPage']]],
+  ['statusbar_13',['statusBar',['../class_ui___main_window.html#a50fa481337604bcc8bf68de18ab16ecd',1,'Ui_MainWindow']]],
+  ['stringify_14',['STRINGIFY',['../_c_make_c_x_x_compiler_id_8cpp.html#a43e1cad902b6477bec893cb6430bd6c8',1,'CMakeCXXCompilerId.cpp']]],
+  ['stringify_5fhelper_15',['STRINGIFY_HELPER',['../_c_make_c_x_x_compiler_id_8cpp.html#a2ae9b72bb13abaabfcf2ee0ba7d3fa1d',1,'CMakeCXXCompilerId.cpp']]]
+];

@@ -1,0 +1,8 @@
+<map id="clearTripTable" name="clearTripTable">
+<area shape="rect" id="Node000001" title="Wipes the temporary itinerary table." alt="" coords="246,59,348,84"/>
+<area shape="rect" id="Node000002" href="$class_main_window.html#a996c5a2b6f77944776856f08ec30858d" title="Constructor for MainWindow." alt="" coords="12,29,191,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="228,62,191,58,191,53,233,61"/>
+<area shape="rect" id="Node000003" href="$class_plan_page.html#aa0511c865d24a2a78dbab899aa874034" title="Initiates the recursive trip algorithm based on user selections." alt="" coords="5,79,198,120"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="228,81,199,88,198,83,233,81"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="134,15,124,10,101,8,81,10,70,15,68,20,74,29,68,29,62,21,66,11,80,5,102,3,126,5,139,14"/>
+</map>

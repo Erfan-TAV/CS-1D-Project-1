@@ -85,8 +85,8 @@ CMakeLists.txt.user*
 /build*/
 
 # Doxygen generated documentation
-html/
-latex/
+#html/
+#latex/
 
 # Doxygen tag files
 *.tag

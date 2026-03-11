@@ -1,0 +1,553 @@
+\doxysection{Ui\+\_\+\+Info\+Page Class Reference}
+\hypertarget{class_ui___info_page}{}\label{class_ui___info_page}\index{Ui\_InfoPage@{Ui\_InfoPage}}
+
+
+{\ttfamily \+\#include $<$ui\+\_\+infopage.\+h$>$}
+
+
+
+Inheritance diagram for Ui\+\_\+\+Info\+Page:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{class_ui___info_page__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Ui\+\_\+\+Info\+Page:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{class_ui___info_page__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_ui___info_page_a161fe8e6611a79b6558b576541b36aea}{setup\+Ui}} (QWidget \texorpdfstring{$\ast$}{*}\doxymbox{\hyperlink{class_info_page}{Info\+Page}})
+\item 
+void \doxymbox{\hyperlink{class_ui___info_page_ae8c4c2adad35320c022a033dc26ed055}{retranslate\+Ui}} (QWidget \texorpdfstring{$\ast$}{*}\doxymbox{\hyperlink{class_info_page}{Info\+Page}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+QVBox\+Layout \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_ui___info_page_a9c7f2b98561a046354219bae35c52e1d}{vertical\+Layout}}
+\item 
+QVBox\+Layout \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_ui___info_page_af700666e5e284f31c8ae3ddd2627651c}{trip\+Info\+Stack}}
+\item 
+QGrid\+Layout \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_ui___info_page_af31d4c671c0269bc09750e49256e3166}{total\+Stat\+Group}}
+\item 
+QLabel \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_ui___info_page_ae7c3a37b47238fba3ac4537588a8a682}{total\+Item\+Amount}}
+\item 
+QFrame \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_ui___info_page_a701adb811f057ec2027b5503e73e1714}{dist\+\_\+spent\+\_\+divider}}
+\item 
+QFrame \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_ui___info_page_a1903871fdcefcfea03d0a7203466d418}{total\+\_\+indiv\+\_\+divider}}
+\item 
+QLabel \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_ui___info_page_a13721e4c88fb96e7354aa5e647e56de3}{total\+Spent\+Amount}}
+\item 
+QLabel \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_ui___info_page_aaa2b0f1b5744a742028c267ea3c5c756}{total\+Spent\+Label}}
+\item 
+QLabel \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_ui___info_page_a28835ffe91141357789602c7958c56f2}{total\+Distance\+Label}}
+\item 
+QTable\+Widget \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{table\+Widget}}
+\item 
+QLabel \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_ui___info_page_a4121122c156b5c069a96d8dc7ca93b21}{total\+Distance\+Amount}}
+\item 
+QLabel \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_ui___info_page_a7fa77bbd5393988d8de219a84de3d84b}{total\+Items\+Label}}
+\item 
+QFrame \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_ui___info_page_a500871327af912101f8d5fe12d431209}{spent\+\_\+total\+\_\+divider}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \doxymbox{\hyperlink{ui__infopage_8h_source_l00024}{24}} of file \doxymbox{\hyperlink{ui__infopage_8h_source}{ui\+\_\+infopage.\+h}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_ui___info_page_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_ui___info_page_ae8c4c2adad35320c022a033dc26ed055}\index{Ui\_InfoPage@{Ui\_InfoPage}!retranslateUi@{retranslateUi}}
+\index{retranslateUi@{retranslateUi}!Ui\_InfoPage@{Ui\_InfoPage}}
+\doxysubsubsection{\texorpdfstring{retranslateUi()}{retranslateUi()}}
+{\footnotesize\ttfamily \label{class_ui___info_page_ae8c4c2adad35320c022a033dc26ed055} 
+void Ui\+\_\+\+Info\+Page::\+retranslate\+Ui (\begin{DoxyParamCaption}\item[{QWidget \texorpdfstring{$\ast$}{*}}]{Info\+Page}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{ui__infopage_8h_source_l00248}{248}} of file \doxymbox{\hyperlink{ui__infopage_8h_source}{ui\+\_\+infopage.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00249\ \ \ \ \ \{}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ InfoPage-\/>setWindowTitle(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}Form"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae7c3a37b47238fba3ac4537588a8a682}{totalItemAmount}}-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}TextLabel"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a13721e4c88fb96e7354aa5e647e56de3}{totalSpentAmount}}-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}TextLabel"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_aaa2b0f1b5744a742028c267ea3c5c756}{totalSpentLabel}}-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}Total\ Spent:"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a28835ffe91141357789602c7958c56f2}{totalDistanceLabel}}-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}Total\ Distance:"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>horizontalHeaderItem(0);}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}campus"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem1\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>horizontalHeaderItem(1);}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem1-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}item"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem2\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>horizontalHeaderItem(2);}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem2-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}quantity"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem3\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>horizontalHeaderItem(3);}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem3-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}individual\ cost"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem4\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>horizontalHeaderItem(4);}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem4-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}total\ costs"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem5\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>verticalHeaderItem(0);}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem5-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}New\ Row"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem6\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>verticalHeaderItem(1);}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem6-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}New\ Row"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem7\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>verticalHeaderItem(2);}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem7-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}New\ Row"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem8\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>verticalHeaderItem(3);}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem8-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}New\ Row"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem9\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>verticalHeaderItem(4);}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem9-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}New\ Row"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem10\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>verticalHeaderItem(5);}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem10-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}New\ Row"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem11\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>verticalHeaderItem(6);}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem11-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}New\ Row"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem12\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>verticalHeaderItem(7);}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem12-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}New\ Row"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem13\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>verticalHeaderItem(8);}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem13-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}New\ Row"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem14\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>verticalHeaderItem(9);}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem14-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}New\ Row"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem15\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>verticalHeaderItem(10);}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem15-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}New\ Row"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem16\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>verticalHeaderItem(11);}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem16-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}New\ Row"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem17\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>verticalHeaderItem(12);}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem17-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}New\ Row"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem18\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>verticalHeaderItem(13);}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem18-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}New\ Row"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem19\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>verticalHeaderItem(14);}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem19-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}New\ Row"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem20\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>verticalHeaderItem(15);}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem20-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}New\ Row"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem21\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>verticalHeaderItem(16);}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem21-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}New\ Row"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem22\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>verticalHeaderItem(17);}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem22-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}New\ Row"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem23\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>verticalHeaderItem(18);}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem23-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}New\ Row"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem24\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>verticalHeaderItem(19);}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem24-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}New\ Row"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem25\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>verticalHeaderItem(20);}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem25-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}New\ Row"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem26\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>verticalHeaderItem(21);}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem26-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}New\ Row"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem27\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>verticalHeaderItem(22);}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem27-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}New\ Row"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem28\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>verticalHeaderItem(23);}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem28-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}New\ Row"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ \_\_sortingEnabled\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>isSortingEnabled();}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setSortingEnabled(\textcolor{keyword}{false});}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem29\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>item(0,\ 0);}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem29-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}campus3"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem30\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>item(0,\ 1);}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem30-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}pants"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem31\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>item(0,\ 2);}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem31-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}45"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem32\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>item(1,\ 0);}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem32-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}campus2"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem33\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>item(1,\ 1);}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem33-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}hat"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem34\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>item(1,\ 2);}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem34-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}12"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem35\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>item(2,\ 0);}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem35-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}campu1"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem36\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>item(2,\ 1);}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem36-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}shirt"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_\_qtablewidgetitem37\ =\ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>item(2,\ 2);}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \_\_\_qtablewidgetitem37-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}3"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setSortingEnabled(\_\_sortingEnabled);}
+\DoxyCodeLine{00335\ }
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a4121122c156b5c069a96d8dc7ca93b21}{totalDistanceAmount}}-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}TextLabel"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a7fa77bbd5393988d8de219a84de3d84b}{totalItemsLabel}}-\/>setText(QCoreApplication::translate(\textcolor{stringliteral}{"{}InfoPage"{}},\ \textcolor{stringliteral}{"{}Total\ Items:"{}},\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00338\ \ \ \ \ \}\ \textcolor{comment}{//\ retranslateUi}}
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_ui___info_page_ae8c4c2adad35320c022a033dc26ed055_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_ui___info_page_a161fe8e6611a79b6558b576541b36aea}\index{Ui\_InfoPage@{Ui\_InfoPage}!setupUi@{setupUi}}
+\index{setupUi@{setupUi}!Ui\_InfoPage@{Ui\_InfoPage}}
+\doxysubsubsection{\texorpdfstring{setupUi()}{setupUi()}}
+{\footnotesize\ttfamily \label{class_ui___info_page_a161fe8e6611a79b6558b576541b36aea} 
+void Ui\+\_\+\+Info\+Page::\+setup\+Ui (\begin{DoxyParamCaption}\item[{QWidget \texorpdfstring{$\ast$}{*}}]{Info\+Page}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{ui__infopage_8h_source_l00041}{41}} of file \doxymbox{\hyperlink{ui__infopage_8h_source}{ui\+\_\+infopage.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00042\ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (InfoPage-\/>objectName().isEmpty())}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ InfoPage-\/>setObjectName(\textcolor{stringliteral}{"{}InfoPage"{}});}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ InfoPage-\/>resize(883,\ 624);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a9c7f2b98561a046354219bae35c52e1d}{verticalLayout}}\ =\ \textcolor{keyword}{new}\ QVBoxLayout(InfoPage);}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a9c7f2b98561a046354219bae35c52e1d}{verticalLayout}}-\/>setObjectName(\textcolor{stringliteral}{"{}verticalLayout"{}});}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_af700666e5e284f31c8ae3ddd2627651c}{tripInfoStack}}\ =\ \textcolor{keyword}{new}\ QVBoxLayout();}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_af700666e5e284f31c8ae3ddd2627651c}{tripInfoStack}}-\/>setObjectName(\textcolor{stringliteral}{"{}tripInfoStack"{}});}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_af31d4c671c0269bc09750e49256e3166}{totalStatGroup}}\ =\ \textcolor{keyword}{new}\ QGridLayout();}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_af31d4c671c0269bc09750e49256e3166}{totalStatGroup}}-\/>setObjectName(\textcolor{stringliteral}{"{}totalStatGroup"{}});}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_af31d4c671c0269bc09750e49256e3166}{totalStatGroup}}-\/>setHorizontalSpacing(7);}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae7c3a37b47238fba3ac4537588a8a682}{totalItemAmount}}\ =\ \textcolor{keyword}{new}\ QLabel(InfoPage);}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae7c3a37b47238fba3ac4537588a8a682}{totalItemAmount}}-\/>setObjectName(\textcolor{stringliteral}{"{}totalItemAmount"{}});}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ QFont\ font;}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ font.setPointSize(12);}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ font.setBold(\textcolor{keyword}{false});}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae7c3a37b47238fba3ac4537588a8a682}{totalItemAmount}}-\/>setFont(font);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_af31d4c671c0269bc09750e49256e3166}{totalStatGroup}}-\/>addWidget(\doxymbox{\hyperlink{class_ui___info_page_ae7c3a37b47238fba3ac4537588a8a682}{totalItemAmount}},\ 1,\ 4,\ 1,\ 1,\ Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a701adb811f057ec2027b5503e73e1714}{dist\_spent\_divider}}\ =\ \textcolor{keyword}{new}\ QFrame(InfoPage);}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a701adb811f057ec2027b5503e73e1714}{dist\_spent\_divider}}-\/>setObjectName(\textcolor{stringliteral}{"{}dist\_spent\_divider"{}});}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ QSizePolicy\ sizePolicy(QSizePolicy::Policy::Fixed,\ QSizePolicy::Policy::Minimum);}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ sizePolicy.setHorizontalStretch(0);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ sizePolicy.setVerticalStretch(0);}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ sizePolicy.setHeightForWidth(\doxymbox{\hyperlink{class_ui___info_page_a701adb811f057ec2027b5503e73e1714}{dist\_spent\_divider}}-\/>sizePolicy().hasHeightForWidth());}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a701adb811f057ec2027b5503e73e1714}{dist\_spent\_divider}}-\/>setSizePolicy(sizePolicy);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a701adb811f057ec2027b5503e73e1714}{dist\_spent\_divider}}-\/>setMinimumSize(QSize(10,\ 0));}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a701adb811f057ec2027b5503e73e1714}{dist\_spent\_divider}}-\/>setFrameShape(QFrame::Shape::VLine);}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a701adb811f057ec2027b5503e73e1714}{dist\_spent\_divider}}-\/>setFrameShadow(QFrame::Shadow::Sunken);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_af31d4c671c0269bc09750e49256e3166}{totalStatGroup}}-\/>addWidget(\doxymbox{\hyperlink{class_ui___info_page_a701adb811f057ec2027b5503e73e1714}{dist\_spent\_divider}},\ 0,\ 1,\ 2,\ 1);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a1903871fdcefcfea03d0a7203466d418}{total\_indiv\_divider}}\ =\ \textcolor{keyword}{new}\ QFrame(InfoPage);}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a1903871fdcefcfea03d0a7203466d418}{total\_indiv\_divider}}-\/>setObjectName(\textcolor{stringliteral}{"{}total\_indiv\_divider"{}});}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ QSizePolicy\ sizePolicy1(QSizePolicy::Policy::Preferred,\ QSizePolicy::Policy::Fixed);}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ sizePolicy1.setHorizontalStretch(0);}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ sizePolicy1.setVerticalStretch(0);}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ sizePolicy1.setHeightForWidth(\doxymbox{\hyperlink{class_ui___info_page_a1903871fdcefcfea03d0a7203466d418}{total\_indiv\_divider}}-\/>sizePolicy().hasHeightForWidth());}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a1903871fdcefcfea03d0a7203466d418}{total\_indiv\_divider}}-\/>setSizePolicy(sizePolicy1);}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a1903871fdcefcfea03d0a7203466d418}{total\_indiv\_divider}}-\/>setMinimumSize(QSize(0,\ 26));}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a1903871fdcefcfea03d0a7203466d418}{total\_indiv\_divider}}-\/>setMidLineWidth(0);}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a1903871fdcefcfea03d0a7203466d418}{total\_indiv\_divider}}-\/>setFrameShape(QFrame::Shape::HLine);}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a1903871fdcefcfea03d0a7203466d418}{total\_indiv\_divider}}-\/>setFrameShadow(QFrame::Shadow::Sunken);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_af31d4c671c0269bc09750e49256e3166}{totalStatGroup}}-\/>addWidget(\doxymbox{\hyperlink{class_ui___info_page_a1903871fdcefcfea03d0a7203466d418}{total\_indiv\_divider}},\ 2,\ 0,\ 1,\ 5);}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a13721e4c88fb96e7354aa5e647e56de3}{totalSpentAmount}}\ =\ \textcolor{keyword}{new}\ QLabel(InfoPage);}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a13721e4c88fb96e7354aa5e647e56de3}{totalSpentAmount}}-\/>setObjectName(\textcolor{stringliteral}{"{}totalSpentAmount"{}});}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a13721e4c88fb96e7354aa5e647e56de3}{totalSpentAmount}}-\/>setFont(font);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_af31d4c671c0269bc09750e49256e3166}{totalStatGroup}}-\/>addWidget(\doxymbox{\hyperlink{class_ui___info_page_a13721e4c88fb96e7354aa5e647e56de3}{totalSpentAmount}},\ 1,\ 2,\ 1,\ 1,\ Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop);}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_aaa2b0f1b5744a742028c267ea3c5c756}{totalSpentLabel}}\ =\ \textcolor{keyword}{new}\ QLabel(InfoPage);}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_aaa2b0f1b5744a742028c267ea3c5c756}{totalSpentLabel}}-\/>setObjectName(\textcolor{stringliteral}{"{}totalSpentLabel"{}});}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ QFont\ font1;}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ font1.setPointSize(18);}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ font1.setBold(\textcolor{keyword}{true});}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_aaa2b0f1b5744a742028c267ea3c5c756}{totalSpentLabel}}-\/>setFont(font1);}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_af31d4c671c0269bc09750e49256e3166}{totalStatGroup}}-\/>addWidget(\doxymbox{\hyperlink{class_ui___info_page_aaa2b0f1b5744a742028c267ea3c5c756}{totalSpentLabel}},\ 0,\ 2,\ 1,\ 1,\ Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop);}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a28835ffe91141357789602c7958c56f2}{totalDistanceLabel}}\ =\ \textcolor{keyword}{new}\ QLabel(InfoPage);}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a28835ffe91141357789602c7958c56f2}{totalDistanceLabel}}-\/>setObjectName(\textcolor{stringliteral}{"{}totalDistanceLabel"{}});}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a28835ffe91141357789602c7958c56f2}{totalDistanceLabel}}-\/>setFont(font1);}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_af31d4c671c0269bc09750e49256e3166}{totalStatGroup}}-\/>addWidget(\doxymbox{\hyperlink{class_ui___info_page_a28835ffe91141357789602c7958c56f2}{totalDistanceLabel}},\ 0,\ 0,\ 1,\ 1,\ Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop);}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}\ =\ \textcolor{keyword}{new}\ QTableWidget(InfoPage);}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>columnCount()\ <\ 5)}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setColumnCount(5);}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setHorizontalHeaderItem(0,\ \_\_qtablewidgetitem);}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem1\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setHorizontalHeaderItem(1,\ \_\_qtablewidgetitem1);}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem2\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setHorizontalHeaderItem(2,\ \_\_qtablewidgetitem2);}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem3\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setHorizontalHeaderItem(3,\ \_\_qtablewidgetitem3);}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem4\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setHorizontalHeaderItem(4,\ \_\_qtablewidgetitem4);}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>rowCount()\ <\ 24)}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setRowCount(24);}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem5\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setVerticalHeaderItem(0,\ \_\_qtablewidgetitem5);}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem6\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setVerticalHeaderItem(1,\ \_\_qtablewidgetitem6);}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem7\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setVerticalHeaderItem(2,\ \_\_qtablewidgetitem7);}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem8\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setVerticalHeaderItem(3,\ \_\_qtablewidgetitem8);}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem9\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setVerticalHeaderItem(4,\ \_\_qtablewidgetitem9);}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem10\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setVerticalHeaderItem(5,\ \_\_qtablewidgetitem10);}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem11\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setVerticalHeaderItem(6,\ \_\_qtablewidgetitem11);}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem12\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setVerticalHeaderItem(7,\ \_\_qtablewidgetitem12);}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem13\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setVerticalHeaderItem(8,\ \_\_qtablewidgetitem13);}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem14\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setVerticalHeaderItem(9,\ \_\_qtablewidgetitem14);}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem15\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setVerticalHeaderItem(10,\ \_\_qtablewidgetitem15);}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem16\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setVerticalHeaderItem(11,\ \_\_qtablewidgetitem16);}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem17\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setVerticalHeaderItem(12,\ \_\_qtablewidgetitem17);}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem18\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setVerticalHeaderItem(13,\ \_\_qtablewidgetitem18);}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem19\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setVerticalHeaderItem(14,\ \_\_qtablewidgetitem19);}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem20\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setVerticalHeaderItem(15,\ \_\_qtablewidgetitem20);}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem21\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setVerticalHeaderItem(16,\ \_\_qtablewidgetitem21);}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem22\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setVerticalHeaderItem(17,\ \_\_qtablewidgetitem22);}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem23\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setVerticalHeaderItem(18,\ \_\_qtablewidgetitem23);}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem24\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setVerticalHeaderItem(19,\ \_\_qtablewidgetitem24);}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem25\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setVerticalHeaderItem(20,\ \_\_qtablewidgetitem25);}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem26\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setVerticalHeaderItem(21,\ \_\_qtablewidgetitem26);}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem27\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setVerticalHeaderItem(22,\ \_\_qtablewidgetitem27);}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem28\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setVerticalHeaderItem(23,\ \_\_qtablewidgetitem28);}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem29\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setItem(0,\ 0,\ \_\_qtablewidgetitem29);}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem30\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setItem(0,\ 1,\ \_\_qtablewidgetitem30);}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem31\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setItem(0,\ 2,\ \_\_qtablewidgetitem31);}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem32\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setItem(1,\ 0,\ \_\_qtablewidgetitem32);}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem33\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setItem(1,\ 1,\ \_\_qtablewidgetitem33);}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem34\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setItem(1,\ 2,\ \_\_qtablewidgetitem34);}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem35\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setItem(2,\ 0,\ \_\_qtablewidgetitem35);}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem36\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setItem(2,\ 1,\ \_\_qtablewidgetitem36);}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ QTableWidgetItem\ *\_\_qtablewidgetitem37\ =\ \textcolor{keyword}{new}\ QTableWidgetItem();}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setItem(2,\ 2,\ \_\_qtablewidgetitem37);}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setObjectName(\textcolor{stringliteral}{"{}tableWidget"{}});}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ QSizePolicy\ sizePolicy2(QSizePolicy::Policy::Preferred,\ QSizePolicy::Policy::Expanding);}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ sizePolicy2.setHorizontalStretch(1);}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ sizePolicy2.setVerticalStretch(0);}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ sizePolicy2.setHeightForWidth(\doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>sizePolicy().hasHeightForWidth());}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setSizePolicy(sizePolicy2);}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setMinimumSize(QSize(0,\ 0));}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setFrameShape(QFrame::Shape::StyledPanel);}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setFrameShadow(QFrame::Shadow::Sunken);}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setSizeAdjustPolicy(QAbstractScrollArea::SizeAdjustPolicy::AdjustToContents);}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setEditTriggers(QAbstractItemView::EditTrigger::NoEditTriggers);}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setSelectionMode(QAbstractItemView::SelectionMode::NoSelection);}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setShowGrid(\textcolor{keyword}{true});}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setGridStyle(Qt::PenStyle::SolidLine);}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setSortingEnabled(\textcolor{keyword}{true});}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>setSupportedDragActions(Qt::DropAction::IgnoreAction);}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>horizontalHeader()-\/>setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>horizontalHeader()-\/>setCascadingSectionResizes(\textcolor{keyword}{false});}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>horizontalHeader()-\/>setProperty(\textcolor{stringliteral}{"{}showSortIndicator"{}},\ QVariant(\textcolor{keyword}{true}));}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}}-\/>verticalHeader()-\/>setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_af31d4c671c0269bc09750e49256e3166}{totalStatGroup}}-\/>addWidget(\doxymbox{\hyperlink{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}{tableWidget}},\ 3,\ 0,\ 1,\ 5);}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a4121122c156b5c069a96d8dc7ca93b21}{totalDistanceAmount}}\ =\ \textcolor{keyword}{new}\ QLabel(InfoPage);}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a4121122c156b5c069a96d8dc7ca93b21}{totalDistanceAmount}}-\/>setObjectName(\textcolor{stringliteral}{"{}totalDistanceAmount"{}});}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a4121122c156b5c069a96d8dc7ca93b21}{totalDistanceAmount}}-\/>setFont(font);}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_af31d4c671c0269bc09750e49256e3166}{totalStatGroup}}-\/>addWidget(\doxymbox{\hyperlink{class_ui___info_page_a4121122c156b5c069a96d8dc7ca93b21}{totalDistanceAmount}},\ 1,\ 0,\ 1,\ 1,\ Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop);}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a7fa77bbd5393988d8de219a84de3d84b}{totalItemsLabel}}\ =\ \textcolor{keyword}{new}\ QLabel(InfoPage);}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a7fa77bbd5393988d8de219a84de3d84b}{totalItemsLabel}}-\/>setObjectName(\textcolor{stringliteral}{"{}totalItemsLabel"{}});}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a7fa77bbd5393988d8de219a84de3d84b}{totalItemsLabel}}-\/>setFont(font1);}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_af31d4c671c0269bc09750e49256e3166}{totalStatGroup}}-\/>addWidget(\doxymbox{\hyperlink{class_ui___info_page_a7fa77bbd5393988d8de219a84de3d84b}{totalItemsLabel}},\ 0,\ 4,\ 1,\ 1,\ Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop);}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a500871327af912101f8d5fe12d431209}{spent\_total\_divider}}\ =\ \textcolor{keyword}{new}\ QFrame(InfoPage);}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a500871327af912101f8d5fe12d431209}{spent\_total\_divider}}-\/>setObjectName(\textcolor{stringliteral}{"{}spent\_total\_divider"{}});}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ sizePolicy.setHeightForWidth(\doxymbox{\hyperlink{class_ui___info_page_a500871327af912101f8d5fe12d431209}{spent\_total\_divider}}-\/>sizePolicy().hasHeightForWidth());}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a500871327af912101f8d5fe12d431209}{spent\_total\_divider}}-\/>setSizePolicy(sizePolicy);}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a500871327af912101f8d5fe12d431209}{spent\_total\_divider}}-\/>setMinimumSize(QSize(10,\ 0));}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a500871327af912101f8d5fe12d431209}{spent\_total\_divider}}-\/>setFrameShape(QFrame::Shape::VLine);}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a500871327af912101f8d5fe12d431209}{spent\_total\_divider}}-\/>setFrameShadow(QFrame::Shadow::Sunken);}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_af31d4c671c0269bc09750e49256e3166}{totalStatGroup}}-\/>addWidget(\doxymbox{\hyperlink{class_ui___info_page_a500871327af912101f8d5fe12d431209}{spent\_total\_divider}},\ 0,\ 3,\ 2,\ 1);}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_af700666e5e284f31c8ae3ddd2627651c}{tripInfoStack}}-\/>addLayout(\doxymbox{\hyperlink{class_ui___info_page_af31d4c671c0269bc09750e49256e3166}{totalStatGroup}});}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_a9c7f2b98561a046354219bae35c52e1d}{verticalLayout}}-\/>addLayout(\doxymbox{\hyperlink{class_ui___info_page_af700666e5e284f31c8ae3ddd2627651c}{tripInfoStack}});}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_ui___info_page_ae8c4c2adad35320c022a033dc26ed055}{retranslateUi}}(InfoPage);}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ QMetaObject::connectSlotsByName(InfoPage);}
+\DoxyCodeLine{00246\ \ \ \ \ \}\ \textcolor{comment}{//\ setupUi}}
+
+\end{DoxyCode}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_ui___info_page_a161fe8e6611a79b6558b576541b36aea_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_ui___info_page_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_ui___info_page_a701adb811f057ec2027b5503e73e1714}\index{Ui\_InfoPage@{Ui\_InfoPage}!dist\_spent\_divider@{dist\_spent\_divider}}
+\index{dist\_spent\_divider@{dist\_spent\_divider}!Ui\_InfoPage@{Ui\_InfoPage}}
+\doxysubsubsection{\texorpdfstring{dist\_spent\_divider}{dist\_spent\_divider}}
+{\footnotesize\ttfamily \label{class_ui___info_page_a701adb811f057ec2027b5503e73e1714} 
+QFrame\texorpdfstring{$\ast$}{*} Ui\+\_\+\+Info\+Page::\+dist\+\_\+spent\+\_\+divider}
+
+
+
+Definition at line \doxymbox{\hyperlink{ui__infopage_8h_source_l00031}{31}} of file \doxymbox{\hyperlink{ui__infopage_8h_source}{ui\+\_\+infopage.\+h}}.
+
+\Hypertarget{class_ui___info_page_a500871327af912101f8d5fe12d431209}\index{Ui\_InfoPage@{Ui\_InfoPage}!spent\_total\_divider@{spent\_total\_divider}}
+\index{spent\_total\_divider@{spent\_total\_divider}!Ui\_InfoPage@{Ui\_InfoPage}}
+\doxysubsubsection{\texorpdfstring{spent\_total\_divider}{spent\_total\_divider}}
+{\footnotesize\ttfamily \label{class_ui___info_page_a500871327af912101f8d5fe12d431209} 
+QFrame\texorpdfstring{$\ast$}{*} Ui\+\_\+\+Info\+Page::\+spent\+\_\+total\+\_\+divider}
+
+
+
+Definition at line \doxymbox{\hyperlink{ui__infopage_8h_source_l00039}{39}} of file \doxymbox{\hyperlink{ui__infopage_8h_source}{ui\+\_\+infopage.\+h}}.
+
+\Hypertarget{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13}\index{Ui\_InfoPage@{Ui\_InfoPage}!tableWidget@{tableWidget}}
+\index{tableWidget@{tableWidget}!Ui\_InfoPage@{Ui\_InfoPage}}
+\doxysubsubsection{\texorpdfstring{tableWidget}{tableWidget}}
+{\footnotesize\ttfamily \label{class_ui___info_page_ae1a22945c52a4375ef602e9d0fb1da13} 
+QTable\+Widget\texorpdfstring{$\ast$}{*} Ui\+\_\+\+Info\+Page::\+table\+Widget}
+
+
+
+Definition at line \doxymbox{\hyperlink{ui__infopage_8h_source_l00036}{36}} of file \doxymbox{\hyperlink{ui__infopage_8h_source}{ui\+\_\+infopage.\+h}}.
+
+\Hypertarget{class_ui___info_page_a1903871fdcefcfea03d0a7203466d418}\index{Ui\_InfoPage@{Ui\_InfoPage}!total\_indiv\_divider@{total\_indiv\_divider}}
+\index{total\_indiv\_divider@{total\_indiv\_divider}!Ui\_InfoPage@{Ui\_InfoPage}}
+\doxysubsubsection{\texorpdfstring{total\_indiv\_divider}{total\_indiv\_divider}}
+{\footnotesize\ttfamily \label{class_ui___info_page_a1903871fdcefcfea03d0a7203466d418} 
+QFrame\texorpdfstring{$\ast$}{*} Ui\+\_\+\+Info\+Page::\+total\+\_\+indiv\+\_\+divider}
+
+
+
+Definition at line \doxymbox{\hyperlink{ui__infopage_8h_source_l00032}{32}} of file \doxymbox{\hyperlink{ui__infopage_8h_source}{ui\+\_\+infopage.\+h}}.
+
+\Hypertarget{class_ui___info_page_a4121122c156b5c069a96d8dc7ca93b21}\index{Ui\_InfoPage@{Ui\_InfoPage}!totalDistanceAmount@{totalDistanceAmount}}
+\index{totalDistanceAmount@{totalDistanceAmount}!Ui\_InfoPage@{Ui\_InfoPage}}
+\doxysubsubsection{\texorpdfstring{totalDistanceAmount}{totalDistanceAmount}}
+{\footnotesize\ttfamily \label{class_ui___info_page_a4121122c156b5c069a96d8dc7ca93b21} 
+QLabel\texorpdfstring{$\ast$}{*} Ui\+\_\+\+Info\+Page::\+total\+Distance\+Amount}
+
+
+
+Definition at line \doxymbox{\hyperlink{ui__infopage_8h_source_l00037}{37}} of file \doxymbox{\hyperlink{ui__infopage_8h_source}{ui\+\_\+infopage.\+h}}.
+
+\Hypertarget{class_ui___info_page_a28835ffe91141357789602c7958c56f2}\index{Ui\_InfoPage@{Ui\_InfoPage}!totalDistanceLabel@{totalDistanceLabel}}
+\index{totalDistanceLabel@{totalDistanceLabel}!Ui\_InfoPage@{Ui\_InfoPage}}
+\doxysubsubsection{\texorpdfstring{totalDistanceLabel}{totalDistanceLabel}}
+{\footnotesize\ttfamily \label{class_ui___info_page_a28835ffe91141357789602c7958c56f2} 
+QLabel\texorpdfstring{$\ast$}{*} Ui\+\_\+\+Info\+Page::\+total\+Distance\+Label}
+
+
+
+Definition at line \doxymbox{\hyperlink{ui__infopage_8h_source_l00035}{35}} of file \doxymbox{\hyperlink{ui__infopage_8h_source}{ui\+\_\+infopage.\+h}}.
+
+\Hypertarget{class_ui___info_page_ae7c3a37b47238fba3ac4537588a8a682}\index{Ui\_InfoPage@{Ui\_InfoPage}!totalItemAmount@{totalItemAmount}}
+\index{totalItemAmount@{totalItemAmount}!Ui\_InfoPage@{Ui\_InfoPage}}
+\doxysubsubsection{\texorpdfstring{totalItemAmount}{totalItemAmount}}
+{\footnotesize\ttfamily \label{class_ui___info_page_ae7c3a37b47238fba3ac4537588a8a682} 
+QLabel\texorpdfstring{$\ast$}{*} Ui\+\_\+\+Info\+Page::\+total\+Item\+Amount}
+
+
+
+Definition at line \doxymbox{\hyperlink{ui__infopage_8h_source_l00030}{30}} of file \doxymbox{\hyperlink{ui__infopage_8h_source}{ui\+\_\+infopage.\+h}}.
+
+\Hypertarget{class_ui___info_page_a7fa77bbd5393988d8de219a84de3d84b}\index{Ui\_InfoPage@{Ui\_InfoPage}!totalItemsLabel@{totalItemsLabel}}
+\index{totalItemsLabel@{totalItemsLabel}!Ui\_InfoPage@{Ui\_InfoPage}}
+\doxysubsubsection{\texorpdfstring{totalItemsLabel}{totalItemsLabel}}
+{\footnotesize\ttfamily \label{class_ui___info_page_a7fa77bbd5393988d8de219a84de3d84b} 
+QLabel\texorpdfstring{$\ast$}{*} Ui\+\_\+\+Info\+Page::\+total\+Items\+Label}
+
+
+
+Definition at line \doxymbox{\hyperlink{ui__infopage_8h_source_l00038}{38}} of file \doxymbox{\hyperlink{ui__infopage_8h_source}{ui\+\_\+infopage.\+h}}.
+
+\Hypertarget{class_ui___info_page_a13721e4c88fb96e7354aa5e647e56de3}\index{Ui\_InfoPage@{Ui\_InfoPage}!totalSpentAmount@{totalSpentAmount}}
+\index{totalSpentAmount@{totalSpentAmount}!Ui\_InfoPage@{Ui\_InfoPage}}
+\doxysubsubsection{\texorpdfstring{totalSpentAmount}{totalSpentAmount}}
+{\footnotesize\ttfamily \label{class_ui___info_page_a13721e4c88fb96e7354aa5e647e56de3} 
+QLabel\texorpdfstring{$\ast$}{*} Ui\+\_\+\+Info\+Page::\+total\+Spent\+Amount}
+
+
+
+Definition at line \doxymbox{\hyperlink{ui__infopage_8h_source_l00033}{33}} of file \doxymbox{\hyperlink{ui__infopage_8h_source}{ui\+\_\+infopage.\+h}}.
+
+\Hypertarget{class_ui___info_page_aaa2b0f1b5744a742028c267ea3c5c756}\index{Ui\_InfoPage@{Ui\_InfoPage}!totalSpentLabel@{totalSpentLabel}}
+\index{totalSpentLabel@{totalSpentLabel}!Ui\_InfoPage@{Ui\_InfoPage}}
+\doxysubsubsection{\texorpdfstring{totalSpentLabel}{totalSpentLabel}}
+{\footnotesize\ttfamily \label{class_ui___info_page_aaa2b0f1b5744a742028c267ea3c5c756} 
+QLabel\texorpdfstring{$\ast$}{*} Ui\+\_\+\+Info\+Page::\+total\+Spent\+Label}
+
+
+
+Definition at line \doxymbox{\hyperlink{ui__infopage_8h_source_l00034}{34}} of file \doxymbox{\hyperlink{ui__infopage_8h_source}{ui\+\_\+infopage.\+h}}.
+
+\Hypertarget{class_ui___info_page_af31d4c671c0269bc09750e49256e3166}\index{Ui\_InfoPage@{Ui\_InfoPage}!totalStatGroup@{totalStatGroup}}
+\index{totalStatGroup@{totalStatGroup}!Ui\_InfoPage@{Ui\_InfoPage}}
+\doxysubsubsection{\texorpdfstring{totalStatGroup}{totalStatGroup}}
+{\footnotesize\ttfamily \label{class_ui___info_page_af31d4c671c0269bc09750e49256e3166} 
+QGrid\+Layout\texorpdfstring{$\ast$}{*} Ui\+\_\+\+Info\+Page::\+total\+Stat\+Group}
+
+
+
+Definition at line \doxymbox{\hyperlink{ui__infopage_8h_source_l00029}{29}} of file \doxymbox{\hyperlink{ui__infopage_8h_source}{ui\+\_\+infopage.\+h}}.
+
+\Hypertarget{class_ui___info_page_af700666e5e284f31c8ae3ddd2627651c}\index{Ui\_InfoPage@{Ui\_InfoPage}!tripInfoStack@{tripInfoStack}}
+\index{tripInfoStack@{tripInfoStack}!Ui\_InfoPage@{Ui\_InfoPage}}
+\doxysubsubsection{\texorpdfstring{tripInfoStack}{tripInfoStack}}
+{\footnotesize\ttfamily \label{class_ui___info_page_af700666e5e284f31c8ae3ddd2627651c} 
+QVBox\+Layout\texorpdfstring{$\ast$}{*} Ui\+\_\+\+Info\+Page::\+trip\+Info\+Stack}
+
+
+
+Definition at line \doxymbox{\hyperlink{ui__infopage_8h_source_l00028}{28}} of file \doxymbox{\hyperlink{ui__infopage_8h_source}{ui\+\_\+infopage.\+h}}.
+
+\Hypertarget{class_ui___info_page_a9c7f2b98561a046354219bae35c52e1d}\index{Ui\_InfoPage@{Ui\_InfoPage}!verticalLayout@{verticalLayout}}
+\index{verticalLayout@{verticalLayout}!Ui\_InfoPage@{Ui\_InfoPage}}
+\doxysubsubsection{\texorpdfstring{verticalLayout}{verticalLayout}}
+{\footnotesize\ttfamily \label{class_ui___info_page_a9c7f2b98561a046354219bae35c52e1d} 
+QVBox\+Layout\texorpdfstring{$\ast$}{*} Ui\+\_\+\+Info\+Page::\+vertical\+Layout}
+
+
+
+Definition at line \doxymbox{\hyperlink{ui__infopage_8h_source_l00027}{27}} of file \doxymbox{\hyperlink{ui__infopage_8h_source}{ui\+\_\+infopage.\+h}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+cmake-\/build-\/debug-\/qt/\+\+College\+Tour\+\_\+autogen/\+include/\+\doxymbox{\hyperlink{ui__infopage_8h}{ui\+\_\+infopage.\+h}}\end{DoxyCompactItemize}

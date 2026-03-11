@@ -1,0 +1,19 @@
+<map id="headers/mainwindow.h" name="headers/mainwindow.h">
+<area shape="rect" id="Node000001" title="Header file for the primary application window and controller logic." alt="" coords="118,5,271,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,112,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="170,34,97,74,94,69,173,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="136,79,253,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="196,29,197,64,192,62,193,33"/>
+<area shape="rect" id="Node000004" href="$db_manager_8h.html" title="Core database controller for managing the SQLite connection and lifecycle." alt="" coords="276,79,372,105"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="217,29,291,70,286,72,216,34"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="63,153,169,178"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="291,105,166,150,165,145,286,105"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="193,153,262,178"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="310,104,257,146,255,141,305,106"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="287,153,361,178"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="326,103,326,138,322,135,322,107"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="385,153,433,178"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="339,103,386,143,381,142,337,108"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="458,153,510,178"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="352,103,446,146,441,146,350,108"/>
+</map>

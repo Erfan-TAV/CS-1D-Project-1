@@ -1,0 +1,20 @@
+<map id="PlanPage::PlanPage" name="PlanPage::PlanPage">
+<area shape="rect" id="Node000001" title="Constructor for PlanPage." alt="" coords="5,78,147,104"/>
+<area shape="poly" id="edge2_Node000001_Node000001" title=" " alt="" coords="37,79,30,70,34,60,50,54,76,52,104,54,120,63,115,64,103,59,76,57,51,59,38,64,35,69,42,77"/>
+<area shape="rect" id="Node000002" href="$class_database_page.html#adf83a1f998dc86afd7229db40628857a" title="Constructor for DatabasePage." alt="" coords="208,29,410,54"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="138,75,194,63,232,57,227,59,195,68,140,80"/>
+<area shape="rect" id="Node000003" href="$class_plan_page.html#ac2fc48dd78f4c3d22f8f8253e0913c06" title="Initializes database models and connects UI elements for the setup screen." alt="" coords="207,78,411,104"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="146,88,194,90,189,92,148,94"/>
+<area shape="rect" id="Node000006" href="$class_plan_page.html#a9e81d1296b8fbfd76f2f7e3d3439cfc8" title="Configures the final results page UI and purchase models." alt="" coords="195,136,423,161"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="131,102,241,130,236,133,131,107"/>
+<area shape="rect" id="Node000004" href="$class_plan_page.html#a09a3e851a9c453d581003a3b90a3d031" title="Filters the selection table to hide the campus selected as the starting point." alt="" coords="476,5,644,46"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="377,75,422,64,482,50,477,52,424,70,379,80"/>
+<area shape="rect" id="Node000005" href="$class_plan_page.html#a9c256fd339d54cb2149190a41a259073" title="Updates the UI label showing how many campuses are currently selected." alt="" coords="471,71,649,111"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="411,88,458,91,453,91,412,94"/>
+<area shape="rect" id="Node000007" href="$class_plan_page.html#a7dc47477aaba2e58dcad3fc3643e6748" title="Filters the souvenir list to show only items for the selected campus." alt="" coords="472,136,648,177"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="423,149,459,153,454,153,424,155"/>
+<area shape="rect" id="Node000008" href="$class_plan_page.html#a9a56d9743c7febd1834af436f3bc827f" title="Calculates how much money was spent at a specific stop." alt="" coords="697,114,905,140"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="648,143,679,142,684,141,649,148"/>
+<area shape="rect" id="Node000009" href="$class_plan_page.html#abf00a60aa85a44061adbe8233b25cc6a" title="Calculates the total monetary cost of the entire trip." alt="" coords="714,164,888,205"/>
+<area shape="poly" id="edge9_Node000007_Node000009" title=" " alt="" coords="649,164,701,172,696,172,648,169"/>
+</map>

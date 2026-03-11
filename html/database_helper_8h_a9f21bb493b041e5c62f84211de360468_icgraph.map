@@ -1,0 +1,9 @@
+<map id="addTripCampus" name="addTripCampus">
+<area shape="rect" id="Node000001" title="Logs a campus visit into the temporary trip itinerary table." alt="" coords="437,55,550,80"/>
+<area shape="rect" id="Node000002" href="$database_helper_8cpp.html#a4a6041a0ff797e48810a9120ed86cf2f" title="Recursively calculates the most efficient route using a Nearest Neighbor approach." alt="" coords="246,29,389,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="419,57,389,55,389,50,424,57"/>
+<area shape="rect" id="Node000003" href="$class_plan_page.html#aa0511c865d24a2a78dbab899aa874034" title="Initiates the recursive trip algorithm based on user selections." alt="" coords="5,47,198,88"/>
+<area shape="poly" id="edge4_Node000001_Node000003" title=" " alt="" coords="420,70,198,70,198,65,422,65"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="346,14,337,10,317,8,299,10,289,15,287,20,292,30,287,28,282,21,285,11,297,5,317,3,339,5,351,14"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="227,53,199,59,198,54,233,52"/>
+</map>

@@ -1,0 +1,12 @@
+<map id="DatabasePage::DatabasePage" name="DatabasePage::DatabasePage">
+<area shape="rect" id="Node000001" title="Constructor for DatabasePage." alt="" coords="217,103,418,128"/>
+<area shape="rect" id="Node000002" href="$class_admin_page.html#a1150741b249e777a213dbe57802db854" title="Constructor for AdminPage." alt="" coords="5,29,169,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="261,98,168,69,135,58,134,53,169,64,265,96"/>
+<area shape="rect" id="Node000003" href="$class_info_page.html#a5f0e8b3e066ff3c3980582cbce843715" title="Constructor for InfoPage." alt="" coords="20,103,154,128"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="198,116,155,118,154,113,203,115"/>
+<area shape="rect" id="Node000004" href="$class_plan_page.html#a608bd53cd9bb8fb5b7d34dfedf81c5fe" title="Constructor for PlanPage." alt="" coords="16,176,158,202"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="262,135,131,178,129,173,258,132"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="126,15,114,10,87,8,63,10,49,15,47,20,54,28,48,30,41,21,46,11,61,5,87,3,115,5,131,14"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="126,89,114,84,87,81,63,83,49,88,47,93,54,102,48,103,41,94,46,84,61,78,87,76,115,79,131,87"/>
+<area shape="poly" id="edge6_Node000004_Node000004" title=" " alt="" coords="126,161,114,157,87,155,63,157,49,161,47,167,54,176,48,176,41,167,46,158,61,151,87,149,115,152,131,161"/>
+</map>

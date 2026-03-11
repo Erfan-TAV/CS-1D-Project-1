@@ -1,0 +1,44 @@
+\doxysection{infopage.\+h}
+\hypertarget{infopage_8h_source}{}\label{infopage_8h_source}\index{headers/infopage.h@{headers/infopage.h}}
+\doxymbox{\hyperlink{infopage_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00007}00007\ \textcolor{preprocessor}{\#ifndef\ INFOPAGE\_H}}
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00008}00008\ \textcolor{preprocessor}{\#define\ INFOPAGE\_H}}
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00010}00010\ \textcolor{preprocessor}{\#include\ <QWidget>}}
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00011}00011\ \textcolor{preprocessor}{\#include\ <QStandardItemModel>}}
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{database_page_8h}{databasePage.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00014}00014\ \textcolor{comment}{//\ Forward\ declaration\ for\ trip\ results}}
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00015}00015\ \textcolor{keyword}{struct\ }TripResult;}
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00017}00017\ \textcolor{keyword}{namespace\ }\doxymbox{\hyperlink{namespace_ui}{Ui}}\ \{}
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00018}00018\ \ \ \ \ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_ui_1_1_info_page}{InfoPage}};}
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00019}00019\ \}}
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00028}\doxymbox{\hyperlink{class_info_page}{00028}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_info_page_a5f0e8b3e066ff3c3980582cbce843715}{InfoPage}}\ :\ \textcolor{keyword}{public}\ \doxymbox{\hyperlink{class_database_page_adf83a1f998dc86afd7229db40628857a}{DatabasePage}}\ \{}
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00029}00029\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00031}00031\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00036}00036\ \ \ \ \ \textcolor{keyword}{explicit}\ \doxymbox{\hyperlink{class_info_page_a5f0e8b3e066ff3c3980582cbce843715}{InfoPage}}(QWidget\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00041}00041\ \ \ \ \ \doxymbox{\hyperlink{class_info_page_a85d8e19daad22c976c53e46ad6d63e00}{\string~InfoPage}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00049}00049\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_info_page_a35843a78b2c0f30592439aae941aa5f8}{displayTripResults}}(\textcolor{keyword}{const}\ TripResult\ \&result);}
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00058}00058\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_info_page_ab30b3950a2371800b6a1f340af6337db}{refreshUI}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00064}00064\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_info_page_a487c9c7c030aa387b295429642f2de1c}{resetUI}}();}
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00066}00066\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00072}00072\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_info_page_a56a4d4b9c53ec63f9c1d0c07414ed3fa}{calculateTotalDistance}}();}
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00074}\doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{00074}}\ \ \ \ \ \doxymbox{\hyperlink{class_ui_1_1_info_page}{Ui::InfoPage}}\ *\doxymbox{\hyperlink{class_info_page_a436b257aa1286e4818cf8ca56791e603}{ui}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00075}\doxymbox{\hyperlink{class_info_page_a16cf98ff866cbb7c498b19a59b2c962c}{00075}}\ \ \ \ \ QStandardItemModel\ *\doxymbox{\hyperlink{class_info_page_a16cf98ff866cbb7c498b19a59b2c962c}{model}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00076}00076\ \};}
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{infopage_8h_source_l00078}00078\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ INFOPAGE\_H}}
+
+\end{DoxyCode}

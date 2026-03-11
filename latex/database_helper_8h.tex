@@ -1,0 +1,1141 @@
+\doxysection{headers/\+database\+Helper.h File Reference}
+\hypertarget{database_helper_8h}{}\label{database_helper_8h}\index{headers/databaseHelper.h@{headers/databaseHelper.h}}
+
+
+Global utility functions for database CRUD operations and trip algorithms.  
+
+
+{\ttfamily \+\#include $<$QString$>$}\newline
+{\ttfamily \+\#include $<$QString\+List$>$}\newline
+{\ttfamily \+\#include $<$QList$>$}\newline
+{\ttfamily \+\#include "{}campus\+Structs.\+h"{}}\newline
+Include dependency graph for database\+Helper.\+h:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=323pt]{database_helper_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{database_helper_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{database_helper_8h_ae9dc5b09f0efa326744fc1d55f3c37a5}{add\+Campus}} (const QString \&name)
+\begin{DoxyCompactList}\small\item\em Adds a new campus to the system. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{database_helper_8h_aaa58653010445ac38e0df532c01f4b88}{remove\+Campus}} (const int campus\+ID)
+\begin{DoxyCompactList}\small\item\em Removes a campus record from the database. \end{DoxyCompactList}\item 
+QString \doxymbox{\hyperlink{database_helper_8h_aa6d10f89d7ee6f7a937b5bc5c9979fd3}{get\+Campus\+Name}} (const int campus\+ID)
+\begin{DoxyCompactList}\small\item\em Retrieves the formal name of a campus. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_campus}{Campus}} \doxymbox{\hyperlink{database_helper_8h_a02a8b600d5924cdb93c270d695350fa7}{get\+Full\+Campus}} (const int campus\+ID)
+\begin{DoxyCompactList}\small\item\em Fetches a complete data aggregate for a specific campus. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{database_helper_8h_a44dac679a954686debebbeb013e85075}{add\+Souvenir}} (const int campus\+ID, const QString \&name, const double price)
+\begin{DoxyCompactList}\small\item\em Registers a new souvenir item for a specific campus. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{database_helper_8h_a118f35c1a1476e09dd314c5bb1f5d6a9}{update\+Souvenir\+Price}} (const int campus\+ID, const QString \&name, const double new\+Price)
+\begin{DoxyCompactList}\small\item\em Updates the pricing of an existing souvenir. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{database_helper_8h_ad8060f84cc153842dec994fb977bc508}{remove\+Souvenir}} (const int campus\+ID, const QString \&name)
+\begin{DoxyCompactList}\small\item\em Deletes a souvenir from a campus gift shop. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{database_helper_8h_a03b4e3382e830c7a89466a8eb7f643a4}{add\+Distance}} (const int id1, const int id2, const int distance)
+\begin{DoxyCompactList}\small\item\em Adds a directed edge between two campuses. \end{DoxyCompactList}\item 
+double \doxymbox{\hyperlink{database_helper_8h_a242017b47cfdc29400bab979847020ec}{get\+Distance\+Between}} (int id1, int id2)
+\begin{DoxyCompactList}\small\item\em Fetches the distance between two nodes in the graph. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{database_helper_8h_a48548e1be3c34f20d14c206a5f757f54}{closest\+Campus}} (const int campus\+ID)
+\begin{DoxyCompactList}\small\item\em Simple greedy search for the closest neighboring campus. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{database_helper_8h_a4a6041a0ff797e48810a9120ed86cf2f}{calculate\+Efficient\+Trip}} (int current\+ID, QList$<$ int $>$ unvisited\+IDs, double total\+Distance, int order)
+\begin{DoxyCompactList}\small\item\em Recursively calculates the most efficient route using a Nearest Neighbor approach. \end{DoxyCompactList}\item 
+QString\+List \doxymbox{\hyperlink{database_helper_8h_ab5be4a2470cfc5c6d8bd862833bfd3dc}{upload\+File\+Append}} (const QString \&file\+Path)
+\begin{DoxyCompactList}\small\item\em Parses an Excel file to append new data to the current database. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{database_helper_8h_a303fcb2cb85e0a1ff5906db6fd8767cb}{reset\+And\+Reload\+Data}} (const QString \&file\+Path)
+\begin{DoxyCompactList}\small\item\em Wipes the current database and reloads it entirely from an Excel source. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{database_helper_8h_a9f21bb493b041e5c62f84211de360468}{add\+Trip\+Campus}} (const int campus\+ID, const QString \&campus\+Name, const int visit\+Order)
+\begin{DoxyCompactList}\small\item\em Logs a campus visit into the temporary trip itinerary table. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{database_helper_8h_a43d3aaa47509c7d2a3133e29ea8bc1a9}{clear\+Trip\+Table}} ()
+\begin{DoxyCompactList}\small\item\em Wipes the temporary itinerary table. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{database_helper_8h_a752947b2f77e0cda9a0bccb1b334770d}{populate\+Trip\+Souvenirs}} ()
+\begin{DoxyCompactList}\small\item\em Populates the purchase list with all available souvenirs from the planned trip. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{database_helper_8h_a7dc11b7a6e3a3d3d359068cf66578868}{add\+Trip\+Info}} (const QString \&campus\+Name, const QString \&item\+Name, int num\+Item, double item\+Price, const int campus\+ID)
+\begin{DoxyCompactList}\small\item\em Records a souvenir purchase during a trip. \end{DoxyCompactList}\item 
+double \doxymbox{\hyperlink{database_helper_8h_a451944b5a3a2bc8ad9fd8a3a7aa14830}{get\+Trip\+Info\+Total\+Spent}} ()
+\begin{DoxyCompactList}\small\item\em Returns the total dollar amount spent across the entire trip. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{database_helper_8h_a831579ca9fc2f58292a660c42b86b91d}{get\+Trip\+Info\+Total\+Items}} ()
+\begin{DoxyCompactList}\small\item\em Returns the total count of items purchased during the trip. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{database_helper_8h_a79b962714031fc06de95d2ad7f2cfb62}{clear\+Trip\+Info\+Table}} ()
+\begin{DoxyCompactList}\small\item\em Clears all purchase records for the current trip. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Global utility functions for database CRUD operations and trip algorithms. 
+
+\begin{DoxyAuthor}{Author}
+Erfan Tavassoli and Shahob Shahmirzadi 
+\end{DoxyAuthor}
+
+
+Definition in file \doxymbox{\hyperlink{database_helper_8h_source}{database\+Helper.\+h}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{database_helper_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{database_helper_8h_ae9dc5b09f0efa326744fc1d55f3c37a5}\index{databaseHelper.h@{databaseHelper.h}!addCampus@{addCampus}}
+\index{addCampus@{addCampus}!databaseHelper.h@{databaseHelper.h}}
+\doxysubsubsection{\texorpdfstring{addCampus()}{addCampus()}}
+{\footnotesize\ttfamily \label{database_helper_8h_ae9dc5b09f0efa326744fc1d55f3c37a5} 
+bool add\+Campus (\begin{DoxyParamCaption}\item[{const QString \&}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Adds a new campus to the system. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the university. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the insertion was successful. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{database_helper_8cpp_source_l00008}{8}} of file \doxymbox{\hyperlink{database_helper_8cpp_source}{database\+Helper.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00008\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00009\ \ \ \ \ QSqlQuery\ query;}
+\DoxyCodeLine{00010\ \ \ \ \ query.prepare(\textcolor{stringliteral}{"{}INSERT\ INTO\ campusList\ (campusName)\ VALUES\ (:name)"{}});}
+\DoxyCodeLine{00011\ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:name"{}},\ name);}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordflow}{if}(!query.exec())\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}addCampus\ error:"{}}\ <<\ query.lastError().text();}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00015\ \ \ \ \ \}}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00017\ \}}
+
+\end{DoxyCode}
+\Hypertarget{database_helper_8h_a03b4e3382e830c7a89466a8eb7f643a4}\index{databaseHelper.h@{databaseHelper.h}!addDistance@{addDistance}}
+\index{addDistance@{addDistance}!databaseHelper.h@{databaseHelper.h}}
+\doxysubsubsection{\texorpdfstring{addDistance()}{addDistance()}}
+{\footnotesize\ttfamily \label{database_helper_8h_a03b4e3382e830c7a89466a8eb7f643a4} 
+bool add\+Distance (\begin{DoxyParamCaption}\item[{const int}]{id1}{, }\item[{const int}]{id2}{, }\item[{const int}]{distance}{}\end{DoxyParamCaption})}
+
+
+
+Adds a directed edge between two campuses. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id1} & Source campus. \\
+\hline
+{\em id2} & Destination campus. \\
+\hline
+{\em distance} & Weight of the edge in miles. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{database_helper_8cpp_source_l00053}{53}} of file \doxymbox{\hyperlink{database_helper_8cpp_source}{database\+Helper.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ QSqlQuery\ query;}
+\DoxyCodeLine{00055\ \ \ \ \ query.prepare(\textcolor{stringliteral}{"{}INSERT\ INTO\ campusDistances\ (campusID1,\ campusID2,\ distance)\ "{}}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}VALUES\ (:id1,\ :id2,\ :dist)"{}});}
+\DoxyCodeLine{00057\ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:id1"{}},\ id1);}
+\DoxyCodeLine{00058\ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:id2"{}},\ id2);}
+\DoxyCodeLine{00059\ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:dist"{}},\ distance);}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{return}\ query.exec();}
+\DoxyCodeLine{00061\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{database_helper_8h_a03b4e3382e830c7a89466a8eb7f643a4_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{database_helper_8h_a44dac679a954686debebbeb013e85075}\index{databaseHelper.h@{databaseHelper.h}!addSouvenir@{addSouvenir}}
+\index{addSouvenir@{addSouvenir}!databaseHelper.h@{databaseHelper.h}}
+\doxysubsubsection{\texorpdfstring{addSouvenir()}{addSouvenir()}}
+{\footnotesize\ttfamily \label{database_helper_8h_a44dac679a954686debebbeb013e85075} 
+bool add\+Souvenir (\begin{DoxyParamCaption}\item[{const int}]{campus\+ID}{, }\item[{const QString \&}]{name}{, }\item[{const double}]{price}{}\end{DoxyParamCaption})}
+
+
+
+Registers a new souvenir item for a specific campus. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em campus\+ID} & The owner campus ID. \\
+\hline
+{\em name} & Name of the souvenir. \\
+\hline
+{\em price} & Retail price. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if successful. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{database_helper_8cpp_source_l00027}{27}} of file \doxymbox{\hyperlink{database_helper_8cpp_source}{database\+Helper.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00028\ \ \ \ \ QSqlQuery\ query;}
+\DoxyCodeLine{00029\ \ \ \ \ query.prepare(\textcolor{stringliteral}{"{}INSERT\ INTO\ souvenirs\ (campusID,\ souvenirName,\ price)\ "{}}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}VALUES\ (:id,\ :name,\ :price)"{}});}
+\DoxyCodeLine{00031\ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:id"{}},\ campusID);}
+\DoxyCodeLine{00032\ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:name"{}},\ name);}
+\DoxyCodeLine{00033\ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:price"{}},\ price);}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordflow}{return}\ query.exec();}
+\DoxyCodeLine{00035\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{database_helper_8h_a44dac679a954686debebbeb013e85075_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{database_helper_8h_a9f21bb493b041e5c62f84211de360468}\index{databaseHelper.h@{databaseHelper.h}!addTripCampus@{addTripCampus}}
+\index{addTripCampus@{addTripCampus}!databaseHelper.h@{databaseHelper.h}}
+\doxysubsubsection{\texorpdfstring{addTripCampus()}{addTripCampus()}}
+{\footnotesize\ttfamily \label{database_helper_8h_a9f21bb493b041e5c62f84211de360468} 
+bool add\+Trip\+Campus (\begin{DoxyParamCaption}\item[{const int}]{campus\+ID}{, }\item[{const QString \&}]{campus\+Name}{, }\item[{const int}]{visit\+Order}{}\end{DoxyParamCaption})}
+
+
+
+Logs a campus visit into the temporary trip itinerary table. 
+
+
+
+Definition at line \doxymbox{\hyperlink{database_helper_8cpp_source_l00354}{354}} of file \doxymbox{\hyperlink{database_helper_8cpp_source}{database\+Helper.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00355\ \ \ QSqlQuery\ query;}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Updated\ to\ include\ visitOrder\ in\ the\ insert\ statement}}
+\DoxyCodeLine{00357\ \ \ query.prepare(\textcolor{stringliteral}{"{}INSERT\ INTO\ tripCampuses\ (campusID,\ campusName,\ visitOrder)\ "{}}}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}VALUES\ (?,\ ?,\ ?)"{}});}
+\DoxyCodeLine{00359\ \ \ query.addBindValue(campusID);}
+\DoxyCodeLine{00360\ \ \ query.addBindValue(campusName);}
+\DoxyCodeLine{00361\ \ \ query.addBindValue(visitOrder);}
+\DoxyCodeLine{00362\ \ \ \textcolor{keywordflow}{if}\ (!query.exec())\ \{}
+\DoxyCodeLine{00363\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}DB\ Helper\ Error\ (Add):"{}}\ <<\ query.lastError().text();}
+\DoxyCodeLine{00364\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00365\ \ \ \}}
+\DoxyCodeLine{00366\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00367\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{database_helper_8h_a9f21bb493b041e5c62f84211de360468_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{database_helper_8h_a7dc11b7a6e3a3d3d359068cf66578868}\index{databaseHelper.h@{databaseHelper.h}!addTripInfo@{addTripInfo}}
+\index{addTripInfo@{addTripInfo}!databaseHelper.h@{databaseHelper.h}}
+\doxysubsubsection{\texorpdfstring{addTripInfo()}{addTripInfo()}}
+{\footnotesize\ttfamily \label{database_helper_8h_a7dc11b7a6e3a3d3d359068cf66578868} 
+bool add\+Trip\+Info (\begin{DoxyParamCaption}\item[{const QString \&}]{campus\+Name}{, }\item[{const QString \&}]{item\+Name}{, }\item[{int}]{num\+Item}{, }\item[{double}]{item\+Price}{, }\item[{const int}]{campus\+ID}{}\end{DoxyParamCaption})}
+
+
+
+Records a souvenir purchase during a trip. 
+
+If the item already exists for that campus in the trip record, it increments the quantity and updates the total price instead of creating a duplicate. 
+
+Definition at line \doxymbox{\hyperlink{database_helper_8cpp_source_l00442}{442}} of file \doxymbox{\hyperlink{database_helper_8cpp_source}{database\+Helper.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00447\ \{}
+\DoxyCodeLine{00448\ \ \ \ \ \textcolor{keywordflow}{if}\ (numItem\ <=\ 0\ ||\ itemPrice\ <=\ 0.0)\ \{}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[WARN]\ Skipping\ insert:\ numItem\ or\ itemPrice\ is\ invalid:"{}}}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ numItem\ <<\ itemPrice;}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00452\ \ \ \ \ \}}
+\DoxyCodeLine{00453\ \ \ \ \ QSqlQuery\ query;}
+\DoxyCodeLine{00454\ \ \ \ \ \textcolor{comment}{//\ First,\ check\ if\ the\ row\ already\ exists}}
+\DoxyCodeLine{00455\ \ \ \ \ query.prepare(\textcolor{stringliteral}{"{}SELECT\ numItem\ FROM\ tripInfo\ WHERE\ campusID\ =\ :campusID\ AND\ itemName\ =\ :itemName"{}});}
+\DoxyCodeLine{00456\ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:campusID"{}},\ campusID);}
+\DoxyCodeLine{00457\ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:itemName"{}},\ itemName);}
+\DoxyCodeLine{00458\ \ \ \ \ \textcolor{keywordflow}{if}\ (!query.exec())\ \{}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[ERROR]\ addTripInfo\ SELECT\ failed:"{}}\ <<\ query.lastError().text();}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00461\ \ \ \ \ \}}
+\DoxyCodeLine{00462\ \ \ \ \ \textcolor{keywordflow}{if}\ (query.next())\ \{}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Row\ exists\ —\ update\ it}}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ existingNumItem\ =\ query.value(\textcolor{stringliteral}{"{}numItem"{}}).toInt();}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ newNumItem\ =\ existingNumItem\ +\ numItem;}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ newTotalPrice\ =\ newNumItem\ *\ itemPrice;}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ QSqlQuery\ updateQuery;}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ updateQuery.prepare(\textcolor{stringliteral}{"{}UPDATE\ tripInfo\ "{}}}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}SET\ numItem\ =\ :numItem,\ totalPrice\ =\ :totalPrice,\ itemPrice\ =\ :itemPrice\ "{}}}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}WHERE\ campusID\ =\ :campusID\ AND\ itemName\ =\ :itemName"{}});}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ updateQuery.bindValue(\textcolor{stringliteral}{"{}:numItem"{}},\ newNumItem);}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ updateQuery.bindValue(\textcolor{stringliteral}{"{}:totalPrice"{}},\ newTotalPrice);}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ updateQuery.bindValue(\textcolor{stringliteral}{"{}:itemPrice"{}},\ itemPrice);}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ updateQuery.bindValue(\textcolor{stringliteral}{"{}:campusID"{}},\ campusID);}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ updateQuery.bindValue(\textcolor{stringliteral}{"{}:itemName"{}},\ itemName);}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!updateQuery.exec())\ \{}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[ERROR]\ addTripInfo\ UPDATE\ failed:"{}}\ <<\ updateQuery.lastError().text();}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00480\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Row\ does\ not\ exist\ —\ insert\ new}}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ totalPrice\ =\ numItem\ *\ itemPrice;}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ QSqlQuery\ insertQuery;}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ insertQuery.prepare(\textcolor{stringliteral}{"{}INSERT\ INTO\ tripInfo\ "{}}}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}(campusName,\ itemName,\ numItem,\ itemPrice,\ totalPrice,\ campusID)\ "{}}}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}VALUES\ (:campusName,\ :itemName,\ :numItem,\ :itemPrice,\ :totalPrice,\ :campusID)"{}});}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ insertQuery.bindValue(\textcolor{stringliteral}{"{}:campusName"{}},\ campusName);}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ insertQuery.bindValue(\textcolor{stringliteral}{"{}:itemName"{}},\ itemName);}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ insertQuery.bindValue(\textcolor{stringliteral}{"{}:numItem"{}},\ numItem);}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ insertQuery.bindValue(\textcolor{stringliteral}{"{}:itemPrice"{}},\ itemPrice);}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ insertQuery.bindValue(\textcolor{stringliteral}{"{}:totalPrice"{}},\ totalPrice);}
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ insertQuery.bindValue(\textcolor{stringliteral}{"{}:campusID"{}},\ campusID);}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!insertQuery.exec())\ \{}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[ERROR]\ addTripInfo\ INSERT\ failed:"{}}\ <<\ insertQuery.lastError().text();}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00497\ \ \ \ \ \}}
+\DoxyCodeLine{00498\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00499\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=338pt]{database_helper_8h_a7dc11b7a6e3a3d3d359068cf66578868_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{database_helper_8h_a4a6041a0ff797e48810a9120ed86cf2f}\index{databaseHelper.h@{databaseHelper.h}!calculateEfficientTrip@{calculateEfficientTrip}}
+\index{calculateEfficientTrip@{calculateEfficientTrip}!databaseHelper.h@{databaseHelper.h}}
+\doxysubsubsection{\texorpdfstring{calculateEfficientTrip()}{calculateEfficientTrip()}}
+{\footnotesize\ttfamily \label{database_helper_8h_a4a6041a0ff797e48810a9120ed86cf2f} 
+void calculate\+Efficient\+Trip (\begin{DoxyParamCaption}\item[{int}]{current\+ID}{, }\item[{QList$<$ int $>$}]{unvisited\+IDs}{, }\item[{double}]{total\+Distance}{, }\item[{int}]{order}{}\end{DoxyParamCaption})}
+
+
+
+Recursively calculates the most efficient route using a Nearest Neighbor approach. 
+
+This function implements a greedy algorithm to visit all specified campuses. It records each step of the trip into the \textquotesingle{}trip\+Campuses\textquotesingle{} database table for UI display. 
+\begin{DoxyParams}{Parameters}
+{\em current\+ID} & The ID of the campus currently being "{}visited"{}. \\
+\hline
+{\em unvisited\+IDs} & The list of campuses remaining in the itinerary. \\
+\hline
+{\em total\+Distance} & The cumulative distance traveled so far. \\
+\hline
+{\em order} & The sequence number of the current stop. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{database_helper_8cpp_source_l00081}{81}} of file \doxymbox{\hyperlink{database_helper_8cpp_source}{database\+Helper.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{//\ BASE\ CASE:\ If\ there\ are\ no\ more\ campuses\ to\ visit,\ stop\ the\ recursion.}}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{if}\ (unvisitedIDs.isEmpty())\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[ALGO]\ -\/-\/-\/\ Recursion\ Complete\ -\/-\/-\/"{}};}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[ALGO]\ Final\ Total\ Distance:"{}}\ <<\ totalDistance\ <<\ \textcolor{stringliteral}{"{}miles."{}};}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00087\ \ \ \ \ \}}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{int}\ nextID\ =\ -\/1;}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{double}\ minFound\ =\ std::numeric\_limits<double>::max();}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{comment}{//\ Find\ the\ single\ closest\ school\ from\ the\ current\ location}}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ targetID\ :\ unvisitedIDs)\ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ dist\ =\ \doxymbox{\hyperlink{database_helper_8cpp_a242017b47cfdc29400bab979847020ec}{getDistanceBetween}}(currentID,\ targetID);}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dist\ <\ minFound)\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ minFound\ =\ dist;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ nextID\ =\ targetID;}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00097\ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordflow}{if}\ (nextID\ !=\ -\/1)\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prepare\ data\ for\ the\ next\ stop}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ newTotalDistance\ =\ totalDistance\ +\ minFound;}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ QString\ name\ =\ \doxymbox{\hyperlink{database_helper_8cpp_aa6d10f89d7ee6f7a937b5bc5c9979fd3}{getCampusName}}(nextID);}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[ALGO]\ Recursive\ Level"{}}\ <<\ order\ <<\ \textcolor{stringliteral}{"{}:\ Visiting"{}}\ <<\ name}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ (ID:"{}}\ <<\ nextID\ <<\ \textcolor{stringliteral}{"{})\ +"{}}\ <<\ minFound\ <<\ \textcolor{stringliteral}{"{}mi."{}};}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Record\ the\ visit\ in\ the\ database}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{database_helper_8cpp_a9f21bb493b041e5c62f84211de360468}{addTripCampus}}(nextID,\ name,\ order);}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Remove\ the\ campus\ we\ just\ visited}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ unvisitedIDs.removeAll(nextID);}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ RECURSIVE\ CALL:\ The\ function\ calls\ ITSELF\ with\ the\ new\ location\ and\ updated\ totals}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{database_helper_8cpp_a4a6041a0ff797e48810a9120ed86cf2f}{calculateEfficientTrip}}(nextID,\ unvisitedIDs,\ newTotalDistance,\ order\ +\ 1);}
+\DoxyCodeLine{00110\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[ALGO]\ ERROR:\ Path\ broken\ at\ ID"{}}\ <<\ currentID;}
+\DoxyCodeLine{00112\ \ \ \ \ \}}
+\DoxyCodeLine{00113\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=330pt]{database_helper_8h_a4a6041a0ff797e48810a9120ed86cf2f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{database_helper_8h_a4a6041a0ff797e48810a9120ed86cf2f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{database_helper_8h_a79b962714031fc06de95d2ad7f2cfb62}\index{databaseHelper.h@{databaseHelper.h}!clearTripInfoTable@{clearTripInfoTable}}
+\index{clearTripInfoTable@{clearTripInfoTable}!databaseHelper.h@{databaseHelper.h}}
+\doxysubsubsection{\texorpdfstring{clearTripInfoTable()}{clearTripInfoTable()}}
+{\footnotesize\ttfamily \label{database_helper_8h_a79b962714031fc06de95d2ad7f2cfb62} 
+bool clear\+Trip\+Info\+Table (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Clears all purchase records for the current trip. 
+
+
+
+Definition at line \doxymbox{\hyperlink{database_helper_8cpp_source_l00500}{500}} of file \doxymbox{\hyperlink{database_helper_8cpp_source}{database\+Helper.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00501\ \{}
+\DoxyCodeLine{00502\ \ \ \ \ QSqlQuery\ query;}
+\DoxyCodeLine{00503\ \ \ \ \ \textcolor{keywordflow}{if}\ (!query.exec(\textcolor{stringliteral}{"{}DELETE\ FROM\ tripInfo"{}}))\ \{}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}clearTripInfoTable\ error:"{}}\ <<\ query.lastError().text();}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00506\ \ \ \ \ \}}
+\DoxyCodeLine{00507\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00508\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{database_helper_8h_a79b962714031fc06de95d2ad7f2cfb62_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{database_helper_8h_a43d3aaa47509c7d2a3133e29ea8bc1a9}\index{databaseHelper.h@{databaseHelper.h}!clearTripTable@{clearTripTable}}
+\index{clearTripTable@{clearTripTable}!databaseHelper.h@{databaseHelper.h}}
+\doxysubsubsection{\texorpdfstring{clearTripTable()}{clearTripTable()}}
+{\footnotesize\ttfamily \label{database_helper_8h_a43d3aaa47509c7d2a3133e29ea8bc1a9} 
+bool clear\+Trip\+Table (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Wipes the temporary itinerary table. 
+
+
+
+Definition at line \doxymbox{\hyperlink{database_helper_8cpp_source_l00390}{390}} of file \doxymbox{\hyperlink{database_helper_8cpp_source}{database\+Helper.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00391\ \ \ QSqlQuery\ query;}
+\DoxyCodeLine{00392\ \ \ \textcolor{keywordflow}{if}\ (!query.exec(\textcolor{stringliteral}{"{}DELETE\ FROM\ tripCampuses"{}}))\ \{}
+\DoxyCodeLine{00393\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}DB\ Helper\ Error\ (Clear\ Table):"{}}\ <<\ query.lastError().text();}
+\DoxyCodeLine{00394\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00395\ \ \ \}}
+\DoxyCodeLine{00396\ \ \ \textcolor{comment}{//\ Optional:\ Reset\ the\ autoincrement\ counter\ so\ the\ next\ trip\ starts\ stop\ at\ ID\ 1}}
+\DoxyCodeLine{00397\ \ \ query.exec(\textcolor{stringliteral}{"{}DELETE\ FROM\ sqlite\_sequence\ WHERE\ name='tripCampuses'"{}});}
+\DoxyCodeLine{00398\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00399\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=337pt]{database_helper_8h_a43d3aaa47509c7d2a3133e29ea8bc1a9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{database_helper_8h_a48548e1be3c34f20d14c206a5f757f54}\index{databaseHelper.h@{databaseHelper.h}!closestCampus@{closestCampus}}
+\index{closestCampus@{closestCampus}!databaseHelper.h@{databaseHelper.h}}
+\doxysubsubsection{\texorpdfstring{closestCampus()}{closestCampus()}}
+{\footnotesize\ttfamily \label{database_helper_8h_a48548e1be3c34f20d14c206a5f757f54} 
+int closest\+Campus (\begin{DoxyParamCaption}\item[{const int}]{campus\+ID}{}\end{DoxyParamCaption})}
+
+
+
+Simple greedy search for the closest neighboring campus. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em campus\+ID} & The starting node. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The ID of the nearest neighbor, or -\/1 if isolated. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{database_helper_8cpp_source_l00171}{171}} of file \doxymbox{\hyperlink{database_helper_8cpp_source}{database\+Helper.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00172\ \ \ QSqlQuery\ query;}
+\DoxyCodeLine{00173\ \ \ \textcolor{keywordtype}{int}\ minDistance\ =\ INT\_MAX;}
+\DoxyCodeLine{00174\ \ \ \textcolor{keywordtype}{int}\ nearestID\ =\ -\/1;}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ SQL\ logic:}}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1.\ Check\ if\ our\ ID\ is\ in\ column\ 1\ OR\ column\ 2.}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2.\ Use\ CASE\ to\ return\ the\ "{}other"{}\ ID\ as\ 'neighborID'.}}
+\DoxyCodeLine{00178\ \ \ query.prepare(\textcolor{stringliteral}{"{}SELECT\ "{}}}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}CASE\ WHEN\ campusID1\ =\ :id\ THEN\ campusID2\ ELSE\ campusID1\ END\ AS\ neighborID,\ "{}}}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}distance\ "{}}}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}FROM\ campusDistances\ "{}}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}WHERE\ campusID1\ =\ :id\ OR\ campusID2\ =\ :id"{}});}
+\DoxyCodeLine{00183\ \ \ query.bindValue(\textcolor{stringliteral}{"{}:id"{}},\ campusID);}
+\DoxyCodeLine{00184\ \ \ \textcolor{keywordflow}{if}\ (!query.exec())\ \{}
+\DoxyCodeLine{00185\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}SQL\ ERROR:"{}}\ <<\ query.lastError().text();}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00187\ \ \ \}}
+\DoxyCodeLine{00188\ \ \ \textcolor{keywordflow}{while}\ (query.next())\ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordtype}{int}\ neighborID\ =\ query.value(0).toInt();}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordtype}{int}\ currentDist\ =\ query.value(1).toInt();}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Standard\ greedy\ check\ for\ the\ minimum\ distance}}
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keywordflow}{if}\ (currentDist\ <\ minDistance)\ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ minDistance\ =\ currentDist;}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ nearestID\ =\ neighborID;}
+\DoxyCodeLine{00195\ \ \ \ \ \}}
+\DoxyCodeLine{00196\ \ \ \}}
+\DoxyCodeLine{00197\ \ \ \textcolor{keywordflow}{if}\ (nearestID\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00198\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}No\ connections\ found\ for\ Campus\ ID:"{}}\ <<\ campusID;}
+\DoxyCodeLine{00199\ \ \ \}}
+\DoxyCodeLine{00200\ \ \ \textcolor{keywordflow}{return}\ nearestID;}
+\DoxyCodeLine{00201\ \}}
+
+\end{DoxyCode}
+\Hypertarget{database_helper_8h_aa6d10f89d7ee6f7a937b5bc5c9979fd3}\index{databaseHelper.h@{databaseHelper.h}!getCampusName@{getCampusName}}
+\index{getCampusName@{getCampusName}!databaseHelper.h@{databaseHelper.h}}
+\doxysubsubsection{\texorpdfstring{getCampusName()}{getCampusName()}}
+{\footnotesize\ttfamily \label{database_helper_8h_aa6d10f89d7ee6f7a937b5bc5c9979fd3} 
+QString get\+Campus\+Name (\begin{DoxyParamCaption}\item[{const int}]{campus\+ID}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves the formal name of a campus. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em campus\+ID} & The ID to look up. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The name string, or an empty string if not found. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{database_helper_8cpp_source_l00114}{114}} of file \doxymbox{\hyperlink{database_helper_8cpp_source}{database\+Helper.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00115\ \ \ \ \ QSqlQuery\ query;}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{comment}{//\ SQL\ Query}}
+\DoxyCodeLine{00117\ \ \ \ \ query.prepare(\textcolor{stringliteral}{"{}SELECT\ campusName\ FROM\ campusList\ WHERE\ campusID\ =\ :id"{}});}
+\DoxyCodeLine{00118\ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:id"{}},\ campusID);}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{comment}{//\ check\ if\ sql\ query\ ran\ and\ output\ correlating\ messages}}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordflow}{if}\ (query.exec())\ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (query.next())\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ query.value(0).toString();}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}No\ campus\ found\ with\ ID:"{}}\ <<\ campusID;}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00126\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Database\ Query\ Error:"{}}\ <<\ query.lastError().text();}
+\DoxyCodeLine{00128\ \ \ \ \ \}}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordflow}{return}\ \{\};}
+\DoxyCodeLine{00130\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{database_helper_8h_aa6d10f89d7ee6f7a937b5bc5c9979fd3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{database_helper_8h_a242017b47cfdc29400bab979847020ec}\index{databaseHelper.h@{databaseHelper.h}!getDistanceBetween@{getDistanceBetween}}
+\index{getDistanceBetween@{getDistanceBetween}!databaseHelper.h@{databaseHelper.h}}
+\doxysubsubsection{\texorpdfstring{getDistanceBetween()}{getDistanceBetween()}}
+{\footnotesize\ttfamily \label{database_helper_8h_a242017b47cfdc29400bab979847020ec} 
+double get\+Distance\+Between (\begin{DoxyParamCaption}\item[{int}]{id1}{, }\item[{int}]{id2}{}\end{DoxyParamCaption})}
+
+
+
+Fetches the distance between two nodes in the graph. 
+
+Checks both directions (A to B and B to A) to ensure pathing works. \begin{DoxyReturn}{Returns}
+The distance in miles, or 999999.\+0 if no connection exists. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{database_helper_8cpp_source_l00064}{64}} of file \doxymbox{\hyperlink{database_helper_8cpp_source}{database\+Helper.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ QSqlQuery\ query;}
+\DoxyCodeLine{00066\ \ \ \ \ query.prepare(\textcolor{stringliteral}{"{}SELECT\ distance\ FROM\ campusDistances\ WHERE\ "{}}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}(campusID1\ =\ :id1\ AND\ campusID2\ =\ :id2)\ OR\ "{}}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}(campusID1\ =\ :id2\ AND\ campusID2\ =\ :id1)"{}});}
+\DoxyCodeLine{00069\ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:id1"{}},\ id1);}
+\DoxyCodeLine{00070\ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:id2"{}},\ id2);}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordflow}{if}\ (query.exec()\ \&\&\ query.next())\ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ query.value(0).toDouble();}
+\DoxyCodeLine{00073\ \ \ \ \ \}}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{return}\ 999999.0;\ \textcolor{comment}{//\ Return\ an\ artificially\ high\ number\ if\ no\ direct\ connection\ exists}}
+\DoxyCodeLine{00075\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{database_helper_8h_a242017b47cfdc29400bab979847020ec_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{database_helper_8h_a02a8b600d5924cdb93c270d695350fa7}\index{databaseHelper.h@{databaseHelper.h}!getFullCampus@{getFullCampus}}
+\index{getFullCampus@{getFullCampus}!databaseHelper.h@{databaseHelper.h}}
+\doxysubsubsection{\texorpdfstring{getFullCampus()}{getFullCampus()}}
+{\footnotesize\ttfamily \label{database_helper_8h_a02a8b600d5924cdb93c270d695350fa7} 
+\doxymbox{\hyperlink{struct_campus}{Campus}} get\+Full\+Campus (\begin{DoxyParamCaption}\item[{const int}]{campus\+ID}{}\end{DoxyParamCaption})}
+
+
+
+Fetches a complete data aggregate for a specific campus. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em campus\+ID} & The ID of the campus. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \doxylink{struct_campus}{Campus} struct populated with name, souvenirs, and distances. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{database_helper_8cpp_source_l00131}{131}} of file \doxymbox{\hyperlink{database_helper_8cpp_source}{database\+Helper.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \doxymbox{\hyperlink{struct_campus}{Campus}}\ campus;}
+\DoxyCodeLine{00133\ \ \ \ \ campus.\doxymbox{\hyperlink{struct_campus_a38580a1dc411a9fd184b90ec517151c6}{campusID}}\ =\ -\/1;\ \textcolor{comment}{//\ default\ case\ if\ not\ found}}
+\DoxyCodeLine{00134\ \ \ \ \ QSqlQuery\ query;}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{comment}{//\ 1.\ Fill\ in\ campus\ name\ and\ id\ into\ campus\ struct}}
+\DoxyCodeLine{00136\ \ \ \ \ query.prepare(\textcolor{stringliteral}{"{}SELECT\ campusName\ FROM\ campusList\ WHERE\ campusID\ =\ :id"{}});}
+\DoxyCodeLine{00137\ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:id"{}},\ campusID);}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordflow}{if}\ (query.exec()\ \&\&\ query.next())\ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ campus.\doxymbox{\hyperlink{struct_campus_a38580a1dc411a9fd184b90ec517151c6}{campusID}}\ =\ campusID;}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ campus.\doxymbox{\hyperlink{struct_campus_afdffffedc0ba5ead586c44545cd5528b}{campusName}}\ =\ query.value(0).toString();}
+\DoxyCodeLine{00141\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Campus\ ID"{}}\ <<\ campusID\ <<\ \textcolor{stringliteral}{"{}not\ found."{}};}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ campus;}
+\DoxyCodeLine{00144\ \ \ \ \ \}}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{comment}{//\ 2.\ Fill\ in\ souvenir\ information\ into\ campus\ struct}}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{comment}{//\ FIXED:\ Changed\ itemName\ to\ souvenirName\ to\ match\ schema}}
+\DoxyCodeLine{00147\ \ \ \ \ query.prepare(\textcolor{stringliteral}{"{}SELECT\ souvenirName,\ price\ FROM\ souvenirs\ WHERE\ campusID\ =\ :id"{}});}
+\DoxyCodeLine{00148\ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:id"{}},\ campusID);}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordflow}{if}\ (query.exec())\ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (query.next())\ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{structcampus_souvenir}{campusSouvenir}}\ item;}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ FIXED:\ Using\ "{}souvenirName"{}\ for\ value\ retrieval}}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ item.\doxymbox{\hyperlink{structcampus_souvenir_a1a093821759a4298132ff5d379d4b629}{name}}\ =\ query.value(\textcolor{stringliteral}{"{}souvenirName"{}}).toString();}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ item.\doxymbox{\hyperlink{structcampus_souvenir_a7484eaf24ee6a81959e4fcea2bf000cf}{price}}\ =\ query.value(\textcolor{stringliteral}{"{}price"{}}).toDouble();}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ campus.\doxymbox{\hyperlink{struct_campus_a6af7677880b2e3abe9c534f7ea94a62e}{souvenirs}}.append(item);}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00157\ \ \ \ \ \}}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{comment}{//\ 3.\ Fill\ in\ distance\ information}}
+\DoxyCodeLine{00159\ \ \ \ \ query.prepare(\textcolor{stringliteral}{"{}SELECT\ otherCampusID,\ distance\ FROM\ campusDistances\ WHERE\ campusID\ =\ :id"{}});}
+\DoxyCodeLine{00160\ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:id"{}},\ campusID);}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordflow}{if}\ (query.exec())\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (query.next())\ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{struct_campus_distances}{CampusDistances}}\ dist;}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ dist.\doxymbox{\hyperlink{struct_campus_distances_a49c02e9ede47523a9c1d4b487fa5ad61}{otherCampusID}}\ =\ query.value(\textcolor{stringliteral}{"{}otherCampusID"{}}).toInt();}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ dist.\doxymbox{\hyperlink{struct_campus_distances_a968a8e0383ecbf912bf2cf79e6beff46}{distance}}\ =\ query.value(\textcolor{stringliteral}{"{}distance"{}}).toDouble();}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ campus.\doxymbox{\hyperlink{struct_campus_aba2cb77d9bdf97f8713f0d164e957a39}{distances}}.append(dist);}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00168\ \ \ \ \ \}}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordflow}{return}\ campus;}
+\DoxyCodeLine{00170\ \}}
+
+\end{DoxyCode}
+\Hypertarget{database_helper_8h_a831579ca9fc2f58292a660c42b86b91d}\index{databaseHelper.h@{databaseHelper.h}!getTripInfoTotalItems@{getTripInfoTotalItems}}
+\index{getTripInfoTotalItems@{getTripInfoTotalItems}!databaseHelper.h@{databaseHelper.h}}
+\doxysubsubsection{\texorpdfstring{getTripInfoTotalItems()}{getTripInfoTotalItems()}}
+{\footnotesize\ttfamily \label{database_helper_8h_a831579ca9fc2f58292a660c42b86b91d} 
+int get\+Trip\+Info\+Total\+Items (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Returns the total count of items purchased during the trip. 
+
+
+
+Definition at line \doxymbox{\hyperlink{database_helper_8cpp_source_l00521}{521}} of file \doxymbox{\hyperlink{database_helper_8cpp_source}{database\+Helper.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00522\ \{}
+\DoxyCodeLine{00523\ \ \ \ \ QSqlQuery\ query;}
+\DoxyCodeLine{00524\ \ \ \ \ \textcolor{keywordflow}{if}\ (!query.exec(\textcolor{stringliteral}{"{}SELECT\ IFNULL(SUM(numItem),\ 0)\ FROM\ tripInfo"{}}))\ \{}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}getTripInfoTotalItems\ error:"{}}\ <<\ query.lastError().text();}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00527\ \ \ \ \ \}}
+\DoxyCodeLine{00528\ \ \ \ \ \textcolor{keywordflow}{if}\ (query.next())\ \{}
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ query.value(0).toInt();}
+\DoxyCodeLine{00530\ \ \ \ \ \}}
+\DoxyCodeLine{00531\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00532\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=326pt]{database_helper_8h_a831579ca9fc2f58292a660c42b86b91d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{database_helper_8h_a451944b5a3a2bc8ad9fd8a3a7aa14830}\index{databaseHelper.h@{databaseHelper.h}!getTripInfoTotalSpent@{getTripInfoTotalSpent}}
+\index{getTripInfoTotalSpent@{getTripInfoTotalSpent}!databaseHelper.h@{databaseHelper.h}}
+\doxysubsubsection{\texorpdfstring{getTripInfoTotalSpent()}{getTripInfoTotalSpent()}}
+{\footnotesize\ttfamily \label{database_helper_8h_a451944b5a3a2bc8ad9fd8a3a7aa14830} 
+double get\+Trip\+Info\+Total\+Spent (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Returns the total dollar amount spent across the entire trip. 
+
+
+
+Definition at line \doxymbox{\hyperlink{database_helper_8cpp_source_l00509}{509}} of file \doxymbox{\hyperlink{database_helper_8cpp_source}{database\+Helper.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00510\ \{}
+\DoxyCodeLine{00511\ \ \ \ \ QSqlQuery\ query;}
+\DoxyCodeLine{00512\ \ \ \ \ \textcolor{keywordflow}{if}\ (!query.exec(\textcolor{stringliteral}{"{}SELECT\ IFNULL(SUM(totalPrice),\ 0)\ FROM\ tripInfo"{}}))\ \{}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}getTripInfoTotalSpent\ error:"{}}\ <<\ query.lastError().text();}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0.0;}
+\DoxyCodeLine{00515\ \ \ \ \ \}}
+\DoxyCodeLine{00516\ \ \ \ \ \textcolor{keywordflow}{if}\ (query.next())\ \{}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ query.value(0).toDouble();}
+\DoxyCodeLine{00518\ \ \ \ \ \}}
+\DoxyCodeLine{00519\ \ \ \ \ \textcolor{keywordflow}{return}\ 0.0;}
+\DoxyCodeLine{00520\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=327pt]{database_helper_8h_a451944b5a3a2bc8ad9fd8a3a7aa14830_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{database_helper_8h_a752947b2f77e0cda9a0bccb1b334770d}\index{databaseHelper.h@{databaseHelper.h}!populateTripSouvenirs@{populateTripSouvenirs}}
+\index{populateTripSouvenirs@{populateTripSouvenirs}!databaseHelper.h@{databaseHelper.h}}
+\doxysubsubsection{\texorpdfstring{populateTripSouvenirs()}{populateTripSouvenirs()}}
+{\footnotesize\ttfamily \label{database_helper_8h_a752947b2f77e0cda9a0bccb1b334770d} 
+bool populate\+Trip\+Souvenirs (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Populates the purchase list with all available souvenirs from the planned trip. 
+
+
+
+Definition at line \doxymbox{\hyperlink{database_helper_8cpp_source_l00400}{400}} of file \doxymbox{\hyperlink{database_helper_8cpp_source}{database\+Helper.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00401\ \{}
+\DoxyCodeLine{00402\ \ \ \ \ QSqlQuery\ query;}
+\DoxyCodeLine{00403\ \ \ \ \ \textcolor{comment}{//\ Clear\ previous\ trip\ purchases\ first}}
+\DoxyCodeLine{00404\ \ \ \ \ \textcolor{keywordflow}{if}\ (!query.exec(\textcolor{stringliteral}{"{}DELETE\ FROM\ tripSouvenirPurchases"{}}))\ \{}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Failed\ clearing\ tripSouvenirPurchases:"{}}\ <<\ query.lastError().text();}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00407\ \ \ \ \ \}}
+\DoxyCodeLine{00408\ \ \ \ \ \textcolor{comment}{//\ Copy\ souvenirs\ from\ campuses\ included\ in\ the\ trip}}
+\DoxyCodeLine{00409\ \ \ \ \ QString\ sql\ =}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}INSERT\ INTO\ tripSouvenirPurchases\ (campusID,\ souvenirName,\ price)\ "{}}}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}SELECT\ s.campusID,\ s.souvenirName,\ s.price\ "{}}}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}FROM\ souvenirs\ s\ "{}}}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}INNER\ JOIN\ tripCampuses\ t\ "{}}}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ON\ s.campusID\ =\ t.campusID"{}};}
+\DoxyCodeLine{00415\ \ \ \ \ \textcolor{keywordflow}{if}\ (!query.exec(sql))\ \{}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Failed\ populating\ tripSouvenirPurchases:"{}}\ <<\ query.lastError().text();}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00418\ \ \ \ \ \}}
+\DoxyCodeLine{00419\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[DB]\ Trip\ souvenirs\ populated."{}};}
+\DoxyCodeLine{00420\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00421\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{database_helper_8h_a752947b2f77e0cda9a0bccb1b334770d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{database_helper_8h_aaa58653010445ac38e0df532c01f4b88}\index{databaseHelper.h@{databaseHelper.h}!removeCampus@{removeCampus}}
+\index{removeCampus@{removeCampus}!databaseHelper.h@{databaseHelper.h}}
+\doxysubsubsection{\texorpdfstring{removeCampus()}{removeCampus()}}
+{\footnotesize\ttfamily \label{database_helper_8h_aaa58653010445ac38e0df532c01f4b88} 
+bool remove\+Campus (\begin{DoxyParamCaption}\item[{const int}]{campus\+ID}{}\end{DoxyParamCaption})}
+
+
+
+Removes a campus record from the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em campus\+ID} & The unique ID of the campus to delete. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the execution was successful. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Without foreign key constraints, this may leave orphaned souvenirs or distances. 
+\end{DoxyNote}
+
+
+Definition at line \doxymbox{\hyperlink{database_helper_8cpp_source_l00018}{18}} of file \doxymbox{\hyperlink{database_helper_8cpp_source}{database\+Helper.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00019\ \ \ \ \ QSqlQuery\ query;}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//\ Note:\ You\ should\ ideally\ enable\ Foreign\ Key\ constraints\ so\ deleting}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{//\ a\ campus\ also\ removes\ its\ souvenirs/distances.}}
+\DoxyCodeLine{00022\ \ \ \ \ query.prepare(\textcolor{stringliteral}{"{}DELETE\ FROM\ campusList\ WHERE\ campusID\ =\ :id"{}});}
+\DoxyCodeLine{00023\ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:id"{}},\ campusID);}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{return}\ query.exec();}
+\DoxyCodeLine{00025\ \}}
+
+\end{DoxyCode}
+\Hypertarget{database_helper_8h_ad8060f84cc153842dec994fb977bc508}\index{databaseHelper.h@{databaseHelper.h}!removeSouvenir@{removeSouvenir}}
+\index{removeSouvenir@{removeSouvenir}!databaseHelper.h@{databaseHelper.h}}
+\doxysubsubsection{\texorpdfstring{removeSouvenir()}{removeSouvenir()}}
+{\footnotesize\ttfamily \label{database_helper_8h_ad8060f84cc153842dec994fb977bc508} 
+bool remove\+Souvenir (\begin{DoxyParamCaption}\item[{const int}]{campus\+ID}{, }\item[{const QString \&}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Deletes a souvenir from a campus gift shop. 
+
+
+
+Definition at line \doxymbox{\hyperlink{database_helper_8cpp_source_l00045}{45}} of file \doxymbox{\hyperlink{database_helper_8cpp_source}{database\+Helper.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ QSqlQuery\ query;}
+\DoxyCodeLine{00047\ \ \ \ \ query.prepare(\textcolor{stringliteral}{"{}DELETE\ FROM\ souvenirs\ WHERE\ campusID\ =\ :id\ AND\ souvenirName\ =\ :name"{}});}
+\DoxyCodeLine{00048\ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:id"{}},\ campusID);}
+\DoxyCodeLine{00049\ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:name"{}},\ name);}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{return}\ query.exec();}
+\DoxyCodeLine{00051\ \}}
+
+\end{DoxyCode}
+\Hypertarget{database_helper_8h_a303fcb2cb85e0a1ff5906db6fd8767cb}\index{databaseHelper.h@{databaseHelper.h}!resetAndReloadData@{resetAndReloadData}}
+\index{resetAndReloadData@{resetAndReloadData}!databaseHelper.h@{databaseHelper.h}}
+\doxysubsubsection{\texorpdfstring{resetAndReloadData()}{resetAndReloadData()}}
+{\footnotesize\ttfamily \label{database_helper_8h_a303fcb2cb85e0a1ff5906db6fd8767cb} 
+void reset\+And\+Reload\+Data (\begin{DoxyParamCaption}\item[{const QString \&}]{file\+Path}{}\end{DoxyParamCaption})}
+
+
+
+Wipes the current database and reloads it entirely from an Excel source. 
+
+Uses a transaction to safely clear campus\+List, souvenirs, and campus\+Distances before performing batch inserts from the Excel sheets. 
+\begin{DoxyParams}{Parameters}
+{\em file\+Path} & Path to the master .xlsx file. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{database_helper_8cpp_source_l00288}{288}} of file \doxymbox{\hyperlink{database_helper_8cpp_source}{database\+Helper.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00289\ \ \ \ \ QXlsx::Document\ xlsx(filePath);}
+\DoxyCodeLine{00290\ \ \ \ \ \textcolor{keywordflow}{if}\ (!xlsx.load())\ \{}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[ERROR]\ Could\ not\ load\ Excel\ file\ for\ reset:"{}}\ <<\ filePath;}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00293\ \ \ \ \ \}}
+\DoxyCodeLine{00294\ \ \ \ \ QSqlDatabase\ db\ =\ QSqlDatabase::database();}
+\DoxyCodeLine{00295\ \ \ \ \ \textcolor{keywordflow}{if}\ (!db.transaction())\ \{}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Transaction\ failed:"{}}\ <<\ db.lastError().text();}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00298\ \ \ \ \ \}}
+\DoxyCodeLine{00299\ \ \ \ \ QSqlQuery\ query;}
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{comment}{//\ 1.\ Wipe\ the\ specific\ tables\ in\ order\ to\ respect\ potential\ constraints}}
+\DoxyCodeLine{00301\ \ \ \ \ QStringList\ tables\ =\ \{\textcolor{stringliteral}{"{}campusDistances"{}},\ \textcolor{stringliteral}{"{}souvenirs"{}},\ \textcolor{stringliteral}{"{}campusList"{}}\};}
+\DoxyCodeLine{00302\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ QString\ \&table\ :\ tables)\ \{}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!query.exec(QString(\textcolor{stringliteral}{"{}DELETE\ FROM\ \%1"{}}).arg(table)))\ \{}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Failed\ to\ wipe\ table"{}}\ <<\ table\ <<\ \textcolor{stringliteral}{"{}:"{}}\ <<\ query.lastError().text();}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ db.rollback();}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00308\ \ \ \ \ \}}
+\DoxyCodeLine{00309\ \ \ \ \ \textcolor{comment}{//\ 2.\ Iterate\ through\ Excel\ sheets\ and\ perform\ the\ direct\ insert}}
+\DoxyCodeLine{00310\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ QString\ \&sheetName\ :\ xlsx.sheetNames())\ \{}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ xlsx.selectSheet(sheetName);}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ Headers}}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ QStringList\ columnNames;}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ QStringList\ quotedColumns;}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ QStringList\ placeholders;}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ col\ =\ 1;}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ QVariant\ headerCell\ =\ xlsx.read(1,\ col);}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!headerCell.isValid()\ ||\ headerCell.isNull())\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ QString\ colName\ =\ headerCell.toString();}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ columnNames\ <<\ colName;}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ quotedColumns\ <<\ QString(\textcolor{stringliteral}{"{}\(\backslash\)"{}\%1\(\backslash\)"{}"{}}).arg(colName);}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ placeholders\ <<\ \textcolor{stringliteral}{"{}?"{}};}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ col++;}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (columnNames.isEmpty())\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prepare\ the\ INSERT\ query}}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ QString\ sql\ =\ QString(\textcolor{stringliteral}{"{}INSERT\ INTO\ \%1\ (\%2)\ VALUES\ (\%3)"{}})}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .arg(sheetName,}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ quotedColumns.join(\textcolor{stringliteral}{"{},\ "{}}),}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ placeholders.join(\textcolor{stringliteral}{"{},\ "{}}));}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ query.prepare(sql);}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3.\ Process\ Rows\ (Starting\ from\ Row\ 2)}}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ row\ =\ 2;}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ QVariant\ firstCell\ =\ xlsx.read(row,\ 1);}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!firstCell.isValid()\ ||\ firstCell.isNull())\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ c\ =\ 1;\ c\ <=\ columnNames.size();\ ++c)\ \{}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ query.addBindValue(xlsx.read(row,\ c));}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!query.exec())\ \{}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[SQL\ ERROR]\ Reset\ Row"{}}\ <<\ row\ <<\ \textcolor{stringliteral}{"{}in"{}}\ <<\ sheetName\ <<\ \textcolor{stringliteral}{"{}:"{}}\ <<\ query.lastError().text();}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ row++;}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00346\ \ \ \ \ \}}
+\DoxyCodeLine{00347\ \ \ \ \ \textcolor{keywordflow}{if}\ (db.commit())\ \{}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Database\ successfully\ reset\ and\ reloaded\ from\ Excel."{}};}
+\DoxyCodeLine{00349\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Commit\ failed\ during\ reset.\ Rolling\ back."{}};}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ db.rollback();}
+\DoxyCodeLine{00352\ \ \ \ \ \}}
+\DoxyCodeLine{00353\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{database_helper_8h_a303fcb2cb85e0a1ff5906db6fd8767cb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{database_helper_8h_a118f35c1a1476e09dd314c5bb1f5d6a9}\index{databaseHelper.h@{databaseHelper.h}!updateSouvenirPrice@{updateSouvenirPrice}}
+\index{updateSouvenirPrice@{updateSouvenirPrice}!databaseHelper.h@{databaseHelper.h}}
+\doxysubsubsection{\texorpdfstring{updateSouvenirPrice()}{updateSouvenirPrice()}}
+{\footnotesize\ttfamily \label{database_helper_8h_a118f35c1a1476e09dd314c5bb1f5d6a9} 
+bool update\+Souvenir\+Price (\begin{DoxyParamCaption}\item[{const int}]{campus\+ID}{, }\item[{const QString \&}]{name}{, }\item[{const double}]{new\+Price}{}\end{DoxyParamCaption})}
+
+
+
+Updates the pricing of an existing souvenir. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em campus\+ID} & The owner campus ID. \\
+\hline
+{\em name} & The name of the item to update. \\
+\hline
+{\em new\+Price} & The updated price. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the update query executed successfully. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{database_helper_8cpp_source_l00036}{36}} of file \doxymbox{\hyperlink{database_helper_8cpp_source}{database\+Helper.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ QSqlQuery\ query;}
+\DoxyCodeLine{00038\ \ \ \ \ query.prepare(\textcolor{stringliteral}{"{}UPDATE\ souvenirs\ SET\ price\ =\ :price\ "{}}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}WHERE\ campusID\ =\ :id\ AND\ souvenirName\ =\ :name"{}});}
+\DoxyCodeLine{00040\ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:price"{}},\ newPrice);}
+\DoxyCodeLine{00041\ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:id"{}},\ campusID);}
+\DoxyCodeLine{00042\ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:name"{}},\ name);}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{return}\ query.exec();}
+\DoxyCodeLine{00044\ \}}
+
+\end{DoxyCode}
+\Hypertarget{database_helper_8h_ab5be4a2470cfc5c6d8bd862833bfd3dc}\index{databaseHelper.h@{databaseHelper.h}!uploadFileAppend@{uploadFileAppend}}
+\index{uploadFileAppend@{uploadFileAppend}!databaseHelper.h@{databaseHelper.h}}
+\doxysubsubsection{\texorpdfstring{uploadFileAppend()}{uploadFileAppend()}}
+{\footnotesize\ttfamily \label{database_helper_8h_ab5be4a2470cfc5c6d8bd862833bfd3dc} 
+QString\+List upload\+File\+Append (\begin{DoxyParamCaption}\item[{const QString \&}]{file\+Path}{}\end{DoxyParamCaption})}
+
+
+
+Parses an Excel file to append new data to the current database. 
+
+Performs a complex mapping of Excel IDs to database auto-\/increment IDs to ensure relational integrity across campuses, souvenirs, and distances. 
+\begin{DoxyParams}{Parameters}
+{\em file\+Path} & Path to the .xlsx file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A list of names of the campuses successfully imported. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{database_helper_8cpp_source_l00204}{204}} of file \doxymbox{\hyperlink{database_helper_8cpp_source}{database\+Helper.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00205\ \ \ \ \ QXlsx::Document\ xlsx(filePath);}
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keywordflow}{if}\ (!xlsx.load())\ \{}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}[ERROR]\ Could\ not\ load\ Excel\ file\ at:"{}}\ <<\ filePath;}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\};}
+\DoxyCodeLine{00209\ \ \ \ \ \}}
+\DoxyCodeLine{00210\ \ \ \ \ QSqlDatabase\ db\ =\ QSqlDatabase::database();}
+\DoxyCodeLine{00211\ \ \ \ \ db.transaction();}
+\DoxyCodeLine{00212\ \ \ \ \ QStringList\ newlyAdded;}
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{comment}{//\ Maps\ Excel\ CampusID\ -\/>\ Actual\ Database\ CampusID}}
+\DoxyCodeLine{00214\ \ \ \ \ QMap<int,\ int>\ IDMap;}
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ QString\ \&sheetName\ :\ xlsx.sheetNames())\ \{}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ xlsx.selectSheet(sheetName);}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Map\ headers\ to\ column\ numbers}}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ QMap<QString,\ int>\ headerMap;}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ col\ =\ 1;\ col\ <=\ 20;\ ++col)\ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ QVariant\ header\ =\ xlsx.read(1,\ col);}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!header.isValid())\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ headerMap[header.toString().toLower().trimmed()]\ =\ col;}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ row\ =\ 2;}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1.\ Process\ CampusList\ first\ to\ establish\ ID\ mapping}}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sheetName.toLower()\ ==\ \textcolor{stringliteral}{"{}campuslist"{}})\ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (xlsx.read(row,\ 1).isValid())\ \{}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ excelID\ =\ xlsx.read(row,\ headerMap[\textcolor{stringliteral}{"{}campusid"{}}]).toInt();}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ QString\ name\ =\ xlsx.read(row,\ headerMap[\textcolor{stringliteral}{"{}campusname"{}}]).toString();}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!name.isEmpty())\ \{}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ QSqlQuery\ query;}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ query.prepare(\textcolor{stringliteral}{"{}INSERT\ INTO\ campusList\ (campusName)\ VALUES\ (:name)"{}});}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:name"{}},\ name);}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (query.exec())\ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Retrieve\ the\ ACTUAL\ ID\ generated\ by\ the\ database\ (Auto-\/increment)}}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ actualID\ =\ query.lastInsertId().toInt();}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IDMap.insert(excelID,\ actualID);}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ newlyAdded\ <<\ name;}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Failed\ to\ add\ campus"{}}\ <<\ name\ <<\ \textcolor{stringliteral}{"{}:"{}}\ <<\ query.lastError().text();}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ row++;}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2.\ Process\ Souvenirs\ using\ the\ map}}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (sheetName.toLower()\ ==\ \textcolor{stringliteral}{"{}souvenirs"{}})\ \{}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (xlsx.read(row,\ 1).isValid())\ \{}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ excelID\ =\ xlsx.read(row,\ headerMap[\textcolor{stringliteral}{"{}campusid"{}}]).toInt();}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ QString\ sName\ =\ xlsx.read(row,\ headerMap[\textcolor{stringliteral}{"{}souvenirname"{}}]).toString();}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ price\ =\ xlsx.read(row,\ headerMap[\textcolor{stringliteral}{"{}price"{}}]).toDouble();}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Replace\ Excel\ ID\ with\ Actual\ ID\ from\ our\ map}}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (IDMap.contains(excelID))\ \{}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ actualID\ =\ IDMap.value(excelID);}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{database_helper_8cpp_a44dac679a954686debebbeb013e85075}{addSouvenir}}(actualID,\ sName,\ price))\ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Failed\ to\ add\ souvenir"{}}\ <<\ sName\ <<\ \textcolor{stringliteral}{"{}for\ actual\ ID"{}}\ <<\ actualID;}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ row++;}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3.\ Process\ Distances\ using\ the\ map}}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (sheetName.toLower()\ ==\ \textcolor{stringliteral}{"{}campusdistances"{}})\ \{}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (xlsx.read(row,\ 1).isValid())\ \{}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ excelID1\ =\ xlsx.read(row,\ headerMap[\textcolor{stringliteral}{"{}campusid1"{}}]).toInt();}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ excelID2\ =\ xlsx.read(row,\ headerMap[\textcolor{stringliteral}{"{}campusid2"{}}]).toInt();}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ dist\ =\ xlsx.read(row,\ headerMap[\textcolor{stringliteral}{"{}distance"{}}]).toInt();}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Only\ add\ if\ BOTH\ campuses\ were\ part\ of\ this\ new\ upload}}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (IDMap.contains(excelID1)\ \&\&\ IDMap.contains(excelID2))\ \{}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ actualID1\ =\ IDMap.value(excelID1);}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ actualID2\ =\ IDMap.value(excelID2);}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{database_helper_8cpp_a03b4e3382e830c7a89466a8eb7f643a4}{addDistance}}(actualID1,\ actualID2,\ dist);}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{database_helper_8cpp_a03b4e3382e830c7a89466a8eb7f643a4}{addDistance}}(actualID2,\ actualID1,\ dist);}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ row++;}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00278\ \ \ \ \ \}}
+\DoxyCodeLine{00279\ \ \ \ \ \textcolor{keywordflow}{if}\ (db.commit())\ \{}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Successfully\ uploaded"{}}\ <<\ newlyAdded.size()\ <<\ \textcolor{stringliteral}{"{}campuses\ with\ re-\/mapped\ IDs."{}};}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ newlyAdded;}
+\DoxyCodeLine{00282\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ db.rollback();}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Upload\ failed,\ transaction\ rolled\ back."{}};}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\};}
+\DoxyCodeLine{00286\ \ \ \ \ \}}
+\DoxyCodeLine{00287\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=280pt]{database_helper_8h_ab5be4a2470cfc5c6d8bd862833bfd3dc_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{database_helper_8h_ab5be4a2470cfc5c6d8bd862833bfd3dc_icgraph}
+\end{center}
+\end{figure}

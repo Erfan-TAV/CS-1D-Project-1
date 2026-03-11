@@ -1,0 +1,466 @@
+\doxysection{adminpage.\+cpp}
+\hypertarget{adminpage_8cpp_source}{}\label{adminpage_8cpp_source}\index{sources/adminpage.cpp@{sources/adminpage.cpp}}
+\doxymbox{\hyperlink{adminpage_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{adminpage_8h}{adminpage.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <QCryptographicHash>}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{ui__adminpage_8h}{ui\_adminpage.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <qsqlerror.h>}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <QSqlRecord>}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <QSqlQuery>}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <QTimer>}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{database_helper_8h}{databaseHelper.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00009}00009\ \textcolor{preprocessor}{\#include\ <QFileDialog>}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00010}00010\ \textcolor{preprocessor}{\#include\ <QStandardPaths>}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00011}00011\ \textcolor{preprocessor}{\#include\ <QTableWidget>}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00013}\doxymbox{\hyperlink{class_admin_page_a1150741b249e777a213dbe57802db854}{00013}}\ \doxymbox{\hyperlink{class_admin_page_a1150741b249e777a213dbe57802db854}{AdminPage::AdminPage}}(QWidget*\ parent)\ :}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00014}00014\ \ \ \ \ \doxymbox{\hyperlink{class_database_page_adf83a1f998dc86afd7229db40628857a}{DatabasePage}}(parent),\ \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}(new\ \doxymbox{\hyperlink{namespace_ui}{Ui}}::\doxymbox{\hyperlink{class_admin_page_a1150741b249e777a213dbe57802db854}{AdminPage}})}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00015}00015\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00016}00016\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>setupUi(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00018}00018\ \ \ \ \ \textcolor{comment}{//\ set\ the\ page\ to\ login\ screen\ by\ default}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00019}00019\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>adminPageStack-\/>setCurrentIndex(0);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00021}00021\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_aaba950e4cfef2bdb3519652a687e7e94}{setupLoginPage}}();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00023}00023\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_a32a6022c291fc9905398f61979bfe66a}{setupDatabaseTable}}();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00024}00024\ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00026}\doxymbox{\hyperlink{class_admin_page_ab3298c7c5465e3ff6908b74660238480}{00026}}\ \doxymbox{\hyperlink{class_admin_page_ab3298c7c5465e3ff6908b74660238480}{AdminPage::\string~AdminPage}}()}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00027}00027\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00028}00028\ \ \ \ \ \textcolor{keyword}{delete}\ \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}};}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00029}00029\ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00031}00031\ \textcolor{comment}{//\ TODO:\ add\ proper\ login\ logic}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00032}\doxymbox{\hyperlink{class_admin_page_a16675919043ae4f2160148da4ecdc22d}{00032}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_admin_page_a16675919043ae4f2160148da4ecdc22d}{AdminPage::handleLogin}}()\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00033}00033\ \ \ \ \ QString\ username\ =\ \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>usernameField-\/>text();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00034}00034\ \ \ \ \ QString\ password\ =\ \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>passwordField-\/>text();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00036}00036\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_admin_page_a525dd78af12c754112f7e7dcc6990fa7}{verifyUserCredentials}}(username,\ password))\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>adminPageStack-\/>setCurrentIndex(1);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ emit\ \doxymbox{\hyperlink{class_admin_page_a4a3217feb907b151e7efba86e2153d78}{notifyStatus}}(\textcolor{stringliteral}{"{}Login\ Successful"{}});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>usernameField-\/>clear();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>passwordField-\/>clear();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00042}00042\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ emit\ \doxymbox{\hyperlink{class_admin_page_a4a3217feb907b151e7efba86e2153d78}{notifyStatus}}(\textcolor{stringliteral}{"{}Login\ Failed"{}});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00044}00044\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00045}00045\ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00047}\doxymbox{\hyperlink{class_admin_page_a32a6022c291fc9905398f61979bfe66a}{00047}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_admin_page_a32a6022c291fc9905398f61979bfe66a}{AdminPage::setupDatabaseTable}}()\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00048}00048\ \ \ \ \ \textcolor{comment}{//\ 1.\ Get\ the\ connection\ you\ opened\ in\ main.cpp}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00049}00049\ \ \ \ \ \textcolor{comment}{//\ If\ DbManager\ didn't\ give\ it\ a\ specific\ name,\ it's\ the\ default:}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00050}00050\ \ \ \ \ QSqlDatabase\ db\ =\ QSqlDatabase::database();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00052}00052\ \ \ \ \ \textcolor{keywordflow}{if}\ (!db.isOpen())\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}AdminPage:\ Database\ is\ NOT\ open\ at"{}}\ <<\ db.databaseName();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00055}00055\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00057}00057\ \ \ \ \ \textcolor{comment}{//\ 2.\ Pass\ the\ 'db'\ object\ to\ the\ model}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00058}00058\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_ab0a581b58900e0d0a6161a8263effe84}{campusModel}}\ =\ \textcolor{keyword}{new}\ QSqlTableModel(\textcolor{keyword}{this},\ db);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00060}00060\ \ \ \ \ \textcolor{comment}{//\ 3.\ Match\ the\ table\ name\ exactly}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00061}00061\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_ab0a581b58900e0d0a6161a8263effe84}{campusModel}}-\/>setTable(\textcolor{stringliteral}{"{}campusList"{}});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00063}00063\ \ \ \ \ \textcolor{comment}{//\ 4.\ Important:\ Set\ the\ Edit\ Strategy\ before\ selecting}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00064}00064\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_ab0a581b58900e0d0a6161a8263effe84}{campusModel}}-\/>setEditStrategy(QSqlTableModel::OnFieldChange);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00066}00066\ \ \ \ \ \textcolor{comment}{//\ 5.\ Fetch\ the\ data}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00067}00067\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{class_admin_page_ab0a581b58900e0d0a6161a8263effe84}{campusModel}}-\/>select())\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}SQL\ Error:"{}}\ <<\ \doxymbox{\hyperlink{class_admin_page_ab0a581b58900e0d0a6161a8263effe84}{campusModel}}-\/>lastError().text();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00069}00069\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}AdminPage:\ Successfully\ loaded"{}}\ <<\ \doxymbox{\hyperlink{class_admin_page_ab0a581b58900e0d0a6161a8263effe84}{campusModel}}-\/>rowCount()\ <<\ \textcolor{stringliteral}{"{}campus\ rows"{}};}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00071}00071\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00073}00073\ \ \ \ \ \textcolor{comment}{//\ 6.\ Set\ the\ model\ to\ your\ ListView\ from\ the\ UI\ screenshot}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00074}00074\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>campusList-\/>setModel(\doxymbox{\hyperlink{class_admin_page_ab0a581b58900e0d0a6161a8263effe84}{campusModel}});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00075}00075\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>campusList-\/>setModelColumn(1);\ \textcolor{comment}{//\ Column\ 0\ is\ usually\ 'campusName'}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00078}00078\ \ \ \ \ \textcolor{comment}{//\ set\ up\ the\ souvenir\ table}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00079}00079\ \ \ \ \ \textcolor{comment}{//\ 1.\ Initialize\ the\ Souvenir\ Model\ (the\ right-\/hand\ table)}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00080}00080\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_adaf2b3c18aa4084b3e7f53ec4c3dc519}{souvenirModel}}\ =\ \textcolor{keyword}{new}\ QSqlTableModel(\textcolor{keyword}{this},\ QSqlDatabase::database());}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00081}00081\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_adaf2b3c18aa4084b3e7f53ec4c3dc519}{souvenirModel}}-\/>setTable(\textcolor{stringliteral}{"{}souvenirs"{}});\ \textcolor{comment}{//\ Replace\ with\ your\ actual\ table\ name}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00082}00082\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_adaf2b3c18aa4084b3e7f53ec4c3dc519}{souvenirModel}}-\/>setEditStrategy(QSqlTableModel::OnFieldChange);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00083}00083\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>tableView-\/>setModel(\doxymbox{\hyperlink{class_admin_page_adaf2b3c18aa4084b3e7f53ec4c3dc519}{souvenirModel}});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00084}00084\ \ \ \ \ \textcolor{comment}{//\ hide\ the\ campus\ id}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00085}00085\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>tableView-\/>setColumnHidden(0,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00086}00086\ \ \ \ \ \textcolor{comment}{//\ add\ nice\ headers\ for\ the\ columns}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00087}00087\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_adaf2b3c18aa4084b3e7f53ec4c3dc519}{souvenirModel}}-\/>setHeaderData(1,\ Qt::Horizontal,\ \textcolor{stringliteral}{"{}Souvenir\ Name"{}});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00088}00088\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_adaf2b3c18aa4084b3e7f53ec4c3dc519}{souvenirModel}}-\/>setHeaderData(2,\ Qt::Horizontal,\ \textcolor{stringliteral}{"{}Price\ (\$)"{}});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00090}00090\ \ \ \ \ QHeaderView\ *header\ =\ \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>tableView-\/>horizontalHeader();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00091}00091\ \ \ \ \ header-\/>setSectionResizeMode(1,\ QHeaderView::Stretch);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00092}00092\ \ \ \ \ header-\/>setSectionResizeMode(2,\ QHeaderView::ResizeToContents);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00094}00094\ \ \ \ \ \textcolor{comment}{//\ 2.\ Handle\ the\ "{}Click"{}\ on\ the\ Campus\ List}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00095}00095\ \ \ \ \ connect(\doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>campusList,\ \&QListView::clicked,\ \textcolor{keyword}{this},\ [\textcolor{keyword}{this}](\textcolor{keyword}{const}\ QModelIndex\ \&index)\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ the\ full\ record\ for\ the\ row\ you\ just\ clicked}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00097}00097\ \ \ \ \ \ \ \ \ QSqlRecord\ record\ =\ campusModel-\/>record(index.row());}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ the\ LineEdit\ with\ the\ name}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ QString\ name\ =\ record.value(\textcolor{stringliteral}{"{}campusName"{}}).toString();\ \textcolor{comment}{//\ Use\ your\ actual\ column\ name}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ ui-\/>collegeNameLineEdit-\/>setText(name);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Filter\ the\ Souvenirs\ table\ by\ Campus\ ID}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ int\ campusId\ =\ record.value(\textcolor{stringliteral}{"{}campusId"{}}).toInt();\ \textcolor{comment}{//\ Use\ your\ actual\ ID\ column\ name}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ souvenirModel-\/>setFilter(QString(\textcolor{stringliteral}{"{}campusId\ =\ \%1"{}}).arg(campusId));}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ souvenirModel-\/>select();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00107}00107\ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00109}00109\ \ \ \ \ \textcolor{comment}{//\ 3.\ Handle\ live-\/editing\ the\ name\ back\ to\ the\ DB}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00110}00110\ \ \ \ \ connect(\doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>collegeNameLineEdit,\ \&QLineEdit::textEdited,\ \textcolor{keyword}{this},\ [\textcolor{keyword}{this}](\textcolor{keyword}{const}\ QString\ \&newText)\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ QModelIndex\ currentIndex\ =\ ui-\/>campusList-\/>currentIndex();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ if\ (currentIndex.isValid())\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ updates\ the\ model,\ which\ updates\ the\ DB\ because\ of\ OnFieldChange}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ campusModel-\/>setData(campusModel-\/>index(currentIndex.row(),\ 1),\ newText);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00116}00116\ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00118}00118\ \ \ \ \ \textcolor{comment}{//\ When\ the\ user\ presses\ Enter\ in\ the\ LineEdit}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00119}00119\ \ \ \ \ connect(ui-\/>collegeNameLineEdit,\ \&QLineEdit::returnPressed,\ \textcolor{keyword}{this},\ [\textcolor{keyword}{this}]()\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ QModelIndex\ currentIndex\ =\ ui-\/>campusList-\/>currentIndex();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ if\ (currentIndex.isValid())\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ an\ index\ specifically\ for\ Column\ 1\ (campusName)}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ QModelIndex\ nameIndex\ =\ campusModel-\/>index(currentIndex.row(),\ 1);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ QString\ newName\ =\ ui-\/>collegeNameLineEdit-\/>text();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ the\ name,\ not\ the\ ID!}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (campusModel-\/>setData(nameIndex,\ newName))\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ campusModel-\/>submitAll();\ \textcolor{comment}{//\ Push\ to\ project1.db}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ emit\ notifyStatus(\textcolor{stringliteral}{"{}Campus\ updated\ successfully!"{}});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Update\ failed:"{}}\ <<\ campusModel-\/>lastError().text();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00135}00135\ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00137}00137\ \ \ \ \ \textcolor{comment}{//\ enable\ +/-\/\ for\ souvenirs}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00138}00138\ \ \ \ \ connect(ui-\/>removeSouvenirButton,\ \&QPushButton::clicked,\ \textcolor{keyword}{this},\ [\textcolor{keyword}{this}]()\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ QModelIndex\ currentIndex\ =\ ui-\/>tableView-\/>currentIndex();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ if\ (!currentIndex.isValid())\ return;}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00142}00142\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1.\ Get\ the\ identifying\ data\ from\ the\ selected\ row}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Column\ 1\ is\ souvenirName\ (based\ on\ your\ DB\ screenshot)}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00144}00144\ \ \ \ \ \ \ \ \ QString\ nameToDelete\ =\ souvenirModel-\/>data(souvenirModel-\/>index(currentIndex.row(),\ 1)).toString();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00145}00145\ \ \ \ \ \ \ \ \ int\ campusID\ =\ souvenirModel-\/>data(souvenirModel-\/>index(currentIndex.row(),\ 0)).toInt();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2.\ Run\ a\ direct\ SQL\ Query\ to\ bypass\ the\ model's\ cache}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00148}00148\ \ \ \ \ \ \ \ \ QSqlQuery\ query;}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00149}00149\ \ \ \ \ \ \ \ \ query.prepare(\textcolor{stringliteral}{"{}DELETE\ FROM\ souvenirs\ WHERE\ souvenirName\ =\ :name\ AND\ campusID\ =\ :id"{}});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00150}00150\ \ \ \ \ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:name"{}},\ nameToDelete);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00151}00151\ \ \ \ \ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:id"{}},\ campusID);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00153}00153\ \ \ \ \ \ \ \ \ if\ (query.exec())\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3.\ The\ data\ is\ GONE\ from\ the\ .db\ file.\ Now\ force\ the\ UI\ to\ match.}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Re-\/applying\ the\ filter\ and\ calling\ select()\ flushes\ the\ ghost\ rows.}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ souvenirModel-\/>setFilter(QString(\textcolor{stringliteral}{"{}campusID\ =\ \%1"{}}).arg(campusID));}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ souvenirModel-\/>select();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Direct\ SQL\ Delete\ successful\ for:"{}}\ <<\ nameToDelete;}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00160}00160\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}SQL\ Error:"{}}\ <<\ query.lastError().text();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00162}00162\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00163}00163\ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00164}00164\ \ \ \ \ connect(ui-\/>addSouvenirButton,\ \&QPushButton::clicked,\ \textcolor{keyword}{this},\ [\textcolor{keyword}{this}]()\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1.\ Get\ the\ Campus\ ID\ from\ the\ left\ list\ to\ link\ the\ new\ souvenir}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00166}00166\ \ \ \ \ \ \ \ \ QModelIndex\ campusIndex\ =\ ui-\/>campusList-\/>currentIndex();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00167}00167\ \ \ \ \ \ \ \ \ if\ (!campusIndex.isValid())\ return;}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00168}00168\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Assuming\ Column\ 0\ of\ campusModel\ is\ campusID}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00170}00170\ \ \ \ \ \ \ \ \ int\ currentCampusID\ =\ campusModel-\/>data(campusModel-\/>index(campusIndex.row(),\ 0)).toInt();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00171}00171\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00172}00172\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2.\ Insert\ a\ new\ row\ at\ the\ end\ of\ the\ filtered\ list}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00173}00173\ \ \ \ \ \ \ \ \ int\ rowCount\ =\ souvenirModel-\/>rowCount();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00174}00174\ \ \ \ \ \ \ \ \ souvenirModel-\/>insertRow(rowCount);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00175}00175\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00176}00176\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3.\ Set\ the\ Foreign\ Key\ (campusID)\ automatically\ in\ Column\ 0\ (hidden)}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00177}00177\ \ \ \ \ \ \ \ \ souvenirModel-\/>setData(souvenirModel-\/>index(rowCount,\ 0),\ currentCampusID);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00178}00178\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00179}00179\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 4.\ Select\ the\ new\ row\ and\ start\ editing\ the\ Name\ (Column\ 1)}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00180}00180\ \ \ \ \ \ \ \ \ QModelIndex\ nameIndex\ =\ souvenirModel-\/>index(rowCount,\ 1);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00181}00181\ \ \ \ \ \ \ \ \ ui-\/>tableView-\/>setCurrentIndex(nameIndex);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00182}00182\ \ \ \ \ \ \ \ \ ui-\/>tableView-\/>edit(nameIndex);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00183}00183\ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00184}00184\ \ \ \ \ \textcolor{comment}{//\ this\ jumps\ the\ user\ to\ the\ price\ column\ when\ done\ writing\ the\ price}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00185}00185\ \ \ \ \ connect(souvenirModel,\ \&QSqlTableModel::dataChanged,\ \textcolor{keyword}{this},\ [\textcolor{keyword}{this}](\textcolor{keyword}{const}\ QModelIndex\ \&topLeft,\ \textcolor{keyword}{const}\ QModelIndex\ \&bottomRight)\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00186}00186\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ only\ care\ if\ the\ 'Souvenir\ Name'\ (Column\ 1)\ was\ the\ one\ changed}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00187}00187\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (topLeft.column()\ ==\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00188}00188\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1.\ Identify\ the\ 'Price'\ cell\ in\ the\ same\ row\ (Column\ 2)}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ QModelIndex\ priceIndex\ =\ souvenirModel-\/>index(topLeft.row(),\ 2);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00191}00191\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2.\ Set\ the\ focus\ to\ the\ table\ and\ start\ editing\ the\ price}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ ui-\/>tableView-\/>setCurrentIndex(priceIndex);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00194}00194\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ use\ a\ timer\ with\ 0ms\ to\ let\ the\ current\ 'Enter'\ event\ finish}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ before\ opening\ the\ next\ editor,\ preventing\ a\ focus\ glitch.}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ QTimer::singleShot(0,\ \textcolor{keyword}{this},\ [\textcolor{keyword}{this},\ priceIndex]()\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ui-\/>tableView-\/>edit(priceIndex);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00200}00200\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00201}00201\ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00202}00202\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00203}00203\ \ \ \ \ \textcolor{comment}{//\ enable\ +/-\/\ for\ campusList}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00204}00204\ \ \ \ \ connect(ui-\/>removeCampusButton,\ \&QPushButton::clicked,\ \textcolor{keyword}{this},\ [\textcolor{keyword}{this}]()\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00205}00205\ \ \ \ \ \ \ \ \ QModelIndex\ currentIndex\ =\ ui-\/>campusList-\/>currentIndex();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00206}00206\ \ \ \ \ \ \ \ \ if\ (!currentIndex.isValid())\ return;}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00207}00207\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00208}00208\ \ \ \ \ \ \ \ \ int\ idToDelete\ =\ campusModel-\/>data(campusModel-\/>index(currentIndex.row(),\ 0)).toInt();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00209}00209\ \ \ \ \ \ \ \ \ QSqlDatabase\ db\ =\ QSqlDatabase::database();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00210}00210\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00211}00211\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Start\ a\ transaction\ to\ ensure\ all\ deletes\ happen\ together\ or\ none\ at\ all}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00212}00212\ \ \ \ \ \ \ \ \ db.transaction();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00213}00213\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00214}00214\ \ \ \ \ \ \ \ \ QSqlQuery\ query;}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00215}00215\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1.\ Delete\ associated\ souvenirs}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00217}00217\ \ \ \ \ \ \ \ \ query.prepare(\textcolor{stringliteral}{"{}DELETE\ FROM\ souvenirs\ WHERE\ campusID\ =\ :id"{}});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00218}00218\ \ \ \ \ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:id"{}},\ idToDelete);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00219}00219\ \ \ \ \ \ \ \ \ if\ (!query.exec())\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Souvenir\ delete\ failed:"{}}\ <<\ query.lastError().text();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ db.rollback();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ return;}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00223}00223\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00224}00224\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00225}00225\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2.\ Delete\ associated\ distances\ (where\ \ is\ campusID1)}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00226}00226\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ will\ remove\ all\ rows\ where\ this\ campus\ is\ the\ 'source'\ of\ a\ distance}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00227}00227\ \ \ \ \ \ \ \ \ query.prepare(\textcolor{stringliteral}{"{}DELETE\ FROM\ campusDistances\ WHERE\ campusID1\ =\ :id\ OR\ campusID2\ =\ :id"{}});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00228}00228\ \ \ \ \ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:id"{}},\ idToDelete);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00229}00229\ \ \ \ \ \ \ \ \ if\ (!query.exec())\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Distance\ delete\ failed:"{}}\ <<\ query.lastError().text();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ db.rollback();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ return;}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00233}00233\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00234}00234\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00235}00235\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3.\ Delete\ the\ actual\ campus}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00236}00236\ \ \ \ \ \ \ \ \ query.prepare(\textcolor{stringliteral}{"{}DELETE\ FROM\ campusList\ WHERE\ campusID\ =\ :id"{}});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00237}00237\ \ \ \ \ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:id"{}},\ idToDelete);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00238}00238\ \ \ \ \ \ \ \ \ if\ (!query.exec())\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Campus\ delete\ failed:"{}}\ <<\ query.lastError().text();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ db.rollback();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ return;}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00242}00242\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00243}00243\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00244}00244\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Commit\ the\ changes\ to\ disk}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00245}00245\ \ \ \ \ \ \ \ \ if\ (db.commit())\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ campusModel-\/>select();\ \textcolor{comment}{//\ Refresh\ UI\ list}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ ui-\/>collegeNameLineEdit-\/>clear();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ souvenirModel-\/>setFilter(\textcolor{stringliteral}{"{}campusID\ =\ -\/1"{}});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ souvenirModel-\/>select();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Campus\ and\ all\ related\ data\ successfully\ deleted."{}};}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00251}00251\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00252}00252\ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00253}00253\ \ \ \ \ connect(ui-\/>addCampusButton,\ \&QPushButton::clicked,\ \textcolor{keyword}{this},\ [\textcolor{keyword}{this}]()\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00254}00254\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1.\ Determine\ a\ unique\ placeholder\ name}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00255}00255\ \ \ \ \ \ \ \ \ int\ count\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00256}00256\ \ \ \ \ \ \ \ \ QSqlQuery\ countQuery;}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00257}00257\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Count\ how\ many\ campuses\ currently\ start\ with\ "{}New\ College"{}}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00258}00258\ \ \ \ \ \ \ \ \ countQuery.prepare(\textcolor{stringliteral}{"{}SELECT\ COUNT(*)\ FROM\ campusList\ WHERE\ campusName\ LIKE\ 'New\ College\%'"{}});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00259}00259\ \ \ \ \ \ \ \ \ if\ (countQuery.exec()\ \&\&\ countQuery.next())\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ count\ =\ countQuery.value(0).toInt()\ +\ 1;}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00261}00261\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00262}00262\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00263}00263\ \ \ \ \ \ \ \ \ QString\ uniquePlaceholder\ =\ QString(\textcolor{stringliteral}{"{}New\ College\ \%1"{}}).arg(count);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00264}00264\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ rowCount\ =\ campusModel-\/>rowCount();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00265}00265\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00266}00266\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (campusModel-\/>insertRow(rowCount))\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00267}00267\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2.\ Set\ the\ unique\ name}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00268}00268\ \ \ \ \ \ \ \ \ \ \ \ \ campusModel-\/>setData(campusModel-\/>index(rowCount,\ 1),\ uniquePlaceholder);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00269}00269\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00270}00270\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (campusModel-\/>submitAll())\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00271}00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ui-\/>campusList-\/>setCurrentIndex(campusModel-\/>index(rowCount,\ 1));}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ui-\/>collegeNameLineEdit-\/>setText(uniquePlaceholder);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00273}00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ui-\/>collegeNameLineEdit-\/>setFocus();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00274}00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ui-\/>collegeNameLineEdit-\/>selectAll();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00275}00275\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00276}00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3.\ Trigger\ the\ popup\ with\ the\ unique\ name}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00277}00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ popup\ logic\ will\ now\ find\ the\ correct\ ID\ because\ the\ name\ is\ unique}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00278}00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (promptForDistances(\{uniquePlaceholder\})\ ==\ QDialog::Rejected)\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00279}00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Distance\ entry\ cancelled.\ Deleting"{}}\ <<\ uniquePlaceholder;}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00280}00280\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00281}00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fetch\ the\ ID\ of\ the\ row\ we\ just\ added\ to\ ensure\ clean\ removal}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00282}00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ int\ idToDelete\ =\ campusModel-\/>record(rowCount).value(\textcolor{stringliteral}{"{}campusId"{}}).toInt();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00283}00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ removeCampus(idToDelete);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ refreshUI();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00286}00286\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00287}00287\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00288}00288\ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00289}00289\ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00290}00290\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00291}\doxymbox{\hyperlink{class_admin_page_afbcd4cb0e0f9d51f618253f984498e2d}{00291}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_admin_page_afbcd4cb0e0f9d51f618253f984498e2d}{AdminPage::on\_uploadFile\_clicked}}()\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00292}00292\ \ \ \ \ QString\ filePath\ =\ QFileDialog::getOpenFileName(}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00293}00293\ \ \ \ \ \ \ \ \ \textcolor{keyword}{this},\ tr(\textcolor{stringliteral}{"{}Select\ Excel\ File"{}}),}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00294}00294\ \ \ \ \ \ \ \ \ QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation),}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00295}00295\ \ \ \ \ \ \ \ \ tr(\textcolor{stringliteral}{"{}Excel\ Files\ (*.xlsx\ *.xls)"{}})}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00296}00296\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00297}00297\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00298}00298\ \ \ \ \ \textcolor{keywordflow}{if}\ (filePath.isEmpty())\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00299}00299\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00300}00300\ \ \ \ \ \textcolor{comment}{//\ 1.\ Perform\ upload\ and\ get\ the\ names\ of\ NEW\ campuses}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00301}00301\ \ \ \ \ QStringList\ added\ =\ \doxymbox{\hyperlink{database_helper_8h_ab5be4a2470cfc5c6d8bd862833bfd3dc}{uploadFileAppend}}(filePath);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00302}00302\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00303}00303\ \ \ \ \ \textcolor{comment}{//\ 2.\ Refresh\ the\ UI\ so\ the\ models\ see\ the\ new\ data}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00304}00304\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_aff83326be65d2e96c925f1f4aba7a1e2}{refreshUI}}();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00305}00305\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00306}00306\ \ \ \ \ \textcolor{comment}{//\ 3.\ If\ there\ were\ new\ campuses,\ prompt\ for\ their\ distances\ to\ existing\ ones}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00307}00307\ \ \ \ \ \textcolor{keywordflow}{if}\ (!added.isEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00308}00308\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_a609026d0ed071ff25100ac5ad88b7192}{promptForDistances}}(added);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00309}00309\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00310}00310\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00311}00311\ \ \ \ \ emit\ \doxymbox{\hyperlink{class_admin_page_a4a3217feb907b151e7efba86e2153d78}{notifyStatus}}(\textcolor{stringliteral}{"{}File\ uploaded\ and\ distances\ configured!"{}});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00312}00312\ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00313}00313\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00314}\doxymbox{\hyperlink{class_admin_page_aff83326be65d2e96c925f1f4aba7a1e2}{00314}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_admin_page_aff83326be65d2e96c925f1f4aba7a1e2}{AdminPage::refreshUI}}()\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00315}00315\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}AdminPage:\ Database\ data\ re-\/synced\ to\ UI."{}};}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00316}00316\ \ \ \ \ \textcolor{comment}{//\ 1.\ Reload\ the\ main\ campus\ list}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00317}00317\ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_ab0a581b58900e0d0a6161a8263effe84}{campusModel}}-\/>select();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00318}00318\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00319}00319\ \ \ \ \ \textcolor{comment}{//\ 2.\ Figure\ out\ which\ campus\ was\ selected\ before\ the\ refresh}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00320}00320\ \ \ \ \ QModelIndex\ currentIndex\ =\ \doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>campusList-\/>currentIndex();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00321}00321\ \ \ \ \ \textcolor{keywordflow}{if}\ (currentIndex.isValid())\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00322}00322\ \ \ \ \ \ \ \ \ QSqlRecord\ record\ =\ \doxymbox{\hyperlink{class_admin_page_ab0a581b58900e0d0a6161a8263effe84}{campusModel}}-\/>record(currentIndex.row());}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00323}00323\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ campusId\ =\ record.value(\textcolor{stringliteral}{"{}campusId"{}}).toInt();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00324}00324\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00325}00325\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3.\ Re-\/apply\ the\ filter\ to\ the\ souvenirs\ so\ they\ stay\ visible}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00326}00326\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_adaf2b3c18aa4084b3e7f53ec4c3dc519}{souvenirModel}}-\/>setFilter(QString(\textcolor{stringliteral}{"{}campusId\ =\ \%1"{}}).arg(campusId));}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00327}00327\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_admin_page_adaf2b3c18aa4084b3e7f53ec4c3dc519}{souvenirModel}}-\/>select();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00328}00328\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00329}00329\ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00330}00330\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00331}\doxymbox{\hyperlink{class_admin_page_a609026d0ed071ff25100ac5ad88b7192}{00331}}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_admin_page_a609026d0ed071ff25100ac5ad88b7192}{AdminPage::promptForDistances}}(\textcolor{keyword}{const}\ QStringList\ \&newCampusNames)\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00332}00332\ \ \ \ \ \textcolor{keywordflow}{if}\ (newCampusNames.isEmpty())\ \textcolor{keywordflow}{return}\ QDialog::Rejected;}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00333}00333\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00334}00334\ \ \ \ \ QDialog\ detailDialog(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00335}00335\ \ \ \ \ detailDialog.setWindowTitle(\textcolor{stringliteral}{"{}Configure\ Campus\ Distances"{}});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00336}00336\ \ \ \ \ detailDialog.setMinimumSize(650,\ 450);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00337}00337\ \ \ \ \ detailDialog.setModal(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00338}00338\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00339}00339\ \ \ \ \ QVBoxLayout\ *layout\ =\ \textcolor{keyword}{new}\ QVBoxLayout(\&detailDialog);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00340}00340\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00341}00341\ \ \ \ \ \textcolor{comment}{//\ Create\ the\ Table}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00342}00342\ \ \ \ \ QTableWidget\ *distanceTable\ =\ \textcolor{keyword}{new}\ QTableWidget(\&detailDialog);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00343}00343\ \ \ \ \ distanceTable-\/>verticalHeader()-\/>setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00344}00344\ \ \ \ \ distanceTable-\/>setColumnCount(3);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00345}00345\ \ \ \ \ distanceTable-\/>setHorizontalHeaderLabels(\{\textcolor{stringliteral}{"{}New\ Campus"{}},\ \textcolor{stringliteral}{"{}To\ Existing\ Campus"{}},\ \textcolor{stringliteral}{"{}Distance\ (mi)"{}}\});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00346}00346\ \ \ \ \ distanceTable-\/>horizontalHeader()-\/>setSectionResizeMode(QHeaderView::Stretch);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00347}00347\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00348}00348\ \ \ \ \ \textcolor{comment}{//\ 1.\ Fetch\ ALL\ existing\ campuses\ directly\ from\ the\ DB\ to\ ensure\ we\ have\ the\ latest\ data}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00349}00349\ \ \ \ \ \textcolor{keyword}{struct\ }CampusInfo\ \{\ \textcolor{keywordtype}{int}\ id;\ QString\ name;\ \};}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00350}00350\ \ \ \ \ QList<CampusInfo>\ existingCampuses;}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00351}00351\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00352}00352\ \ \ \ \ QSqlQuery\ query(\textcolor{stringliteral}{"{}SELECT\ campusId,\ campusName\ FROM\ campusList"{}});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00353}00353\ \ \ \ \ \textcolor{keywordflow}{while}\ (query.next())\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00354}00354\ \ \ \ \ \ \ \ \ QString\ name\ =\ query.value(1).toString();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00355}00355\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ only\ want\ to\ pair\ the\ "{}New"{}\ campus\ with\ campuses\ that\ were\ ALREADY\ there}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00356}00356\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!newCampusNames.contains(name))\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00357}00357\ \ \ \ \ \ \ \ \ \ \ \ \ existingCampuses.append(\{query.value(0).toInt(),\ name\});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00358}00358\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00359}00359\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00360}00360\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00361}00361\ \ \ \ \ \textcolor{comment}{//\ 2.\ Populate\ the\ Table\ Rows}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00362}00362\ \ \ \ \ \textcolor{comment}{//\ Logic:\ For\ every\ NEW\ campus,\ create\ a\ row\ for\ every\ EXISTING\ campus}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00363}00363\ \ \ \ \ \textcolor{keywordtype}{int}\ currentRow\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00364}00364\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ QString\ \&newName\ :\ newCampusNames)\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00365}00365\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&ex\ :\ existingCampuses)\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00366}00366\ \ \ \ \ \ \ \ \ \ \ \ \ distanceTable-\/>insertRow(currentRow);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00367}00367\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00368}00368\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Column\ 0:\ New\ Campus\ Name\ (Read\ Only)}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00369}00369\ \ \ \ \ \ \ \ \ \ \ \ \ QTableWidgetItem\ *newItem\ =\ \textcolor{keyword}{new}\ QTableWidgetItem(newName);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00370}00370\ \ \ \ \ \ \ \ \ \ \ \ \ newItem-\/>setFlags(newItem-\/>flags()\ \&\ \string~Qt::ItemIsEditable);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00371}00371\ \ \ \ \ \ \ \ \ \ \ \ \ distanceTable-\/>setItem(currentRow,\ 0,\ newItem);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00372}00372\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00373}00373\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Column\ 1:\ Existing\ Campus\ Name\ (Read\ Only)}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00374}00374\ \ \ \ \ \ \ \ \ \ \ \ \ QTableWidgetItem\ *exItem\ =\ \textcolor{keyword}{new}\ QTableWidgetItem(ex.name);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00375}00375\ \ \ \ \ \ \ \ \ \ \ \ \ exItem-\/>setData(Qt::UserRole,\ ex.id);\ \textcolor{comment}{//\ Store\ the\ ID\ for\ the\ database\ helper}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00376}00376\ \ \ \ \ \ \ \ \ \ \ \ \ exItem-\/>setFlags(exItem-\/>flags()\ \&\ \string~Qt::ItemIsEditable);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00377}00377\ \ \ \ \ \ \ \ \ \ \ \ \ distanceTable-\/>setItem(currentRow,\ 1,\ exItem);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00378}00378\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00379}00379\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Column\ 2:\ Distance\ Input\ (Editable)}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00380}00380\ \ \ \ \ \ \ \ \ \ \ \ \ QTableWidgetItem\ *distItem\ =\ \textcolor{keyword}{new}\ QTableWidgetItem(\textcolor{stringliteral}{"{}0"{}});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00381}00381\ \ \ \ \ \ \ \ \ \ \ \ \ distItem-\/>setTextAlignment(Qt::AlignCenter);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00382}00382\ \ \ \ \ \ \ \ \ \ \ \ \ distanceTable-\/>setItem(currentRow,\ 2,\ distItem);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00383}00383\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00384}00384\ \ \ \ \ \ \ \ \ \ \ \ \ currentRow++;}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00385}00385\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00386}00386\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00387}00387\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00388}00388\ \ \ \ \ \textcolor{comment}{//\ 3.\ Add\ Buttons}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00389}00389\ \ \ \ \ QPushButton\ *saveBtn\ =\ \textcolor{keyword}{new}\ QPushButton(\textcolor{stringliteral}{"{}Save\ Distances"{}},\ \&detailDialog);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00390}00390\ \ \ \ \ \textcolor{comment}{//\ saveBtn-\/>setStyleSheet("{}padding:\ 8px;\ font-\/weight:\ bold;"{});}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00391}00391\ \ \ \ \ layout-\/>addWidget(distanceTable);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00392}00392\ \ \ \ \ layout-\/>addWidget(saveBtn);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00393}00393\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00394}00394\ \ \ \ \ \textcolor{comment}{//\ Connect\ Save\ Button\ to\ Database\ Logic}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00395}00395\ \ \ \ \ connect(saveBtn,\ \&QPushButton::clicked,\ [\&]()\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00396}00396\ \ \ \ \ \ \ \ \ QSqlQuery\ idLookup;}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00397}00397\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ distanceTable-\/>rowCount();\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00398}00398\ \ \ \ \ \ \ \ \ \ \ \ \ QString\ newName\ =\ distanceTable-\/>item(i,\ 0)-\/>text();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00399}00399\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ targetId\ =\ distanceTable-\/>item(i,\ 1)-\/>data(Qt::UserRole).toInt();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00400}00400\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ dist\ =\ distanceTable-\/>item(i,\ 2)-\/>text().toInt();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00401}00401\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00402}00402\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Find\ the\ ID\ of\ the\ New\ Campus}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00403}00403\ \ \ \ \ \ \ \ \ \ \ \ \ idLookup.prepare(\textcolor{stringliteral}{"{}SELECT\ campusId\ FROM\ campusList\ WHERE\ campusName\ =\ :name"{}});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00404}00404\ \ \ \ \ \ \ \ \ \ \ \ \ idLookup.bindValue(\textcolor{stringliteral}{"{}:name"{}},\ newName);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00405}00405\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00406}00406\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (idLookup.exec()\ \&\&\ idLookup.next())\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00407}00407\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ newId\ =\ idLookup.value(0).toInt();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00408}00408\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00409}00409\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ your\ databaseHelper\ functions\ to\ add\ edges\ in\ both\ directions}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00410}00410\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{database_helper_8h_a03b4e3382e830c7a89466a8eb7f643a4}{addDistance}}(newId,\ targetId,\ dist);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00411}00411\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{database_helper_8h_a03b4e3382e830c7a89466a8eb7f643a4}{addDistance}}(targetId,\ newId,\ dist);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00412}00412\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00413}00413\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00414}00414\ \ \ \ \ \ \ \ \ detailDialog.accept();\ \textcolor{comment}{//\ Closes\ with\ QDialog::Accepted}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00415}00415\ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00416}00416\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00417}00417\ \ \ \ \ \textcolor{keywordflow}{return}\ detailDialog.exec();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00418}00418\ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00419}00419\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00420}\doxymbox{\hyperlink{class_admin_page_aaba950e4cfef2bdb3519652a687e7e94}{00420}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_admin_page_aaba950e4cfef2bdb3519652a687e7e94}{AdminPage::setupLoginPage}}()\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00421}00421\ \ \ \ \ \textcolor{comment}{//\ Make\ pressing\ enter\ submit\ the\ user\ info}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00422}00422\ \ \ \ \ connect(\doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>usernameField,\ \&QLineEdit::returnPressed,\ \textcolor{keyword}{this},\ \&\doxymbox{\hyperlink{class_admin_page_a16675919043ae4f2160148da4ecdc22d}{AdminPage::handleLogin}});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00423}00423\ \ \ \ \ connect(\doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>passwordField,\ \&QLineEdit::returnPressed,\ \textcolor{keyword}{this},\ \&\doxymbox{\hyperlink{class_admin_page_a16675919043ae4f2160148da4ecdc22d}{AdminPage::handleLogin}});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00424}00424\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00425}00425\ \ \ \ \ \textcolor{comment}{//\ link\ the\ login\ button}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00426}00426\ \ \ \ \ connect(\doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>buttonBox,\ \&QDialogButtonBox::accepted,\ \textcolor{keyword}{this},\ \&\doxymbox{\hyperlink{class_admin_page_a16675919043ae4f2160148da4ecdc22d}{AdminPage::handleLogin}});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00427}00427\ \ \ \ \ \textcolor{comment}{//\ link\ the\ cancel\ button}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00428}00428\ \ \ \ \ connect(\doxymbox{\hyperlink{class_admin_page_a6d2bc9653eb798412fb4cb316c6ee5e8}{ui}}-\/>buttonBox,\ \&QDialogButtonBox::rejected,\ [\textcolor{keyword}{this}]()\{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00429}00429\ \ \ \ \ \ \ \ \ ui-\/>usernameField-\/>clear();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00430}00430\ \ \ \ \ \ \ \ \ ui-\/>passwordField-\/>clear();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00431}00431\ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00432}00432\ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00433}00433\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00434}\doxymbox{\hyperlink{class_admin_page_a525dd78af12c754112f7e7dcc6990fa7}{00434}}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_admin_page_a525dd78af12c754112f7e7dcc6990fa7}{AdminPage::verifyUserCredentials}}(\textcolor{keyword}{const}\ QString\ \&username,\ \textcolor{keyword}{const}\ QString\ \&password)\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00435}00435\ \ \ \ \ \textcolor{comment}{//\ 1.\ Hash\ the\ password\ using\ SHA-\/256}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00436}00436\ \ \ \ \ QByteArray\ hash\ =\ QCryptographicHash::hash(password.toUtf8(),\ QCryptographicHash::Sha256);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00437}00437\ \ \ \ \ QString\ hashedPassword\ =\ hash.toHex();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00438}00438\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00439}00439\ \ \ \ \ qDebug()\ <<\ hash;}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00440}00440\ \ \ \ \ qDebug()\ <<\ hashedPassword;}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00441}00441\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00442}00442\ \ \ \ \ \textcolor{comment}{//\ 2.\ Prepare\ a\ parameterized\ query\ to\ avoid\ SQL\ injection}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00443}00443\ \ \ \ \ QSqlQuery\ query;}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00444}00444\ \ \ \ \ query.prepare(\textcolor{stringliteral}{"{}SELECT\ id\ FROM\ users\ WHERE\ username\ =\ :username\ AND\ password\_hash\ =\ :password"{}});}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00445}00445\ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:username"{}},\ username);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00446}00446\ \ \ \ \ query.bindValue(\textcolor{stringliteral}{"{}:password"{}},\ hashedPassword);}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00447}00447\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00448}00448\ \ \ \ \ \textcolor{comment}{//\ 3.\ Execute\ and\ check\ for\ matches}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00449}00449\ \ \ \ \ \textcolor{keywordflow}{if}\ (!query.exec())\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00450}00450\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Login\ query\ failed:"{}}\ <<\ query.lastError().text();}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00451}00451\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00452}00452\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00453}00453\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00454}00454\ \ \ \ \ \textcolor{keywordflow}{if}\ (query.next())\ \{}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00455}00455\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Found\ a\ matching\ user}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00456}00456\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00457}00457\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00458}00458\ }
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00459}00459\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ No\ match}}
+\DoxyCodeLine{\Hypertarget{adminpage_8cpp_source_l00460}00460\ \}}
+
+\end{DoxyCode}

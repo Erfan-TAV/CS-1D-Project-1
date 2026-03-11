@@ -1,0 +1,6 @@
+<map id="createTripInfoTable" name="createTripInfoTable">
+<area shape="rect" id="Node000001" title=" " alt="" coords="233,29,365,55"/>
+<area shape="rect" id="Node000002" href="$class_main_window.html#a996c5a2b6f77944776856f08ec30858d" title="Constructor for MainWindow." alt="" coords="5,29,185,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="214,42,185,45,185,40,220,42"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="129,15,118,10,95,8,74,10,62,15,60,20,66,29,60,29,54,21,58,11,72,5,95,3,120,5,134,15"/>
+</map>

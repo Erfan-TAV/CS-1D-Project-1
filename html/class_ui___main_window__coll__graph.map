@@ -1,0 +1,27 @@
+<map id="Ui_MainWindow" name="Ui_MainWindow">
+<area shape="rect" id="Node000001" title=" " alt="" coords="233,1269,412,1559"/>
+<area shape="rect" id="Node000002" href="$class_plan_page.html" title="Manages the multi&#45;step trip planning process and the live tour interface." alt="" coords="5,543,218,1198"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,1195,189,1244,225,1305,220,1305,184,1246,166,1200"/>
+<area shape="rect" id="Node000003" href="$class_database_page.html" title="An abstract base class for all pages that display database&#45;driven content." alt="" coords="326,385,444,472"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="337,485,295,521,276,529,261,532,247,535,232,545,221,558,216,555,229,541,244,530,260,526,275,524,292,517,340,480"/>
+<area shape="rect" id="Node000007" href="$class_info_page.html" title="Provides a summary interface displaying trip results and purchase history." alt="" coords="427,786,591,954"/>
+<area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="402,484,489,787,483,787,400,489"/>
+<area shape="rect" id="Node000010" href="$class_admin_page.html" title="Provides an administrative interface to manage campuses, souvenirs, and distances." alt="" coords="242,746,402,995"/>
+<area shape="poly" id="edge11_Node000010_Node000003" title=" " alt="" coords="378,484,343,747,337,746,376,489"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="353,138,415,204"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="385,216,388,386,382,385,384,222"/>
+<area shape="rect" id="Node000005" href="$class_ui_1_1_plan_page.html" title=" " alt="" coords="64,396,152,462"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="108,459,111,526,106,526,108,464"/>
+<area shape="rect" id="Node000006" href="$class_ui___plan_page.html" title=" " alt="" coords="36,26,169,316"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="106,328,110,396,105,395,106,333"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="509,952,505,1020,495,1094,478,1171,453,1246,423,1300,419,1296,448,1244,473,1170,490,1093,500,1019,507,957"/>
+<area shape="rect" id="Node000008" href="$class_ui_1_1_info_page.html" title=" " alt="" coords="470,396,554,462"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="513,459,512,770,507,769,511,464"/>
+<area shape="rect" id="Node000009" href="$class_ui___info_page.html" title=" " alt="" coords="439,5,585,336"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="512,348,514,396,509,395,511,354"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="324,993,325,1252,320,1251,321,997"/>
+<area shape="rect" id="Node000011" href="$class_ui_1_1_admin_page.html" title=" " alt="" coords="204,396,302,462"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="259,459,303,729,298,729,258,464"/>
+<area shape="rect" id="Node000012" href="$class_ui___admin_page.html" title=" " alt="" coords="193,26,316,316"/>
+<area shape="poly" id="edge13_Node000011_Node000012" title=" " alt="" coords="254,328,256,396,251,395,253,333"/>
+</map>

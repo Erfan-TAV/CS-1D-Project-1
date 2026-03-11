@@ -1,0 +1,7 @@
+<map id="MainWindow::menuBarReset" name="MainWindow::menuBarReset">
+<area shape="rect" id="Node000001" title="Resets the entire application database to its original state." alt="" coords="5,31,197,56"/>
+<area shape="rect" id="Node000002" href="$database_helper_8cpp.html#a79b962714031fc06de95d2ad7f2cfb62" title="Clears all purchase records for the current trip." alt="" coords="254,5,378,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="197,30,241,27,235,28,198,35"/>
+<area shape="rect" id="Node000003" href="$database_helper_8cpp.html#a303fcb2cb85e0a1ff5906db6fd8767cb" title="Wipes the current database and reloads it entirely from an Excel source." alt="" coords="245,55,387,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="197,52,232,58,227,58,197,57"/>
+</map>

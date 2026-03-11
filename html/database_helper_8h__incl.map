@@ -1,0 +1,14 @@
+<map id="headers/databaseHelper.h" name="headers/databaseHelper.h">
+<area shape="rect" id="Node000001" title="Global utility functions for database CRUD operations and trip algorithms." alt="" coords="25,5,197,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="52,153,117,178"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="71,34,39,52,24,65,12,80,9,97,16,114,31,129,50,143,45,146,27,133,12,117,4,98,8,78,20,61,36,48,73,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="21,79,108,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="105,29,83,67,79,64,102,33"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="132,79,184,105"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="120,29,144,66,139,66,118,34"/>
+<area shape="rect" id="Node000005" href="$campus_structs_8h.html" title="Core data structures representing campuses, souvenirs, and graph edges." alt="" coords="208,79,329,105"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="138,29,230,71,225,73,138,34"/>
+<area shape="poly" id="edge6_Node000005_Node000002" title=" " alt="" coords="240,105,131,149,129,144,235,105"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="240,153,297,178"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="270,103,271,138,266,135,267,107"/>
+</map>

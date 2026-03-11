@@ -1,0 +1,9 @@
+<map id="InfoPage::refreshUI" name="InfoPage::refreshUI">
+<area shape="rect" id="Node000001" title="Re&#45;syncs the summary table and labels with the current database state." alt="" coords="5,70,141,96"/>
+<area shape="rect" id="Node000002" href="$class_info_page.html#a56a4d4b9c53ec63f9c1d0c07414ed3fa" title="Calculates the cumulative distance of the current trip from the database." alt="" coords="189,5,350,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,67,185,49,181,52,121,72"/>
+<area shape="rect" id="Node000003" href="$database_helper_8cpp.html#a831579ca9fc2f58292a660c42b86b91d" title="Returns the total count of items purchased during the trip." alt="" coords="197,70,342,96"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="141,80,184,82,179,84,141,86"/>
+<area shape="rect" id="Node000004" href="$database_helper_8cpp.html#a451944b5a3a2bc8ad9fd8a3a7aa14830" title="Returns the total dollar amount spent across the entire trip." alt="" coords="197,120,342,145"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="128,94,203,114,198,116,127,99"/>
+</map>

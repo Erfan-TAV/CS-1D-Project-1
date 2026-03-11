@@ -1,0 +1,5 @@
+<map id="MainWindow" name="MainWindow">
+<area shape="rect" id="Node000001" title="The main entry point and UI controller for the College Tour application." alt="" coords="5,120,216,308"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="63,5,159,72"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="112,84,113,120,108,119,110,89"/>
+</map>

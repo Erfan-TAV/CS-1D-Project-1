@@ -1,0 +1,7 @@
+<map id="PlanPage" name="PlanPage">
+<area shape="rect" id="Node000001" title="Manages the multi&#45;step trip planning process and the live tour interface." alt="" coords="5,254,218,930"/>
+<area shape="rect" id="Node000002" href="$class_database_page.html" title="An abstract base class for all pages that display database&#45;driven content." alt="" coords="53,120,171,206"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="112,218,114,255,109,254,112,224"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="81,5,143,72"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="112,84,114,120,109,120,112,89"/>
+</map>

@@ -1,0 +1,84 @@
+\doxysection{planpage.\+h}
+\hypertarget{planpage_8h_source}{}\label{planpage_8h_source}\index{headers/planpage.h@{headers/planpage.h}}
+\doxymbox{\hyperlink{planpage_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00007}00007\ \textcolor{preprocessor}{\#ifndef\ PLANPAGE\_H}}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00008}00008\ \textcolor{preprocessor}{\#define\ PLANPAGE\_H}}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00010}00010\ \textcolor{preprocessor}{\#include\ <QSqlTableModel>}}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00011}00011\ \textcolor{preprocessor}{\#include\ <QSortFilterProxyModel>}}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00012}00012\ \textcolor{preprocessor}{\#include\ <QSqlQueryModel>}}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00013}00013\ \textcolor{preprocessor}{\#include\ <QRegularExpression>}}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00014}00014\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{database_page_8h}{databasePage.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00016}00016\ \textcolor{keyword}{namespace\ }\doxymbox{\hyperlink{namespace_ui}{Ui}}\ \{}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00017}00017\ \ \ \ \ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_ui_1_1_plan_page}{PlanPage}};}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00018}00018\ \}}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00029}\doxymbox{\hyperlink{class_plan_page}{00029}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_plan_page_a608bd53cd9bb8fb5b7d34dfedf81c5fe}{PlanPage}}\ :\ \textcolor{keyword}{public}\ \doxymbox{\hyperlink{class_database_page_adf83a1f998dc86afd7229db40628857a}{DatabasePage}}}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00030}00030\ \{}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00031}00031\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00033}00033\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00038}00038\ \ \ \ \ \textcolor{keyword}{explicit}\ \doxymbox{\hyperlink{class_plan_page_a608bd53cd9bb8fb5b7d34dfedf81c5fe}{PlanPage}}(QWidget\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00043}00043\ \ \ \ \ \doxymbox{\hyperlink{class_plan_page_a05854eb691b2b6de5a16c32ae170df54}{\string~PlanPage}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00045}00045\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00051}00051\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_plan_page_ac2fc48dd78f4c3d22f8f8253e0913c06}{setupDatabaseTable}}();}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00056}00056\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_plan_page_a9e81d1296b8fbfd76f2f7e3d3439cfc8}{setupResultsConnection}}();}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00063}00063\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_plan_page_a3e9d440af37075bb04ae3dd0e52c96bc}{renderTrip}}();}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00072}00072\ \ \ \ \ QWidget*\ \doxymbox{\hyperlink{class_plan_page_a2fccd653c31cc0e1e3e1ba387eeebbd1}{createStopWidget}}(QString\ name,\ \textcolor{keywordtype}{int}\ distance,\ \textcolor{keywordtype}{bool}\ showArrow);}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00074}\doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{00074}}\ \ \ \ \ \doxymbox{\hyperlink{class_ui_1_1_plan_page}{Ui::PlanPage}}\ *\doxymbox{\hyperlink{class_plan_page_a9f4c48db2754cfb6c9ab543ad6cd089c}{ui}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00075}\doxymbox{\hyperlink{class_plan_page_ab7140a4c85ceee6ad4a9b3787ad05f98}{00075}}\ \ \ \ \ QSqlQueryModel*\ \doxymbox{\hyperlink{class_plan_page_ab7140a4c85ceee6ad4a9b3787ad05f98}{campusModel}}\ =\ \textcolor{keyword}{nullptr};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00076}\doxymbox{\hyperlink{class_plan_page_a45441e439b3ca65588bd7dfc406f5319}{00076}}\ \ \ \ \ QSqlTableModel*\ \doxymbox{\hyperlink{class_plan_page_a45441e439b3ca65588bd7dfc406f5319}{comboBoxModel}}\ =\ \textcolor{keyword}{nullptr};\ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00077}\doxymbox{\hyperlink{class_plan_page_ab186f1c89fe2652199d82bc6f7842a4a}{00077}}\ \ \ \ \ QSqlTableModel*\ \doxymbox{\hyperlink{class_plan_page_ab186f1c89fe2652199d82bc6f7842a4a}{tripModel}}\ =\ \textcolor{keyword}{nullptr};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00078}\doxymbox{\hyperlink{class_plan_page_a60d847f3d9e07faa25800d3041b23f25}{00078}}\ \ \ \ \ QSqlTableModel*\ \doxymbox{\hyperlink{class_plan_page_a60d847f3d9e07faa25800d3041b23f25}{tripSouvenirModel}}\ =\ \textcolor{keyword}{nullptr};\ \ \ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00079}\doxymbox{\hyperlink{class_plan_page_add965acd8bc98d8cf894a37ebacde1f9}{00079}}\ \ \ \ \ QSqlTableModel\ *\doxymbox{\hyperlink{class_plan_page_add965acd8bc98d8cf894a37ebacde1f9}{tripStopSouvenirModel}}\ =\ \textcolor{keyword}{nullptr};\ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00080}\doxymbox{\hyperlink{class_plan_page_ae450329955e5249199e8e3552c2a6de0}{00080}}\ \ \ \ \ QSortFilterProxyModel*\ \doxymbox{\hyperlink{class_plan_page_ae450329955e5249199e8e3552c2a6de0}{proxyModel}};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00081}\doxymbox{\hyperlink{class_plan_page_a247fc30520b3dbc2d6e4d6aab5993e4b}{00081}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_plan_page_a247fc30520b3dbc2d6e4d6aab5993e4b}{currentTripOrder}}\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00083}00083\ \textcolor{keyword}{private}\ slots:}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00087}00087\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_plan_page_aa0511c865d24a2a78dbab899aa874034}{on\_startTripButton\_clicked}}();}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00092}00092\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_plan_page_aece1d1d7a5f0626e42410f5feca446a0}{on\_resultPlanAnotherButton\_clicked}}();}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00097}00097\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_plan_page_abf76652af89df5b08ca460f3adb8ffa0}{on\_planOnlyPlanAnotherButton\_clicked}}();}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00102}00102\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_plan_page_a3d91bd03cbd5be3f0e225a29cf50aa41}{on\_tripPlanStopNextButton\_clicked}}();}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00108}00108\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_plan_page_a09a3e851a9c453d581003a3b90a3d031}{updateFilteredTable}}(\textcolor{keyword}{const}\ QString\ \&selectedCampus);}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00114}00114\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_plan_page_a7dc47477aaba2e58dcad3fc3643e6748}{updateSouvenirFilter}}(\textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00119}00119\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_plan_page_a9c256fd339d54cb2149190a41a259073}{updateSelectionCount}}();}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00124}00124\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_plan_page_a86480ced8dfa743ff4593917d116abf3}{setupTripStopModel}}();}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00130}00130\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_plan_page_a7f98740d9c7aa63199af873075ab2b1f}{showCurrentCampusSouvenirs}}(\textcolor{keywordtype}{int}\ campusID);}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00137}00137\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_plan_page_aa61c32857843d11ea1638f5fe94a304c}{getCampusIDByOrder}}(\textcolor{keywordtype}{int}\ order);}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00142}00142\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_plan_page_a913c019bbef87646bdca1c830f9ed668}{updateStopLabels}}();}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00147}00147\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_plan_page_a6f56f05951a0b45dfa0867ba8b9306f2}{updateTotalDistance}}();}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00153}00153\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_plan_page_a9a56d9743c7febd1834af436f3bc827f}{updateCampusSpent}}(\textcolor{keywordtype}{int}\ campusID);}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00154}00154\ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00158}00158\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_plan_page_abf00a60aa85a44061adbe8233b25cc6a}{updateTotalTripPurchased}}();}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00159}00159\ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00164}00164\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_plan_page_aa277112662d7a9e3d58c03b8c82dda77}{refreshUI}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00166}00166\ signals:}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00171}\doxymbox{\hyperlink{class_plan_page_a3be54275ced4afc72495e4287fc1fb62}{00171}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_plan_page_a3be54275ced4afc72495e4287fc1fb62}{distanceCalculated}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ distance);}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00172}00172\ \};}
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00173}00173\ }
+\DoxyCodeLine{\Hypertarget{planpage_8h_source_l00174}00174\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PLANPAGE\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,7 @@
+<map id="PlanPage::updateSouvenirFilter" name="PlanPage::updateSouvenirFilter">
+<area shape="rect" id="Node000001" title="Filters the souvenir list to show only items for the selected campus." alt="" coords="5,27,181,68"/>
+<area shape="rect" id="Node000002" href="$class_plan_page.html#a9a56d9743c7febd1834af436f3bc827f" title="Calculates how much money was spent at a specific stop." alt="" coords="229,5,436,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="181,34,216,32,210,33,182,39"/>
+<area shape="rect" id="Node000003" href="$class_plan_page.html#abf00a60aa85a44061adbe8233b25cc6a" title="Calculates the total monetary cost of the entire trip." alt="" coords="245,55,420,96"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="181,55,232,63,227,64,181,60"/>
+</map>

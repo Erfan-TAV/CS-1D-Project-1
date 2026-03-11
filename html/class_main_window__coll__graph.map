@@ -1,0 +1,37 @@
+<map id="MainWindow" name="MainWindow">
+<area shape="rect" id="Node000001" title="The main entry point and UI controller for the College Tour application." alt="" coords="217,1827,428,1995"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="149,1649,245,1715"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="223,1726,280,1827,274,1827,221,1730"/>
+<area shape="rect" id="Node000003" href="$class_ui_1_1_main_window.html" title=" " alt="" coords="269,1649,376,1715"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="324,1713,325,1811,320,1809,321,1717"/>
+<area shape="rect" id="Node000004" href="$class_ui___main_window.html" title=" " alt="" coords="233,1269,412,1559"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="324,1572,325,1650,320,1648,321,1576"/>
+<area shape="rect" id="Node000005" href="$class_plan_page.html" title="Manages the multi&#45;step trip planning process and the live tour interface." alt="" coords="5,543,218,1198"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="167,1195,189,1244,225,1305,220,1306,184,1246,167,1200"/>
+<area shape="rect" id="Node000006" href="$class_database_page.html" title="An abstract base class for all pages that display database&#45;driven content." alt="" coords="326,385,444,472"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="337,485,295,521,276,529,261,532,247,535,232,545,221,558,216,555,229,541,244,530,260,526,275,524,292,517,340,480"/>
+<area shape="rect" id="Node000010" href="$class_info_page.html" title="Provides a summary interface displaying trip results and purchase history." alt="" coords="427,786,591,954"/>
+<area shape="poly" id="edge10_Node000010_Node000006" title=" " alt="" coords="401,483,489,787,483,787,401,489"/>
+<area shape="rect" id="Node000013" href="$class_admin_page.html" title="Provides an administrative interface to manage campuses, souvenirs, and distances." alt="" coords="242,746,402,995"/>
+<area shape="poly" id="edge14_Node000013_Node000006" title=" " alt="" coords="378,484,343,747,337,746,377,489"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="353,138,415,204"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="384,216,388,386,382,385,384,222"/>
+<area shape="rect" id="Node000008" href="$class_ui_1_1_plan_page.html" title=" " alt="" coords="64,396,152,462"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="108,459,111,526,106,526,108,464"/>
+<area shape="rect" id="Node000009" href="$class_ui___plan_page.html" title=" " alt="" coords="36,26,169,316"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="106,328,110,396,105,396,106,333"/>
+<area shape="poly" id="edge9_Node000004_Node000010" title=" " alt="" coords="511,952,510,1020,500,1095,482,1173,453,1246,441,1260,428,1271,425,1275,421,1272,425,1267,438,1256,448,1244,477,1171,495,1094,504,1020,510,957"/>
+<area shape="rect" id="Node000011" href="$class_ui_1_1_info_page.html" title=" " alt="" coords="470,396,554,462"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="512,459,512,770,507,769,511,464"/>
+<area shape="rect" id="Node000012" href="$class_ui___info_page.html" title=" " alt="" coords="439,5,585,336"/>
+<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="512,348,514,396,509,395,511,354"/>
+<area shape="poly" id="edge13_Node000004_Node000013" title=" " alt="" coords="323,992,325,1252,320,1251,322,997"/>
+<area shape="rect" id="Node000014" href="$class_ui_1_1_admin_page.html" title=" " alt="" coords="204,396,302,462"/>
+<area shape="poly" id="edge15_Node000013_Node000014" title=" " alt="" coords="258,459,303,729,298,730,258,464"/>
+<area shape="rect" id="Node000015" href="$class_ui___admin_page.html" title=" " alt="" coords="193,26,316,316"/>
+<area shape="poly" id="edge16_Node000014_Node000015" title=" " alt="" coords="254,328,256,396,251,395,253,333"/>
+<area shape="rect" id="Node000016" href="$class_db_manager.html" title="Manages the physical connection to the SQLite database." alt="" coords="399,1608,536,1756"/>
+<area shape="poly" id="edge17_Node000001_Node000016" title=" " alt="" coords="424,1754,387,1815,383,1811,419,1757"/>
+<area shape="rect" id="Node000017" title=" " alt="" coords="438,1381,497,1447"/>
+<area shape="poly" id="edge18_Node000016_Node000017" title=" " alt="" coords="469,1460,470,1609,465,1608,466,1464"/>
+</map>

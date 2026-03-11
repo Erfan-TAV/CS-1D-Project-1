@@ -1,0 +1,91 @@
+\doxysection{Campus Struct Reference}
+\hypertarget{struct_campus}{}\label{struct_campus}\index{Campus@{Campus}}
+
+
+Aggregate structure containing all data for a single university.  
+
+
+
+
+{\ttfamily \+\#include $<$campus\+Structs.\+h$>$}
+
+
+
+Collaboration diagram for Campus:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=159pt]{struct_campus__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{struct_campus_a38580a1dc411a9fd184b90ec517151c6}{campus\+ID}}
+\item 
+QString \doxymbox{\hyperlink{struct_campus_afdffffedc0ba5ead586c44545cd5528b}{campus\+Name}}
+\item 
+QList$<$ \doxymbox{\hyperlink{struct_campus_distances}{Campus\+Distances}} $>$ \doxymbox{\hyperlink{struct_campus_aba2cb77d9bdf97f8713f0d164e957a39}{distances}}
+\item 
+QList$<$ \doxymbox{\hyperlink{structcampus_souvenir}{campus\+Souvenir}} $>$ \doxymbox{\hyperlink{struct_campus_a6af7677880b2e3abe9c534f7ea94a62e}{souvenirs}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Aggregate structure containing all data for a single university. 
+
+Combines basic identification with lists of neighboring nodes (graph edges) and available inventory items. 
+
+Definition at line \doxymbox{\hyperlink{campus_structs_8h_source_l00039}{39}} of file \doxymbox{\hyperlink{campus_structs_8h_source}{campus\+Structs.\+h}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{struct_campus_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_campus_a38580a1dc411a9fd184b90ec517151c6}\index{Campus@{Campus}!campusID@{campusID}}
+\index{campusID@{campusID}!Campus@{Campus}}
+\doxysubsubsection{\texorpdfstring{campusID}{campusID}}
+{\footnotesize\ttfamily \label{struct_campus_a38580a1dc411a9fd184b90ec517151c6} 
+int Campus::\+campus\+ID}
+
+Unique primary key from the database. 
+
+Definition at line \doxymbox{\hyperlink{campus_structs_8h_source_l00040}{40}} of file \doxymbox{\hyperlink{campus_structs_8h_source}{campus\+Structs.\+h}}.
+
+\Hypertarget{struct_campus_afdffffedc0ba5ead586c44545cd5528b}\index{Campus@{Campus}!campusName@{campusName}}
+\index{campusName@{campusName}!Campus@{Campus}}
+\doxysubsubsection{\texorpdfstring{campusName}{campusName}}
+{\footnotesize\ttfamily \label{struct_campus_afdffffedc0ba5ead586c44545cd5528b} 
+QString Campus::\+campus\+Name}
+
+Formal name of the university. 
+
+Definition at line \doxymbox{\hyperlink{campus_structs_8h_source_l00041}{41}} of file \doxymbox{\hyperlink{campus_structs_8h_source}{campus\+Structs.\+h}}.
+
+\Hypertarget{struct_campus_aba2cb77d9bdf97f8713f0d164e957a39}\index{Campus@{Campus}!distances@{distances}}
+\index{distances@{distances}!Campus@{Campus}}
+\doxysubsubsection{\texorpdfstring{distances}{distances}}
+{\footnotesize\ttfamily \label{struct_campus_aba2cb77d9bdf97f8713f0d164e957a39} 
+QList$<$\doxymbox{\hyperlink{struct_campus_distances}{Campus\+Distances}}$>$ Campus::\+distances}
+
+Adjacency list of neighboring campuses. 
+
+Definition at line \doxymbox{\hyperlink{campus_structs_8h_source_l00042}{42}} of file \doxymbox{\hyperlink{campus_structs_8h_source}{campus\+Structs.\+h}}.
+
+\Hypertarget{struct_campus_a6af7677880b2e3abe9c534f7ea94a62e}\index{Campus@{Campus}!souvenirs@{souvenirs}}
+\index{souvenirs@{souvenirs}!Campus@{Campus}}
+\doxysubsubsection{\texorpdfstring{souvenirs}{souvenirs}}
+{\footnotesize\ttfamily \label{struct_campus_a6af7677880b2e3abe9c534f7ea94a62e} 
+QList$<$\doxymbox{\hyperlink{structcampus_souvenir}{campus\+Souvenir}}$>$ Campus::\+souvenirs}
+
+List of all souvenirs sold at this location. 
+
+Definition at line \doxymbox{\hyperlink{campus_structs_8h_source_l00043}{43}} of file \doxymbox{\hyperlink{campus_structs_8h_source}{campus\+Structs.\+h}}.
+
+
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+headers/\+\doxymbox{\hyperlink{campus_structs_8h}{campus\+Structs.\+h}}\end{DoxyCompactItemize}

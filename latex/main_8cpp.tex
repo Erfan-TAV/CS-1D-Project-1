@@ -1,0 +1,69 @@
+\doxysection{sources/\+main.cpp File Reference}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{sources/main.cpp@{sources/main.cpp}}
+{\ttfamily \+\#include "{}../\+headers/\+mainwindow.\+h"{}}\newline
+{\ttfamily \+\#include $<$QApplication$>$}\newline
+{\ttfamily \+\#include $<$QDir$>$}\newline
+{\ttfamily \+\#include $<$QStandard\+Paths$>$}\newline
+{\ttfamily \+\#include $<$QDebug$>$}\newline
+{\ttfamily \+\#include "{}db\+Manager.\+h"{}}\newline
+Include dependency graph for main.\+cpp:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\+[$\,$]\+)
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{main_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97} 
+int main (\begin{DoxyParamCaption}\item[{int}]{argc}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{argv}{\+[$\,$]\+}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{main_8cpp_source_l00010}{10}} of file \doxymbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ QApplication\ a(argc,\ argv);}
+\DoxyCodeLine{00013\ \ \ \ \ a.setOrganizationName(\textcolor{stringliteral}{"{}MyProjectGroup"{}});}
+\DoxyCodeLine{00014\ \ \ \ \ a.setApplicationName(\textcolor{stringliteral}{"{}CampusProject"{}});}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ QString\ appDataPath\ =\ QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);}
+\DoxyCodeLine{00017\ \ \ \ \ QString\ dbPath\ =\ appDataPath\ +\ \textcolor{stringliteral}{"{}/project1.db"{}};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \doxymbox{\hyperlink{class_db_manager}{DbManager}}\ db(dbPath);}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordflow}{if}\ (!db.isOpen())\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Failed\ to\ initialize\ database."{}};}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00024\ \ \ \ \ \}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \doxymbox{\hyperlink{class_main_window}{MainWindow}}\ w;}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ w.show();}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordflow}{return}\ QApplication::exec();}
+\DoxyCodeLine{00031\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=256pt]{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97_cgraph}
+\end{center}
+\end{figure}

@@ -1,0 +1,6 @@
+<map id="AdminPage::setupDatabaseTable" name="AdminPage::setupDatabaseTable">
+<area shape="rect" id="Node000001" title="Initializes the SQL models and attaches them to the UI views." alt="" coords="217,22,401,62"/>
+<area shape="rect" id="Node000002" href="$class_admin_page.html#a1150741b249e777a213dbe57802db854" title="Constructor for AdminPage." alt="" coords="5,29,169,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="199,42,169,45,169,40,204,42"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="124,15,113,10,87,8,64,10,51,15,48,20,55,29,50,29,43,21,47,11,62,5,87,3,114,5,129,14"/>
+</map>

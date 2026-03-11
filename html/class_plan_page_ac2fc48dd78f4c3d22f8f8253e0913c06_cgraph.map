@@ -1,0 +1,7 @@
+<map id="PlanPage::setupDatabaseTable" name="PlanPage::setupDatabaseTable">
+<area shape="rect" id="Node000001" title="Initializes database models and connects UI elements for the setup screen." alt="" coords="5,46,210,72"/>
+<area shape="rect" id="Node000002" href="$class_plan_page.html#a09a3e851a9c453d581003a3b90a3d031" title="Filters the selection table to hide the campus selected as the starting point." alt="" coords="263,5,430,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="204,43,250,39,245,40,205,48"/>
+<area shape="rect" id="Node000003" href="$class_plan_page.html#a9c256fd339d54cb2149190a41a259073" title="Updates the UI label showing how many campuses are currently selected." alt="" coords="258,71,436,111"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="209,70,245,77,239,77,208,75"/>
+</map>
