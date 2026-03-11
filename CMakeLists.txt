@@ -17,15 +17,26 @@ file(GLOB_RECURSE HEADERS "headers/*.h")
 file(GLOB_RECURSE FORMS   "forms/*.ui")
 
 # --- 3. Executable Definition ---
-qt_add_executable(CollegeTour
-        WIN32 MACOSX_BUNDLE
-        ${SOURCES}
-        ${HEADERS}
-        ${FORMS}
-        "SQLite stuff/sqlite3.c"
-        "SQLite stuff/shell.c"
-        resources.qrc
-)
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    qt_add_executable(CollegeTour
+            ${SOURCES}
+            ${HEADERS}
+            ${FORMS}
+            "SQLite stuff/sqlite3.c"
+            "SQLite stuff/shell.c"
+            resources.qrc
+    )
+else()
+    qt_add_executable(CollegeTour
+            WIN32
+            ${SOURCES}
+            ${HEADERS}
+            ${FORMS}
+            "SQLite stuff/sqlite3.c"
+            "SQLite stuff/shell.c"
+            resources.qrc
+    )
+endif()
 
 message(STATUS "FORMS = ${FORMS}")
 

@@ -340,6 +340,7 @@ int AdminPage::promptForDistances(const QStringList &newCampusNames) {
 
     // Create the Table
     QTableWidget *distanceTable = new QTableWidget(&detailDialog);
+    distanceTable->verticalHeader()->setVisible(false);
     distanceTable->setColumnCount(3);
     distanceTable->setHorizontalHeaderLabels({"New Campus", "To Existing Campus", "Distance (mi)"});
     distanceTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -386,7 +387,7 @@ int AdminPage::promptForDistances(const QStringList &newCampusNames) {
 
     // 3. Add Buttons
     QPushButton *saveBtn = new QPushButton("Save Distances", &detailDialog);
-    saveBtn->setStyleSheet("padding: 8px; font-weight: bold;");
+    // saveBtn->setStyleSheet("padding: 8px; font-weight: bold;");
     layout->addWidget(distanceTable);
     layout->addWidget(saveBtn);
 

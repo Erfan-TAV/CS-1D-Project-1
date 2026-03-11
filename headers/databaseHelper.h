@@ -65,6 +65,10 @@ bool removeSouvenir(int campusID, const QString& name);
  * @return true if distance was recorded, false otherwise
  */
 bool addDistance(int id1, int id2, int distance);
+
+double getDistanceBetween(const int id1, const int id2);
+void calculateEfficientTrip(int currentID, QList<int> unvisitedIDs, double totalDistance, int order);
+
 /**
  * @brief Finds the closest campus to a specific ID
  * @param campusID The ID of the current campus
@@ -99,6 +103,8 @@ bool removeTripCampus(const int campusID);
 bool removeTripCampusByName(const QString &campusName);
 // TODO: add doxy
 bool clearTripTable();
+
+bool populateTripSouvenirs();
 
 bool createTripInfoTable();
 

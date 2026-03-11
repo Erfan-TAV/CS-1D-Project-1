@@ -77,6 +77,69 @@ bool addDistance(const int id1, const int id2, const int distance) {
     return query.exec();
 }
 
+
+// --- Helper for Route Calculation ---
+// Calculates the direct distance between two specific campuses
+double getDistanceBetween(int id1, int id2) {
+    QSqlQuery query;
+    query.prepare("SELECT distance FROM campusDistances WHERE "
+                  "(campusID1 = :id1 AND campusID2 = :id2) OR "
+                  "(campusID1 = :id2 AND campusID2 = :id1)");
+    query.bindValue(":id1", id1);
+    query.bindValue(":id2", id2);
+
+    if (query.exec() && query.next()) {
+        return query.value(0).toDouble();
+    }
+    return 999999.0; // Return an artificially high number if no direct connection exists
+}
+// ------------------------------------
+
+// ==========================================
+// REFACTORED: ALGORITHM LOGIC (Requirement 1 & 4)
+// ==========================================
+// 2. The Recursive Function
+void calculateEfficientTrip(int currentID, QList<int> unvisitedIDs, double totalDistance, int order) {
+    // BASE CASE: If there are no more campuses to visit, stop the recursion.
+    if (unvisitedIDs.isEmpty()) {
+        qDebug() << "[ALGO] --- Recursion Complete ---";
+        qDebug() << "[ALGO] Final Total Distance:" << totalDistance << "miles.";
+        return;
+    }
+
+    int nextID = -1;
+    double minFound = std::numeric_limits<double>::max();
+
+    // Find the single closest school from the current location
+    for (int targetID : unvisitedIDs) {
+        double dist = getDistanceBetween(currentID, targetID);
+        if (dist < minFound) {
+            minFound = dist;
+            nextID = targetID;
+        }
+    }
+
+    if (nextID != -1) {
+        // Prepare data for the next stop
+        double newTotalDistance = totalDistance + minFound;
+        QString name = getCampusName(nextID);
+
+        qDebug() << "[ALGO] Recursive Level" << order << ": Visiting" << name
+                 << " (ID:" << nextID << ") +" << minFound << "mi.";
+
+        // Record the visit in the database
+        addTripCampus(nextID, name, order);
+
+        // Remove the campus we just visited
+        unvisitedIDs.removeAll(nextID);
+
+        // RECURSIVE CALL: The function calls ITSELF with the new location and updated totals
+        calculateEfficientTrip(nextID, unvisitedIDs, newTotalDistance, order + 1);
+    } else {
+        qDebug() << "[ALGO] ERROR: Path broken at ID" << currentID;
+    }
+}
+
 QString getCampusName(const int campusID) {
     QSqlQuery query;
 
@@ -104,7 +167,7 @@ Campus getFullCampus(const int campusID) {
 
     QSqlQuery query;
 
-    // 1. fill in campus name and id into campus struct
+    // 1. Fill in campus name and id into campus struct
     query.prepare("SELECT campusName FROM campusList WHERE campusID = :id");
     query.bindValue(":id", campusID);
 
@@ -116,20 +179,22 @@ Campus getFullCampus(const int campusID) {
         return campus;
     }
 
-    // 2. fill in souvenir information into campus struct
-    query.prepare("SELECT itemName, price FROM souvenirs WHERE campusID = :id");
+    // 2. Fill in souvenir information into campus struct
+    // FIXED: Changed itemName to souvenirName to match schema
+    query.prepare("SELECT souvenirName, price FROM souvenirs WHERE campusID = :id");
     query.bindValue(":id", campusID);
 
     if (query.exec()) {
         while (query.next()) {
             campusSouvenir item;
-            item.name = query.value("itemName").toString();
+            // FIXED: Using "souvenirName" for value retrieval
+            item.name = query.value("souvenirName").toString();
             item.price = query.value("price").toDouble();
             campus.souvenirs.append(item);
         }
     }
 
-    // 3. fill in distance information
+    // 3. Fill in distance information
     query.prepare("SELECT otherCampusID, distance FROM campusDistances WHERE campusID = :id");
     query.bindValue(":id", campusID);
 
@@ -145,47 +210,48 @@ Campus getFullCampus(const int campusID) {
     return campus;
 }
 
-// TODO: update logic to work with no repeated campusID in the first colum. needs the logic to find either id1 or id2 and then the other id is the other campus
-int closestCampus(const int ID1) {
-    QSqlQuery query;
-    int minDistance = INT_MAX;
-    int nearestID = -1;
+int closestCampus(const int campusID) {
+  QSqlQuery query;
+  int minDistance = INT_MAX;
+  int nearestID = -1;
 
-    // 1. Prepare the string first
-    query.prepare("SELECT campusID2, distance FROM campusDistances WHERE campusID1 = :id");
+         // The SQL logic:
+         // 1. Check if our ID is in column 1 OR column 2.
+         // 2. Use CASE to return the "other" ID as 'neighborID'.
+  query.prepare("SELECT "
+                "CASE WHEN campusID1 = :id THEN campusID2 ELSE campusID1 END AS neighborID, "
+                "distance "
+                "FROM campusDistances "
+                "WHERE campusID1 = :id OR campusID2 = :id");
 
-    // 2. Bind the actual value to the placeholder
-    query.bindValue(":id", ID1);
+  query.bindValue(":id", campusID);
 
-    // 3. Call exec() with NO arguments
-    if (!query.exec()) {
-        qDebug() << "SQL ERROR:" << query.lastError().text();
-        return -1;
+  if (!query.exec()) {
+    qDebug() << "SQL ERROR:" << query.lastError().text();
+    return -1;
+  }
+
+  while (query.next()) {
+    int neighborID = query.value(0).toInt();
+    int currentDist = query.value(1).toInt();
+
+           // Standard greedy check for the minimum distance
+    if (currentDist < minDistance) {
+      minDistance = currentDist;
+      nearestID = neighborID;
     }
+  }
 
-    int rowCount = 0;
-    while (query.next()) {
-        rowCount++;
-        int currentID2 = query.value(0).toInt();
-        int currentDist = query.value(1).toInt();
+  if (nearestID == -1) {
+    qDebug() << "No connections found for Campus ID:" << campusID;
+  }
 
-        if (currentDist < minDistance) {
-            minDistance = currentDist;
-            nearestID = currentID2;
-        }
-    }
-
-    if (rowCount == 0) {
-        qDebug() << "Zero rows found for ID1 =" << ID1;
-    }
-
-    return nearestID;
+  return nearestID;
 }
 
 // --- File Upload Helpers ---
 
 // TODO: notify if the campus already exists
-// TODO: bring up a popup for adding distances to existing campuses
 QStringList uploadFileAppend(const QString &filePath) {
     QXlsx::Document xlsx(filePath);
     if (!xlsx.load()) {
@@ -197,6 +263,8 @@ QStringList uploadFileAppend(const QString &filePath) {
     db.transaction();
 
     QStringList newlyAdded;
+    // Maps Excel CampusID -> Actual Database CampusID
+    QMap<int, int> IDMap;
 
     for (const QString &sheetName : xlsx.sheetNames()) {
         xlsx.selectSheet(sheetName);
@@ -210,42 +278,72 @@ QStringList uploadFileAppend(const QString &filePath) {
         }
 
         int row = 2;
-        // ONLY process the specific sheet for its specific table
+
+        // 1. Process CampusList first to establish ID mapping
         if (sheetName.toLower() == "campuslist") {
             while (xlsx.read(row, 1).isValid()) {
+                int excelID = xlsx.read(row, headerMap["campusid"]).toInt();
                 QString name = xlsx.read(row, headerMap["campusname"]).toString();
-                if (!name.isEmpty() && addCampus(name)) {
-                    newlyAdded << name;
+
+                if (!name.isEmpty()) {
+                    QSqlQuery query;
+                    query.prepare("INSERT INTO campusList (campusName) VALUES (:name)");
+                    query.bindValue(":name", name);
+
+                    if (query.exec()) {
+                        // Retrieve the ACTUAL ID generated by the database (Auto-increment)
+                        int actualID = query.lastInsertId().toInt();
+                        IDMap.insert(excelID, actualID);
+                        newlyAdded << name;
+                    } else {
+                        qDebug() << "Failed to add campus" << name << ":" << query.lastError().text();
+                    }
                 }
                 row++;
             }
         }
+        // 2. Process Souvenirs using the map
         else if (sheetName.toLower() == "souvenirs") {
             while (xlsx.read(row, 1).isValid()) {
-                int cID = xlsx.read(row, headerMap["campusid"]).toInt();
-                QString sName = xlsx.read(row, headerMap["itemname"]).toString();
+                int excelID = xlsx.read(row, headerMap["campusid"]).toInt();
+                QString sName = xlsx.read(row, headerMap["souvenirname"]).toString();
                 double price = xlsx.read(row, headerMap["price"]).toDouble();
-                addSouvenir(cID, sName, price);
+
+                // Replace Excel ID with Actual ID from our map
+                if (IDMap.contains(excelID)) {
+                    int actualID = IDMap.value(excelID);
+                    if (!addSouvenir(actualID, sName, price)) {
+                        qDebug() << "Failed to add souvenir" << sName << "for actual ID" << actualID;
+                    }
+                }
                 row++;
             }
         }
+        // 3. Process Distances using the map
         else if (sheetName.toLower() == "campusdistances") {
             while (xlsx.read(row, 1).isValid()) {
-                int id1 = xlsx.read(row, headerMap["campusid1"]).toInt();
-                int id2 = xlsx.read(row, headerMap["campusid2"]).toInt();
+                int excelID1 = xlsx.read(row, headerMap["campusid1"]).toInt();
+                int excelID2 = xlsx.read(row, headerMap["campusid2"]).toInt();
                 int dist = xlsx.read(row, headerMap["distance"]).toInt();
-                // Add bi-directionally
-                addDistance(id1, id2, dist);
-                addDistance(id2, id1, dist);
+
+                // Only add if BOTH campuses were part of this new upload
+                if (IDMap.contains(excelID1) && IDMap.contains(excelID2)) {
+                    int actualID1 = IDMap.value(excelID1);
+                    int actualID2 = IDMap.value(excelID2);
+                    addDistance(actualID1, actualID2, dist);
+                    addDistance(actualID2, actualID1, dist);
+                }
                 row++;
             }
         }
     }
 
     if (db.commit()) {
+        qDebug() << "Successfully uploaded" << newlyAdded.size() << "campuses with re-mapped IDs.";
         return newlyAdded;
     } else {
         db.rollback();
+        qDebug() << "Upload failed, transaction rolled back.";
         return {};
     }
 }
@@ -329,57 +427,89 @@ void resetAndReloadData(const QString &filePath) {
     }
 }
 
-bool addTripCampus(const int campusID, const QString &campusName) {
-    QSqlQuery query;
+bool addTripCampus(const int campusID, const QString &campusName, const int visitOrder) {
+  QSqlQuery query;
 
-    // Use '?' instead of ':id' to bypass naming mismatches
-    query.prepare("INSERT INTO newCampusList (campusID, campusName) VALUES (?, ?)");
+         // Updated to include visitOrder in the insert statement
+  query.prepare("INSERT INTO tripCampuses (campusID, campusName, visitOrder) "
+                "VALUES (?, ?, ?)");
 
-    query.addBindValue(campusID);   // Maps to the first '?'
-    query.addBindValue(campusName); // Maps to the second '?'
+  query.addBindValue(campusID);
+  query.addBindValue(campusName);
+  query.addBindValue(visitOrder);
 
-    if (!query.exec()) {
-        qDebug() << "DB Helper Error:" << query.lastError().text();
-        // If it still fails, this will tell us if the table actually exists
-        return false;
-    }
+  if (!query.exec()) {
+    qDebug() << "DB Helper Error (Add):" << query.lastError().text();
+    return false;
+  }
 
-    return true;
+  return true;
 }
 
 bool removeTripCampusByID(const int campusID) {
-    QSqlQuery query;
-    query.prepare("DELETE FROM newCampusList WHERE campusID = :id");
-    query.bindValue(":id", campusID);
+  QSqlQuery query;
+  // Note: Since tripStopID is the primary key, usually you'd delete by that,
+  // but deleting by campusID works if you want to remove all instances of that campus.
+  query.prepare("DELETE FROM tripCampuses WHERE campusID = :id");
+  query.bindValue(":id", campusID);
 
-    if (!query.exec()) {
-        qDebug() << "DB Helper Error (Remove by ID):" << query.lastError().text();
-        return false;
-    }
-    return true;
+  if (!query.exec()) {
+    qDebug() << "DB Helper Error (Remove by ID):" << query.lastError().text();
+    return false;
+  }
+  return true;
 }
 
 bool removeTripCampusByName(const QString &campusName) {
-    QSqlQuery query;
-    query.prepare("DELETE FROM newCampusList WHERE campusName = :name");
-    query.bindValue(":name", campusName);
+  QSqlQuery query;
+  query.prepare("DELETE FROM tripCampuses WHERE campusName = :name");
+  query.bindValue(":name", campusName);
 
-    if (!query.exec()) {
-        qDebug() << "DB Helper Error (Remove by Name):" << query.lastError().text();
-        return false;
-    }
-    return true;
+  if (!query.exec()) {
+    qDebug() << "DB Helper Error (Remove by Name):" << query.lastError().text();
+    return false;
+  }
+  return true;
 }
 
 bool clearTripTable() {
+  QSqlQuery query;
+
+  if (!query.exec("DELETE FROM tripCampuses")) {
+    qDebug() << "DB Helper Error (Clear Table):" << query.lastError().text();
+    return false;
+  }
+
+  // Optional: Reset the autoincrement counter so the next trip starts stop at ID 1
+  query.exec("DELETE FROM sqlite_sequence WHERE name='tripCampuses'");
+
+  return true;
+}
+
+bool populateTripSouvenirs()
+{
     QSqlQuery query;
 
-    // Deletes all rows from the table
-    if (!query.exec("DELETE FROM newCampusList")) {
-        qDebug() << "databaseHelper Error (Clear Table):" << query.lastError().text();
+    // Clear previous trip purchases first
+    if (!query.exec("DELETE FROM tripSouvenirPurchases")) {
+        qDebug() << "Failed clearing tripSouvenirPurchases:" << query.lastError().text();
         return false;
     }
 
+    // Copy souvenirs from campuses included in the trip
+    QString sql =
+        "INSERT INTO tripSouvenirPurchases (campusID, souvenirName, price) "
+        "SELECT s.campusID, s.souvenirName, s.price "
+        "FROM souvenirs s "
+        "INNER JOIN tripCampuses t "
+        "ON s.campusID = t.campusID";
+
+    if (!query.exec(sql)) {
+        qDebug() << "Failed populating tripSouvenirPurchases:" << query.lastError().text();
+        return false;
+    }
+
+    qDebug() << "[DB] Trip souvenirs populated.";
     return true;
 }
 
