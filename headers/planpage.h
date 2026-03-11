@@ -3,6 +3,9 @@
 
 #include <QSqlTableModel>
 #include <QWidget>
+#include <QSortFilterProxyModel>
+#include <QSqlQueryModel>
+#include <QRegularExpression>
 #include "databasePage.h"
 
 namespace Ui {
@@ -20,7 +23,7 @@ public:
 private:
     Ui::PlanPage *ui;
     void setupDatabaseTable();
-    QSqlTableModel* campusModel;     /**< Model for the campus selection list on settings page. */
+    QSqlQueryModel* campusModel;     /**< Model for the campus selection list on settings page. */
     QSqlTableModel* comboBoxModel;   /**< Model for the combobox on settings page. */
     QSqlTableModel* tripModel;       /**< Model for the current trip table */
     QSqlTableModel* tripSouvenirModel;
@@ -29,6 +32,7 @@ private:
     // planonly page
     void renderTrip();
     QWidget* createStopWidget(QString name, int distance, bool showArrow);
+    QSortFilterProxyModel* proxyModel;
 
 private slots:
     void on_startTripButton_clicked();
