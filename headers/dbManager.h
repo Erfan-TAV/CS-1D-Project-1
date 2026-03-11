@@ -1,6 +1,6 @@
 
 /**
- * @file dbmanager.h
+ * @file dbManager.h
  * @brief Header file for the DbManager class, handling SQLite database connectivity.
  */
 #ifndef DBMANAGER_H

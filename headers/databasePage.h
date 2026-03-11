@@ -1,5 +1,5 @@
 /**
- * @file DatabasePage.h
+ * @file databasePage.h
  * @brief Base class for UI components that sync with the database.
  */
 #ifndef DATABASEPAGE_H

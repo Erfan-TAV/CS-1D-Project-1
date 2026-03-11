@@ -1,12 +1,11 @@
-//
-// Created by erfan on 2/25/2026.
-//
 
 /**
- * @file CampusStructs.h
+ * @file campusStructs.h
  * @brief Definition of data structures used for campus management and navigation.
  * * This file contains the primary structures used to represent campuses, 
  * including their souvenirs and spatial relationships to other campuses.
+ * @author Erfan 
+ * @date 2/25/2026
  */
 #ifndef COLLEGETOUR_CAMPUSSTRUCTS_H
 #define COLLEGETOUR_CAMPUSSTRUCTS_H
