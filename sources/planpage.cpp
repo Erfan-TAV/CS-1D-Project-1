@@ -112,6 +112,10 @@ void PlanPage::on_startTripButton_clicked() {
     } else {
         qDebug() << "[UI] Navigating to Full-Trip view.";
         ui->tripPlannerStack->setCurrentIndex(2); // Index for the standard results page
+
+        tripSouvenirModel->select();
+        updateSouvenirFilter(ui->resultCampusCombo->currentIndex());
+        updateTotalDistance();
     }
 }
 
@@ -277,7 +281,8 @@ void PlanPage::setupResultsConnection() {
     }
 }
 
-void PlanPage::updateSouvenirFilter(int index) {
+void PlanPage::updateSouvenirFilter(int index)
+{
     if (index == -1 || !tripSouvenirModel || !tripModel) return;
 
     QSqlRecord record = tripModel->record(index);
@@ -288,7 +293,9 @@ void PlanPage::updateSouvenirFilter(int index) {
     );
 
     tripSouvenirModel->select();
-    ui->resultCampusSouvenirPurchases->viewport()->update();
+
+    updateCampusSpent(selectedID);
+    updateTotalTripPurchased();
 }
 
 void PlanPage::on_resultPlanAnotherButton_clicked()
@@ -513,4 +520,78 @@ void PlanPage::updateStopLabels()
         // Last stop
         ui->tripPlanStopNextButton->setText("Finish Trip");
     }
+}
+
+void PlanPage::updateTotalDistance()
+{
+    double totalDistance = 0;
+
+    QSqlQuery query("SELECT campusID FROM tripCampuses ORDER BY visitOrder ASC");
+
+    QList<int> campusIDs;
+
+    while (query.next()) {
+        campusIDs.append(query.value(0).toInt());
+    }
+
+    for (int i = 0; i < campusIDs.size() - 1; i++) {
+        totalDistance += getDistanceBetween(campusIDs[i], campusIDs[i + 1]);
+    }
+
+    ui->resultTotalDistanceAmt->setText(QString::number(totalDistance) + " miles");
+}
+
+void PlanPage::updateCampusSpent(int campusID)
+{
+    QSqlQuery query;
+    query.prepare(
+        "SELECT SUM(price * quantity) "
+        "FROM tripSouvenirPurchases "
+        "WHERE campusID = :id"
+    );
+
+    query.bindValue(":id", campusID);
+
+    double total = 0;
+
+    if (query.exec() && query.next()) {
+        total = query.value(0).toDouble();
+    }
+
+    ui->resultCampusAmtSpent->setText("$" + QString::number(total, 'f', 2));
+}
+
+void PlanPage::updateTotalTripPurchased()
+{
+    double total = 0.0;
+    QSqlDatabase db = QSqlDatabase::database();
+    QSqlQuery query(db);
+
+    // =========================
+    // OPTION A: Single Query (All Campuses Together)
+    // =========================
+    query.prepare("SELECT SUM(price * quantity) FROM tripSouvenirPurchases WHERE quantity > 0");
+    if (query.exec() && query.next() && !query.value(0).isNull()) {
+        total = query.value(0).toDouble();
+    }
+
+    // =========================
+    // OPTION B: Sum Each Campus Separately
+    // =========================
+    // if (!tripModel) return;
+    //
+    // for (int row = 0; row < tripModel->rowCount(); ++row) {
+    //     int campusID = tripModel->record(row).value("campusID").toInt();
+    //
+    //     query.prepare("SELECT SUM(price * quantity) FROM tripSouvenirPurchases "
+    //                   "WHERE campusID = :id AND quantity > 0");
+    //     query.bindValue(":id", campusID);
+    //
+    //     if (query.exec() && query.next() && !query.value(0).isNull()) {
+    //         total += query.value(0).toDouble();
+    //     }
+    // }
+
+    ui->resultTotalPurchasedAmt->setText("$" + QString::number(total, 'f', 2));
+    qDebug() << "[DEBUG] Total purchased for all campuses:" << total;
 }

@@ -47,6 +47,9 @@ private slots:
     void showCurrentCampusSouvenirs(int campusID);
     int getCampusIDByOrder(int order);
     void updateStopLabels();
+    void updateTotalDistance();
+    void updateCampusSpent(int campusID);
+    void updateTotalTripPurchased();
 
     void refreshUI() override;
 
