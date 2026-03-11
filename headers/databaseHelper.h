@@ -104,4 +104,6 @@ bool removeTripCampusByName(const QString &campusName);
 // TODO: add doxy
 bool clearTripTable();
 
+bool populateTripSouvenirs();
+
 #endif //COLLEGETOUR_DBMANAGERHELPER_H

@@ -27,11 +27,13 @@ private:
     QSqlTableModel* comboBoxModel = nullptr;   /**< Model for the combobox on settings page. */
     QSqlTableModel* tripModel = nullptr;       /**< Model for the current trip table */
     QSqlTableModel* tripSouvenirModel = nullptr;
+    QSqlTableModel *tripStopSouvenirModel = nullptr;
     void setupResultsConnection();
     // planonly page
     void renderTrip();
     QWidget* createStopWidget(QString name, int distance, bool showArrow);
     QSortFilterProxyModel* proxyModel;
+    int currentTripOrder = 0;
 
 private slots:
     void on_startTripButton_clicked();
@@ -41,6 +43,13 @@ private slots:
     void updateFilteredTable(const QString &selectedCampus);
     void updateSouvenirFilter(int index);
     void updateSelectionCount();
+    void setupTripStopModel();
+    void showCurrentCampusSouvenirs(int campusID);
+    int getCampusIDByOrder(int order);
+    void updateStopLabels();
+    void updateTotalDistance();
+    void updateCampusSpent(int campusID);
+    void updateTotalTripPurchased();
 
     void refreshUI() override;
 

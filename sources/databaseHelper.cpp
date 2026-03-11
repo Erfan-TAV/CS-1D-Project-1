@@ -485,3 +485,30 @@ bool clearTripTable() {
 
   return true;
 }
+
+bool populateTripSouvenirs()
+{
+    QSqlQuery query;
+
+    // Clear previous trip purchases first
+    if (!query.exec("DELETE FROM tripSouvenirPurchases")) {
+        qDebug() << "Failed clearing tripSouvenirPurchases:" << query.lastError().text();
+        return false;
+    }
+
+    // Copy souvenirs from campuses included in the trip
+    QString sql =
+        "INSERT INTO tripSouvenirPurchases (campusID, souvenirName, price) "
+        "SELECT s.campusID, s.souvenirName, s.price "
+        "FROM souvenirs s "
+        "INNER JOIN tripCampuses t "
+        "ON s.campusID = t.campusID";
+
+    if (!query.exec(sql)) {
+        qDebug() << "Failed populating tripSouvenirPurchases:" << query.lastError().text();
+        return false;
+    }
+
+    qDebug() << "[DB] Trip souvenirs populated.";
+    return true;
+}
