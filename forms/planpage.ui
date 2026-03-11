@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>681</width>
-    <height>450</height>
+    <width>890</width>
+    <height>474</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,7 @@
       <enum>QFrame::Shape::NoFrame</enum>
      </property>
      <property name="currentIndex">
-      <number>3</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tripSetupPage">
       <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -199,52 +199,78 @@
       </layout>
      </widget>
      <widget class="QWidget" name="tripPlanOnly">
-      <widget class="QLabel" name="label_3">
-       <property name="geometry">
-        <rect>
-         <x>11</x>
-         <y>11</y>
-         <width>119</width>
-         <height>22</height>
-        </rect>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="leftMargin">
+        <number>0</number>
        </property>
-       <property name="text">
-        <string>plan only page</string>
+       <property name="topMargin">
+        <number>0</number>
        </property>
-      </widget>
-      <widget class="QPushButton" name="planAnotherButton_1">
-       <property name="geometry">
-        <rect>
-         <x>950</x>
-         <y>430</y>
-         <width>120</width>
-         <height>31</height>
-        </rect>
+       <property name="rightMargin">
+        <number>0</number>
        </property>
-       <property name="text">
-        <string>Plan Another</string>
+       <property name="bottomMargin">
+        <number>0</number>
        </property>
-      </widget>
-      <widget class="QComboBox" name="campusComboBox">
-       <property name="geometry">
-        <rect>
-         <x>350</x>
-         <y>220</y>
-         <width>103</width>
-         <height>32</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QTableView" name="tableView">
-       <property name="geometry">
-        <rect>
-         <x>550</x>
-         <y>150</y>
-         <width>256</width>
-         <height>192</height>
-        </rect>
-       </property>
-      </widget>
+       <item>
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="3" column="0" colspan="2" alignment="Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignBottom">
+          <widget class="QPushButton" name="planOnlyPlanAnotherButton">
+           <property name="text">
+            <string>Plan Another</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0" colspan="2" alignment="Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop">
+          <widget class="QLabel" name="planOnlyPageLabel">
+           <property name="font">
+            <font>
+             <pointsize>28</pointsize>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Planned Trip</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QScrollArea" name="scrollArea">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>150</height>
+            </size>
+           </property>
+           <property name="widgetResizable">
+            <bool>true</bool>
+           </property>
+           <widget class="QWidget" name="scrollAreaWidgetContents">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>857</width>
+              <height>148</height>
+             </rect>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <item>
+              <widget class="QWidget" name="widget" native="true"/>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </widget>
      <widget class="QWidget" name="tripStop">
       <widget class="QPushButton" name="tripPlanStopNextButton">
