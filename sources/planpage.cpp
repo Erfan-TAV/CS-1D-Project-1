@@ -20,14 +20,18 @@ PlanPage::PlanPage(QWidget *parent)
     : DatabasePage(parent)
     , ui(new Ui::PlanPage)
 {
+    qDebug() << "[PLANPAGE] Constructor started.";
     ui->setupUi(this);
-    ui->tripPlannerStack->setCurrentIndex(0);
 
-    // Initialize proxyModel to prevent null pointer crashes
+    // INITIALIZE THESE FIRST
+    campusModel = new QSqlQueryModel(this);
     proxyModel = new QSortFilterProxyModel(this);
+
+    ui->tripPlannerStack->setCurrentIndex(0);
 
     setupDatabaseTable();
     setupResultsConnection();
+    qDebug() << "[PLANPAGE] Constructor finished.";
 }
 
 PlanPage::~PlanPage()
@@ -35,7 +39,10 @@ PlanPage::~PlanPage()
     delete ui;
 }
 
+
+
 void PlanPage::on_startTripButton_clicked() {
+    qDebug() << "[UI] Start Trip Button clicked.";
     clearTripTable();
 
     int currentCampusID = -1;
@@ -47,15 +54,18 @@ void PlanPage::on_startTripButton_clicked() {
         currentCampusID = rec.value("campusID").toInt();
         currentCampusName = rec.value("campusName").toString();
 
+        qDebug() << "[UI] Starting Campus selected:" << currentCampusName << "(ID:" << currentCampusID << ")";
         addTripCampus(currentCampusID, currentCampusName, 0);
     } else {
-        qDebug() << "Please select a starting campus.";
+        qDebug() << "[UI] WARNING: No starting campus selected.";
         return;
     }
 
     // 2. Retrieve Selected Campuses
     QModelIndexList selectedRows = ui->tableViewSettings->selectionModel()->selectedRows();
     QList<int> unvisitedIDs;
+
+    qDebug() << "[UI] Rows selected in list:" << selectedRows.size();
 
     for (const QModelIndex &proxyIndex : selectedRows) {
         QModelIndex sourceIndex = proxyModel->mapToSource(proxyIndex);
@@ -76,8 +86,10 @@ void PlanPage::on_startTripButton_clicked() {
     }
 
     if (ui->planOnlyCheckBox->isChecked()) {
+        qDebug() << "[UI] Navigating to Plan-Only view.";
         ui->tripPlannerStack->setCurrentIndex(1);
     } else {
+        qDebug() << "[UI] Navigating to Full-Trip view.";
         ui->tripPlannerStack->setCurrentIndex(2);
     }
 }
@@ -89,34 +101,28 @@ void PlanPage::setupDatabaseTable() {
     QSqlDatabase db = QSqlDatabase::database();
 
     if (!db.isOpen()) {
-        qDebug() << "PlanPage: Database is NOT open at" << db.databaseName();
+        qDebug() << "[DB] CRITICAL: Database is NOT open!";
         return;
     }
 
-    // 1. Universal Query (Requirement 3: Removed Saddleback hardcode)
+    // 1. Universal Query
     campusModel = new QSqlQueryModel(this);
     QString universalQuery = "SELECT campusID, campusName FROM campusList";
     campusModel->setQuery(universalQuery, db);
+    qDebug() << "[DB] Universal Campus Query executed. Row count:" << campusModel->rowCount();
 
     // 2. Setup Proxy Model
     proxyModel->setSourceModel(campusModel);
     proxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
-    proxyModel->setFilterKeyColumn(1); // Filter checks 'campusName' column
+    proxyModel->setFilterKeyColumn(1);
 
-    // 3. Apply to TableView and format to look like a List (Requirement 2)
+    // 3. Apply to ListView (tableViewSettings)
     ui->tableViewSettings->setModel(proxyModel);
+    ui->tableViewSettings->setModelColumn(1); // Show Names only
 
-    // Hide the row numbers (vertical header)
-    ui->tableViewSettings->verticalHeader()->setVisible(false);
-
-    // Hide the ID column, leaving only the Name column visible
-    ui->tableViewSettings->hideColumn(0);
-
-    // Stretch the name column to fill the empty space
-    ui->tableViewSettings->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
-
-    // Enable clicking the column header to sort alphabetically
-    ui->tableViewSettings->setSortingEnabled(true);
+    // Enable sort programmatically
+    proxyModel->sort(1, Qt::AscendingOrder);
+    qDebug() << "[UI] ListView model attached and sorted alphabetically.";
 
     // 4. Setup ComboBox
     comboBoxModel = new QSqlTableModel(this, db);
@@ -133,6 +139,7 @@ void PlanPage::setupDatabaseTable() {
             this, [this]() {
         int count = ui->tableViewSettings->selectionModel()->selectedRows().count();
         ui->numCampusRemaingAmount->setText(QString::number(count));
+        qDebug() << "[UI] Selection changed. Current count:" << count;
     });
 
     tripModel = new QSqlTableModel(this, db);
@@ -141,6 +148,7 @@ void PlanPage::setupDatabaseTable() {
 }
 
 void PlanPage::refreshUI() {
+    qDebug() << "[UI] Refreshing UI...";
     ui->comboBox->blockSignals(true);
     proxyModel->setFilterWildcard("");
     comboBoxModel->setFilter("");
@@ -152,12 +160,14 @@ void PlanPage::refreshUI() {
 
 void PlanPage::updateFilteredTable(const QString &selectedCampus) {
     if (!proxyModel) return;
+    qDebug() << "[UI] Start Campus changed. Filtering out:" << selectedCampus;
     QString filterRegex = QString("^(?!%1$).*").arg(QRegularExpression::escape(selectedCampus));
     proxyModel->setFilterRegularExpression(QRegularExpression(filterRegex));
 }
 
 void PlanPage::setupResultsConnection() {
     QSqlDatabase db = QSqlDatabase::database();
+    qDebug() << "[UI] Setting up results page connections.";
 
     ui->resultCampusSouvenirPurchases->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
@@ -180,10 +190,11 @@ void PlanPage::updateSouvenirFilter(int index) {
     QSqlRecord record = tripModel->record(index);
     int selectedID = record.value("campusID").toInt();
 
+    qDebug() << "[UI] Viewing souvenirs for ID:" << selectedID;
     tripSouvenirModel->setFilter(QString("campusID = %1").arg(selectedID));
     tripSouvenirModel->select();
 }
 
-void PlanPage::on_resultPlanAnotherButton_clicked() { clearTripTable(); ui->tripPlannerStack->setCurrentIndex(0); }
-void PlanPage::on_planAnotherButton_1_clicked() { clearTripTable(); ui->tripPlannerStack->setCurrentIndex(0); }
+void PlanPage::on_resultPlanAnotherButton_clicked() { qDebug() << "[UI] Plan Another clicked."; clearTripTable(); ui->tripPlannerStack->setCurrentIndex(0); }
+void PlanPage::on_planAnotherButton_1_clicked() { qDebug() << "[UI] Plan Another clicked."; clearTripTable(); ui->tripPlannerStack->setCurrentIndex(0); }
 void PlanPage::on_tripPlanStopNextButton_clicked() { ui->tripPlannerStack->setCurrentIndex(3); }
