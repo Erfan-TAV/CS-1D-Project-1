@@ -98,47 +98,46 @@ double getDistanceBetween(int id1, int id2) {
 // ==========================================
 // REFACTORED: ALGORITHM LOGIC (Requirement 1 & 4)
 // ==========================================
-void calculateEfficientTrip(int startCampusID, QList<int> unvisitedIDs) {
-    qDebug() << "\n[ALGO] --- Starting Efficient Trip Calculation ---";
-    qDebug() << "[ALGO] Origin ID:" << startCampusID << " | Targets count:" << unvisitedIDs.size();
+// 2. The Recursive Function
+void calculateEfficientTrip(int currentID, QList<int> unvisitedIDs, double totalDistance, int order) {
+    // BASE CASE: If there are no more campuses to visit, stop the recursion.
+    if (unvisitedIDs.isEmpty()) {
+        qDebug() << "[ALGO] --- Recursion Complete ---";
+        qDebug() << "[ALGO] Final Total Distance:" << totalDistance << "miles.";
+        return;
+    }
 
-    double totalDistance = 0.0;
-    int currentID = startCampusID;
-    int order = 1; // Start campus was order 0
+    int nextID = -1;
+    double minFound = std::numeric_limits<double>::max();
 
-    while (!unvisitedIDs.isEmpty()) {
-        int nextID = -1;
-        double minFound = std::numeric_limits<double>::max();
-
-        // Find closest school from current location
-        for (int targetID : unvisitedIDs) {
-            double dist = getDistanceBetween(currentID, targetID); // Helper function
-            if (dist < minFound) {
-                minFound = dist;
-                nextID = targetID;
-            }
-        }
-
-        if (nextID != -1) {
-            totalDistance += minFound;
-            currentID = nextID;
-            QString name = getCampusName(currentID); // Helper function
-
-            qDebug() << "[ALGO] Step" << order << ": Found nearest ->" << name
-                     << "(ID:" << currentID << ") at" << minFound << "miles.";
-
-            // Log to trip table (Requirement 1: Logic outside of UI)
-            addTripCampus(currentID, name, order++);
-
-            unvisitedIDs.removeAll(currentID);
-        } else {
-            qDebug() << "[ALGO] ERROR: Could not find connection for ID" << currentID;
-            break;
+    // Find the single closest school from the current location
+    for (int targetID : unvisitedIDs) {
+        double dist = getDistanceBetween(currentID, targetID);
+        if (dist < minFound) {
+            minFound = dist;
+            nextID = targetID;
         }
     }
 
-    qDebug() << "[ALGO] --- Calculation Complete ---";
-    qDebug() << "[ALGO] Final Total Distance:" << totalDistance << "miles.\n";
+    if (nextID != -1) {
+        // Prepare data for the next stop
+        double newTotalDistance = totalDistance + minFound;
+        QString name = getCampusName(nextID);
+
+        qDebug() << "[ALGO] Recursive Level" << order << ": Visiting" << name
+                 << " (ID:" << nextID << ") +" << minFound << "mi.";
+
+        // Record the visit in the database
+        addTripCampus(nextID, name, order);
+
+        // Remove the campus we just visited
+        unvisitedIDs.removeAll(nextID);
+
+        // RECURSIVE CALL: The function calls ITSELF with the new location and updated totals
+        calculateEfficientTrip(nextID, unvisitedIDs, newTotalDistance, order + 1);
+    } else {
+        qDebug() << "[ALGO] ERROR: Path broken at ID" << currentID;
+    }
 }
 
 QString getCampusName(const int campusID) {

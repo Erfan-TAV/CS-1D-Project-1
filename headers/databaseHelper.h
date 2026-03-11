@@ -67,7 +67,7 @@ bool removeSouvenir(int campusID, const QString& name);
 bool addDistance(int id1, int id2, int distance);
 
 double getDistanceBetween(const int id1, const int id2);
-void calculateEfficientTrip(int startCampusID, QList<int> unvisitedIDs);
+void calculateEfficientTrip(int currentID, QList<int> unvisitedIDs, double totalDistance, int order);
 
 /**
  * @brief Finds the closest campus to a specific ID

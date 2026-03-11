@@ -78,7 +78,10 @@ void PlanPage::on_startTripButton_clicked() {
     }
 
     // 3. Trigger the decoupled algorithm
-    calculateEfficientTrip(currentCampusID, unvisitedIDs);
+    qDebug() << "[ALGO] --- Starting RECURSIVE Trip Calculation ---";
+
+    // Start the recursion: 0.0 is initial distance, 1 is the first stop after origin
+    calculateEfficientTrip(currentCampusID, unvisitedIDs, 0.0, 1);
 
     // 4. Update UI state
     if (tripModel) {
