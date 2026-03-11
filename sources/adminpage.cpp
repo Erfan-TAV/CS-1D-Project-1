@@ -1,3 +1,8 @@
+/**
+ * @file adminpage.cpp
+ * @brief This contains implementation for the administration page. Ex accessing the 
+ *  souvenir and campus information editing abilities. 
+ */
 #include "adminpage.h"
 #include <QCryptographicHash>
 #include "ui_adminpage.h"

@@ -1,3 +1,7 @@
+/**
+ * @file dbManager.cpp
+ * @brief Additional implementation for file management of the database. 
+ */
 #include "dbManager.h"
 #include <QFile>
 #include <QDir>

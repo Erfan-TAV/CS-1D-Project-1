@@ -1,3 +1,7 @@
+/**
+ * @file databaseHelper.cpp
+ * @brief Implementation for managing the information of campuses and souvenirs within the existing database. 
+ */
 #include <QSqlQuery>
 #include <QDebug>
 #include <QSqlError>

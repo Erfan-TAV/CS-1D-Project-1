@@ -1,3 +1,8 @@
+/**
+ * @file main.cpp
+ * @brief Application entry point and initialization of database. 
+ */
+
 #include "../headers/mainwindow.h"
 #include <QApplication>
 #include <QStyleFactory>

@@ -1,3 +1,7 @@
+/**
+ * @file infopage.cpp
+ * @brief Implementation of header setup, UI refresh, and trip result display. 
+ */
 #include "infopage.h"
 #include "ui_infopage.h"
 #include <QHeaderView>

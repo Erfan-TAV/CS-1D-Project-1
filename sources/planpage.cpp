@@ -1,3 +1,8 @@
+/**
+ * @file planpage.cpp
+ * @brief This file manages the functionality and UI of the trip planning page. 
+ */
+
 #include "planpage.h"
 #include "ui_planpage.h"
 #include "../headers/tripPlanner.h"
