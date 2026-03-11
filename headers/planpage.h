@@ -8,6 +8,7 @@
 #include <QRegularExpression>
 #include "databasePage.h"
 
+
 namespace Ui {
     class PlanPage;
 }

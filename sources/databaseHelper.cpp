@@ -95,6 +95,56 @@ double getDistanceBetween(int id1, int id2) {
 }
 // ------------------------------------
 
+// ==========================================
+// REFACTORED: ALGORITHM LOGIC (Requirement 1 & 4)
+// ==========================================
+void calculateEfficientTrip(int startCampusID, QList<int> unvisitedIDs) {
+    double totalTripDistance = 0.0;
+    int currentCampusID = startCampusID;
+    int currentOrder = 1; // Start campus is already order 0
+
+    qDebug() << "\n--- STARTING TRIP CALCULATION ---";
+    qDebug() << "Origin Campus ID:" << currentCampusID;
+    qDebug() << "Pending Destinations:" << unvisitedIDs.size();
+
+    while (!unvisitedIDs.isEmpty()) {
+        int nextCampusID = -1;
+        double minDistance = std::numeric_limits<double>::max();
+
+        // Find closest unvisited campus
+        for (int id : unvisitedIDs) {
+            double dist = getDistanceBetween(currentCampusID, id);
+            if (dist < minDistance) {
+                minDistance = dist;
+                nextCampusID = id;
+            }
+        }
+
+        if (nextCampusID != -1) {
+            totalTripDistance += minDistance;
+            currentCampusID = nextCampusID;
+
+            // Fetch the name for the database log
+            QString currentCampusName = getCampusName(currentCampusID);
+
+            qDebug() << " -> Next Stop:" << currentCampusName << "(ID:" << currentCampusID << ")";
+            qDebug() << " -> Leg Distance:" << minDistance << "mi | Total Distance so far:" << totalTripDistance << "mi";
+
+            // Log to database
+            addTripCampus(currentCampusID, currentCampusName, currentOrder++);
+
+            // Mark as visited
+            unvisitedIDs.removeAll(currentCampusID);
+        } else {
+            qDebug() << "[!] Route disconnected! No valid distance found. Ending calculation.";
+            break;
+        }
+    }
+
+    qDebug() << "FINAL TOTAL TRIP DISTANCE:" << totalTripDistance;
+    qDebug() << "--- END OF TRIP CALCULATION ---\n";
+}
+
 QString getCampusName(const int campusID) {
     QSqlQuery query;
 
