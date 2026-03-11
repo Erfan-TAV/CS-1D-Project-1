@@ -1,4 +1,5 @@
 #include "infopage.h"
+#include "tripPlanner.h"
 #include "ui_infopage.h"
 #include <QHeaderView>
 #include <QSqlQuery>
